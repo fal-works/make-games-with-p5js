@@ -1,0 +1,8 @@
+baseURL = "http://example.org/"
+author = "FAL"
+languageCode = "ja-jp"
+hasCJKLanguage = true
+title = "My New Hugo Site"
+theme = "book"
+pygmentsCodeFences = true
+publishDir = "docs"
