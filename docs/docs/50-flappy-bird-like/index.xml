@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Flappy Bird ライクなゲーム on p5.js でゲーム制作</title>
+    <link>https://fal-works.github.io/pcd2020-workshop-fal/docs/50-flappy-bird-like/</link>
+    <description>Recent content in Flappy Bird ライクなゲーム on p5.js でゲーム制作</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>ja-jp</language>
+    
+	<atom:link href="https://fal-works.github.io/pcd2020-workshop-fal/docs/50-flappy-bird-like/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>最初に少し考えてみる</title>
+      <link>https://fal-works.github.io/pcd2020-workshop-fal/docs/50-flappy-bird-like/10-design/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://fal-works.github.io/pcd2020-workshop-fal/docs/50-flappy-bird-like/10-design/</guid>
+      <description>最初に少し考えてみる 前置き ここでは、実際のコーディングに入る前に、少しだけ抽象的なことを考えてみます。 具体的なソースコードがないとイメージし</description>
+    </item>
+    
+    <item>
+      <title>プレイヤーだけ実装</title>
+      <link>https://fal-works.github.io/pcd2020-workshop-fal/docs/50-flappy-bird-like/20-player/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://fal-works.github.io/pcd2020-workshop-fal/docs/50-flappy-bird-like/20-player/</guid>
+      <description>プレイヤーだけ実装してみる やること プレイヤーを入れる変数を用意する setup() の中で、プレイヤーを作成する draw() の中で、プレイヤーについて以下を行う 位置の</description>
+    </item>
+    
+    <item>
+      <title>ブロック1個だけ実装</title>
+      <link>https://fal-works.github.io/pcd2020-workshop-fal/docs/50-flappy-bird-like/30-block/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://fal-works.github.io/pcd2020-workshop-fal/docs/50-flappy-bird-like/30-block/</guid>
+      <description>ブロックを1個だけ実装してみる やること ブロックを入れる変数を用意する setup() の中で、ブロックを作成する draw() の中で、ブロックについて以下を行う 位置の更</description>
+    </item>
+    
+  </channel>
+</rss>

@@ -1,8 +1,11 @@
-baseURL = "http://example.org/"
+baseURL = "https://fal-works.github.io/pcd2020-workshop-fal/"
 author = "FAL"
 languageCode = "ja-jp"
 hasCJKLanguage = true
-title = "My New Hugo Site"
+title = "p5.js でゲーム制作"
 theme = "book"
 pygmentsCodeFences = true
 publishDir = "docs"
+[params]
+  BookRepo = 'https://github.com/fal-works/pcd2020-workshop-fal'
+  BookSearch = false

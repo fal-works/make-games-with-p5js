@@ -1,0 +1,529 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="最初に少し考えてみる"><meta property="og:title" content="最初に少し考えてみる" />
+<meta property="og:description" content="最初に少し考えてみる 前置き ここでは、実際のコーディングに入る前に、少しだけ抽象的なことを考えてみます。 具体的なソースコードがないとイメージし" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://fal-works.github.io/pcd2020-workshop-fal/docs/50-flappy-bird-like/10-design/" />
+
+<title>最初に少し考えてみる | p5.js でゲーム制作</title>
+<link rel="icon" href="/pcd2020-workshop-fal/favicon.png" type="image/x-icon">
+
+
+<link rel="stylesheet" href="/pcd2020-workshop-fal/book.min.eea3d957aa076eb37f0dc945a01970811db19796a1057c7d8e46268703b9c8f0.css" integrity="sha256-7qPZV6oHbrN/DclFoBlwgR2xl5ahBXx9jkYmhwO5yPA=">
+
+
+<!--
+Made with Book Theme
+https://github.com/alex-shpak/hugo-book
+-->
+
+  
+</head>
+
+<body>
+  <input type="checkbox" class="hidden" id="menu-control" />
+  <main class="container flex">
+    <aside class="book-menu">
+      
+  <nav>
+<h2 class="book-brand">
+  <a href="/pcd2020-workshop-fal"><span>p5.js でゲーム制作</span>
+  </a>
+</h2>
+
+
+
+
+
+
+  
+
+  
+  
+
+
+
+
+
+ 
+  
+    
+
+
+
+
+  
+  <ul>
+    
+      
+        <li>
+
+  <a href="/pcd2020-workshop-fal/docs/10-prepare/" >
+      準備
+  </a>
+
+</li>
+      
+    
+      
+        <li>
+
+  <a href="/pcd2020-workshop-fal/docs/20-introduction/" >
+      はじめに
+  </a>
+
+</li>
+      
+    
+      
+        <li>
+
+  <a href="/pcd2020-workshop-fal/docs/30-sketch/" >
+      p5.js スケッチの基本構造
+  </a>
+
+</li>
+      
+    
+      
+        <li>
+
+  <a href="/pcd2020-workshop-fal/docs/40-links/" >
+      リンク
+  </a>
+
+</li>
+      
+    
+      
+        
+
+  <li >
+    
+      
+
+  <a href="/pcd2020-workshop-fal/docs/50-flappy-bird-like/" >
+      Flappy Bird ライクなゲーム
+  </a>
+
+
+    
+
+    
+
+
+
+
+  
+  <ul>
+    
+      
+        <li>
+
+  <a href="/pcd2020-workshop-fal/docs/50-flappy-bird-like/10-design/"  class="active">
+      最初に少し考えてみる
+  </a>
+
+</li>
+      
+    
+      
+        <li>
+
+  <a href="/pcd2020-workshop-fal/docs/50-flappy-bird-like/20-player/" >
+      プレイヤーだけ実装
+  </a>
+
+</li>
+      
+    
+      
+        <li>
+
+  <a href="/pcd2020-workshop-fal/docs/50-flappy-bird-like/30-block/" >
+      ブロック1個だけ実装
+  </a>
+
+</li>
+      
+    
+  </ul>
+  
+
+
+
+  </li>
+
+
+      
+    
+  </ul>
+  
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+</nav>
+
+
+<script>
+(function() {
+  var menu = document.querySelector("aside.book-menu nav");
+  addEventListener("beforeunload", function(event) {
+    localStorage.setItem("menu.scrollTop", menu.scrollTop);
+  });
+  menu.scrollTop = localStorage.getItem("menu.scrollTop");
+})();
+</script>
+
+ 
+    </aside>
+
+    <div class="book-page">
+      <header class="book-header">
+        
+  <div class="flex align-center justify-between">
+  <label for="menu-control">
+    <img src="/pcd2020-workshop-fal/svg/menu.svg" class="book-icon" alt="Menu" />
+  </label>
+
+  <strong>最初に少し考えてみる</strong>
+
+  <label for="toc-control">
+    <img src="/pcd2020-workshop-fal/svg/toc.svg" class="book-icon" alt="Table of Contents" />
+  </label>
+</div>
+
+
+  
+    <input type="checkbox" class="hidden" id="toc-control" />
+    <aside class="hidden clearfix">
+      
+  <nav id="TableOfContents">
+  <ul>
+    <li><a href="#前置き">前置き</a></li>
+    <li><a href="#何を考えるべきか">何を考えるべきか</a></li>
+    <li><a href="#データの種類を考える">データの種類を考える</a>
+      <ul>
+        <li><a href="#この世界に存在するものは何か">この世界に存在するものは何か？</a></li>
+        <li><a href="#一つ一つのエンティティに固有のデータは何か">一つ一つのエンティティに固有のデータは何か？</a></li>
+      </ul>
+    </li>
+    <li><a href="#データの処理を考える">データの処理を考える</a>
+      <ul>
+        <li><a href="#全エンティティ共通">全エンティティ共通</a></li>
+        <li><a href="#プレイヤー用">プレイヤー用</a></li>
+        <li><a href="#ブロック用">ブロック用</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+
+
+    </aside>
+  
+ 
+      </header>
+
+      
+<article class="markdown"><h1 id="最初に少し考えてみる">最初に少し考えてみる</h1>
+<h2 id="前置き">前置き</h2>
+<p>ここでは、実際のコーディングに入る前に、少しだけ抽象的なことを考えてみます。</p>
+<p>具体的なソースコードがないとイメージしにくいという人は、いったん話半分に聞いていただいても問題ありません。</p>
+<h2 id="何を考えるべきか">何を考えるべきか</h2>
+<p>突き詰めて考えると、</p>
+<ul>
+<li>あらゆるゲームの キャラ／障害物／アイテム etc. は、すべて<strong>データ</strong>の集まりです。</li>
+<li>ゲーム画面に動きがあるということは、<strong>データが変化している</strong>ことに他なりません。</li>
+</ul>
+<p>よって、次のことがわかれば、ゲームプログラムの構成要素が分かったことになります。</p>
+<ol>
+<li>データの<strong>種類</strong>には、どういったものがあるのか？</li>
+<li>それらのデータを使う<strong>処理</strong>には、どういったものがあるのか？</li>
+</ol>
+<h2 id="データの種類を考える">データの種類を考える</h2>
+<h3 id="この世界に存在するものは何か">この世界に存在するものは何か？</h3>
+<p><img src="../flappy-bird-like.gif" alt="Abstract Flappy Bird"></p>
+<p>今回、次のように呼ぶことにします。</p>
+<ul>
+<li>「プレイヤー」： 遊ぶ人が操作する対象</li>
+<li>「ブロック」： 迫ってくる障害物</li>
+<li>「エンティティ」： 「プレイヤー」と「ブロック」の総称</li>
+</ul>
+<p>以上が今回の主役となります。<br>
+まずはこれらに関係するデータについて考え、その他についてはコードを書きながらおいおい考えていくことにします。</p>
+<div class="book-expand">
+    <label>
+      <div class="book-expand-head flex justify-between">
+        <span>補足：「エンティティ」とは</span>
+        <span>↕</span>
+      </div>
+      <input type="checkbox" class="hidden" />
+      <div class="book-expand-content markdown-inner">
+        <p>分野によってはよく使われるのですが、一般的には馴染みのない言葉です。<br>
+直訳すると「実体」。</p>
+<p>とはいえ、深く考えず、「なんでもいいから何か呼び方を決めておきたかったので、適当なカタカナ語を当てることにした」くらいのゆるい捉え方で大丈夫です。</p>
+
+      </div>
+    </label>
+  </div>
+  
+<div class="book-expand">
+    <label>
+      <div class="book-expand-head flex justify-between">
+        <span>余談： 名前の重要性</span>
+        <span>↕</span>
+      </div>
+      <input type="checkbox" class="hidden" />
+      <div class="book-expand-content markdown-inner">
+        名前は極めて重要である、という話はしばしば聞かれます。<br>
+例えば：
+<a href="https://xn--97-273ae6a4irb6e2hsoiozc2g4b8082p.com/%E3%82%A8%E3%83%83%E3%82%BB%E3%82%A4/%E5%90%8D%E5%89%8D%E9%87%8D%E8%A6%81/" target="_blank">名前重要 | プログラマが知るべき97のこと</a>
+      </div>
+    </label>
+  </div>
+  
+<div class="book-expand">
+    <label>
+      <div class="book-expand-head flex justify-between">
+        <span>余談： 今回、この名前で良いのか</span>
+        <span>↕</span>
+      </div>
+      <input type="checkbox" class="hidden" />
+      <div class="book-expand-content markdown-inner">
+        <p>一概には言えないところがあります。</p>
+<p>例えば、初期案の見た目から「ブロック」と名付けちゃったけど、もしグラフィックを差し替えてブロック状に見えなくなったら、それはもうブロックじゃないんじゃないか？ など色々考えられます。</p>
+<p>事前に予想できる範囲で極力適切な名前をつけるとしても、作りたいものの最終形が変化したら個々の名前も変化するのは仕方ない、と考えて都度修正していくことも必要かもしれません。</p>
+
+      </div>
+    </label>
+  </div>
+  
+<div class="book-expand">
+    <label>
+      <div class="book-expand-head flex justify-between">
+        <span>余談：「エンティティ」とは（再び）</span>
+        <span>↕</span>
+      </div>
+      <input type="checkbox" class="hidden" />
+      <div class="book-expand-content markdown-inner">
+        <p>エンティティについてググると「独立した一意の対象物」みたいな定義が出てきます。<br>
+これは何かというと、まずエンティティではない例として、たとえば次のようなコードがあり、値は絶対に変化しないものとする。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-javascript" data-lang="javascript"><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">sizeA</span> <span style="color:#f92672">=</span> { <span style="color:#a6e22e">width</span><span style="color:#f92672">:</span> <span style="color:#ae81ff">100</span>, <span style="color:#a6e22e">height</span><span style="color:#f92672">:</span> <span style="color:#ae81ff">100</span> };
+<span style="color:#66d9ef">const</span> <span style="color:#a6e22e">sizeB</span> <span style="color:#f92672">=</span> { <span style="color:#a6e22e">width</span><span style="color:#f92672">:</span> <span style="color:#ae81ff">100</span>, <span style="color:#a6e22e">height</span><span style="color:#f92672">:</span> <span style="color:#ae81ff">100</span> };
+</code></pre></div><p>このとき、<code>sizeA</code> も <code>sizeB</code> も指し示すものは全く同じである（区別する必要が無い）という可能性が高そうです。</p>
+<p>逆に次のようなものを考える。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-javascript" data-lang="javascript"><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">personA</span> <span style="color:#f92672">=</span> { <span style="color:#a6e22e">name</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;山田太郎&#34;</span>, <span style="color:#a6e22e">residence</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;神奈川県&#34;</span> };
+<span style="color:#66d9ef">const</span> <span style="color:#a6e22e">personB</span> <span style="color:#f92672">=</span> { <span style="color:#a6e22e">name</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;山田太郎&#34;</span>, <span style="color:#a6e22e">residence</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;神奈川県&#34;</span> }; <span style="color:#75715e">// 別人
+</span></code></pre></div><p>これを見ると、中身が同じでも実体としては別物と考える必要がありそうです。また逆に、仮に <code>personA</code> の人が引っ越したり改姓したりしても、その人が以前と同一人物であることに変わりはない。<br>
+こういう、何らかのアイデンティティを持っているような存在の一つ一つのことをエンティティと呼ぶのだ、と考えて概ね間違いはないと思う。</p>
+<p>ただ、以上はとりわけ一般的かつ大雑把な説明です。<br>
+ゲームでエンティティと言う場合は、物理的な存在（つまり概念的な何かではなく、必ずゲーム世界の空間のどこかに位置しているような何か）だけを指すかもしれないし、あるいはそれに限らないかもしれません。</p>
+<p>細かいことは文脈次第であり、ひとまず本ワークショップでは、ゲーム空間内を移動できるような物体、つまり少なくとも「位置」と「速度」を持つような物体のことを「エンティティ」と呼んでいます。</p>
+<p>「エンティティ」（entity）以外の用語候補としては、「ゲームオブジェクト」（game object）や「アクター」（actor）などがありえます。</p>
+
+      </div>
+    </label>
+  </div>
+  
+<h3 id="一つ一つのエンティティに固有のデータは何か">一つ一つのエンティティに固有のデータは何か？</h3>
+<p>どのエンティティも、画面上のどこかに位置していて、かつ移動している<br>
+→ つまり、次のデータを持っているはずです。</p>
+<ul>
+<li>位置 (x, y)</li>
+<li>速度 (x, y)</li>
+</ul>
+<div class="book-expand">
+    <label>
+      <div class="book-expand-head flex justify-between">
+        <span>補足： 改めて、「速度」とは</span>
+        <span>↕</span>
+      </div>
+      <input type="checkbox" class="hidden" />
+      <div class="book-expand-content markdown-inner">
+        <p>「速度」の定義は「単位時間あたりの位置の変化量」です。</p>
+<p>今回のワークショップでは、単位時間は1フレーム、つまり p5.js の <code>setup()</code>/<code>draw()</code> における <code>draw()</code> 1回分で考えます。</p>
+<p>仮にある物体の位置の座標が画面中央の (400, 300) で、速度が (0, 1) だったとすると、
+y座標が繰り返し 1 ずつ増えていくので、少しずつ下方向に動くという結果になります。</p>
+<p>p5.js スケッチで書くと以下のとおりです。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-javascript" data-lang="javascript"><span style="color:#66d9ef">let</span> <span style="color:#a6e22e">x</span> <span style="color:#f92672">=</span> <span style="color:#ae81ff">400</span>; <span style="color:#75715e">// 位置のx座標
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">let</span> <span style="color:#a6e22e">y</span> <span style="color:#f92672">=</span> <span style="color:#ae81ff">300</span>; <span style="color:#75715e">// 位置のy座標
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">let</span> <span style="color:#a6e22e">vx</span> <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>; <span style="color:#75715e">// 速度のx成分
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">let</span> <span style="color:#a6e22e">vy</span> <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>; <span style="color:#75715e">// 速度のy成分
+</span><span style="color:#75715e"></span>
+<span style="color:#66d9ef">function</span> <span style="color:#a6e22e">setup</span>() {
+  <span style="color:#a6e22e">createCanvas</span>(<span style="color:#ae81ff">800</span>, <span style="color:#ae81ff">600</span>);
+}
+
+<span style="color:#66d9ef">function</span> <span style="color:#a6e22e">draw</span>() {
+  <span style="color:#75715e">// 速度に応じて位置を変化させる
+</span><span style="color:#75715e"></span>  <span style="color:#a6e22e">x</span> <span style="color:#f92672">+=</span> <span style="color:#a6e22e">vx</span>;
+  <span style="color:#a6e22e">y</span> <span style="color:#f92672">+=</span> <span style="color:#a6e22e">vy</span>;
+
+  <span style="color:#75715e">// 現在の位置に丸を描く
+</span><span style="color:#75715e"></span>  <span style="color:#a6e22e">background</span>(<span style="color:#ae81ff">0</span>);
+  <span style="color:#a6e22e">circle</span>(<span style="color:#a6e22e">x</span>, <span style="color:#a6e22e">y</span>, <span style="color:#ae81ff">100</span>);
+}
+</code></pre></div>
+      </div>
+    </label>
+  </div>
+  
+<p>なお、簡単のため、</p>
+<ul>
+<li>ブロックの「大きさ」はみんな一緒（画面からはみ出しているだけ）</li>
+<li>「色」や「形」も（今のところ）みんな一緒</li>
+</ul>
+<p>と考えておきます。これらのデータはエンティティごとに管理しなくてよいことになります。</p>
+<p><img src="../flappy-bird-like-whole.gif" alt="Abstract Flappy Bird"></p>
+<div class="book-expand">
+    <label>
+      <div class="book-expand-head flex justify-between">
+        <span>余談： 本当にこれが正解？</span>
+        <span>↕</span>
+      </div>
+      <input type="checkbox" class="hidden" />
+      <div class="book-expand-content markdown-inner">
+        <p>決してそうではありません。</p>
+<p>例えば、</p>
+<ul>
+<li>ブロックの「速度」についても、みんな一定だし変化しないのでは</li>
+<li>後々、「動かない（＝速度が不要な）エンティティ」が出てくる可能性はないか</li>
+<li>プレイヤーやブロックの単位でなく、エンティティでひとまとめに考えていいのか</li>
+</ul>
+<p>などなどの疑問がありえます。</p>
+<p>実際、今回の例で「インスタンスごとに最低限必要なデータ」を厳密に考えると、</p>
+<ul>
+<li>プレイヤー
+<ul>
+<li>y座標</li>
+<li>y速度</li>
+</ul>
+</li>
+<li>ブロック
+<ul>
+<li>x座標</li>
+<li>y座標</li>
+<li>x速度</li>
+</ul>
+</li>
+</ul>
+<p>みたいな感じになりそうです。</p>
+<p>しかし今回のワークショップでは、ソースコードを他のゲームに転用していただくことをちょっとだけ意識しているので、「画面上を上下左右に動き回れる物体」を一般的なエンティティの像として考え、それをベースに話を進めています。</p>
+<p>逆に、大きさや色なども後になって個別に持たせたくなる可能性が高そうだし、それを今から想定しておいても良いのでは？ ということも考えられます。これについては、属性を増やす分には後から都度考えればよいだろうという判断にしました。</p>
+<p>いずれにしても、今後の拡張を考えると「正解」がはっきり定まるものではないので、今回のワークショップでは話の都合上こうなっている、くらいに捉えていただければと思います。</p>
+
+      </div>
+    </label>
+  </div>
+  
+<h2 id="データの処理を考える">データの処理を考える</h2>
+<p>エンティティの持つデータが「位置」と「速度」だとして、これらはどんなふうに処理されるのか？</p>
+<p>列挙してみます。</p>
+<ul>
+<li>プレイヤーもブロックも、「速度を適用して<strong>位置を更新</strong>する」という点だけは共通している</li>
+<li>プレイヤーとブロックで、データを<strong>作成</strong>する（位置や速度の初期値を決める）方法が異なる</li>
+<li>プレイヤーとブロックは見た目が違うので、<strong>描画</strong>の方法も異なる</li>
+<li>プレイヤーのみ、<strong>重力で落下</strong>したり<strong>ジャンプ</strong>したりする</li>
+</ul>
+<p>整理すると……</p>
+<h3 id="全エンティティ共通">全エンティティ共通</h3>
+<ul>
+<li>位置の更新</li>
+</ul>
+<h3 id="プレイヤー用">プレイヤー用</h3>
+<ul>
+<li>作成</li>
+<li>重力の適用</li>
+<li>ジャンプ</li>
+<li>描画</li>
+</ul>
+<h3 id="ブロック用">ブロック用</h3>
+<ul>
+<li>作成</li>
+<li>描画</li>
+</ul>
+</article>
+ 
+
+      <footer class="book-footer">
+        
+  <div class="flex justify-between">
+
+
+
+
+
+</div>
+
+ 
+        
+  
+  <div class="book-comments">
+
+</div>
+  
+ 
+      </footer>
+      
+    </div>
+
+    
+    <aside class="book-toc">
+      
+  <nav id="TableOfContents">
+  <ul>
+    <li><a href="#前置き">前置き</a></li>
+    <li><a href="#何を考えるべきか">何を考えるべきか</a></li>
+    <li><a href="#データの種類を考える">データの種類を考える</a>
+      <ul>
+        <li><a href="#この世界に存在するものは何か">この世界に存在するものは何か？</a></li>
+        <li><a href="#一つ一つのエンティティに固有のデータは何か">一つ一つのエンティティに固有のデータは何か？</a></li>
+      </ul>
+    </li>
+    <li><a href="#データの処理を考える">データの処理を考える</a>
+      <ul>
+        <li><a href="#全エンティティ共通">全エンティティ共通</a></li>
+        <li><a href="#プレイヤー用">プレイヤー用</a></li>
+        <li><a href="#ブロック用">ブロック用</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+
+ 
+    </aside>
+    
+  </main>
+
+  
+</body>
+
+</html>
+
+
+
+
+
+
+
+
+
+
+
+

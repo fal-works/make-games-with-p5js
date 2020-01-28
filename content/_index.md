@@ -1,7 +1,6 @@
-# p5.js でゲーム制作
+---
+title: Home
+type: docs
+---
 
-あああ
-
-## Flappy Bird
-
-ああああ
+test

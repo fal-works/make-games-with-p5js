@@ -1,0 +1,27 @@
+.markdown {
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    font-weight: bold;
+    margin-top: 2em;
+  }
+}
+
+.book-expand + p {
+  margin-top: 2em;
+}
+
+.book-expand + h2 {
+  margin-top: 3em;
+}
+
+.book-expand + h3 {
+  margin-top: 3em;
+}
+
+.book-expand + h4 {
+  margin-top: 3em;
+}

@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="プレイヤーだけ実装"><meta property="og:title" content="プレイヤーだけ実装" />
+<meta property="og:description" content="プレイヤーだけ実装してみる やること プレイヤーを入れる変数を用意する setup() の中で、プレイヤーを作成する draw() の中で、プレイヤーについて以下を行う 位置の" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://fal-works.github.io/pcd2020-workshop-fal/docs/50-flappy-bird-like/20-player/" />
+
+<title>プレイヤーだけ実装 | p5.js でゲーム制作</title>
+<link rel="icon" href="/pcd2020-workshop-fal/favicon.png" type="image/x-icon">
+
+
+<link rel="stylesheet" href="/pcd2020-workshop-fal/book.min.eea3d957aa076eb37f0dc945a01970811db19796a1057c7d8e46268703b9c8f0.css" integrity="sha256-7qPZV6oHbrN/DclFoBlwgR2xl5ahBXx9jkYmhwO5yPA=">
+
+
+<!--
+Made with Book Theme
+https://github.com/alex-shpak/hugo-book
+-->
+
+  
+</head>
+
+<body>
+  <input type="checkbox" class="hidden" id="menu-control" />
+  <main class="container flex">
+    <aside class="book-menu">
+      
+  <nav>
+<h2 class="book-brand">
+  <a href="/pcd2020-workshop-fal"><span>p5.js でゲーム制作</span>
+  </a>
+</h2>
+
+
+
+
+
+
+  
+
+  
+  
+
+
+
+
+
+ 
+  
+    
+
+
+
+
+  
+  <ul>
+    
+      
+        <li>
+
+  <a href="/pcd2020-workshop-fal/docs/10-prepare/" >
+      準備
+  </a>
+
+</li>
+      
+    
+      
+        <li>
+
+  <a href="/pcd2020-workshop-fal/docs/20-introduction/" >
+      はじめに
+  </a>
+
+</li>
+      
+    
+      
+        <li>
+
+  <a href="/pcd2020-workshop-fal/docs/30-sketch/" >
+      p5.js スケッチの基本構造
+  </a>
+
+</li>
+      
+    
+      
+        <li>
+
+  <a href="/pcd2020-workshop-fal/docs/40-links/" >
+      リンク
+  </a>
+
+</li>
+      
+    
+      
+        
+
+  <li >
+    
+      
+
+  <a href="/pcd2020-workshop-fal/docs/50-flappy-bird-like/" >
+      Flappy Bird ライクなゲーム
+  </a>
+
+
+    
+
+    
+
+
+
+
+  
+  <ul>
+    
+      
+        <li>
+
+  <a href="/pcd2020-workshop-fal/docs/50-flappy-bird-like/10-design/" >
+      最初に少し考えてみる
+  </a>
+
+</li>
+      
+    
+      
+        <li>
+
+  <a href="/pcd2020-workshop-fal/docs/50-flappy-bird-like/20-player/"  class="active">
+      プレイヤーだけ実装
+  </a>
+
+</li>
+      
+    
+      
+        <li>
+
+  <a href="/pcd2020-workshop-fal/docs/50-flappy-bird-like/30-block/" >
+      ブロック1個だけ実装
+  </a>
+
+</li>
+      
+    
+  </ul>
+  
+
+
+
+  </li>
+
+
+      
+    
+  </ul>
+  
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+</nav>
+
+
+<script>
+(function() {
+  var menu = document.querySelector("aside.book-menu nav");
+  addEventListener("beforeunload", function(event) {
+    localStorage.setItem("menu.scrollTop", menu.scrollTop);
+  });
+  menu.scrollTop = localStorage.getItem("menu.scrollTop");
+})();
+</script>
+
+ 
+    </aside>
+
+    <div class="book-page">
+      <header class="book-header">
+        
+  <div class="flex align-center justify-between">
+  <label for="menu-control">
+    <img src="/pcd2020-workshop-fal/svg/menu.svg" class="book-icon" alt="Menu" />
+  </label>
+
+  <strong>プレイヤーだけ実装</strong>
+
+  <label for="toc-control">
+    <img src="/pcd2020-workshop-fal/svg/toc.svg" class="book-icon" alt="Table of Contents" />
+  </label>
+</div>
+
+
+  
+    <input type="checkbox" class="hidden" id="toc-control" />
+    <aside class="hidden clearfix">
+      
+  <nav id="TableOfContents">
+  <ul>
+    <li><a href="#やること">やること</a></li>
+    <li><a href="#必要な関数が揃っていると仮定して書いてみる">必要な関数が揃っている、と仮定して書いてみる</a></li>
+    <li><a href="#必要な関数を用意する">必要な関数を用意する</a></li>
+  </ul>
+</nav>
+
+
+    </aside>
+  
+ 
+      </header>
+
+      
+<article class="markdown"><h1 id="プレイヤーだけ実装してみる">プレイヤーだけ実装してみる</h1>
+<h2 id="やること">やること</h2>
+<ol>
+<li>プレイヤーを入れる変数を用意する</li>
+<li><code>setup()</code> の中で、プレイヤーを作成する</li>
+<li><code>draw()</code> の中で、プレイヤーについて以下を行う
+<ul>
+<li>位置の更新</li>
+<li>重力の適用</li>
+<li>描画</li>
+</ul>
+</li>
+<li>マウスボタンを押したときだけ、プレイヤーをジャンプさせる</li>
+</ol>
+<h2 id="必要な関数が揃っていると仮定して書いてみる">必要な関数が揃っている、と仮定して書いてみる</h2>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-javascript" data-lang="javascript"><span style="color:#75715e">// ---- エンティティ関連の関数 --------------------------------------------------
+</span><span style="color:#75715e"></span>
+<span style="color:#75715e">// （あとで）
+</span><span style="color:#75715e"></span>
+<span style="color:#75715e">// ---- ゲーム全体に関わる変数 --------------------------------------------------
+</span><span style="color:#75715e"></span>
+<span style="color:#75715e">/** プレイヤーエンティティ */</span>
+<span style="color:#66d9ef">let</span> <span style="color:#a6e22e">player</span>;
+
+<span style="color:#75715e">// ---- setup/draw 他 ----------------------------------------------------------
+</span><span style="color:#75715e"></span>
+<span style="color:#66d9ef">function</span> <span style="color:#a6e22e">setup</span>() {
+  <span style="color:#a6e22e">createCanvas</span>(<span style="color:#ae81ff">800</span>, <span style="color:#ae81ff">600</span>);
+  <span style="color:#a6e22e">rectMode</span>(<span style="color:#a6e22e">CENTER</span>);
+
+  <span style="color:#a6e22e">player</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">createPlayer</span>();
+}
+
+<span style="color:#66d9ef">function</span> <span style="color:#a6e22e">draw</span>() {
+  <span style="color:#75715e">// プレイヤーの位置を更新
+</span><span style="color:#75715e"></span>  <span style="color:#a6e22e">updatePosition</span>(<span style="color:#a6e22e">player</span>);
+
+  <span style="color:#75715e">// プレイヤーに重力を適用
+</span><span style="color:#75715e"></span>  <span style="color:#a6e22e">applyGravity</span>(<span style="color:#a6e22e">player</span>);
+
+  <span style="color:#75715e">// プレイヤーを描画
+</span><span style="color:#75715e"></span>  <span style="color:#a6e22e">background</span>(<span style="color:#ae81ff">0</span>);
+  <span style="color:#a6e22e">drawPlayer</span>(<span style="color:#a6e22e">player</span>);
+}
+
+<span style="color:#66d9ef">function</span> <span style="color:#a6e22e">mousePressed</span>() {
+  <span style="color:#75715e">// プレイヤーをジャンプさせる
+</span><span style="color:#75715e"></span>  <span style="color:#a6e22e">applyJump</span>(<span style="color:#a6e22e">player</span>);
+}
+</code></pre></div><h2 id="必要な関数を用意する">必要な関数を用意する</h2>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-javascript" data-lang="javascript"><span style="color:#75715e">// ---- エンティティ関連の関数 --------------------------------------------------
+</span><span style="color:#75715e"></span>
+<span style="color:#75715e">// 全エンティティ共通
+</span><span style="color:#75715e"></span>
+<span style="color:#66d9ef">function</span> <span style="color:#a6e22e">updatePosition</span>(<span style="color:#a6e22e">entity</span>) {
+  <span style="color:#a6e22e">entity</span>.<span style="color:#a6e22e">x</span> <span style="color:#f92672">+=</span> <span style="color:#a6e22e">entity</span>.<span style="color:#a6e22e">vx</span>;
+  <span style="color:#a6e22e">entity</span>.<span style="color:#a6e22e">y</span> <span style="color:#f92672">+=</span> <span style="color:#a6e22e">entity</span>.<span style="color:#a6e22e">vy</span>;
+}
+
+<span style="color:#75715e">// プレイヤーエンティティ
+</span><span style="color:#75715e"></span>
+<span style="color:#66d9ef">function</span> <span style="color:#a6e22e">createPlayer</span>() {
+  <span style="color:#66d9ef">return</span> {
+    <span style="color:#a6e22e">x</span><span style="color:#f92672">:</span> <span style="color:#ae81ff">200</span>,
+    <span style="color:#a6e22e">y</span><span style="color:#f92672">:</span> <span style="color:#ae81ff">300</span>,
+    <span style="color:#a6e22e">vx</span><span style="color:#f92672">:</span> <span style="color:#ae81ff">0</span>,
+    <span style="color:#a6e22e">vy</span><span style="color:#f92672">:</span> <span style="color:#ae81ff">0</span>
+  };
+}
+
+<span style="color:#66d9ef">function</span> <span style="color:#a6e22e">applyGravity</span>(<span style="color:#a6e22e">entity</span>) {
+  <span style="color:#a6e22e">entity</span>.<span style="color:#a6e22e">vy</span> <span style="color:#f92672">+=</span> <span style="color:#ae81ff">0.15</span>;
+}
+
+<span style="color:#66d9ef">function</span> <span style="color:#a6e22e">applyJump</span>(<span style="color:#a6e22e">entity</span>) {
+  <span style="color:#a6e22e">entity</span>.<span style="color:#a6e22e">vy</span> <span style="color:#f92672">=</span> <span style="color:#f92672">-</span><span style="color:#ae81ff">5</span>;
+}
+
+<span style="color:#66d9ef">function</span> <span style="color:#a6e22e">drawPlayer</span>(<span style="color:#a6e22e">entity</span>) {
+  <span style="color:#a6e22e">square</span>(<span style="color:#a6e22e">entity</span>.<span style="color:#a6e22e">x</span>, <span style="color:#a6e22e">entity</span>.<span style="color:#a6e22e">y</span>, <span style="color:#ae81ff">40</span>);
+}
+</code></pre></div></article>
+ 
+
+      <footer class="book-footer">
+        
+  <div class="flex justify-between">
+
+
+
+
+
+</div>
+
+ 
+        
+  
+  <div class="book-comments">
+
+</div>
+  
+ 
+      </footer>
+      
+    </div>
+
+    
+    <aside class="book-toc">
+      
+  <nav id="TableOfContents">
+  <ul>
+    <li><a href="#やること">やること</a></li>
+    <li><a href="#必要な関数が揃っていると仮定して書いてみる">必要な関数が揃っている、と仮定して書いてみる</a></li>
+    <li><a href="#必要な関数を用意する">必要な関数を用意する</a></li>
+  </ul>
+</nav>
+
+ 
+    </aside>
+    
+  </main>
+
+  
+</body>
+
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
