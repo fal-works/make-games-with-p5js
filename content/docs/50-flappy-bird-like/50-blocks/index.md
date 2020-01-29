@@ -71,7 +71,7 @@ function greaterThan20(n) {
 let newNumbers = numbers.filter(greaterThan20); // 結果は新たな配列 [30, 40]
 ```
 
-つまり `filter()` は、「配列の要素を受け取って `true` か `false` を返す関数」を引数として与えると、それを使って配列の要素をフィルタリングしてくれるのです。
+つまり `filter()` は、「値に応じて `true` か `false` を返す関数」を引数として与えると、それを使って配列の各要素をチェックし、フィルタリングしてくれるのです。
 
 ※ 厳密には `true`/`false` というより truthy/falsy で判定
 
@@ -195,6 +195,15 @@ function mousePressed() {
 
 {{< hint info >}}
 各自実行してみて、上下ペアのブロックが一定間隔で現れることを確認してください。
+{{< /hint >}}
+
+{{< hint info >}}
+ブロックの削除がうまくいっているかを確認するには、例えば次のようなものをソースコード下端に加えて実行すると、何かキーを押すたびに現在のブロックの数が表示されます。
+```javascript
+function keyTyped() {
+  console.log(`blocks: ${blocks.length}`);
+}
+```
 {{< /hint >}}
 
 {{< expand "余談： 配列と高階関数">}}
