@@ -1,4 +1,4 @@
-baseURL = "https://fal-works.github.io/pcd2020-workshop-fal/"
+baseURL = "https://fal-works.github.io/make-games-with-p5js/"
 author = "FAL"
 languageCode = "ja-jp"
 hasCJKLanguage = true
@@ -7,5 +7,5 @@ theme = "book"
 pygmentsCodeFences = true
 publishDir = "docs"
 [params]
-  BookRepo = 'https://github.com/fal-works/pcd2020-workshop-fal'
+  BookRepo = 'https://github.com/fal-works/make-games-with-p5js'
   BookSearch = false
