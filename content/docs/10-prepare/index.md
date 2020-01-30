@@ -17,7 +17,7 @@ weight: 10
 
 
 {{< expand "余談： 環境関連の諸々">}}
-不特定多数の人にスケッチを見てもらいたい人は、[NEORT](https://neort.io/) や [OpenProcessing](https://www.openprocessing.org/) などで公開するのも良いでしょう。
+不特定多数の人にスケッチを見てもらいたい人は、[NEORT](https://neort.io/) や [OpenProcessing](https://www.openprocessing.org/) などの利用も検討すると良いでしょう。
 
 ローカルで使うための強力なエディタとしては、例えば [Visual Studio Code](https://azure.microsoft.com/ja-jp/products/visual-studio-code/) などがあります。  
 参考： [PCD2019の田所先生のワークショップ資料](https://yoppa.org/pcd19)
@@ -30,5 +30,5 @@ weight: 10
 - パッケージ管理ツール（[npm](https://www.npmjs.com/) や [Yarn](https://yarnpkg.com/lang/ja/)）は、以上のような各種ツールのダウンロードや実行を補佐してくれます。
 
 なにいってだこいつ、と思った人は正常です。これがジャバスクリプトだ！  
-気楽に書けるのがメリットであるはずの p5.js で、がっちり環境を整える人はあまり多くはないでしょうから、慣れてきてから調べるのでも遅くないと思います。
+気楽に書けるのがメリットであるはずの p5.js で、がっちり環境を整える人はあまり多くはないでしょうから、慣れてきてから調べても遅くないと思います。
 {{< /expand >}}
