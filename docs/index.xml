@@ -2,75 +2,111 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Home on p5.js でゲーム制作</title>
-    <link>https://fal-works.github.io/pcd2020-workshop-fal/</link>
+    <link>https://fal-works.github.io/make-games-with-p5js/</link>
     <description>Recent content in Home on p5.js でゲーム制作</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>ja-jp</language>
     
-	<atom:link href="https://fal-works.github.io/pcd2020-workshop-fal/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://fal-works.github.io/make-games-with-p5js/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>最初に少し考えてみる</title>
-      <link>https://fal-works.github.io/pcd2020-workshop-fal/docs/50-flappy-bird-like/10-design/</link>
+      <link>https://fal-works.github.io/make-games-with-p5js/docs/50-flappy-bird-like/10-design/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>https://fal-works.github.io/pcd2020-workshop-fal/docs/50-flappy-bird-like/10-design/</guid>
+      <guid>https://fal-works.github.io/make-games-with-p5js/docs/50-flappy-bird-like/10-design/</guid>
       <description>最初に少し考えてみる 前置き ここでは、実際のコーディングに入る前に、少しだけ抽象的なことを考えてみます。 具体的なソースコードがないとイメージし</description>
     </item>
     
     <item>
       <title>準備</title>
-      <link>https://fal-works.github.io/pcd2020-workshop-fal/docs/10-prepare/</link>
+      <link>https://fal-works.github.io/make-games-with-p5js/docs/10-prepare/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>https://fal-works.github.io/pcd2020-workshop-fal/docs/10-prepare/</guid>
+      <guid>https://fal-works.github.io/make-games-with-p5js/docs/10-prepare/</guid>
       <description>準備 このワークショップでは p5.js Web Editor を使います。 ユーザーアカウントを持っていない人は、右上の &amp;ldquo;Sign Up&amp;rdquo; から登録してください。 （スケッチの保存・共有機能</description>
     </item>
     
     <item>
       <title>はじめに</title>
-      <link>https://fal-works.github.io/pcd2020-workshop-fal/docs/20-introduction/</link>
+      <link>https://fal-works.github.io/make-games-with-p5js/docs/20-introduction/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>https://fal-works.github.io/pcd2020-workshop-fal/docs/20-introduction/</guid>
+      <guid>https://fal-works.github.io/make-games-with-p5js/docs/20-introduction/</guid>
       <description>はじめに 講師自己紹介 &amp;hellip; はじめに プログラミングによる作品制作の醍醐味 「自分の世界」を創造できる その世界がどんな部品や構造で成り立つのかを掌握で</description>
     </item>
     
     <item>
       <title>プレイヤーだけ実装</title>
-      <link>https://fal-works.github.io/pcd2020-workshop-fal/docs/50-flappy-bird-like/20-player/</link>
+      <link>https://fal-works.github.io/make-games-with-p5js/docs/50-flappy-bird-like/20-player/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>https://fal-works.github.io/pcd2020-workshop-fal/docs/50-flappy-bird-like/20-player/</guid>
-      <description>プレイヤーだけ実装してみる やること プレイヤーを入れる変数を用意する setup() の中で、プレイヤーを作成する draw() の中で、プレイヤーについて以下を行う 位置の</description>
+      <guid>https://fal-works.github.io/make-games-with-p5js/docs/50-flappy-bird-like/20-player/</guid>
+      <description>プレイヤーだけ実装してみる ソースコード全体の構成を決めておく ここからいろいろコードを増やしていくので、 整理のため、以下のように3つのセクショ</description>
     </item>
     
     <item>
       <title>p5.js スケッチの基本構造</title>
-      <link>https://fal-works.github.io/pcd2020-workshop-fal/docs/30-sketch/</link>
+      <link>https://fal-works.github.io/make-games-with-p5js/docs/30-sketch/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>https://fal-works.github.io/pcd2020-workshop-fal/docs/30-sketch/</guid>
+      <guid>https://fal-works.github.io/make-games-with-p5js/docs/30-sketch/</guid>
       <description>p5.js スケッチの基本構造 p5.js Web Editor の操作確認も兼ねて、以下のコードを実行 function setup() { createCanvas(800, 600); // 800 x 600 ピクセル。今回このサイズでやっていきます } function draw() { background(0); // 黒背景</description>
     </item>
     
     <item>
       <title>ブロック1個だけ実装</title>
-      <link>https://fal-works.github.io/pcd2020-workshop-fal/docs/50-flappy-bird-like/30-block/</link>
+      <link>https://fal-works.github.io/make-games-with-p5js/docs/50-flappy-bird-like/30-block/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>https://fal-works.github.io/pcd2020-workshop-fal/docs/50-flappy-bird-like/30-block/</guid>
-      <description>ブロックを1個だけ実装してみる やること ブロックを入れる変数を用意する setup() の中で、ブロックを作成する draw() の中で、ブロックについて以下を行う 位置の更</description>
+      <guid>https://fal-works.github.io/make-games-with-p5js/docs/50-flappy-bird-like/30-block/</guid>
+      <description>ブロックを1個だけ実装してみる 【再掲】エンティティ関連の処理 全エンティティ共通 位置の更新 プレイヤー用 作成 重力の適用 ジャンプ 描画 ブロック用 作成</description>
     </item>
     
     <item>
       <title>リンク</title>
-      <link>https://fal-works.github.io/pcd2020-workshop-fal/docs/40-links/</link>
+      <link>https://fal-works.github.io/make-games-with-p5js/docs/40-links/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>https://fal-works.github.io/pcd2020-workshop-fal/docs/40-links/</guid>
+      <guid>https://fal-works.github.io/make-games-with-p5js/docs/40-links/</guid>
       <description>リンク p5.js チートシート https://bmoren.github.io/p5js-cheat-sheet/ja.html ここに書いていないものとしては、システム変数 frameCount も使う （draw() が呼ばれるたびに1ずつ増える値） 公式のリファレンス https://p5js.org/reference/</description>
+    </item>
+    
+    <item>
+      <title>ブロックを複数にする</title>
+      <link>https://fal-works.github.io/make-games-with-p5js/docs/50-flappy-bird-like/50-blocks/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://fal-works.github.io/make-games-with-p5js/docs/50-flappy-bird-like/50-blocks/</guid>
+      <description>ブロックを複数にする やること ブロックを配列に格納するように変える draw() の中で、ブロックの配列に対して以下を行う 一定の時間間隔で、上下ペアでブロッ</description>
+    </item>
+    
+    <item>
+      <title>ゲームオーバーを実装</title>
+      <link>https://fal-works.github.io/make-games-with-p5js/docs/50-flappy-bird-like/60-game-state/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://fal-works.github.io/make-games-with-p5js/docs/50-flappy-bird-like/60-game-state/</guid>
+      <description>ゲームオーバーを実装 ゲームオーバーになる条件は プレイヤーが画面下端まで落ちる プレイヤーがブロックに衝突する だったが、このうち 1. は 2. より簡単そ</description>
+    </item>
+    
+    <item>
+      <title>衝突判定を実装</title>
+      <link>https://fal-works.github.io/make-games-with-p5js/docs/50-flappy-bird-like/70-collision/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://fal-works.github.io/make-games-with-p5js/docs/50-flappy-bird-like/70-collision/</guid>
+      <description>衝突判定を実装 // ---- エンティティ関連の関数 -------------------------------------------------- // 全エンティティ共通 function updatePosition(entity) { entity.x += entity.vx; entity.y += entity.vy; } // プレイヤーエンティティ用 function createPlayer() { return { x: 200, y: 300, vx: 0, vy: 0 }; } function</description>
+    </item>
+    
+    <item>
+      <title>p5.js の色指定</title>
+      <link>https://fal-works.github.io/make-games-with-p5js/docs/50-flappy-bird-like/40-visuals/colors/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://fal-works.github.io/make-games-with-p5js/docs/50-flappy-bird-like/40-visuals/colors/</guid>
+      <description>p5.js の色指定 RGB指定 数値で指定する場合、デフォルトでは 赤、緑、青 を指定する RGB モードとなっている function setup() { createCanvas(800, 600); noStroke(); background(255); // 引数が1つだとグレースケール。</description>
     </item>
     
   </channel>

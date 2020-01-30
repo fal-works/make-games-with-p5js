@@ -5,15 +5,15 @@
   <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="description" content="プレイヤーだけ実装"><meta property="og:title" content="プレイヤーだけ実装" />
-<meta property="og:description" content="プレイヤーだけ実装してみる やること プレイヤーを入れる変数を用意する setup() の中で、プレイヤーを作成する draw() の中で、プレイヤーについて以下を行う 位置の" />
+<meta property="og:description" content="プレイヤーだけ実装してみる ソースコード全体の構成を決めておく ここからいろいろコードを増やしていくので、 整理のため、以下のように3つのセクショ" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://fal-works.github.io/pcd2020-workshop-fal/docs/50-flappy-bird-like/20-player/" />
+<meta property="og:url" content="https://fal-works.github.io/make-games-with-p5js/docs/50-flappy-bird-like/20-player/" />
 
 <title>プレイヤーだけ実装 | p5.js でゲーム制作</title>
-<link rel="icon" href="/pcd2020-workshop-fal/favicon.png" type="image/x-icon">
+<link rel="icon" href="/make-games-with-p5js/favicon.png" type="image/x-icon">
 
 
-<link rel="stylesheet" href="/pcd2020-workshop-fal/book.min.eea3d957aa076eb37f0dc945a01970811db19796a1057c7d8e46268703b9c8f0.css" integrity="sha256-7qPZV6oHbrN/DclFoBlwgR2xl5ahBXx9jkYmhwO5yPA=">
+<link rel="stylesheet" href="/make-games-with-p5js/book.min.eea3d957aa076eb37f0dc945a01970811db19796a1057c7d8e46268703b9c8f0.css" integrity="sha256-7qPZV6oHbrN/DclFoBlwgR2xl5ahBXx9jkYmhwO5yPA=">
 
 
 <!--
@@ -31,7 +31,7 @@ https://github.com/alex-shpak/hugo-book
       
   <nav>
 <h2 class="book-brand">
-  <a href="/pcd2020-workshop-fal"><span>p5.js でゲーム制作</span>
+  <a href="/make-games-with-p5js"><span>p5.js でゲーム制作</span>
   </a>
 </h2>
 
@@ -62,7 +62,7 @@ https://github.com/alex-shpak/hugo-book
       
         <li>
 
-  <a href="/pcd2020-workshop-fal/docs/10-prepare/" >
+  <a href="/make-games-with-p5js/docs/10-prepare/" >
       準備
   </a>
 
@@ -72,7 +72,7 @@ https://github.com/alex-shpak/hugo-book
       
         <li>
 
-  <a href="/pcd2020-workshop-fal/docs/20-introduction/" >
+  <a href="/make-games-with-p5js/docs/20-introduction/" >
       はじめに
   </a>
 
@@ -82,7 +82,7 @@ https://github.com/alex-shpak/hugo-book
       
         <li>
 
-  <a href="/pcd2020-workshop-fal/docs/30-sketch/" >
+  <a href="/make-games-with-p5js/docs/30-sketch/" >
       p5.js スケッチの基本構造
   </a>
 
@@ -92,7 +92,7 @@ https://github.com/alex-shpak/hugo-book
       
         <li>
 
-  <a href="/pcd2020-workshop-fal/docs/40-links/" >
+  <a href="/make-games-with-p5js/docs/40-links/" >
       リンク
   </a>
 
@@ -106,7 +106,7 @@ https://github.com/alex-shpak/hugo-book
     
       
 
-  <a href="/pcd2020-workshop-fal/docs/50-flappy-bird-like/" >
+  <a href="/make-games-with-p5js/docs/50-flappy-bird-like/" >
       Flappy Bird ライクなゲーム
   </a>
 
@@ -124,7 +124,7 @@ https://github.com/alex-shpak/hugo-book
       
         <li>
 
-  <a href="/pcd2020-workshop-fal/docs/50-flappy-bird-like/10-design/" >
+  <a href="/make-games-with-p5js/docs/50-flappy-bird-like/10-design/" >
       最初に少し考えてみる
   </a>
 
@@ -134,7 +134,7 @@ https://github.com/alex-shpak/hugo-book
       
         <li>
 
-  <a href="/pcd2020-workshop-fal/docs/50-flappy-bird-like/20-player/"  class="active">
+  <a href="/make-games-with-p5js/docs/50-flappy-bird-like/20-player/"  class="active">
       プレイヤーだけ実装
   </a>
 
@@ -144,8 +144,80 @@ https://github.com/alex-shpak/hugo-book
       
         <li>
 
-  <a href="/pcd2020-workshop-fal/docs/50-flappy-bird-like/30-block/" >
+  <a href="/make-games-with-p5js/docs/50-flappy-bird-like/30-block/" >
       ブロック1個だけ実装
+  </a>
+
+</li>
+      
+    
+      
+        
+
+  <li >
+    
+      
+
+  <a href="/make-games-with-p5js/docs/50-flappy-bird-like/40-visuals/" >
+      見た目をアレンジ
+  </a>
+
+
+    
+
+    
+
+
+
+
+  
+  <ul>
+    
+      
+        <li>
+
+  <a href="/make-games-with-p5js/docs/50-flappy-bird-like/40-visuals/colors/" >
+      p5.js の色指定
+  </a>
+
+</li>
+      
+    
+  </ul>
+  
+
+
+
+  </li>
+
+
+      
+    
+      
+        <li>
+
+  <a href="/make-games-with-p5js/docs/50-flappy-bird-like/50-blocks/" >
+      ブロックを複数にする
+  </a>
+
+</li>
+      
+    
+      
+        <li>
+
+  <a href="/make-games-with-p5js/docs/50-flappy-bird-like/60-game-state/" >
+      ゲームオーバーを実装
+  </a>
+
+</li>
+      
+    
+      
+        <li>
+
+  <a href="/make-games-with-p5js/docs/50-flappy-bird-like/70-collision/" >
+      衝突判定を実装
   </a>
 
 </li>
@@ -199,13 +271,13 @@ https://github.com/alex-shpak/hugo-book
         
   <div class="flex align-center justify-between">
   <label for="menu-control">
-    <img src="/pcd2020-workshop-fal/svg/menu.svg" class="book-icon" alt="Menu" />
+    <img src="/make-games-with-p5js/svg/menu.svg" class="book-icon" alt="Menu" />
   </label>
 
   <strong>プレイヤーだけ実装</strong>
 
   <label for="toc-control">
-    <img src="/pcd2020-workshop-fal/svg/toc.svg" class="book-icon" alt="Table of Contents" />
+    <img src="/make-games-with-p5js/svg/toc.svg" class="book-icon" alt="Table of Contents" />
   </label>
 </div>
 
@@ -216,9 +288,17 @@ https://github.com/alex-shpak/hugo-book
       
   <nav id="TableOfContents">
   <ul>
+    <li><a href="#ソースコード全体の構成を決めておく">ソースコード全体の構成を決めておく</a></li>
+    <li><a href="#再掲エンティティ関連の処理">【再掲】エンティティ関連の処理</a>
+      <ul>
+        <li><a href="#全エンティティ共通">全エンティティ共通</a></li>
+        <li><a href="#プレイヤー用">プレイヤー用</a></li>
+        <li><a href="#ブロック用">ブロック用</a></li>
+      </ul>
+    </li>
     <li><a href="#やること">やること</a></li>
-    <li><a href="#必要な関数が揃っていると仮定して書いてみる">必要な関数が揃っている、と仮定して書いてみる</a></li>
-    <li><a href="#必要な関数を用意する">必要な関数を用意する</a></li>
+    <li><a href="#必要な関数が既に揃っていると仮定して書いてみる">必要な関数が既に揃っている、と仮定して書いてみる</a></li>
+    <li><a href="#必要な関数を実際に用意する">必要な関数を実際に用意する</a></li>
   </ul>
 </nav>
 
@@ -230,6 +310,76 @@ https://github.com/alex-shpak/hugo-book
 
       
 <article class="markdown"><h1 id="プレイヤーだけ実装してみる">プレイヤーだけ実装してみる</h1>
+<h2 id="ソースコード全体の構成を決めておく">ソースコード全体の構成を決めておく</h2>
+<p>ここからいろいろコードを増やしていくので、<br>
+整理のため、以下のように3つのセクションに分けることにする</p>
+<ol>
+<li>エンティティ関連の関数</li>
+<li>ゲーム全体に関わる部分</li>
+<li>setup/draw 他</li>
+</ol>
+<p>ついでに <code>rectMode()</code> も書いておく（後で四角形を描画するので）</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-javascript" data-lang="javascript"><span style="color:#75715e">// ---- エンティティ関連の関数 --------------------------------------------------
+</span><span style="color:#75715e"></span>
+<span style="color:#75715e">// （ここに何かが入る）
+</span><span style="color:#75715e"></span>
+<span style="color:#75715e">// ---- ゲーム全体に関わる変数 --------------------------------------------------
+</span><span style="color:#75715e"></span>
+<span style="color:#75715e">// （ここに何かが入る）
+</span><span style="color:#75715e"></span>
+<span style="color:#75715e">// ---- setup/draw 他 -------------------------------------------------------
+</span><span style="color:#75715e"></span>
+<span style="color:#66d9ef">function</span> <span style="color:#a6e22e">setup</span>() {
+  <span style="color:#a6e22e">createCanvas</span>(<span style="color:#ae81ff">800</span>, <span style="color:#ae81ff">600</span>);
+  <span style="color:#a6e22e">rectMode</span>(<span style="color:#a6e22e">CENTER</span>); <span style="color:#75715e">// 四角形の基準点を角から中心に変える
+</span><span style="color:#75715e"></span>
+  <span style="color:#75715e">// （ここに初期化処理が入る）
+</span><span style="color:#75715e"></span>}
+
+<span style="color:#66d9ef">function</span> <span style="color:#a6e22e">draw</span>() {
+  <span style="color:#75715e">// （ここにデータ操作処理が入る）
+</span><span style="color:#75715e"></span>
+  <span style="color:#a6e22e">background</span>(<span style="color:#ae81ff">0</span>);
+  <span style="color:#75715e">// （ここに描画処理が入る）
+</span><span style="color:#75715e"></span>}
+
+<span style="color:#66d9ef">function</span> <span style="color:#a6e22e">mousePressed</span>() {
+  <span style="color:#75715e">// （ここにマウスボタンを押したときの処理が入る）
+</span><span style="color:#75715e"></span>}
+</code></pre></div><p><code>mousePressed()</code> は、マウスボタンが押されたときに p5.js によって自動的に実行される<br>
+（→ <a href="https://p5js.org/reference/#/p5/mousePressed" target="_blank">リファレンス</a>）</p>
+<div class="book-expand">
+  <label>
+    <div class="book-expand-head flex justify-between">
+      <span>余談： モジュール</span>
+      <span>↕</span>
+    </div>
+    <input type="checkbox" class="hidden" />
+    <div class="book-expand-content markdown-inner">
+      <p>プログラム全体をいくつかのまとまりに分割すると見通しが良くなりますが、このようにコメントでなんとかするというのは簡易的な方法に過ぎません。</p>
+<p>本来だと、プログラムを機能ごとに分割（しばしば階層化を伴う）したものをそれぞれ別のファイルに分けて保存するという方法を取ることが多いです。</p>
+<p>具体的な方法としては ES2015 の <code>import</code>/<code>export</code> を始め何種類かあって、あとモジュールバンドラで統合して云々……みたいな話があるのですが、（少なくとも筆者の感覚では）いろいろ込み入っているので、ここでは割愛します。ご興味があればゆっくり調べてみてください。</p>
+
+    </div>
+  </label>
+</div>
+<h2 id="再掲エンティティ関連の処理">【再掲】エンティティ関連の処理</h2>
+<h3 id="全エンティティ共通">全エンティティ共通</h3>
+<ul>
+<li>位置の更新</li>
+</ul>
+<h3 id="プレイヤー用">プレイヤー用</h3>
+<ul>
+<li>作成</li>
+<li>重力の適用</li>
+<li>ジャンプ</li>
+<li>描画</li>
+</ul>
+<h3 id="ブロック用">ブロック用</h3>
+<ul>
+<li>作成</li>
+<li>描画</li>
+</ul>
 <h2 id="やること">やること</h2>
 <ol>
 <li>プレイヤーを入れる変数を用意する</li>
@@ -243,7 +393,8 @@ https://github.com/alex-shpak/hugo-book
 </li>
 <li>マウスボタンを押したときだけ、プレイヤーをジャンプさせる</li>
 </ol>
-<h2 id="必要な関数が揃っていると仮定して書いてみる">必要な関数が揃っている、と仮定して書いてみる</h2>
+<h2 id="必要な関数が既に揃っていると仮定して書いてみる">必要な関数が既に揃っている、と仮定して書いてみる</h2>
+<p>※ このソースコードは動きません</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-javascript" data-lang="javascript"><span style="color:#75715e">// ---- エンティティ関連の関数 --------------------------------------------------
 </span><span style="color:#75715e"></span>
 <span style="color:#75715e">// （あとで）
@@ -253,13 +404,14 @@ https://github.com/alex-shpak/hugo-book
 <span style="color:#75715e">/** プレイヤーエンティティ */</span>
 <span style="color:#66d9ef">let</span> <span style="color:#a6e22e">player</span>;
 
-<span style="color:#75715e">// ---- setup/draw 他 ----------------------------------------------------------
+<span style="color:#75715e">// ---- setup/draw 他 -------------------------------------------------------
 </span><span style="color:#75715e"></span>
 <span style="color:#66d9ef">function</span> <span style="color:#a6e22e">setup</span>() {
   <span style="color:#a6e22e">createCanvas</span>(<span style="color:#ae81ff">800</span>, <span style="color:#ae81ff">600</span>);
   <span style="color:#a6e22e">rectMode</span>(<span style="color:#a6e22e">CENTER</span>);
 
-  <span style="color:#a6e22e">player</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">createPlayer</span>();
+  <span style="color:#75715e">// プレイヤーを作成
+</span><span style="color:#75715e"></span>  <span style="color:#a6e22e">player</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">createPlayer</span>();
 }
 
 <span style="color:#66d9ef">function</span> <span style="color:#a6e22e">draw</span>() {
@@ -278,7 +430,7 @@ https://github.com/alex-shpak/hugo-book
   <span style="color:#75715e">// プレイヤーをジャンプさせる
 </span><span style="color:#75715e"></span>  <span style="color:#a6e22e">applyJump</span>(<span style="color:#a6e22e">player</span>);
 }
-</code></pre></div><h2 id="必要な関数を用意する">必要な関数を用意する</h2>
+</code></pre></div><h2 id="必要な関数を実際に用意する">必要な関数を実際に用意する</h2>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-javascript" data-lang="javascript"><span style="color:#75715e">// ---- エンティティ関連の関数 --------------------------------------------------
 </span><span style="color:#75715e"></span>
 <span style="color:#75715e">// 全エンティティ共通
@@ -310,7 +462,124 @@ https://github.com/alex-shpak/hugo-book
 <span style="color:#66d9ef">function</span> <span style="color:#a6e22e">drawPlayer</span>(<span style="color:#a6e22e">entity</span>) {
   <span style="color:#a6e22e">square</span>(<span style="color:#a6e22e">entity</span>.<span style="color:#a6e22e">x</span>, <span style="color:#a6e22e">entity</span>.<span style="color:#a6e22e">y</span>, <span style="color:#ae81ff">40</span>);
 }
-</code></pre></div></article>
+</code></pre></div><blockquote class="book-hint info">
+  <p>各自実行してみて、プレイヤーが</p>
+<ul>
+<li>画面に表示されていること</li>
+<li>放っておくと落下していくこと</li>
+<li>マウスボタンでジャンプすること</li>
+</ul>
+<p>などを確認してください。</p>
+
+</blockquote>
+
+<blockquote class="book-hint info">
+  余裕があれば、各関数の中の数字部分（<code>200</code> とか <code>0.15</code> とか <code>-5</code> とか）について、いろいろ値を変えてみて、実行結果がどんなふうに変わるかを見てみてください。
+</blockquote>
+
+<div class="book-expand">
+  <label>
+    <div class="book-expand-head flex justify-between">
+      <span>補足： ホントにこういう順番で書くの？</span>
+      <span>↕</span>
+    </div>
+    <input type="checkbox" class="hidden" />
+    <div class="book-expand-content markdown-inner">
+      <p>実際には、ごく普通に</p>
+<ol>
+<li>関数を定義する</li>
+<li>その関数を使う</li>
+</ol>
+<p>という流れで書くことも多いかもしれません。</p>
+<p>ただ、処理の具体的な中身を真っ先に書こうとすると、何度も書き直すことになったり、どこから手を付けてよいかが分かりにくくなったりする可能性が高まります（そういうところで困ったことがないのであれば、この話はあまり気にする必要はありません）。</p>
+<p>「こういう関数があればいいのにな」という思考から出発すると、穴埋め式の問題を埋めていくような感覚で書き進めることができてスムーズなことも多いです、というのをお伝えしたかったのでした。</p>
+<p>ちなみに筆者の場合だと</p>
+<ol>
+<li>関数を宣言する、ただし中身は適当なダミー</li>
+<li>その関数を使う</li>
+<li>ダミー部分をちゃんと実装する</li>
+</ol>
+<p>という流れになることもそこそこあるように思います。</p>
+
+    </div>
+  </label>
+</div>
+<div class="book-expand">
+  <label>
+    <div class="book-expand-head flex justify-between">
+      <span>ソースコード全文</span>
+      <span>↕</span>
+    </div>
+    <input type="checkbox" class="hidden" />
+    <div class="book-expand-content markdown-inner">
+      <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-javascript" data-lang="javascript"><span style="color:#75715e">// ---- エンティティ関連の関数 -------------------------------------------------
+</span><span style="color:#75715e"></span>
+<span style="color:#75715e">// 全エンティティ共通
+</span><span style="color:#75715e"></span>
+<span style="color:#66d9ef">function</span> <span style="color:#a6e22e">updatePosition</span>(<span style="color:#a6e22e">entity</span>) {
+  <span style="color:#a6e22e">entity</span>.<span style="color:#a6e22e">x</span> <span style="color:#f92672">+=</span> <span style="color:#a6e22e">entity</span>.<span style="color:#a6e22e">vx</span>;
+  <span style="color:#a6e22e">entity</span>.<span style="color:#a6e22e">y</span> <span style="color:#f92672">+=</span> <span style="color:#a6e22e">entity</span>.<span style="color:#a6e22e">vy</span>;
+}
+
+<span style="color:#75715e">// プレイヤーエンティティ
+</span><span style="color:#75715e"></span>
+<span style="color:#66d9ef">function</span> <span style="color:#a6e22e">createPlayer</span>() {
+  <span style="color:#66d9ef">return</span> {
+    <span style="color:#a6e22e">x</span><span style="color:#f92672">:</span> <span style="color:#ae81ff">200</span>,
+    <span style="color:#a6e22e">y</span><span style="color:#f92672">:</span> <span style="color:#ae81ff">300</span>,
+    <span style="color:#a6e22e">vx</span><span style="color:#f92672">:</span> <span style="color:#ae81ff">0</span>,
+    <span style="color:#a6e22e">vy</span><span style="color:#f92672">:</span> <span style="color:#ae81ff">0</span>
+  };
+}
+
+<span style="color:#66d9ef">function</span> <span style="color:#a6e22e">applyGravity</span>(<span style="color:#a6e22e">entity</span>) {
+  <span style="color:#a6e22e">entity</span>.<span style="color:#a6e22e">vy</span> <span style="color:#f92672">+=</span> <span style="color:#ae81ff">0.15</span>;
+}
+
+<span style="color:#66d9ef">function</span> <span style="color:#a6e22e">applyJump</span>(<span style="color:#a6e22e">entity</span>) {
+  <span style="color:#a6e22e">entity</span>.<span style="color:#a6e22e">vy</span> <span style="color:#f92672">=</span> <span style="color:#f92672">-</span><span style="color:#ae81ff">5</span>;
+}
+
+<span style="color:#66d9ef">function</span> <span style="color:#a6e22e">drawPlayer</span>(<span style="color:#a6e22e">entity</span>) {
+  <span style="color:#a6e22e">square</span>(<span style="color:#a6e22e">entity</span>.<span style="color:#a6e22e">x</span>, <span style="color:#a6e22e">entity</span>.<span style="color:#a6e22e">y</span>, <span style="color:#ae81ff">40</span>);
+}
+
+<span style="color:#75715e">// ---- ゲーム全体に関わる変数 -------------------------------------------------
+</span><span style="color:#75715e"></span>
+<span style="color:#75715e">/** プレイヤーエンティティ */</span>
+<span style="color:#66d9ef">let</span> <span style="color:#a6e22e">player</span>;
+
+<span style="color:#75715e">// ---- setup/draw 他 ------------------------------------------------------
+</span><span style="color:#75715e"></span>
+<span style="color:#66d9ef">function</span> <span style="color:#a6e22e">setup</span>() {
+  <span style="color:#a6e22e">createCanvas</span>(<span style="color:#ae81ff">800</span>, <span style="color:#ae81ff">600</span>);
+  <span style="color:#a6e22e">rectMode</span>(<span style="color:#a6e22e">CENTER</span>);
+
+  <span style="color:#75715e">// プレイヤーを作成
+</span><span style="color:#75715e"></span>  <span style="color:#a6e22e">player</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">createPlayer</span>();
+}
+
+<span style="color:#66d9ef">function</span> <span style="color:#a6e22e">draw</span>() {
+  <span style="color:#75715e">// プレイヤーの位置を更新
+</span><span style="color:#75715e"></span>  <span style="color:#a6e22e">updatePosition</span>(<span style="color:#a6e22e">player</span>);
+
+  <span style="color:#75715e">// プレイヤーに重力を適用
+</span><span style="color:#75715e"></span>  <span style="color:#a6e22e">applyGravity</span>(<span style="color:#a6e22e">player</span>);
+
+  <span style="color:#75715e">// プレイヤーを描画
+</span><span style="color:#75715e"></span>  <span style="color:#a6e22e">background</span>(<span style="color:#ae81ff">0</span>);
+  <span style="color:#a6e22e">drawPlayer</span>(<span style="color:#a6e22e">player</span>);
+}
+
+<span style="color:#66d9ef">function</span> <span style="color:#a6e22e">mousePressed</span>() {
+  <span style="color:#75715e">// プレイヤーをジャンプさせる
+</span><span style="color:#75715e"></span>  <span style="color:#a6e22e">applyJump</span>(<span style="color:#a6e22e">player</span>);
+}
+</code></pre></div>
+    </div>
+  </label>
+</div>
+</article>
  
 
       <footer class="book-footer">
@@ -340,9 +609,17 @@ https://github.com/alex-shpak/hugo-book
       
   <nav id="TableOfContents">
   <ul>
+    <li><a href="#ソースコード全体の構成を決めておく">ソースコード全体の構成を決めておく</a></li>
+    <li><a href="#再掲エンティティ関連の処理">【再掲】エンティティ関連の処理</a>
+      <ul>
+        <li><a href="#全エンティティ共通">全エンティティ共通</a></li>
+        <li><a href="#プレイヤー用">プレイヤー用</a></li>
+        <li><a href="#ブロック用">ブロック用</a></li>
+      </ul>
+    </li>
     <li><a href="#やること">やること</a></li>
-    <li><a href="#必要な関数が揃っていると仮定して書いてみる">必要な関数が揃っている、と仮定して書いてみる</a></li>
-    <li><a href="#必要な関数を用意する">必要な関数を用意する</a></li>
+    <li><a href="#必要な関数が既に揃っていると仮定して書いてみる">必要な関数が既に揃っている、と仮定して書いてみる</a></li>
+    <li><a href="#必要な関数を実際に用意する">必要な関数を実際に用意する</a></li>
   </ul>
 </nav>
 

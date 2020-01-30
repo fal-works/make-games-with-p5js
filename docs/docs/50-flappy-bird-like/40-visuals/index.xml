@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>見た目をアレンジ on p5.js でゲーム制作</title>
+    <link>https://fal-works.github.io/make-games-with-p5js/docs/50-flappy-bird-like/40-visuals/</link>
+    <description>Recent content in 見た目をアレンジ on p5.js でゲーム制作</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>ja-jp</language>
+    
+	<atom:link href="https://fal-works.github.io/make-games-with-p5js/docs/50-flappy-bird-like/40-visuals/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>p5.js の色指定</title>
+      <link>https://fal-works.github.io/make-games-with-p5js/docs/50-flappy-bird-like/40-visuals/colors/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://fal-works.github.io/make-games-with-p5js/docs/50-flappy-bird-like/40-visuals/colors/</guid>
+      <description>p5.js の色指定 RGB指定 数値で指定する場合、デフォルトでは 赤、緑、青 を指定する RGB モードとなっている function setup() { createCanvas(800, 600); noStroke(); background(255); // 引数が1つだとグレースケール。</description>
+    </item>
+    
+  </channel>
+</rss>

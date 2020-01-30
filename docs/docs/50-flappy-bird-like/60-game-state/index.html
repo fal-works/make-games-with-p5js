@@ -1,0 +1,784 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="ゲームオーバーを実装"><meta property="og:title" content="ゲームオーバーを実装" />
+<meta property="og:description" content="ゲームオーバーを実装 ゲームオーバーになる条件は プレイヤーが画面下端まで落ちる プレイヤーがブロックに衝突する だったが、このうち 1. は 2. より簡単そ" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://fal-works.github.io/make-games-with-p5js/docs/50-flappy-bird-like/60-game-state/" />
+
+<title>ゲームオーバーを実装 | p5.js でゲーム制作</title>
+<link rel="icon" href="/make-games-with-p5js/favicon.png" type="image/x-icon">
+
+
+<link rel="stylesheet" href="/make-games-with-p5js/book.min.eea3d957aa076eb37f0dc945a01970811db19796a1057c7d8e46268703b9c8f0.css" integrity="sha256-7qPZV6oHbrN/DclFoBlwgR2xl5ahBXx9jkYmhwO5yPA=">
+
+
+<!--
+Made with Book Theme
+https://github.com/alex-shpak/hugo-book
+-->
+
+  
+</head>
+
+<body>
+  <input type="checkbox" class="hidden" id="menu-control" />
+  <main class="container flex">
+    <aside class="book-menu">
+      
+  <nav>
+<h2 class="book-brand">
+  <a href="/make-games-with-p5js"><span>p5.js でゲーム制作</span>
+  </a>
+</h2>
+
+
+
+
+
+
+  
+
+  
+  
+
+
+
+
+
+ 
+  
+    
+
+
+
+
+  
+  <ul>
+    
+      
+        <li>
+
+  <a href="/make-games-with-p5js/docs/10-prepare/" >
+      準備
+  </a>
+
+</li>
+      
+    
+      
+        <li>
+
+  <a href="/make-games-with-p5js/docs/20-introduction/" >
+      はじめに
+  </a>
+
+</li>
+      
+    
+      
+        <li>
+
+  <a href="/make-games-with-p5js/docs/30-sketch/" >
+      p5.js スケッチの基本構造
+  </a>
+
+</li>
+      
+    
+      
+        <li>
+
+  <a href="/make-games-with-p5js/docs/40-links/" >
+      リンク
+  </a>
+
+</li>
+      
+    
+      
+        
+
+  <li >
+    
+      
+
+  <a href="/make-games-with-p5js/docs/50-flappy-bird-like/" >
+      Flappy Bird ライクなゲーム
+  </a>
+
+
+    
+
+    
+
+
+
+
+  
+  <ul>
+    
+      
+        <li>
+
+  <a href="/make-games-with-p5js/docs/50-flappy-bird-like/10-design/" >
+      最初に少し考えてみる
+  </a>
+
+</li>
+      
+    
+      
+        <li>
+
+  <a href="/make-games-with-p5js/docs/50-flappy-bird-like/20-player/" >
+      プレイヤーだけ実装
+  </a>
+
+</li>
+      
+    
+      
+        <li>
+
+  <a href="/make-games-with-p5js/docs/50-flappy-bird-like/30-block/" >
+      ブロック1個だけ実装
+  </a>
+
+</li>
+      
+    
+      
+        
+
+  <li >
+    
+      
+
+  <a href="/make-games-with-p5js/docs/50-flappy-bird-like/40-visuals/" >
+      見た目をアレンジ
+  </a>
+
+
+    
+
+    
+
+
+
+
+  
+  <ul>
+    
+      
+        <li>
+
+  <a href="/make-games-with-p5js/docs/50-flappy-bird-like/40-visuals/colors/" >
+      p5.js の色指定
+  </a>
+
+</li>
+      
+    
+  </ul>
+  
+
+
+
+  </li>
+
+
+      
+    
+      
+        <li>
+
+  <a href="/make-games-with-p5js/docs/50-flappy-bird-like/50-blocks/" >
+      ブロックを複数にする
+  </a>
+
+</li>
+      
+    
+      
+        <li>
+
+  <a href="/make-games-with-p5js/docs/50-flappy-bird-like/60-game-state/"  class="active">
+      ゲームオーバーを実装
+  </a>
+
+</li>
+      
+    
+      
+        <li>
+
+  <a href="/make-games-with-p5js/docs/50-flappy-bird-like/70-collision/" >
+      衝突判定を実装
+  </a>
+
+</li>
+      
+    
+  </ul>
+  
+
+
+
+  </li>
+
+
+      
+    
+  </ul>
+  
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+</nav>
+
+
+<script>
+(function() {
+  var menu = document.querySelector("aside.book-menu nav");
+  addEventListener("beforeunload", function(event) {
+    localStorage.setItem("menu.scrollTop", menu.scrollTop);
+  });
+  menu.scrollTop = localStorage.getItem("menu.scrollTop");
+})();
+</script>
+
+ 
+    </aside>
+
+    <div class="book-page">
+      <header class="book-header">
+        
+  <div class="flex align-center justify-between">
+  <label for="menu-control">
+    <img src="/make-games-with-p5js/svg/menu.svg" class="book-icon" alt="Menu" />
+  </label>
+
+  <strong>ゲームオーバーを実装</strong>
+
+  <label for="toc-control">
+    <img src="/make-games-with-p5js/svg/toc.svg" class="book-icon" alt="Table of Contents" />
+  </label>
+</div>
+
+
+  
+    <input type="checkbox" class="hidden" id="toc-control" />
+    <aside class="hidden clearfix">
+      
+  <nav id="TableOfContents">
+  <ul>
+    <li><a href="#準備-setupdraw-の中身を整理する">準備： setup/draw の中身を整理する</a>
+      <ul>
+        <li><a href="#理由">理由</a></li>
+        <li><a href="#やること">やること</a></li>
+        <li><a href="#ソースコード">ソースコード</a></li>
+      </ul>
+    </li>
+    <li><a href="#プレイゲームオーバー-の2状態を作って切り替える">プレイ／ゲームオーバー の2状態を作って切り替える</a>
+      <ul>
+        <li><a href="#ゲームオーバー状態がプレイ状態と異なる点">ゲームオーバー状態がプレイ状態と異なる点</a></li>
+        <li><a href="#やること-1">やること</a></li>
+        <li><a href="#ソースコード-1">ソースコード</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+
+
+    </aside>
+  
+ 
+      </header>
+
+      
+<article class="markdown"><h1 id="ゲームオーバーを実装">ゲームオーバーを実装</h1>
+<p>ゲームオーバーになる条件は</p>
+<ol>
+<li>プレイヤーが画面下端まで落ちる</li>
+<li>プレイヤーがブロックに衝突する</li>
+</ol>
+<p>だったが、このうち 1. は 2. より簡単そうなので、このタイミングで実装する</p>
+<p>加えて、ゲームオーバー後にクリックしたらリセット → もう一度遊べるようにする</p>
+<h2 id="準備-setupdraw-の中身を整理する">準備： setup/draw の中身を整理する</h2>
+<h3 id="理由">理由</h3>
+<ul>
+<li>初期化処理が <code>setup()</code> の中にあると「リセットして最初に戻る」のがやりにくい</li>
+<li><code>draw()</code> の中身が増えてきたので、更新処理／描画処理 の2つに分けて整理したい</li>
+</ul>
+<h3 id="やること">やること</h3>
+<p>以下のそれぞれについて、新たに専用の関数を用意して置き換える</p>
+<ol>
+<li><code>setup()</code> の中の初期化処理</li>
+<li><code>draw()</code> の中の更新処理</li>
+<li><code>draw()</code> の中の描画処理</li>
+<li><code>mousePressed()</code> の中身（マウスボタンが押されたときの処理）</li>
+</ol>
+<h3 id="ソースコード">ソースコード</h3>
+<p>「setup/draw 他」セクションに書いてあった処理が、特に変更されることなく<br>
+「ゲーム全体に関わる変数と関数」セクションにごっそり移動している</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-javascript" data-lang="javascript"><span style="color:#75715e">// ---- エンティティ関連の関数 --------------------------------------------------
+</span><span style="color:#75715e"></span>
+<span style="color:#75715e">// （省略）
+</span><span style="color:#75715e"></span>
+<span style="color:#75715e">// ---- ゲーム全体に関わる変数と関数 --------------------------------------------
+</span><span style="color:#75715e"></span>
+<span style="color:#75715e">/** プレイヤーエンティティ */</span>
+<span style="color:#66d9ef">let</span> <span style="color:#a6e22e">player</span>;
+
+<span style="color:#75715e">/** ブロックエンティティの配列 */</span>
+<span style="color:#66d9ef">let</span> <span style="color:#a6e22e">blocks</span>;
+
+<span style="color:#75715e">/** ブロックを上下ペアで作成し、`blocks` に追加する */</span>
+<span style="color:#66d9ef">function</span> <span style="color:#a6e22e">addBlockPair</span>() {
+  <span style="color:#66d9ef">let</span> <span style="color:#a6e22e">y</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">random</span>(<span style="color:#f92672">-</span><span style="color:#ae81ff">100</span>, <span style="color:#ae81ff">100</span>);
+  <span style="color:#a6e22e">blocks</span>.<span style="color:#a6e22e">push</span>(<span style="color:#a6e22e">createBlock</span>(<span style="color:#a6e22e">y</span>)); <span style="color:#75715e">// 上のブロック
+</span><span style="color:#75715e"></span>  <span style="color:#a6e22e">blocks</span>.<span style="color:#a6e22e">push</span>(<span style="color:#a6e22e">createBlock</span>(<span style="color:#a6e22e">y</span> <span style="color:#f92672">+</span> <span style="color:#ae81ff">600</span>)); <span style="color:#75715e">// 下のブロック
+</span><span style="color:#75715e"></span>}
+
+<span style="color:#75715e">/** ゲームの初期化・リセット */</span>
+<span style="color:#66d9ef">function</span> <span style="color:#a6e22e">resetGame</span>() {
+  <span style="color:#75715e">// プレイヤーを作成
+</span><span style="color:#75715e"></span>  <span style="color:#a6e22e">player</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">createPlayer</span>();
+
+  <span style="color:#75715e">// ブロックの配列準備
+</span><span style="color:#75715e"></span>  <span style="color:#a6e22e">blocks</span> <span style="color:#f92672">=</span> [];
+}
+
+<span style="color:#75715e">/** ゲームの更新 */</span>
+<span style="color:#66d9ef">function</span> <span style="color:#a6e22e">updateGame</span>() {
+  <span style="color:#75715e">// ブロックの追加と削除
+</span><span style="color:#75715e"></span>  <span style="color:#66d9ef">if</span> (<span style="color:#a6e22e">frameCount</span> <span style="color:#f92672">%</span> <span style="color:#ae81ff">120</span> <span style="color:#f92672">===</span> <span style="color:#ae81ff">1</span>) <span style="color:#a6e22e">addBlockPair</span>(<span style="color:#a6e22e">blocks</span>); <span style="color:#75715e">// 一定間隔でブロック追加
+</span><span style="color:#75715e"></span>  <span style="color:#a6e22e">blocks</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">blocks</span>.<span style="color:#a6e22e">filter</span>(<span style="color:#a6e22e">blockIsAlive</span>); <span style="color:#75715e">// 生きているブロックだけ残す
+</span><span style="color:#75715e"></span>
+  <span style="color:#75715e">// 全エンティティの位置を更新
+</span><span style="color:#75715e"></span>  <span style="color:#a6e22e">updatePosition</span>(<span style="color:#a6e22e">player</span>);
+  <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">let</span> <span style="color:#a6e22e">block</span> <span style="color:#66d9ef">of</span> <span style="color:#a6e22e">blocks</span>) <span style="color:#a6e22e">updatePosition</span>(<span style="color:#a6e22e">block</span>);
+
+  <span style="color:#75715e">// プレイヤーに重力を適用
+</span><span style="color:#75715e"></span>  <span style="color:#a6e22e">applyGravity</span>(<span style="color:#a6e22e">player</span>);
+}
+
+<span style="color:#75715e">/** ゲームの描画 */</span>
+<span style="color:#66d9ef">function</span> <span style="color:#a6e22e">drawGame</span>() {
+  <span style="color:#75715e">// 全エンティティを描画
+</span><span style="color:#75715e"></span>  <span style="color:#a6e22e">background</span>(<span style="color:#ae81ff">0</span>);
+  <span style="color:#a6e22e">drawPlayer</span>(<span style="color:#a6e22e">player</span>);
+  <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">let</span> <span style="color:#a6e22e">block</span> <span style="color:#66d9ef">of</span> <span style="color:#a6e22e">blocks</span>) <span style="color:#a6e22e">drawBlock</span>(<span style="color:#a6e22e">block</span>);
+}
+
+<span style="color:#75715e">/** マウスボタンが押されたときのゲームへの影響 */</span>
+<span style="color:#66d9ef">function</span> <span style="color:#a6e22e">onMousePress</span>() {
+  <span style="color:#75715e">// プレイヤーをジャンプさせる
+</span><span style="color:#75715e"></span>  <span style="color:#a6e22e">applyJump</span>(<span style="color:#a6e22e">player</span>);
+}
+
+<span style="color:#75715e">// ---- setup/draw 他 -------------------------------------------------------
+</span><span style="color:#75715e"></span>
+<span style="color:#66d9ef">function</span> <span style="color:#a6e22e">setup</span>() {
+  <span style="color:#a6e22e">createCanvas</span>(<span style="color:#ae81ff">800</span>, <span style="color:#ae81ff">600</span>);
+  <span style="color:#a6e22e">rectMode</span>(<span style="color:#a6e22e">CENTER</span>);
+
+  <span style="color:#a6e22e">resetGame</span>();
+}
+
+<span style="color:#66d9ef">function</span> <span style="color:#a6e22e">draw</span>() {
+  <span style="color:#a6e22e">updateGame</span>();
+  <span style="color:#a6e22e">drawGame</span>();
+}
+
+<span style="color:#66d9ef">function</span> <span style="color:#a6e22e">mousePressed</span>() {
+  <span style="color:#a6e22e">onMousePress</span>();
+}
+</code></pre></div><h2 id="プレイゲームオーバー-の2状態を作って切り替える">プレイ／ゲームオーバー の2状態を作って切り替える</h2>
+<h3 id="ゲームオーバー状態がプレイ状態と異なる点">ゲームオーバー状態がプレイ状態と異なる点</h3>
+<ul>
+<li>画面の動きが止める</li>
+<li>&ldquo;GAME OVER&rdquo; と表示される</li>
+<li>マウスボタンを押したらリセットされる</li>
+</ul>
+<h3 id="やること-1">やること</h3>
+<ol>
+<li>プレイ／ゲームオーバー の状態を管理する変数を用意する</li>
+<li>ゲームをリセットしたら「プレイ」状態で始まるようにする</li>
+<li>ゲームの更新処理
+<ul>
+<li>ゲームオーバーのときは動きを止める（エンティティを更新しない）</li>
+</ul>
+</li>
+<li>ゲームの描画処理
+<ul>
+<li>ゲームオーバーのときは通常の描画に加えて &ldquo;GAME OVER&rdquo; と表示する</li>
+</ul>
+</li>
+<li>マウスボタンを押したときの処理
+<ul>
+<li>プレイ中なら従来どおりジャンプ</li>
+<li>ゲームオーバー状態ならリセット</li>
+</ul>
+</li>
+</ol>
+<h3 id="ソースコード-1">ソースコード</h3>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-javascript" data-lang="javascript"><span style="color:#75715e">// ---- エンティティ関連の関数 --------------------------------------------------
+</span><span style="color:#75715e"></span>
+<span style="color:#75715e">// （省略）
+</span><span style="color:#75715e"></span>
+<span style="color:#75715e">// ---- ゲーム全体に関わる変数と関数 --------------------------------------------
+</span><span style="color:#75715e"></span>
+<span style="color:#75715e">/** プレイヤーエンティティ */</span>
+<span style="color:#66d9ef">let</span> <span style="color:#a6e22e">player</span>;
+
+<span style="color:#75715e">/** ブロックエンティティの配列 */</span>
+<span style="color:#66d9ef">let</span> <span style="color:#a6e22e">blocks</span>;
+
+<span style="color:#75715e">/** ゲームの状態。&#34;play&#34; か &#34;gameover&#34; を入れるものとする */</span>
+<span style="color:#66d9ef">let</span> <span style="color:#a6e22e">gameState</span>;
+
+<span style="color:#75715e">/** ブロックを上下ペアで作成し、`blocks` に追加する */</span>
+<span style="color:#66d9ef">function</span> <span style="color:#a6e22e">addBlockPair</span>() {
+  <span style="color:#66d9ef">let</span> <span style="color:#a6e22e">y</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">random</span>(<span style="color:#f92672">-</span><span style="color:#ae81ff">100</span>, <span style="color:#ae81ff">100</span>);
+  <span style="color:#a6e22e">blocks</span>.<span style="color:#a6e22e">push</span>(<span style="color:#a6e22e">createBlock</span>(<span style="color:#a6e22e">y</span>)); <span style="color:#75715e">// 上のブロック
+</span><span style="color:#75715e"></span>  <span style="color:#a6e22e">blocks</span>.<span style="color:#a6e22e">push</span>(<span style="color:#a6e22e">createBlock</span>(<span style="color:#a6e22e">y</span> <span style="color:#f92672">+</span> <span style="color:#ae81ff">600</span>)); <span style="color:#75715e">// 下のブロック
+</span><span style="color:#75715e"></span>}
+
+<span style="color:#75715e">/** ゲームオーバー画面を表示する */</span>
+<span style="color:#66d9ef">function</span> <span style="color:#a6e22e">drawGameOverScreen</span>() {
+  <span style="color:#a6e22e">background</span>(<span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">192</span>);
+  <span style="color:#a6e22e">fill</span>(<span style="color:#ae81ff">255</span>);
+  <span style="color:#a6e22e">textSize</span>(<span style="color:#ae81ff">64</span>);
+  <span style="color:#a6e22e">textAlign</span>(<span style="color:#a6e22e">CENTER</span>, <span style="color:#a6e22e">CENTER</span>);
+  <span style="color:#a6e22e">text</span>(<span style="color:#e6db74">&#34;GAME OVER&#34;</span>, <span style="color:#a6e22e">width</span> <span style="color:#f92672">/</span> <span style="color:#ae81ff">2</span>, <span style="color:#a6e22e">height</span> <span style="color:#f92672">/</span> <span style="color:#ae81ff">2</span>);
+}
+
+<span style="color:#75715e">/** ゲームの初期化・リセット */</span>
+<span style="color:#66d9ef">function</span> <span style="color:#a6e22e">resetGame</span>() {
+  <span style="color:#75715e">// 状態をリセット
+</span><span style="color:#75715e"></span>  <span style="color:#a6e22e">gameState</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;play&#34;</span>;
+
+  <span style="color:#75715e">// プレイヤーを作成
+</span><span style="color:#75715e"></span>  <span style="color:#a6e22e">player</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">createPlayer</span>();
+
+  <span style="color:#75715e">// ブロックの配列準備
+</span><span style="color:#75715e"></span>  <span style="color:#a6e22e">blocks</span> <span style="color:#f92672">=</span> [];
+}
+
+<span style="color:#75715e">/** ゲームの更新 */</span>
+<span style="color:#66d9ef">function</span> <span style="color:#a6e22e">updateGame</span>() {
+  <span style="color:#66d9ef">if</span> (<span style="color:#a6e22e">gameState</span> <span style="color:#f92672">!==</span> <span style="color:#e6db74">&#34;play&#34;</span>) <span style="color:#66d9ef">return</span>;
+
+  <span style="color:#75715e">// ブロックの追加と削除
+</span><span style="color:#75715e"></span>  <span style="color:#66d9ef">if</span> (<span style="color:#a6e22e">frameCount</span> <span style="color:#f92672">%</span> <span style="color:#ae81ff">120</span> <span style="color:#f92672">===</span> <span style="color:#ae81ff">1</span>) <span style="color:#a6e22e">addBlockPair</span>(<span style="color:#a6e22e">blocks</span>); <span style="color:#75715e">// 一定間隔でブロック追加
+</span><span style="color:#75715e"></span>  <span style="color:#a6e22e">blocks</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">blocks</span>.<span style="color:#a6e22e">filter</span>(<span style="color:#a6e22e">blockIsAlive</span>); <span style="color:#75715e">// 生きているブロックだけ残す
+</span><span style="color:#75715e"></span>
+  <span style="color:#75715e">// 全エンティティの位置を更新
+</span><span style="color:#75715e"></span>  <span style="color:#a6e22e">updatePosition</span>(<span style="color:#a6e22e">player</span>);
+  <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">let</span> <span style="color:#a6e22e">block</span> <span style="color:#66d9ef">of</span> <span style="color:#a6e22e">blocks</span>) <span style="color:#a6e22e">updatePosition</span>(<span style="color:#a6e22e">block</span>);
+
+  <span style="color:#75715e">// プレイヤーに重力を適用
+</span><span style="color:#75715e"></span>  <span style="color:#a6e22e">applyGravity</span>(<span style="color:#a6e22e">player</span>);
+
+  <span style="color:#75715e">// プレイヤーが死んでいたらゲームオーバー
+</span><span style="color:#75715e"></span>  <span style="color:#66d9ef">if</span> (<span style="color:#f92672">!</span><span style="color:#a6e22e">playerIsAlive</span>(<span style="color:#a6e22e">player</span>)) <span style="color:#a6e22e">gameState</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;gameover&#34;</span>;
+}
+
+<span style="color:#75715e">/** ゲームの描画 */</span>
+<span style="color:#66d9ef">function</span> <span style="color:#a6e22e">drawGame</span>() {
+  <span style="color:#75715e">// 全エンティティを描画
+</span><span style="color:#75715e"></span>  <span style="color:#a6e22e">background</span>(<span style="color:#ae81ff">0</span>);
+  <span style="color:#a6e22e">drawPlayer</span>(<span style="color:#a6e22e">player</span>);
+  <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">let</span> <span style="color:#a6e22e">block</span> <span style="color:#66d9ef">of</span> <span style="color:#a6e22e">blocks</span>) <span style="color:#a6e22e">drawBlock</span>(<span style="color:#a6e22e">block</span>);
+
+  <span style="color:#75715e">// ゲームオーバーならそれ用の画面を表示
+</span><span style="color:#75715e"></span>  <span style="color:#66d9ef">if</span> (<span style="color:#a6e22e">gameState</span> <span style="color:#f92672">===</span> <span style="color:#e6db74">&#34;gameover&#34;</span>) <span style="color:#a6e22e">drawGameOverScreen</span>();
+}
+
+<span style="color:#75715e">/** マウスボタンが押されたときのゲームへの影響 */</span>
+<span style="color:#66d9ef">function</span> <span style="color:#a6e22e">onMousePress</span>() {
+  <span style="color:#66d9ef">switch</span> (<span style="color:#a6e22e">gameState</span>) {
+    <span style="color:#66d9ef">case</span> <span style="color:#e6db74">&#34;play&#34;</span><span style="color:#f92672">:</span>
+      <span style="color:#75715e">// プレイ中の状態ならプレイヤーをジャンプさせる
+</span><span style="color:#75715e"></span>      <span style="color:#a6e22e">applyJump</span>(<span style="color:#a6e22e">player</span>);
+      <span style="color:#66d9ef">break</span>;
+    <span style="color:#66d9ef">case</span> <span style="color:#e6db74">&#34;gameover&#34;</span><span style="color:#f92672">:</span>
+      <span style="color:#75715e">// ゲームオーバー状態ならリセット
+</span><span style="color:#75715e"></span>      <span style="color:#a6e22e">resetGame</span>();
+      <span style="color:#66d9ef">break</span>;
+  }
+}
+
+<span style="color:#75715e">// ---- setup/draw 他 -------------------------------------------------------
+</span><span style="color:#75715e"></span>
+<span style="color:#66d9ef">function</span> <span style="color:#a6e22e">setup</span>() {
+  <span style="color:#a6e22e">createCanvas</span>(<span style="color:#ae81ff">800</span>, <span style="color:#ae81ff">600</span>);
+  <span style="color:#a6e22e">rectMode</span>(<span style="color:#a6e22e">CENTER</span>);
+
+  <span style="color:#a6e22e">resetGame</span>();
+}
+
+<span style="color:#66d9ef">function</span> <span style="color:#a6e22e">draw</span>() {
+  <span style="color:#a6e22e">updateGame</span>();
+  <span style="color:#a6e22e">drawGame</span>();
+}
+
+<span style="color:#66d9ef">function</span> <span style="color:#a6e22e">mousePressed</span>() {
+  <span style="color:#a6e22e">onMousePress</span>();
+}
+</code></pre></div><div class="book-expand">
+  <label>
+    <div class="book-expand-head flex justify-between">
+      <span>ソースコード全文</span>
+      <span>↕</span>
+    </div>
+    <input type="checkbox" class="hidden" />
+    <div class="book-expand-content markdown-inner">
+      <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-javascript" data-lang="javascript"><span style="color:#75715e">// ---- エンティティ関連の関数 -------------------------------------------------
+</span><span style="color:#75715e"></span>
+<span style="color:#75715e">// 全エンティティ共通
+</span><span style="color:#75715e"></span>
+<span style="color:#66d9ef">function</span> <span style="color:#a6e22e">updatePosition</span>(<span style="color:#a6e22e">entity</span>) {
+  <span style="color:#a6e22e">entity</span>.<span style="color:#a6e22e">x</span> <span style="color:#f92672">+=</span> <span style="color:#a6e22e">entity</span>.<span style="color:#a6e22e">vx</span>;
+  <span style="color:#a6e22e">entity</span>.<span style="color:#a6e22e">y</span> <span style="color:#f92672">+=</span> <span style="color:#a6e22e">entity</span>.<span style="color:#a6e22e">vy</span>;
+}
+
+<span style="color:#75715e">// プレイヤーエンティティ用
+</span><span style="color:#75715e"></span>
+<span style="color:#66d9ef">function</span> <span style="color:#a6e22e">createPlayer</span>() {
+  <span style="color:#66d9ef">return</span> {
+    <span style="color:#a6e22e">x</span><span style="color:#f92672">:</span> <span style="color:#ae81ff">200</span>,
+    <span style="color:#a6e22e">y</span><span style="color:#f92672">:</span> <span style="color:#ae81ff">300</span>,
+    <span style="color:#a6e22e">vx</span><span style="color:#f92672">:</span> <span style="color:#ae81ff">0</span>,
+    <span style="color:#a6e22e">vy</span><span style="color:#f92672">:</span> <span style="color:#ae81ff">0</span>
+  };
+}
+
+<span style="color:#66d9ef">function</span> <span style="color:#a6e22e">applyGravity</span>(<span style="color:#a6e22e">entity</span>) {
+  <span style="color:#a6e22e">entity</span>.<span style="color:#a6e22e">vy</span> <span style="color:#f92672">+=</span> <span style="color:#ae81ff">0.15</span>;
+}
+
+<span style="color:#66d9ef">function</span> <span style="color:#a6e22e">applyJump</span>(<span style="color:#a6e22e">entity</span>) {
+  <span style="color:#a6e22e">entity</span>.<span style="color:#a6e22e">vy</span> <span style="color:#f92672">=</span> <span style="color:#f92672">-</span><span style="color:#ae81ff">5</span>;
+}
+
+<span style="color:#66d9ef">function</span> <span style="color:#a6e22e">drawPlayer</span>(<span style="color:#a6e22e">entity</span>) {
+  <span style="color:#a6e22e">square</span>(<span style="color:#a6e22e">entity</span>.<span style="color:#a6e22e">x</span>, <span style="color:#a6e22e">entity</span>.<span style="color:#a6e22e">y</span>, <span style="color:#ae81ff">40</span>);
+}
+
+<span style="color:#66d9ef">function</span> <span style="color:#a6e22e">playerIsAlive</span>(<span style="color:#a6e22e">entity</span>) {
+  <span style="color:#75715e">// プレイヤーの位置が生存圏内なら true を返す。
+</span><span style="color:#75715e"></span>  <span style="color:#75715e">// 600 は画面の下端
+</span><span style="color:#75715e"></span>  <span style="color:#66d9ef">return</span> <span style="color:#a6e22e">entity</span>.<span style="color:#a6e22e">y</span> <span style="color:#f92672">&lt;</span> <span style="color:#ae81ff">600</span>;
+}
+
+<span style="color:#75715e">// ブロックエンティティ用
+</span><span style="color:#75715e"></span>
+<span style="color:#66d9ef">function</span> <span style="color:#a6e22e">createBlock</span>(<span style="color:#a6e22e">y</span>) {
+  <span style="color:#66d9ef">return</span> {
+    <span style="color:#a6e22e">x</span><span style="color:#f92672">:</span> <span style="color:#ae81ff">900</span>,
+    <span style="color:#a6e22e">y</span>,
+    <span style="color:#a6e22e">vx</span><span style="color:#f92672">:</span> <span style="color:#f92672">-</span><span style="color:#ae81ff">2</span>,
+    <span style="color:#a6e22e">vy</span><span style="color:#f92672">:</span> <span style="color:#ae81ff">0</span>
+  };
+}
+
+<span style="color:#66d9ef">function</span> <span style="color:#a6e22e">drawBlock</span>(<span style="color:#a6e22e">entity</span>) {
+  <span style="color:#a6e22e">rect</span>(<span style="color:#a6e22e">entity</span>.<span style="color:#a6e22e">x</span>, <span style="color:#a6e22e">entity</span>.<span style="color:#a6e22e">y</span>, <span style="color:#ae81ff">80</span>, <span style="color:#ae81ff">400</span>);
+}
+
+<span style="color:#66d9ef">function</span> <span style="color:#a6e22e">blockIsAlive</span>(<span style="color:#a6e22e">entity</span>) {
+  <span style="color:#75715e">// ブロックの位置が生存圏内なら true を返す。
+</span><span style="color:#75715e"></span>  <span style="color:#75715e">// -100 は適当な値（ブロックが見えなくなる位置であればよい）
+</span><span style="color:#75715e"></span>  <span style="color:#66d9ef">return</span> <span style="color:#f92672">-</span><span style="color:#ae81ff">100</span> <span style="color:#f92672">&lt;</span> <span style="color:#a6e22e">entity</span>.<span style="color:#a6e22e">x</span>;
+}
+
+<span style="color:#75715e">// ---- ゲーム全体に関わる変数と関数 -------------------------------------------
+</span><span style="color:#75715e"></span>
+<span style="color:#75715e">/** プレイヤーエンティティ */</span>
+<span style="color:#66d9ef">let</span> <span style="color:#a6e22e">player</span>;
+
+<span style="color:#75715e">/** ブロックエンティティの配列 */</span>
+<span style="color:#66d9ef">let</span> <span style="color:#a6e22e">blocks</span>;
+
+<span style="color:#75715e">/** ゲームの状態。&#34;playing&#34; か &#34;gameover&#34; を入れるものとする */</span>
+<span style="color:#66d9ef">let</span> <span style="color:#a6e22e">gameState</span>;
+
+<span style="color:#75715e">/** ブロックを上下ペアで作成し、`blocks` に追加する */</span>
+<span style="color:#66d9ef">function</span> <span style="color:#a6e22e">addBlockPair</span>() {
+  <span style="color:#66d9ef">let</span> <span style="color:#a6e22e">y</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">random</span>(<span style="color:#f92672">-</span><span style="color:#ae81ff">100</span>, <span style="color:#ae81ff">100</span>);
+  <span style="color:#a6e22e">blocks</span>.<span style="color:#a6e22e">push</span>(<span style="color:#a6e22e">createBlock</span>(<span style="color:#a6e22e">y</span>)); <span style="color:#75715e">// 上のブロック
+</span><span style="color:#75715e"></span>  <span style="color:#a6e22e">blocks</span>.<span style="color:#a6e22e">push</span>(<span style="color:#a6e22e">createBlock</span>(<span style="color:#a6e22e">y</span> <span style="color:#f92672">+</span> <span style="color:#ae81ff">600</span>)); <span style="color:#75715e">// 下のブロック
+</span><span style="color:#75715e"></span>}
+
+<span style="color:#75715e">/** ゲームオーバー画面を表示する */</span>
+<span style="color:#66d9ef">function</span> <span style="color:#a6e22e">drawGameOverScreen</span>() {
+  <span style="color:#a6e22e">background</span>(<span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">192</span>);
+  <span style="color:#a6e22e">fill</span>(<span style="color:#ae81ff">255</span>);
+  <span style="color:#a6e22e">textSize</span>(<span style="color:#ae81ff">64</span>);
+  <span style="color:#a6e22e">textAlign</span>(<span style="color:#a6e22e">CENTER</span>, <span style="color:#a6e22e">CENTER</span>);
+  <span style="color:#a6e22e">text</span>(<span style="color:#e6db74">&#34;GAME OVER&#34;</span>, <span style="color:#a6e22e">width</span> <span style="color:#f92672">/</span> <span style="color:#ae81ff">2</span>, <span style="color:#a6e22e">height</span> <span style="color:#f92672">/</span> <span style="color:#ae81ff">2</span>);
+}
+
+<span style="color:#75715e">/** ゲームの初期化・リセット */</span>
+<span style="color:#66d9ef">function</span> <span style="color:#a6e22e">resetGame</span>() {
+  <span style="color:#75715e">// 状態をリセット
+</span><span style="color:#75715e"></span>  <span style="color:#a6e22e">gameState</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;play&#34;</span>;
+
+  <span style="color:#75715e">// プレイヤーを作成
+</span><span style="color:#75715e"></span>  <span style="color:#a6e22e">player</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">createPlayer</span>();
+
+  <span style="color:#75715e">// ブロックの配列準備
+</span><span style="color:#75715e"></span>  <span style="color:#a6e22e">blocks</span> <span style="color:#f92672">=</span> [];
+}
+
+<span style="color:#75715e">/** ゲームの更新 */</span>
+<span style="color:#66d9ef">function</span> <span style="color:#a6e22e">updateGame</span>() {
+  <span style="color:#66d9ef">if</span> (<span style="color:#a6e22e">gameState</span> <span style="color:#f92672">!==</span> <span style="color:#e6db74">&#34;play&#34;</span>) <span style="color:#66d9ef">return</span>;
+
+  <span style="color:#75715e">// ブロックの追加と削除
+</span><span style="color:#75715e"></span>  <span style="color:#66d9ef">if</span> (<span style="color:#a6e22e">frameCount</span> <span style="color:#f92672">%</span> <span style="color:#ae81ff">120</span> <span style="color:#f92672">===</span> <span style="color:#ae81ff">1</span>) <span style="color:#a6e22e">addBlockPair</span>(<span style="color:#a6e22e">blocks</span>); <span style="color:#75715e">// 一定間隔でブロック追加
+</span><span style="color:#75715e"></span>  <span style="color:#a6e22e">blocks</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">blocks</span>.<span style="color:#a6e22e">filter</span>(<span style="color:#a6e22e">blockIsAlive</span>); <span style="color:#75715e">// 生きているブロックだけ残す
+</span><span style="color:#75715e"></span>
+  <span style="color:#75715e">// 全エンティティの位置を更新
+</span><span style="color:#75715e"></span>  <span style="color:#a6e22e">updatePosition</span>(<span style="color:#a6e22e">player</span>);
+  <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">let</span> <span style="color:#a6e22e">block</span> <span style="color:#66d9ef">of</span> <span style="color:#a6e22e">blocks</span>) <span style="color:#a6e22e">updatePosition</span>(<span style="color:#a6e22e">block</span>);
+
+  <span style="color:#75715e">// プレイヤーに重力を適用
+</span><span style="color:#75715e"></span>  <span style="color:#a6e22e">applyGravity</span>(<span style="color:#a6e22e">player</span>);
+
+  <span style="color:#75715e">// プレイヤーが死んでいたらゲームオーバー
+</span><span style="color:#75715e"></span>  <span style="color:#66d9ef">if</span> (<span style="color:#f92672">!</span><span style="color:#a6e22e">playerIsAlive</span>(<span style="color:#a6e22e">player</span>)) <span style="color:#a6e22e">gameState</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;gameover&#34;</span>;
+}
+
+<span style="color:#75715e">/** ゲームの描画 */</span>
+<span style="color:#66d9ef">function</span> <span style="color:#a6e22e">drawGame</span>() {
+  <span style="color:#75715e">// 全エンティティを描画
+</span><span style="color:#75715e"></span>  <span style="color:#a6e22e">background</span>(<span style="color:#ae81ff">0</span>);
+  <span style="color:#a6e22e">drawPlayer</span>(<span style="color:#a6e22e">player</span>);
+  <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">let</span> <span style="color:#a6e22e">block</span> <span style="color:#66d9ef">of</span> <span style="color:#a6e22e">blocks</span>) <span style="color:#a6e22e">drawBlock</span>(<span style="color:#a6e22e">block</span>);
+
+  <span style="color:#75715e">// ゲームオーバーならそれ用の画面を表示
+</span><span style="color:#75715e"></span>  <span style="color:#66d9ef">if</span> (<span style="color:#a6e22e">gameState</span> <span style="color:#f92672">===</span> <span style="color:#e6db74">&#34;gameover&#34;</span>) <span style="color:#a6e22e">drawGameOverScreen</span>();
+}
+
+<span style="color:#75715e">/** マウスボタンが押されたときのゲームへの影響 */</span>
+<span style="color:#66d9ef">function</span> <span style="color:#a6e22e">onMousePress</span>() {
+  <span style="color:#66d9ef">switch</span> (<span style="color:#a6e22e">gameState</span>) {
+    <span style="color:#66d9ef">case</span> <span style="color:#e6db74">&#34;play&#34;</span><span style="color:#f92672">:</span>
+      <span style="color:#75715e">// プレイ中の状態ならプレイヤーをジャンプさせる
+</span><span style="color:#75715e"></span>      <span style="color:#a6e22e">applyJump</span>(<span style="color:#a6e22e">player</span>);
+      <span style="color:#66d9ef">break</span>;
+    <span style="color:#66d9ef">case</span> <span style="color:#e6db74">&#34;gameover&#34;</span><span style="color:#f92672">:</span>
+      <span style="color:#75715e">// ゲームオーバー状態ならリセット
+</span><span style="color:#75715e"></span>      <span style="color:#a6e22e">resetGame</span>();
+      <span style="color:#66d9ef">break</span>;
+  }
+}
+
+<span style="color:#75715e">// ---- setup/draw 他 ------------------------------------------------------
+</span><span style="color:#75715e"></span>
+<span style="color:#66d9ef">function</span> <span style="color:#a6e22e">setup</span>() {
+  <span style="color:#a6e22e">createCanvas</span>(<span style="color:#ae81ff">800</span>, <span style="color:#ae81ff">600</span>);
+  <span style="color:#a6e22e">rectMode</span>(<span style="color:#a6e22e">CENTER</span>);
+
+  <span style="color:#a6e22e">resetGame</span>();
+}
+
+<span style="color:#66d9ef">function</span> <span style="color:#a6e22e">draw</span>() {
+  <span style="color:#a6e22e">updateGame</span>();
+  <span style="color:#a6e22e">drawGame</span>();
+}
+
+<span style="color:#66d9ef">function</span> <span style="color:#a6e22e">mousePressed</span>() {
+  <span style="color:#a6e22e">onMousePress</span>();
+}
+</code></pre></div>
+    </div>
+  </label>
+</div>
+</article>
+ 
+
+      <footer class="book-footer">
+        
+  <div class="flex justify-between">
+
+
+
+
+
+</div>
+
+ 
+        
+  
+  <div class="book-comments">
+
+</div>
+  
+ 
+      </footer>
+      
+    </div>
+
+    
+    <aside class="book-toc">
+      
+  <nav id="TableOfContents">
+  <ul>
+    <li><a href="#準備-setupdraw-の中身を整理する">準備： setup/draw の中身を整理する</a>
+      <ul>
+        <li><a href="#理由">理由</a></li>
+        <li><a href="#やること">やること</a></li>
+        <li><a href="#ソースコード">ソースコード</a></li>
+      </ul>
+    </li>
+    <li><a href="#プレイゲームオーバー-の2状態を作って切り替える">プレイ／ゲームオーバー の2状態を作って切り替える</a>
+      <ul>
+        <li><a href="#ゲームオーバー状態がプレイ状態と異なる点">ゲームオーバー状態がプレイ状態と異なる点</a></li>
+        <li><a href="#やること-1">やること</a></li>
+        <li><a href="#ソースコード-1">ソースコード</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+
+ 
+    </aside>
+    
+  </main>
+
+  
+</body>
+
+</html>
+
+
+
+
+
+
+
+
+
+
+
+

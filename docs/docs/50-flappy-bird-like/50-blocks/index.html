@@ -1,0 +1,577 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="ブロックを複数にする"><meta property="og:title" content="ブロックを複数にする" />
+<meta property="og:description" content="ブロックを複数にする やること ブロックを配列に格納するように変える draw() の中で、ブロックの配列に対して以下を行う 一定の時間間隔で、上下ペアでブロッ" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://fal-works.github.io/make-games-with-p5js/docs/50-flappy-bird-like/50-blocks/" />
+
+<title>ブロックを複数にする | p5.js でゲーム制作</title>
+<link rel="icon" href="/make-games-with-p5js/favicon.png" type="image/x-icon">
+
+
+<link rel="stylesheet" href="/make-games-with-p5js/book.min.eea3d957aa076eb37f0dc945a01970811db19796a1057c7d8e46268703b9c8f0.css" integrity="sha256-7qPZV6oHbrN/DclFoBlwgR2xl5ahBXx9jkYmhwO5yPA=">
+
+
+<!--
+Made with Book Theme
+https://github.com/alex-shpak/hugo-book
+-->
+
+  
+</head>
+
+<body>
+  <input type="checkbox" class="hidden" id="menu-control" />
+  <main class="container flex">
+    <aside class="book-menu">
+      
+  <nav>
+<h2 class="book-brand">
+  <a href="/make-games-with-p5js"><span>p5.js でゲーム制作</span>
+  </a>
+</h2>
+
+
+
+
+
+
+  
+
+  
+  
+
+
+
+
+
+ 
+  
+    
+
+
+
+
+  
+  <ul>
+    
+      
+        <li>
+
+  <a href="/make-games-with-p5js/docs/10-prepare/" >
+      準備
+  </a>
+
+</li>
+      
+    
+      
+        <li>
+
+  <a href="/make-games-with-p5js/docs/20-introduction/" >
+      はじめに
+  </a>
+
+</li>
+      
+    
+      
+        <li>
+
+  <a href="/make-games-with-p5js/docs/30-sketch/" >
+      p5.js スケッチの基本構造
+  </a>
+
+</li>
+      
+    
+      
+        <li>
+
+  <a href="/make-games-with-p5js/docs/40-links/" >
+      リンク
+  </a>
+
+</li>
+      
+    
+      
+        
+
+  <li >
+    
+      
+
+  <a href="/make-games-with-p5js/docs/50-flappy-bird-like/" >
+      Flappy Bird ライクなゲーム
+  </a>
+
+
+    
+
+    
+
+
+
+
+  
+  <ul>
+    
+      
+        <li>
+
+  <a href="/make-games-with-p5js/docs/50-flappy-bird-like/10-design/" >
+      最初に少し考えてみる
+  </a>
+
+</li>
+      
+    
+      
+        <li>
+
+  <a href="/make-games-with-p5js/docs/50-flappy-bird-like/20-player/" >
+      プレイヤーだけ実装
+  </a>
+
+</li>
+      
+    
+      
+        <li>
+
+  <a href="/make-games-with-p5js/docs/50-flappy-bird-like/30-block/" >
+      ブロック1個だけ実装
+  </a>
+
+</li>
+      
+    
+      
+        
+
+  <li >
+    
+      
+
+  <a href="/make-games-with-p5js/docs/50-flappy-bird-like/40-visuals/" >
+      見た目をアレンジ
+  </a>
+
+
+    
+
+    
+
+
+
+
+  
+  <ul>
+    
+      
+        <li>
+
+  <a href="/make-games-with-p5js/docs/50-flappy-bird-like/40-visuals/colors/" >
+      p5.js の色指定
+  </a>
+
+</li>
+      
+    
+  </ul>
+  
+
+
+
+  </li>
+
+
+      
+    
+      
+        <li>
+
+  <a href="/make-games-with-p5js/docs/50-flappy-bird-like/50-blocks/"  class="active">
+      ブロックを複数にする
+  </a>
+
+</li>
+      
+    
+      
+        <li>
+
+  <a href="/make-games-with-p5js/docs/50-flappy-bird-like/60-game-state/" >
+      ゲームオーバーを実装
+  </a>
+
+</li>
+      
+    
+      
+        <li>
+
+  <a href="/make-games-with-p5js/docs/50-flappy-bird-like/70-collision/" >
+      衝突判定を実装
+  </a>
+
+</li>
+      
+    
+  </ul>
+  
+
+
+
+  </li>
+
+
+      
+    
+  </ul>
+  
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+</nav>
+
+
+<script>
+(function() {
+  var menu = document.querySelector("aside.book-menu nav");
+  addEventListener("beforeunload", function(event) {
+    localStorage.setItem("menu.scrollTop", menu.scrollTop);
+  });
+  menu.scrollTop = localStorage.getItem("menu.scrollTop");
+})();
+</script>
+
+ 
+    </aside>
+
+    <div class="book-page">
+      <header class="book-header">
+        
+  <div class="flex align-center justify-between">
+  <label for="menu-control">
+    <img src="/make-games-with-p5js/svg/menu.svg" class="book-icon" alt="Menu" />
+  </label>
+
+  <strong>ブロックを複数にする</strong>
+
+  <label for="toc-control">
+    <img src="/make-games-with-p5js/svg/toc.svg" class="book-icon" alt="Table of Contents" />
+  </label>
+</div>
+
+
+  
+    <input type="checkbox" class="hidden" id="toc-control" />
+    <aside class="hidden clearfix">
+      
+  <nav id="TableOfContents">
+  <ul>
+    <li><a href="#やること">やること</a></li>
+    <li><a href="#実装">実装</a></li>
+  </ul>
+</nav>
+
+
+    </aside>
+  
+ 
+      </header>
+
+      
+<article class="markdown"><h1 id="ブロックを複数にする">ブロックを複数にする</h1>
+<h2 id="やること">やること</h2>
+<ol>
+<li>ブロックを配列に格納するように変える</li>
+<li><code>draw()</code> の中で、ブロックの配列に対して以下を行う
+<ul>
+<li>一定の時間間隔で、上下ペアでブロックを作成して配列に追加する</li>
+<li>画面左端に消えたブロックがあったら削除する</li>
+</ul>
+</li>
+<li><code>draw()</code> の中で、配列内の各ブロックについて以下を行う
+<ul>
+<li>位置の更新</li>
+<li>描画</li>
+</ul>
+</li>
+</ol>
+<div class="book-expand">
+  <label>
+    <div class="book-expand-head flex justify-between">
+      <span>補足： 配列の基本</span>
+      <span>↕</span>
+    </div>
+    <input type="checkbox" class="hidden" />
+    <div class="book-expand-content markdown-inner">
+      <p>百聞不如一見</p>
+<p>※ <code>console.log()</code> は値をコンソールに出力します。<br>
+　p5.js Web Editor の場合だと画面左下に結果が表示される</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-javascript" data-lang="javascript"><span style="color:#66d9ef">let</span> <span style="color:#a6e22e">countries</span> <span style="color:#f92672">=</span> []; <span style="color:#75715e">// 中身のない空っぽの配列を作成
+</span><span style="color:#75715e"></span>
+<span style="color:#a6e22e">countries</span>.<span style="color:#a6e22e">push</span>(<span style="color:#e6db74">&#34;Japan&#34;</span>); <span style="color:#75715e">// push で配列に値を追加
+</span><span style="color:#75715e"></span><span style="color:#a6e22e">countries</span>.<span style="color:#a6e22e">push</span>(<span style="color:#e6db74">&#34;USA&#34;</span>);
+<span style="color:#a6e22e">countries</span>.<span style="color:#a6e22e">push</span>(<span style="color:#e6db74">&#34;Germany&#34;</span>);
+
+<span style="color:#75715e">// 配列[番号] で要素を取得できる。番号は 0 始まり
+</span><span style="color:#75715e"></span><span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#a6e22e">countries</span>[<span style="color:#ae81ff">2</span>]); <span style="color:#75715e">// この場合 &#34;Germany&#34; を出力
+</span><span style="color:#75715e"></span>
+<span style="color:#75715e">// for...of 構文。配列の各要素を取り出して country と名付けている
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">let</span> <span style="color:#a6e22e">country</span> <span style="color:#66d9ef">of</span> <span style="color:#a6e22e">countries</span>) <span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#a6e22e">country</span>); <span style="color:#75715e">// 全要素が出力される
+</span></code></pre></div><p>この <strong>for&hellip;of 構文</strong>は、次のように普通の for で書いたときと結果は同じです。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-javascript" data-lang="javascript"><span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">let</span> <span style="color:#a6e22e">i</span> <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>; <span style="color:#a6e22e">i</span> <span style="color:#f92672">&lt;</span> <span style="color:#a6e22e">countries</span>.<span style="color:#a6e22e">length</span>; <span style="color:#a6e22e">i</span> <span style="color:#f92672">+=</span> <span style="color:#ae81ff">1</span>) <span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#a6e22e">countries</span>[<span style="color:#a6e22e">i</span>]);
+</code></pre></div><p>配列の <code>push()</code> は可変長引数なので、次のように一度に追加しても良いです。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-javascript" data-lang="javascript"><span style="color:#a6e22e">countries</span>.<span style="color:#a6e22e">push</span>(<span style="color:#e6db74">&#34;Japan&#34;</span>, <span style="color:#e6db74">&#34;USA&#34;</span>, <span style="color:#e6db74">&#34;Germany&#34;</span>);
+</code></pre></div><p>またこの例だと、そもそも初期化と同時にまとめて登録しておくこともできます。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-javascript" data-lang="javascript"><span style="color:#66d9ef">let</span> <span style="color:#a6e22e">countries</span> <span style="color:#f92672">=</span> [<span style="color:#e6db74">&#34;Japan&#34;</span>, <span style="color:#e6db74">&#34;USA&#34;</span>, <span style="color:#e6db74">&#34;Germany&#34;</span>];
+</code></pre></div>
+    </div>
+  </label>
+</div>
+<div class="book-expand">
+  <label>
+    <div class="book-expand-head flex justify-between">
+      <span>補足： 配列の filter()</span>
+      <span>↕</span>
+    </div>
+    <input type="checkbox" class="hidden" />
+    <div class="book-expand-content markdown-inner">
+      <p><code>filter()</code> を使うと、条件に合致した要素だけを含む新たな配列を作ることができます。</p>
+<p>例えば、このような配列と関数があったとします。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-javascript" data-lang="javascript"><span style="color:#75715e">/** 元となる数列 */</span>
+<span style="color:#66d9ef">let</span> <span style="color:#a6e22e">numbers</span> <span style="color:#f92672">=</span> [<span style="color:#ae81ff">10</span>, <span style="color:#ae81ff">20</span>, <span style="color:#ae81ff">30</span>, <span style="color:#ae81ff">40</span>];
+
+<span style="color:#75715e">/** 値が 20 より大きければ true、そうでなければ false を返す */</span>
+<span style="color:#66d9ef">function</span> <span style="color:#a6e22e">greaterThan20</span>(<span style="color:#a6e22e">n</span>) {
+  <span style="color:#66d9ef">return</span> <span style="color:#a6e22e">n</span> <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">20</span>;
+}
+</code></pre></div><p>このとき、<code>filter()</code> を使って、「20 より大きい値」だけを含む新たな配列が作れます。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-javascript" data-lang="javascript"><span style="color:#66d9ef">let</span> <span style="color:#a6e22e">newNumbers</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">numbers</span>.<span style="color:#a6e22e">filter</span>(<span style="color:#a6e22e">greaterThan20</span>); <span style="color:#75715e">// 結果は新たな配列 [30, 40]
+</span></code></pre></div><p>つまり <code>filter()</code> は、「値に応じて <code>true</code> か <code>false</code> を返す関数」を引数として与えると、それを使って配列の各要素をチェックし、フィルタリングしてくれるのです。</p>
+<p>※ 厳密には <code>true</code>/<code>false</code> というより truthy/falsy で判定</p>
+<p>なお、念のため…… <code>return n &gt; 20;</code> のところは、次のように書くのと同じ結果です。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-javascript" data-lang="javascript"><span style="color:#66d9ef">if</span> (<span style="color:#a6e22e">n</span> <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">20</span>) <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">true</span>;
+<span style="color:#66d9ef">else</span> <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">false</span>;
+</code></pre></div>
+    </div>
+  </label>
+</div>
+<h2 id="実装">実装</h2>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-javascript" data-lang="javascript"><span style="color:#75715e">// ---- エンティティ関連の関数 --------------------------------------------------
+</span><span style="color:#75715e"></span>
+<span style="color:#75715e">// 全エンティティ共通
+</span><span style="color:#75715e"></span>
+<span style="color:#66d9ef">function</span> <span style="color:#a6e22e">updatePosition</span>(<span style="color:#a6e22e">entity</span>) {
+  <span style="color:#a6e22e">entity</span>.<span style="color:#a6e22e">x</span> <span style="color:#f92672">+=</span> <span style="color:#a6e22e">entity</span>.<span style="color:#a6e22e">vx</span>;
+  <span style="color:#a6e22e">entity</span>.<span style="color:#a6e22e">y</span> <span style="color:#f92672">+=</span> <span style="color:#a6e22e">entity</span>.<span style="color:#a6e22e">vy</span>;
+}
+
+<span style="color:#75715e">// プレイヤーエンティティ用
+</span><span style="color:#75715e"></span>
+<span style="color:#66d9ef">function</span> <span style="color:#a6e22e">createPlayer</span>() {
+  <span style="color:#66d9ef">return</span> {
+    <span style="color:#a6e22e">x</span><span style="color:#f92672">:</span> <span style="color:#ae81ff">200</span>,
+    <span style="color:#a6e22e">y</span><span style="color:#f92672">:</span> <span style="color:#ae81ff">300</span>,
+    <span style="color:#a6e22e">vx</span><span style="color:#f92672">:</span> <span style="color:#ae81ff">0</span>,
+    <span style="color:#a6e22e">vy</span><span style="color:#f92672">:</span> <span style="color:#ae81ff">0</span>
+  };
+}
+
+<span style="color:#66d9ef">function</span> <span style="color:#a6e22e">applyGravity</span>(<span style="color:#a6e22e">entity</span>) {
+  <span style="color:#a6e22e">entity</span>.<span style="color:#a6e22e">vy</span> <span style="color:#f92672">+=</span> <span style="color:#ae81ff">0.15</span>;
+}
+
+<span style="color:#66d9ef">function</span> <span style="color:#a6e22e">applyJump</span>(<span style="color:#a6e22e">entity</span>) {
+  <span style="color:#a6e22e">entity</span>.<span style="color:#a6e22e">vy</span> <span style="color:#f92672">=</span> <span style="color:#f92672">-</span><span style="color:#ae81ff">5</span>;
+}
+
+<span style="color:#66d9ef">function</span> <span style="color:#a6e22e">drawPlayer</span>(<span style="color:#a6e22e">entity</span>) {
+  <span style="color:#a6e22e">square</span>(<span style="color:#a6e22e">entity</span>.<span style="color:#a6e22e">x</span>, <span style="color:#a6e22e">entity</span>.<span style="color:#a6e22e">y</span>, <span style="color:#ae81ff">40</span>);
+}
+
+<span style="color:#75715e">// ブロックエンティティ用
+</span><span style="color:#75715e"></span>
+<span style="color:#66d9ef">function</span> <span style="color:#a6e22e">createBlock</span>(<span style="color:#a6e22e">y</span>) {
+  <span style="color:#66d9ef">return</span> {
+    <span style="color:#a6e22e">x</span><span style="color:#f92672">:</span> <span style="color:#ae81ff">900</span>,
+    <span style="color:#a6e22e">y</span>,
+    <span style="color:#a6e22e">vx</span><span style="color:#f92672">:</span> <span style="color:#f92672">-</span><span style="color:#ae81ff">2</span>,
+    <span style="color:#a6e22e">vy</span><span style="color:#f92672">:</span> <span style="color:#ae81ff">0</span>
+  };
+}
+
+<span style="color:#66d9ef">function</span> <span style="color:#a6e22e">drawBlock</span>(<span style="color:#a6e22e">entity</span>) {
+  <span style="color:#a6e22e">rect</span>(<span style="color:#a6e22e">entity</span>.<span style="color:#a6e22e">x</span>, <span style="color:#a6e22e">entity</span>.<span style="color:#a6e22e">y</span>, <span style="color:#ae81ff">80</span>, <span style="color:#ae81ff">400</span>);
+}
+
+<span style="color:#66d9ef">function</span> <span style="color:#a6e22e">blockIsAlive</span>(<span style="color:#a6e22e">entity</span>) {
+  <span style="color:#75715e">// ブロックの位置が生存圏内なら true を返す。
+</span><span style="color:#75715e"></span>  <span style="color:#75715e">// -100 は適当な値（ブロックが見えなくなる位置であればよい）
+</span><span style="color:#75715e"></span>  <span style="color:#66d9ef">return</span> <span style="color:#f92672">-</span><span style="color:#ae81ff">100</span> <span style="color:#f92672">&lt;</span> <span style="color:#a6e22e">entity</span>.<span style="color:#a6e22e">x</span>;
+}
+
+<span style="color:#75715e">// ---- ゲーム全体に関わる変数と関数 --------------------------------------------
+</span><span style="color:#75715e"></span>
+<span style="color:#75715e">/** プレイヤーエンティティ */</span>
+<span style="color:#66d9ef">let</span> <span style="color:#a6e22e">player</span>;
+
+<span style="color:#75715e">/** ブロックエンティティの配列 */</span>
+<span style="color:#66d9ef">let</span> <span style="color:#a6e22e">blocks</span>;
+
+<span style="color:#75715e">/**
+</span><span style="color:#75715e"> * ブロックを上下ペアで作成し、`blocks` に追加する
+</span><span style="color:#75715e"> */</span>
+<span style="color:#66d9ef">function</span> <span style="color:#a6e22e">addBlockPair</span>() {
+  <span style="color:#66d9ef">let</span> <span style="color:#a6e22e">y</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">random</span>(<span style="color:#f92672">-</span><span style="color:#ae81ff">100</span>, <span style="color:#ae81ff">100</span>);
+  <span style="color:#a6e22e">blocks</span>.<span style="color:#a6e22e">push</span>(<span style="color:#a6e22e">createBlock</span>(<span style="color:#a6e22e">y</span>)); <span style="color:#75715e">// 上のブロック
+</span><span style="color:#75715e"></span>  <span style="color:#a6e22e">blocks</span>.<span style="color:#a6e22e">push</span>(<span style="color:#a6e22e">createBlock</span>(<span style="color:#a6e22e">y</span> <span style="color:#f92672">+</span> <span style="color:#ae81ff">600</span>)); <span style="color:#75715e">// 下のブロック
+</span><span style="color:#75715e"></span>}
+
+<span style="color:#75715e">// ---- setup/draw 他 ----------------------------------------------------------
+</span><span style="color:#75715e"></span>
+<span style="color:#66d9ef">function</span> <span style="color:#a6e22e">setup</span>() {
+  <span style="color:#a6e22e">createCanvas</span>(<span style="color:#ae81ff">800</span>, <span style="color:#ae81ff">600</span>);
+  <span style="color:#a6e22e">rectMode</span>(<span style="color:#a6e22e">CENTER</span>);
+
+  <span style="color:#75715e">// プレイヤーを作成
+</span><span style="color:#75715e"></span>  <span style="color:#a6e22e">player</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">createPlayer</span>();
+
+  <span style="color:#75715e">// ブロックの配列準備
+</span><span style="color:#75715e"></span>  <span style="color:#a6e22e">blocks</span> <span style="color:#f92672">=</span> [];
+}
+
+<span style="color:#66d9ef">function</span> <span style="color:#a6e22e">draw</span>() {
+  <span style="color:#75715e">// ブロックの追加と削除
+</span><span style="color:#75715e"></span>  <span style="color:#66d9ef">if</span> (<span style="color:#a6e22e">frameCount</span> <span style="color:#f92672">%</span> <span style="color:#ae81ff">120</span> <span style="color:#f92672">===</span> <span style="color:#ae81ff">1</span>) <span style="color:#a6e22e">addBlockPair</span>(<span style="color:#a6e22e">blocks</span>); <span style="color:#75715e">// 一定間隔でブロック追加
+</span><span style="color:#75715e"></span>  <span style="color:#a6e22e">blocks</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">blocks</span>.<span style="color:#a6e22e">filter</span>(<span style="color:#a6e22e">blockIsAlive</span>); <span style="color:#75715e">// 生きているブロックだけ残す
+</span><span style="color:#75715e"></span>
+  <span style="color:#75715e">// 全エンティティの位置を更新
+</span><span style="color:#75715e"></span>  <span style="color:#a6e22e">updatePosition</span>(<span style="color:#a6e22e">player</span>);
+  <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">let</span> <span style="color:#a6e22e">block</span> <span style="color:#66d9ef">of</span> <span style="color:#a6e22e">blocks</span>) <span style="color:#a6e22e">updatePosition</span>(<span style="color:#a6e22e">block</span>);
+
+  <span style="color:#75715e">// プレイヤーに重力を適用
+</span><span style="color:#75715e"></span>  <span style="color:#a6e22e">applyGravity</span>(<span style="color:#a6e22e">player</span>);
+
+  <span style="color:#75715e">// 全エンティティを描画
+</span><span style="color:#75715e"></span>  <span style="color:#a6e22e">background</span>(<span style="color:#ae81ff">0</span>);
+  <span style="color:#a6e22e">drawPlayer</span>(<span style="color:#a6e22e">player</span>);
+  <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">let</span> <span style="color:#a6e22e">block</span> <span style="color:#66d9ef">of</span> <span style="color:#a6e22e">blocks</span>) <span style="color:#a6e22e">drawBlock</span>(<span style="color:#a6e22e">block</span>);
+}
+
+<span style="color:#66d9ef">function</span> <span style="color:#a6e22e">mousePressed</span>() {
+  <span style="color:#75715e">// プレイヤーをジャンプさせる
+</span><span style="color:#75715e"></span>  <span style="color:#a6e22e">applyJump</span>(<span style="color:#a6e22e">player</span>);
+}
+</code></pre></div><blockquote class="book-hint info">
+  各自実行してみて、上下ペアのブロックが一定間隔で現れることを確認してください。
+</blockquote>
+
+<blockquote class="book-hint info">
+  <p>ブロックの削除がうまくいっているかを確認するには、例えば次のようなものをソースコード下端に加えて実行すると、何かキーを押すたびに現在のブロックの数が表示されます。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-javascript" data-lang="javascript"><span style="color:#66d9ef">function</span> <span style="color:#a6e22e">keyTyped</span>() {
+  <span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#e6db74">`</span><span style="color:#e6db74">blocks: </span><span style="color:#e6db74">${</span><span style="color:#a6e22e">blocks</span>.<span style="color:#a6e22e">length</span><span style="color:#e6db74">}</span><span style="color:#e6db74">`</span>);
+}
+</code></pre></div>
+</blockquote>
+
+<div class="book-expand">
+  <label>
+    <div class="book-expand-head flex justify-between">
+      <span>余談： 配列と高階関数</span>
+      <span>↕</span>
+    </div>
+    <input type="checkbox" class="hidden" />
+    <div class="book-expand-content markdown-inner">
+      <p>配列の機能は他にも色々あります。<br>
+参考： <a href="https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Global_Objects/Array" target="_blank">Array - JavaScript | MDN</a></p>
+<p><code>filter()</code> のように、引数として別の関数を受け取るような関数というのは Processing (Java) （少なくとも 3.x 以前のバージョン）には無いものなので、そちらから来た人には新鮮かもしれません。</p>
+<p>他にも例えば <code>forEach()</code> というのがあり、これは <code>for</code> 文の代わりに使えます。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-javascript" data-lang="javascript"><span style="color:#75715e">// 次の2つは同じ結果をもたらす
+</span><span style="color:#75715e"></span>
+<span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">let</span> <span style="color:#a6e22e">block</span> <span style="color:#66d9ef">of</span> <span style="color:#a6e22e">blocks</span>) <span style="color:#a6e22e">updatePosition</span>(<span style="color:#a6e22e">block</span>);
+
+<span style="color:#a6e22e">blocks</span>.<span style="color:#a6e22e">forEach</span>(<span style="color:#a6e22e">updatePosition</span>);
+</code></pre></div><p><code>forEach()</code> で書くと、コードがまるで文章みたいになって（「ブロックのそれぞれについて位置を更新せよ」と読める）、スマートな感じがしますね。<br>
+パフォーマンス的には <code>forEach()</code> の方がちょっと遅いらしいという話がありますが、少なくとも今回の例で気にする必要はありません。</p>
+<p>ちなみに、<code>filter()</code> や <code>forEach()</code> のような関数に引数として渡す関数（上の例だと <code>updatePosition()</code>）のことを「コールバック関数」と呼んだりします。</p>
+
+    </div>
+  </label>
+</div>
+</article>
+ 
+
+      <footer class="book-footer">
+        
+  <div class="flex justify-between">
+
+
+
+
+
+</div>
+
+ 
+        
+  
+  <div class="book-comments">
+
+</div>
+  
+ 
+      </footer>
+      
+    </div>
+
+    
+    <aside class="book-toc">
+      
+  <nav id="TableOfContents">
+  <ul>
+    <li><a href="#やること">やること</a></li>
+    <li><a href="#実装">実装</a></li>
+  </ul>
+</nav>
+
+ 
+    </aside>
+    
+  </main>
+
+  
+</body>
+
+</html>
+
+
+
+
+
+
+
+
+
+
+
+

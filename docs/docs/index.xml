@@ -2,47 +2,47 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Docs on p5.js でゲーム制作</title>
-    <link>https://fal-works.github.io/pcd2020-workshop-fal/docs/</link>
+    <link>https://fal-works.github.io/make-games-with-p5js/docs/</link>
     <description>Recent content in Docs on p5.js でゲーム制作</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>ja-jp</language>
     
-	<atom:link href="https://fal-works.github.io/pcd2020-workshop-fal/docs/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://fal-works.github.io/make-games-with-p5js/docs/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>準備</title>
-      <link>https://fal-works.github.io/pcd2020-workshop-fal/docs/10-prepare/</link>
+      <link>https://fal-works.github.io/make-games-with-p5js/docs/10-prepare/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>https://fal-works.github.io/pcd2020-workshop-fal/docs/10-prepare/</guid>
+      <guid>https://fal-works.github.io/make-games-with-p5js/docs/10-prepare/</guid>
       <description>準備 このワークショップでは p5.js Web Editor を使います。 ユーザーアカウントを持っていない人は、右上の &amp;ldquo;Sign Up&amp;rdquo; から登録してください。 （スケッチの保存・共有機能</description>
     </item>
     
     <item>
       <title>はじめに</title>
-      <link>https://fal-works.github.io/pcd2020-workshop-fal/docs/20-introduction/</link>
+      <link>https://fal-works.github.io/make-games-with-p5js/docs/20-introduction/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>https://fal-works.github.io/pcd2020-workshop-fal/docs/20-introduction/</guid>
+      <guid>https://fal-works.github.io/make-games-with-p5js/docs/20-introduction/</guid>
       <description>はじめに 講師自己紹介 &amp;hellip; はじめに プログラミングによる作品制作の醍醐味 「自分の世界」を創造できる その世界がどんな部品や構造で成り立つのかを掌握で</description>
     </item>
     
     <item>
       <title>p5.js スケッチの基本構造</title>
-      <link>https://fal-works.github.io/pcd2020-workshop-fal/docs/30-sketch/</link>
+      <link>https://fal-works.github.io/make-games-with-p5js/docs/30-sketch/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>https://fal-works.github.io/pcd2020-workshop-fal/docs/30-sketch/</guid>
+      <guid>https://fal-works.github.io/make-games-with-p5js/docs/30-sketch/</guid>
       <description>p5.js スケッチの基本構造 p5.js Web Editor の操作確認も兼ねて、以下のコードを実行 function setup() { createCanvas(800, 600); // 800 x 600 ピクセル。今回このサイズでやっていきます } function draw() { background(0); // 黒背景</description>
     </item>
     
     <item>
       <title>リンク</title>
-      <link>https://fal-works.github.io/pcd2020-workshop-fal/docs/40-links/</link>
+      <link>https://fal-works.github.io/make-games-with-p5js/docs/40-links/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>https://fal-works.github.io/pcd2020-workshop-fal/docs/40-links/</guid>
+      <guid>https://fal-works.github.io/make-games-with-p5js/docs/40-links/</guid>
       <description>リンク p5.js チートシート https://bmoren.github.io/p5js-cheat-sheet/ja.html ここに書いていないものとしては、システム変数 frameCount も使う （draw() が呼ばれるたびに1ずつ増える値） 公式のリファレンス https://p5js.org/reference/</description>
     </item>
     
