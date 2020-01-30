@@ -11,6 +11,15 @@
     
     
     <item>
+      <title>パーティクルを追加</title>
+      <link>https://fal-works.github.io/make-games-with-p5js/docs/60-arrange/10-particles/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://fal-works.github.io/make-games-with-p5js/docs/60-arrange/10-particles/</guid>
+      <description>パーティクルを追加</description>
+    </item>
+    
+    <item>
       <title>最初に少し考えてみる</title>
       <link>https://fal-works.github.io/make-games-with-p5js/docs/50-flappy-bird-like/10-design/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
@@ -47,6 +56,15 @@
     </item>
     
     <item>
+      <title>画面効果を追加</title>
+      <link>https://fal-works.github.io/make-games-with-p5js/docs/60-arrange/20-effects/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://fal-works.github.io/make-games-with-p5js/docs/60-arrange/20-effects/</guid>
+      <description>画面効果を追加</description>
+    </item>
+    
+    <item>
       <title>p5.js スケッチの基本構造</title>
       <link>https://fal-works.github.io/make-games-with-p5js/docs/30-sketch/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
@@ -62,6 +80,15 @@
       
       <guid>https://fal-works.github.io/make-games-with-p5js/docs/50-flappy-bird-like/30-block/</guid>
       <description>ブロックを1個だけ実装してみる 【再掲】エンティティ関連の処理 全エンティティ共通 位置の更新 プレイヤー用 作成 重力の適用 ジャンプ 描画 ブロック用 作成</description>
+    </item>
+    
+    <item>
+      <title>ルール変更</title>
+      <link>https://fal-works.github.io/make-games-with-p5js/docs/60-arrange/30-rules/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://fal-works.github.io/make-games-with-p5js/docs/60-arrange/30-rules/</guid>
+      <description>ルール変更</description>
     </item>
     
     <item>
@@ -97,7 +124,7 @@
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>https://fal-works.github.io/make-games-with-p5js/docs/50-flappy-bird-like/70-collision/</guid>
-      <description>衝突判定を実装 // ---- エンティティ関連の関数 -------------------------------------------------- // 全エンティティ共通 function updatePosition(entity) { entity.x += entity.vx; entity.y += entity.vy; } // プレイヤーエンティティ用 function createPlayer() { return { x: 200, y: 300, vx: 0, vy: 0 }; } function</description>
+      <description>衝突判定を実装 判定方法 説明用スケッチ 四角形 A と四角形 B が衝突しているかどうかを確認する方法： A, B の x 軸方向での距離が十分に開いていたら、衝突</description>
     </item>
     
     <item>

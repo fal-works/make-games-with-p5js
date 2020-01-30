@@ -5,7 +5,7 @@
   <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="description" content="衝突判定を実装"><meta property="og:title" content="衝突判定を実装" />
-<meta property="og:description" content="衝突判定を実装 // ---- エンティティ関連の関数 -------------------------------------------------- // 全エンティティ共通 function updatePosition(entity) { entity.x &#43;= entity.vx; entity.y &#43;= entity.vy; } // プレイヤーエンティティ用 function createPlayer() { return { x: 200, y: 300, vx: 0, vy: 0 }; } function" />
+<meta property="og:description" content="衝突判定を実装 判定方法 説明用スケッチ 四角形 A と四角形 B が衝突しているかどうかを確認する方法： A, B の x 軸方向での距離が十分に開いていたら、衝突" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://fal-works.github.io/make-games-with-p5js/docs/50-flappy-bird-like/70-collision/" />
 
@@ -233,6 +233,68 @@ https://github.com/alex-shpak/hugo-book
 
       
     
+      
+        
+
+  <li >
+    
+      
+
+  <a href="/make-games-with-p5js/docs/60-arrange/" >
+      アレンジ
+  </a>
+
+
+    
+
+    
+
+
+
+
+  
+  <ul>
+    
+      
+        <li>
+
+  <a href="/make-games-with-p5js/docs/60-arrange/10-particles/" >
+      パーティクルを追加
+  </a>
+
+</li>
+      
+    
+      
+        <li>
+
+  <a href="/make-games-with-p5js/docs/60-arrange/20-effects/" >
+      画面効果を追加
+  </a>
+
+</li>
+      
+    
+      
+        <li>
+
+  <a href="/make-games-with-p5js/docs/60-arrange/30-rules/" >
+      ルール変更
+  </a>
+
+</li>
+      
+    
+  </ul>
+  
+
+
+
+  </li>
+
+
+      
+    
   </ul>
   
 
@@ -286,7 +348,12 @@ https://github.com/alex-shpak/hugo-book
     <input type="checkbox" class="hidden" id="toc-control" />
     <aside class="hidden clearfix">
       
-  <nav id="TableOfContents"></nav>
+  <nav id="TableOfContents">
+  <ul>
+    <li><a href="#判定方法">判定方法</a></li>
+    <li><a href="#実装">実装</a></li>
+  </ul>
+</nav>
 
 
     </aside>
@@ -296,6 +363,74 @@ https://github.com/alex-shpak/hugo-book
 
       
 <article class="markdown"><h1 id="衝突判定を実装">衝突判定を実装</h1>
+<h2 id="判定方法">判定方法</h2>
+<p><a href="https://fal-works.github.io/make-games-with-p5js-src/07-collision/one-on-one/" target="_blank">説明用スケッチ</a>
+<a href="https://fal-works.github.io/make-games-with-p5js-src/07-collision/one-on-one/" target="_blank"><img src="./one-on-one-collision.png" alt="説明用スケッチ"></a></p>
+<p>四角形 A と四角形 B が衝突しているかどうかを確認する方法：</p>
+<ol>
+<li>A, B の x 軸方向での距離が十分に開いていたら、衝突していない</li>
+<li>A, B の y 軸方向での距離が十分に開いていたら、衝突していない</li>
+<li>x, y 両方で距離が近ければ、衝突している</li>
+</ol>
+<p>これを実装すると次のようになる</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-javascript" data-lang="javascript"><span style="color:#75715e">/**
+</span><span style="color:#75715e"> * 2つのエンティティが衝突しているかどうかをチェックする
+</span><span style="color:#75715e"> *
+</span><span style="color:#75715e"> * @param entityA 衝突しているかどうかを確認したいエンティティ
+</span><span style="color:#75715e"> * @param entityB 同上
+</span><span style="color:#75715e"> * @param collisionXDistance 衝突しないギリギリのx距離
+</span><span style="color:#75715e"> * @param collisionYDistance 衝突しないギリギリのy距離
+</span><span style="color:#75715e"> * @returns 衝突していたら `true` そうでなければ `false` を返す
+</span><span style="color:#75715e"> */</span>
+<span style="color:#66d9ef">function</span> <span style="color:#a6e22e">entitiesAreColliding</span>(
+  <span style="color:#a6e22e">entityA</span>,
+  <span style="color:#a6e22e">entityB</span>,
+  <span style="color:#a6e22e">collisionXDistance</span>,
+  <span style="color:#a6e22e">collisionYDistance</span>
+) {
+  <span style="color:#75715e">// xとy、いずれかの距離が十分開いていたら、衝突していないので false を返す
+</span><span style="color:#75715e"></span>
+  <span style="color:#66d9ef">let</span> <span style="color:#a6e22e">currentXDistance</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">abs</span>(<span style="color:#a6e22e">entityA</span>.<span style="color:#a6e22e">x</span> <span style="color:#f92672">-</span> <span style="color:#a6e22e">entityB</span>.<span style="color:#a6e22e">x</span>); <span style="color:#75715e">// 現在のx距離
+</span><span style="color:#75715e"></span>  <span style="color:#66d9ef">if</span> (<span style="color:#a6e22e">collisionXDistance</span> <span style="color:#f92672">&lt;=</span> <span style="color:#a6e22e">currentXDistance</span>) <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">false</span>;
+
+  <span style="color:#66d9ef">let</span> <span style="color:#a6e22e">currentYDistance</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">abs</span>(<span style="color:#a6e22e">entityA</span>.<span style="color:#a6e22e">y</span> <span style="color:#f92672">-</span> <span style="color:#a6e22e">entityB</span>.<span style="color:#a6e22e">y</span>); <span style="color:#75715e">// 現在のy距離
+</span><span style="color:#75715e"></span>  <span style="color:#66d9ef">if</span> (<span style="color:#a6e22e">collisionYDistance</span> <span style="color:#f92672">&lt;=</span> <span style="color:#a6e22e">currentYDistance</span>) <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">false</span>;
+
+  <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">true</span>; <span style="color:#75715e">// ここまで来たら、x方向でもy方向でも重なっているので true
+</span><span style="color:#75715e"></span>}
+</code></pre></div><p>ここで、「衝突しないギリギリの距離」は次の通り</p>
+<ul>
+<li>x軸方向： <code>(A の幅の半分) + (B の幅の半分)</code></li>
+<li>y軸方向： <code>(A の高さの半分) + (B の高さの半分)</code></li>
+</ul>
+<div class="book-expand">
+  <label>
+    <div class="book-expand-head flex justify-between">
+      <span>余談： 衝突対象の形状</span>
+      <span>↕</span>
+    </div>
+    <input type="checkbox" class="hidden" />
+    <div class="book-expand-content markdown-inner">
+      <p>2次元空間で2つの物体の衝突を確認する方法として、大雑把に分けると次のようなものがあります。</p>
+<ul>
+<li>両方とも矩形（くけい）とみなし、x距離/y距離 を確認する</li>
+<li>両方とも円形とみなし、中心点同士の距離を確認する</li>
+<li>それぞれ別個に形状の情報をもたせ、形状の組み合わせに応じて適した処理をする</li>
+</ul>
+<p>※ 矩形は長方形と同じ意味。この文脈では矩形と呼ぶことの方がたぶん多い<br>
+※ 3次元だと矩形や円の代わりに立方体や球になる</p>
+<p>このなかで最も処理効率が良いのは、矩形同士の判定です。</p>
+<p>例えばストⅡなどの2D格闘ゲームでも、キャラ同士の当たり判定を矩形の組み合わせで行っていたようです。<br>
+参考： <a href="https://game.capcom.com/cfn/sfv/column-130393.html" target="_blank">https://game.capcom.com/cfn/sfv/column-130393.html</a></p>
+
+    </div>
+  </label>
+</div>
+<h2 id="実装">実装</h2>
+<ol>
+<li>上述の衝突判定関数を用意する</li>
+<li>プレイヤー 対 各ブロック について判定し、衝突していたらゲームオーバー</li>
+</ol>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-javascript" data-lang="javascript"><span style="color:#75715e">// ---- エンティティ関連の関数 --------------------------------------------------
 </span><span style="color:#75715e"></span>
 <span style="color:#75715e">// 全エンティティ共通
@@ -494,7 +629,38 @@ https://github.com/alex-shpak/hugo-book
 <span style="color:#66d9ef">function</span> <span style="color:#a6e22e">mousePressed</span>() {
   <span style="color:#a6e22e">onMousePress</span>();
 }
-</code></pre></div></article>
+</code></pre></div><div class="book-expand">
+  <label>
+    <div class="book-expand-head flex justify-between">
+      <span>余談： 処理効率の最適化</span>
+      <span>↕</span>
+    </div>
+    <input type="checkbox" class="hidden" />
+    <div class="book-expand-content markdown-inner">
+      <p>今回の例では総当たり的に衝突判定をしていますがこの場合、例えば物体が1000個あって相互に衝突可能だったりすると百万回弱のループが必要になり、しかもそれを継続的に繰り返さなければなりません。つまり、衝突判定は全体の中でもパフォーマンス上のボトルネックになりやすい要素の一つなのです。</p>
+<p>そのため、無駄な判定を削減するような高度な工夫がいろいろ存在します（筆者は自力でやったことはありません）。<br>
+参考： <a href="https://sbfl.net/blog/2017/12/03/javascript-collision/" target="_blank">JavaScriptで大量のオブジェクトの当たり判定を効率的にとる</a></p>
+<p>単純な削減方法としては、2フレームに1回判定すれば十分でしょ、みたいなサボり方をするというのがあり、市販のゲームでもそうしているケースはあるようです。</p>
+
+    </div>
+  </label>
+</div>
+<div class="book-expand">
+  <label>
+    <div class="book-expand-head flex justify-between">
+      <span>余談： その他、課題となりえる要素</span>
+      <span>↕</span>
+    </div>
+    <input type="checkbox" class="hidden" />
+    <div class="book-expand-content markdown-inner">
+      <ul>
+<li>物体の動きが速すぎると、衝突する範囲を飛び越えてすり抜けてしまう可能性があり、ちゃんとした物理エンジンはそういうのもチェックしたりするようです。</li>
+<li>衝突後の処理。衝突した時点でゲームが止まったり、どちらかが消滅したりすると楽なのですが、そうでない場合は押し返したり反発したりといった処理が必要になります。特にマリオ的なのを作ろうとすると、マリオとブロックとの衝突判定で変なところに引っかかったりして意外と苦労するかもしれません。</li>
+</ul>
+    </div>
+  </label>
+</div>
+</article>
  
 
       <footer class="book-footer">
@@ -522,7 +688,12 @@ https://github.com/alex-shpak/hugo-book
     
     <aside class="book-toc">
       
-  <nav id="TableOfContents"></nav>
+  <nav id="TableOfContents">
+  <ul>
+    <li><a href="#判定方法">判定方法</a></li>
+    <li><a href="#実装">実装</a></li>
+  </ul>
+</nav>
 
  
     </aside>
