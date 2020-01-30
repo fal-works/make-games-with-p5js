@@ -16,7 +16,7 @@
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>https://fal-works.github.io/make-games-with-p5js/docs/60-arrange/10-particles/</guid>
-      <description>パーティクルを追加</description>
+      <description>パーティクルを追加 ブロックと同じ要領で、パーティクル（直訳：粒子）を追加することが可能 一定時間で消えるようにするには パーティクルエンティティ</description>
     </item>
     
     <item>
@@ -61,7 +61,7 @@
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>https://fal-works.github.io/make-games-with-p5js/docs/60-arrange/20-effects/</guid>
-      <description>画面効果を追加</description>
+      <description>画面効果を追加 手軽な画面効果として、次のものがある スクリーンシェイク 画面を揺らす。揺れは徐々に収まる スクリーンフラッシュ 画面を明るくする。明</description>
     </item>
     
     <item>
@@ -88,7 +88,7 @@
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>https://fal-works.github.io/make-games-with-p5js/docs/60-arrange/30-rules/</guid>
-      <description>ルール変更</description>
+      <description>ルール変更 今回作ってきたプログラムは、少し手を加えるだけで色々なゲームに化けることができます。 どんな改造ができるでしょうか？ 思いつくままに改</description>
     </item>
     
     <item>
