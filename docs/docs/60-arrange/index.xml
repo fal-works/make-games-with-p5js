@@ -37,5 +37,14 @@
       <description>ルール変更 今回作ってきたプログラムは、少し手を加えるだけで色々なゲームに化けることができます。 どんな改造ができるでしょうか？ 思いつくままに改</description>
     </item>
     
+    <item>
+      <title>リンク（後学のために）</title>
+      <link>https://fal-works.github.io/make-games-with-p5js/docs/60-arrange/40-links/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://fal-works.github.io/make-games-with-p5js/docs/60-arrange/40-links/</guid>
+      <description>リンク（後学のために） 演出 Juice it or lose it - YouTube 単調なブロック崩しゲームでも演出次第でこう化けるのだというプレゼン。 14:14 あたりから before/after の比較を見せている</description>
+    </item>
+    
   </channel>
 </rss>
