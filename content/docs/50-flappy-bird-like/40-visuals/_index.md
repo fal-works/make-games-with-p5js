@@ -18,7 +18,10 @@ weight: 40
 どこから手を付けていいかわからない場合、例えば……
 
 1. まず [Color Hunt](http://www.colorhunt.co/) をざっと眺め、好みの配色を見つける
-1. `background()` の色を変えたり、`drawPlayer()` や `drawBlock()` の中の `fill()` の色を変えたりする（枠線を消したければ `noStroke()` も使う）
+1. カラーコード（`#FFFFFF` みたいなの）を取得。  
+それを使って `background()` の色を変えたり、`drawPlayer()` や `drawBlock()` の中の `fill()` の色を変えたりする（枠線を消したければ `noStroke()` も使う）
+
+※ カラーコードは冒頭の `#` を書き忘れないように注意
 {{< /hint >}}
 
 {{< hint info >}}
@@ -187,7 +190,7 @@ sin(frameCount * 0.1) // 0.1 のところは好きに調整
 ![Example2](flappy-bird-like-sample-viz2.gif)
 
 
-{{< expand "ソースコード">}}
+{{< expand "ソースコード（一応）">}}
 
 ```javascript
 // ---- エンティティ関連の関数 ---------------------------------------------
