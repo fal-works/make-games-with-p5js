@@ -128,12 +128,21 @@
     </item>
     
     <item>
+      <title>著作権情報</title>
+      <link>https://fal-works.github.io/make-games-with-p5js/docs/90-license/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://fal-works.github.io/make-games-with-p5js/docs/90-license/</guid>
+      <description>著作権情報 Copyright (c) 2020 FAL この資料は MIT ライセンスで提供されているので、条項を守れば自由に利用可能です。 参考： MIT License - Wikipedia たとえば、この資料に書いてあるコ</description>
+    </item>
+    
+    <item>
       <title>p5.js の色指定</title>
       <link>https://fal-works.github.io/make-games-with-p5js/docs/50-flappy-bird-like/40-visuals/colors/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>https://fal-works.github.io/make-games-with-p5js/docs/50-flappy-bird-like/40-visuals/colors/</guid>
-      <description>p5.js の色指定 RGB指定 数値で指定する場合、デフォルトでは 赤、緑、青 を指定する RGB モードとなっている 1 2 3 4 5 6 7 8 9 10 11 12 function setup() { createCanvas(800, 600); noStroke(); background(255); // 引数が</description>
+      <description>p5.js の色指定 RGB指定 数値で指定する場合、デフォルトでは 赤、緑、青 を指定する RGB モードとなっている function setup() { createCanvas(800, 600); noStroke(); background(255); // 引数が1つだとグレースケール。</description>
     </item>
     
   </channel>

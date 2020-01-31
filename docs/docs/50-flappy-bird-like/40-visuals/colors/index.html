@@ -5,7 +5,7 @@
   <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="description" content="p5.js の色指定"><meta property="og:title" content="p5.js の色指定" />
-<meta property="og:description" content="p5.js の色指定 RGB指定 数値で指定する場合、デフォルトでは 赤、緑、青 を指定する RGB モードとなっている 1 2 3 4 5 6 7 8 9 10 11 12 function setup() { createCanvas(800, 600); noStroke(); background(255); // 引数が" />
+<meta property="og:description" content="p5.js の色指定 RGB指定 数値で指定する場合、デフォルトでは 赤、緑、青 を指定する RGB モードとなっている function setup() { createCanvas(800, 600); noStroke(); background(255); // 引数が1つだとグレースケール。" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://fal-works.github.io/make-games-with-p5js/docs/50-flappy-bird-like/40-visuals/colors/" />
 
@@ -295,6 +295,16 @@ https://github.com/alex-shpak/hugo-book
 
       
     
+      
+        <li>
+
+  <a href="/make-games-with-p5js/docs/90-license/" >
+      著作権情報
+  </a>
+
+</li>
+      
+    
   </ul>
   
 
@@ -374,59 +384,31 @@ https://github.com/alex-shpak/hugo-book
 <article class="markdown"><h1 id="p5js-の色指定">p5.js の色指定</h1>
 <h2 id="rgb指定">RGB指定</h2>
 <p>数値で指定する場合、デフォルトでは 赤、緑、青 を指定する RGB モードとなっている</p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
-</span><span class="lnt"> 2
-</span><span class="lnt"> 3
-</span><span class="lnt"> 4
-</span><span class="lnt"> 5
-</span><span class="lnt"> 6
-</span><span class="lnt"> 7
-</span><span class="lnt"> 8
-</span><span class="lnt"> 9
-</span><span class="lnt">10
-</span><span class="lnt">11
-</span><span class="lnt">12
-</span></code></pre></td>
-<td class="lntd">
-<pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="kd">function</span> <span class="nx">setup</span><span class="p">(</span><span class="p">)</span> <span class="p">{</span>
+<div class="highlight"><pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="kd">function</span> <span class="nx">setup</span><span class="p">(</span><span class="p">)</span> <span class="p">{</span>
   <span class="nx">createCanvas</span><span class="p">(</span><span class="mi">800</span><span class="p">,</span> <span class="mi">600</span><span class="p">)</span><span class="p">;</span>
   <span class="nx">noStroke</span><span class="p">(</span><span class="p">)</span><span class="p">;</span>
 
   <span class="nx">background</span><span class="p">(</span><span class="mi">255</span><span class="p">)</span><span class="p">;</span> <span class="c1">// 引数が1つだとグレースケール。0 が黒で 255 が白
 </span><span class="c1"></span>  
+  <span class="nx">background</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">32</span><span class="p">)</span><span class="p">;</span> <span class="c1">// 引数が2つだとグレースケール + α値（不透明度）
+</span><span class="c1"></span>  
   <span class="nx">fill</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">128</span><span class="p">,</span> <span class="mi">255</span><span class="p">)</span><span class="p">;</span> <span class="c1">// 引数が3つだとRGB指定。赤、緑、青 の順
 </span><span class="c1"></span>  <span class="nx">circle</span><span class="p">(</span><span class="mi">250</span><span class="p">,</span> <span class="mi">300</span><span class="p">,</span> <span class="mi">200</span><span class="p">)</span><span class="p">;</span>
 
-  <span class="nx">fill</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">128</span><span class="p">,</span> <span class="mi">255</span><span class="p">,</span> <span class="mi">64</span><span class="p">)</span><span class="p">;</span> <span class="c1">// 4つ目の引数はα値（不透明度）
+  <span class="nx">fill</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">128</span><span class="p">,</span> <span class="mi">255</span><span class="p">,</span> <span class="mi">64</span><span class="p">)</span><span class="p">;</span> <span class="c1">// 引数が4つだと RGB + α値（不透明度）
 </span><span class="c1"></span>  <span class="nx">circle</span><span class="p">(</span><span class="mi">550</span><span class="p">,</span> <span class="mi">300</span><span class="p">,</span> <span class="mi">200</span><span class="p">)</span><span class="p">;</span>
 <span class="p">}</span>
-</code></pre></td></tr></table>
-</div>
-</div><p>※ どの値も範囲は 0～255 （<code>colorMode()</code> で変更可能）</p>
+</code></pre></div><p>※ どの値も範囲は 0～255 （<code>colorMode()</code> で変更可能）</p>
 <h2 id="カラーコード形式">カラーコード形式</h2>
 <p>文字列で指定する方法。Web上のカラーパレットツールなどを利用するときに便利</p>
 <p><strong>※ 値の先頭に</strong> <code>#</code> <strong>を付けることに注意</strong></p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
-</span><span class="lnt">2
-</span><span class="lnt">3
-</span><span class="lnt">4
-</span><span class="lnt">5
-</span><span class="lnt">6
-</span></code></pre></td>
-<td class="lntd">
-<pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="kd">function</span> <span class="nx">setup</span><span class="p">(</span><span class="p">)</span> <span class="p">{</span>
+<div class="highlight"><pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="kd">function</span> <span class="nx">setup</span><span class="p">(</span><span class="p">)</span> <span class="p">{</span>
   <span class="nx">createCanvas</span><span class="p">(</span><span class="mi">800</span><span class="p">,</span> <span class="mi">600</span><span class="p">)</span><span class="p">;</span>
   <span class="nx">noStroke</span><span class="p">(</span><span class="p">)</span><span class="p">;</span>
   <span class="nx">fill</span><span class="p">(</span><span class="s2">&#34;#0080ff&#34;</span><span class="p">)</span><span class="p">;</span> <span class="c1">// 2桁ごとに 赤、緑、青（、α）の16進数（00～ff）
 </span><span class="c1"></span>  <span class="nx">circle</span><span class="p">(</span><span class="mi">400</span><span class="p">,</span> <span class="mi">300</span><span class="p">,</span> <span class="mi">200</span><span class="p">)</span><span class="p">;</span>
 <span class="p">}</span>
-</code></pre></td></tr></table>
-</div>
-</div><ul>
+</code></pre></div><ul>
 <li>カラーモード（RGB/HSB）の影響は受けない</li>
 <li>一応、さらに2桁付け足すことでα値も指定できる</li>
 </ul>
@@ -440,29 +422,7 @@ Adobe Color と同じく、バランスを調整してくれる</p>
 <h2 id="hsb指定">HSB指定</h2>
 <p>色相・彩度・明度 を指定する（色相とは、赤、黄、緑、青、紫……などの色味の違いのこと）</p>
 <p>色の数値を自分で調整する場合は、こちらのほうが RGB よりも直感的</p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
-</span><span class="lnt"> 2
-</span><span class="lnt"> 3
-</span><span class="lnt"> 4
-</span><span class="lnt"> 5
-</span><span class="lnt"> 6
-</span><span class="lnt"> 7
-</span><span class="lnt"> 8
-</span><span class="lnt"> 9
-</span><span class="lnt">10
-</span><span class="lnt">11
-</span><span class="lnt">12
-</span><span class="lnt">13
-</span><span class="lnt">14
-</span><span class="lnt">15
-</span><span class="lnt">16
-</span><span class="lnt">17
-</span><span class="lnt">18
-</span></code></pre></td>
-<td class="lntd">
-<pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="kd">function</span> <span class="nx">setup</span><span class="p">(</span><span class="p">)</span> <span class="p">{</span>
+<div class="highlight"><pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="kd">function</span> <span class="nx">setup</span><span class="p">(</span><span class="p">)</span> <span class="p">{</span>
   <span class="nx">createCanvas</span><span class="p">(</span><span class="mi">800</span><span class="p">,</span> <span class="mi">600</span><span class="p">)</span><span class="p">;</span>
   
   <span class="c1">// HSBモード。色相の範囲を 0～360、彩度・明度・α値 の範囲を 0～100 に設定
@@ -480,9 +440,7 @@ Adobe Color と同じく、バランスを調整してくれる</p>
   <span class="nx">fill</span><span class="p">(</span><span class="mi">30</span><span class="p">,</span> <span class="mi">100</span><span class="p">,</span> <span class="mi">100</span><span class="p">,</span> <span class="mi">64</span><span class="p">)</span><span class="p">;</span> <span class="c1">// 4つ目の引数はα値（不透明度）
 </span><span class="c1"></span>  <span class="nx">circle</span><span class="p">(</span><span class="mi">550</span><span class="p">,</span> <span class="mi">300</span><span class="p">,</span> <span class="mi">200</span><span class="p">)</span><span class="p">;</span>
 <span class="p">}</span>
-</code></pre></td></tr></table>
-</div>
-</div><h3 id="色相について">色相について</h3>
+</code></pre></div><h3 id="色相について">色相について</h3>
 <p>色相の値の範囲が 0～360 とすると、<br>
 以下のような図（色相環と言う）の中で角度（0°～360°）を指定する、と考えれば良い</p>
 <p>目安としては 0 で赤、30 で橙、60 で黄色…… という具合</p>

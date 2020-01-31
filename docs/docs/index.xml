@@ -46,5 +46,14 @@
       <description>リンク p5.js チートシート https://bmoren.github.io/p5js-cheat-sheet/ja.html ここに書いていないものとしては、システム変数 frameCount も使う （draw() が呼ばれるたびに1ずつ増える値） 公式のリファレンス https://p5js.org/reference/</description>
     </item>
     
+    <item>
+      <title>著作権情報</title>
+      <link>https://fal-works.github.io/make-games-with-p5js/docs/90-license/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://fal-works.github.io/make-games-with-p5js/docs/90-license/</guid>
+      <description>著作権情報 Copyright (c) 2020 FAL この資料は MIT ライセンスで提供されているので、条項を守れば自由に利用可能です。 参考： MIT License - Wikipedia たとえば、この資料に書いてあるコ</description>
+    </item>
+    
   </channel>
 </rss>
