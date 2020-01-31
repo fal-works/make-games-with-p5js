@@ -20,3 +20,10 @@ weight: 40
 [I Have Created 50 Games in 2014](http://www.asahi-net.or.jp/~cs8k-cyu/blog/2014/12/12/games-in-2014/)  
 
 単純な画像とルールでも千差万別の可能性があることがわかる
+
+
+## 他
+
+[プログラミングでお絵かきして遊ぶための50のアイディア | FAL制作メモ](https://www.fal-works.jp/entry/creative-coding-50-ideas)
+
+ゲームに限らずいろいろなスケッチのアイディアを列挙（手前味噌ですが、なにかの足しになれば……）
