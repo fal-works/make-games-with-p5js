@@ -272,7 +272,7 @@ function applyFlash() {
   background(255, alphaRatio * flashAlpha);
 }
 
-// ---- ゲーム全体に関わる変数と関数 --------------------------------------------
+// ---- ゲーム全体に関わる部分 --------------------------------------------
 
 /** プレイヤーエンティティ */
 let player;
@@ -291,12 +291,12 @@ function addBlockPair() {
 }
 
 /** ゲームオーバー画面を表示する */
-function drawGameOverScreen() {
-  background(0, 192);
+function drawGameoverScreen() {
+  background(0, 192); // 透明度 192 の黒
   fill(255);
   textSize(64);
-  textAlign(CENTER, CENTER);
-  text("GAME OVER", width / 2, height / 2);
+  textAlign(CENTER, CENTER); // 横に中央揃え ＆ 縦にも中央揃え
+  text("GAME OVER", width / 2, height / 2); // 画面中央にテキスト表示
 }
 
 /** ゲームのリセット */
@@ -327,7 +327,8 @@ function updateGame() {
   updateShake();
   updateFlash();
 
-  if (gameState !== "play") return;
+  // ゲームオーバーなら更新しない
+  if (gameState === "gameover") return;
 
   // ブロックの追加と削除
   if (frameCount % 120 === 1) addBlockPair(blocks); // 一定間隔でブロック追加
@@ -366,7 +367,7 @@ function drawGame() {
   for (let block of blocks) drawBlock(block);
 
   // ゲームオーバー状態なら、それ用の画面を表示
-  if (gameState === "gameover") drawGameOverScreen();
+  if (gameState === "gameover") drawGameoverScreen();
 
   // スクリーンフラッシュを適用
   applyFlash();

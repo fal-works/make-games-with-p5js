@@ -25,24 +25,61 @@ weight: 60
 
 ### やること
 
-以下のそれぞれについて、新たに専用の関数を用意して置き換える
+以下のそれぞれについて、新たに専用の関数を用意して引っ越す
 
 1. `setup()` の中の初期化処理
 1. `draw()` の中の更新処理
 1. `draw()` の中の描画処理
 1. `mousePressed()` の中身（マウスボタンが押されたときの処理）
 
-### ソースコード
+
+### まず引越し先を用意する
+
+```javascript { hl_lines=["16-34"], linenostart=60 }
+// ---- ゲーム全体に関わる部分 ----------------------------------------------
+
+/** プレイヤーエンティティ */
+let player;
+
+/** ブロックエンティティの配列 */
+let blocks;
+
+/** ブロックを上下ペアで作成し、`blocks` に追加する */
+function addBlockPair() {
+  let y = random(-100, 100);
+  blocks.push(createBlock(y)); // 上のブロック
+  blocks.push(createBlock(y + 600)); // 下のブロック
+}
+
+/** ゲームの初期化・リセット */
+function resetGame() {
+  // （あとで）
+}
+
+/** ゲームの更新 */
+function updateGame() {
+  // （あとで）
+}
+
+/** ゲームの描画 */
+function drawGame() {
+  // （あとで）
+}
+
+/** マウスボタンが押されたときのゲームへの影響 */
+function onMousePress() {
+  // （あとで）
+}
+```
+
+
+### 引っ越す
 
 「setup/draw 他」セクションに書いてあった処理が、特に変更されることなく  
-「ゲーム全体に関わる変数と関数」セクションにごっそり移動している
+「ゲーム全体に関わる部分」セクションにごっそり移動している
 
-```javascript
-// ---- エンティティ関連の関数 --------------------------------------------------
-
-// （省略）
-
-// ---- ゲーム全体に関わる変数と関数 --------------------------------------------
+```javascript { hl_lines=["18-22", "27-36", "41-44", "49-50", 59, "63-64", 68], linenostart=60 }
+// ---- ゲーム全体に関わる部分 ----------------------------------------------
 
 /** プレイヤーエンティティ */
 let player;
@@ -94,7 +131,7 @@ function onMousePress() {
   applyJump(player);
 }
 
-// ---- setup/draw 他 -------------------------------------------------------
+// ---- setup/draw 他 ---------------------------------------------------
 
 function setup() {
   createCanvas(800, 600);
@@ -118,14 +155,15 @@ function mousePressed() {
 
 ### ゲームオーバー状態がプレイ状態と異なる点
 
-- 画面の動きが止める
+- 画面の動きが止まる
 - "GAME OVER" と表示される
 - マウスボタンを押したらリセットされる
 
 ### やること
 
 1. プレイ／ゲームオーバー の状態を管理する変数を用意する
-1. ゲームをリセットしたらプレイ状態で始まるようにする
+1. ゲームのリセット処理
+    - プレイ状態で始まるようにする
 1. ゲームの更新処理
     - ゲームオーバー状態のときは動きを止める（エンティティを更新しない）
     - プレイヤーが死んでいたらゲームオーバー状態にする
@@ -135,9 +173,94 @@ function mousePressed() {
     - プレイ状態ならジャンプ（従来どおり）
     - ゲームオーバー状態ならリセット
 
-### ソースコード
 
-```javascript
+### 必要な関数が揃っている、と仮定して書いてみる
+
+※ このコードは動きません（`playerIsAlive()` と `drawGameoverScreen()` が存在しないため）
+
+```javascript { hl_lines=["9-10", "21-22", "33-34", "47-48", "58-59", "64-73"], linenostart=60 }
+// ---- ゲーム全体に関わる部分 --------------------------------------------
+
+/** プレイヤーエンティティ */
+let player;
+
+/** ブロックエンティティの配列 */
+let blocks;
+
+/** ゲームの状態。"play" か "gameover" を入れるものとする */
+let gameState;
+
+/** ブロックを上下ペアで作成し、`blocks` に追加する */
+function addBlockPair() {
+  let y = random(-100, 100);
+  blocks.push(createBlock(y)); // 上のブロック
+  blocks.push(createBlock(y + 600)); // 下のブロック
+}
+
+/** ゲームの初期化・リセット */
+function resetGame() {
+  // 状態をリセット
+  gameState = "play";
+
+  // プレイヤーを作成
+  player = createPlayer();
+
+  // ブロックの配列準備
+  blocks = [];
+}
+
+/** ゲームの更新 */
+function updateGame() {
+  // ゲームオーバーなら更新しない
+  if (gameState === "gameover") return;
+
+  // ブロックの追加と削除
+  if (frameCount % 120 === 1) addBlockPair(blocks); // 一定間隔でブロック追加
+  blocks = blocks.filter(blockIsAlive); // 生きているブロックだけ残す
+
+  // 全エンティティの位置を更新
+  updatePosition(player);
+  for (let block of blocks) updatePosition(block);
+
+  // プレイヤーに重力を適用
+  applyGravity(player);
+
+  // プレイヤーが死んでいたらゲームオーバー
+  if (!playerIsAlive(player)) gameState = "gameover";
+}
+
+/** ゲームの描画 */
+function drawGame() {
+  // 全エンティティを描画
+  background(0);
+  drawPlayer(player);
+  for (let block of blocks) drawBlock(block);
+
+  // ゲームオーバーならそれ用の画面を表示
+  if (gameState === "gameover") drawGameoverScreen();
+}
+
+/** マウスボタンが押されたときのゲームへの影響 */
+function onMousePress() {
+  switch (gameState) {
+    case "play":
+      // プレイ中の状態ならプレイヤーをジャンプさせる
+      applyJump(player);
+      break;
+    case "gameover":
+      // ゲームオーバー状態ならリセット
+      resetGame();
+      break;
+  }
+}
+```
+
+
+### 必要な関数を実装して完成
+
+`playerIsAlive()` と `drawGameoverScreen()` を実装しただけ
+
+```javascript { hl_lines=["33-37", "78-85"], linenostart=1 }
 // ---- エンティティ関連の関数 -------------------------------------------------
 
 // 全エンティティ共通
@@ -197,7 +320,7 @@ function blockIsAlive(entity) {
   return -100 < entity.x;
 }
 
-// ---- ゲーム全体に関わる変数と関数 --------------------------------------------
+// ---- ゲーム全体に関わる部分 --------------------------------------------
 
 /** プレイヤーエンティティ */
 let player;
@@ -216,12 +339,12 @@ function addBlockPair() {
 }
 
 /** ゲームオーバー画面を表示する */
-function drawGameOverScreen() {
-  background(0, 192);
+function drawGameoverScreen() {
+  background(0, 192); // 透明度 192 の黒
   fill(255);
   textSize(64);
-  textAlign(CENTER, CENTER);
-  text("GAME OVER", width / 2, height / 2);
+  textAlign(CENTER, CENTER); // 横に中央揃え ＆ 縦にも中央揃え
+  text("GAME OVER", width / 2, height / 2); // 画面中央にテキスト表示
 }
 
 /** ゲームの初期化・リセット */
@@ -238,7 +361,8 @@ function resetGame() {
 
 /** ゲームの更新 */
 function updateGame() {
-  if (gameState !== "play") return;
+  // ゲームオーバーなら更新しない
+  if (gameState === "gameover") return;
 
   // ブロックの追加と削除
   if (frameCount % 120 === 1) addBlockPair(blocks); // 一定間隔でブロック追加
@@ -263,7 +387,7 @@ function drawGame() {
   for (let block of blocks) drawBlock(block);
 
   // ゲームオーバーならそれ用の画面を表示
-  if (gameState === "gameover") drawGameOverScreen();
+  if (gameState === "gameover") drawGameoverScreen();
 }
 
 /** マウスボタンが押されたときのゲームへの影響 */
