@@ -354,14 +354,16 @@ https://github.com/alex-shpak/hugo-book
       <ul>
         <li><a href="#理由">理由</a></li>
         <li><a href="#やること">やること</a></li>
-        <li><a href="#ソースコード">ソースコード</a></li>
+        <li><a href="#まず引越し先を用意する">まず引越し先を用意する</a></li>
+        <li><a href="#引っ越す">引っ越す</a></li>
       </ul>
     </li>
     <li><a href="#プレイゲームオーバー-の2状態を作って切り替える">プレイ／ゲームオーバー の2状態を作って切り替える</a>
       <ul>
         <li><a href="#ゲームオーバー状態がプレイ状態と異なる点">ゲームオーバー状態がプレイ状態と異なる点</a></li>
         <li><a href="#やること-1">やること</a></li>
-        <li><a href="#ソースコード-1">ソースコード</a></li>
+        <li><a href="#必要な関数が揃っていると仮定して書いてみる">必要な関数が揃っている、と仮定して書いてみる</a></li>
+        <li><a href="#必要な関数を実装して完成">必要な関数を実装して完成</a></li>
       </ul>
     </li>
   </ul>
@@ -389,78 +391,17 @@ https://github.com/alex-shpak/hugo-book
 <li><code>draw()</code> の中身が増えてきたので、更新処理／描画処理 の2つに分けて整理したい</li>
 </ul>
 <h3 id="やること">やること</h3>
-<p>以下のそれぞれについて、新たに専用の関数を用意して置き換える</p>
+<p>以下のそれぞれについて、新たに専用の関数を用意して引っ越す</p>
 <ol>
 <li><code>setup()</code> の中の初期化処理</li>
 <li><code>draw()</code> の中の更新処理</li>
 <li><code>draw()</code> の中の描画処理</li>
 <li><code>mousePressed()</code> の中身（マウスボタンが押されたときの処理）</li>
 </ol>
-<h3 id="ソースコード">ソースコード</h3>
-<p>「setup/draw 他」セクションに書いてあった処理が、特に変更されることなく<br>
-「ゲーム全体に関わる変数と関数」セクションにごっそり移動している</p>
+<h3 id="まず引越し先を用意する">まず引越し先を用意する</h3>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
-</span><span class="lnt"> 2
-</span><span class="lnt"> 3
-</span><span class="lnt"> 4
-</span><span class="lnt"> 5
-</span><span class="lnt"> 6
-</span><span class="lnt"> 7
-</span><span class="lnt"> 8
-</span><span class="lnt"> 9
-</span><span class="lnt">10
-</span><span class="lnt">11
-</span><span class="lnt">12
-</span><span class="lnt">13
-</span><span class="lnt">14
-</span><span class="lnt">15
-</span><span class="lnt">16
-</span><span class="lnt">17
-</span><span class="lnt">18
-</span><span class="lnt">19
-</span><span class="lnt">20
-</span><span class="lnt">21
-</span><span class="lnt">22
-</span><span class="lnt">23
-</span><span class="lnt">24
-</span><span class="lnt">25
-</span><span class="lnt">26
-</span><span class="lnt">27
-</span><span class="lnt">28
-</span><span class="lnt">29
-</span><span class="lnt">30
-</span><span class="lnt">31
-</span><span class="lnt">32
-</span><span class="lnt">33
-</span><span class="lnt">34
-</span><span class="lnt">35
-</span><span class="lnt">36
-</span><span class="lnt">37
-</span><span class="lnt">38
-</span><span class="lnt">39
-</span><span class="lnt">40
-</span><span class="lnt">41
-</span><span class="lnt">42
-</span><span class="lnt">43
-</span><span class="lnt">44
-</span><span class="lnt">45
-</span><span class="lnt">46
-</span><span class="lnt">47
-</span><span class="lnt">48
-</span><span class="lnt">49
-</span><span class="lnt">50
-</span><span class="lnt">51
-</span><span class="lnt">52
-</span><span class="lnt">53
-</span><span class="lnt">54
-</span><span class="lnt">55
-</span><span class="lnt">56
-</span><span class="lnt">57
-</span><span class="lnt">58
-</span><span class="lnt">59
-</span><span class="lnt">60
+<pre class="chroma"><code><span class="lnt">60
 </span><span class="lnt">61
 </span><span class="lnt">62
 </span><span class="lnt">63
@@ -474,13 +415,141 @@ https://github.com/alex-shpak/hugo-book
 </span><span class="lnt">71
 </span><span class="lnt">72
 </span><span class="lnt">73
+</span><span class="lnt">74
+</span><span class="hl"><span class="lnt">75
+</span></span><span class="hl"><span class="lnt">76
+</span></span><span class="hl"><span class="lnt">77
+</span></span><span class="hl"><span class="lnt">78
+</span></span><span class="hl"><span class="lnt">79
+</span></span><span class="hl"><span class="lnt">80
+</span></span><span class="hl"><span class="lnt">81
+</span></span><span class="hl"><span class="lnt">82
+</span></span><span class="hl"><span class="lnt">83
+</span></span><span class="hl"><span class="lnt">84
+</span></span><span class="hl"><span class="lnt">85
+</span></span><span class="hl"><span class="lnt">86
+</span></span><span class="hl"><span class="lnt">87
+</span></span><span class="hl"><span class="lnt">88
+</span></span><span class="hl"><span class="lnt">89
+</span></span><span class="hl"><span class="lnt">90
+</span></span><span class="hl"><span class="lnt">91
+</span></span><span class="hl"><span class="lnt">92
+</span></span><span class="hl"><span class="lnt">93
+</span></span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="c1">// ---- ゲーム全体に関わる部分 ----------------------------------------------
+</span><span class="c1"></span>
+<span class="cm">/** プレイヤーエンティティ */</span>
+<span class="kd">let</span> <span class="nx">player</span><span class="p">;</span>
+
+<span class="cm">/** ブロックエンティティの配列 */</span>
+<span class="kd">let</span> <span class="nx">blocks</span><span class="p">;</span>
+
+<span class="cm">/** ブロックを上下ペアで作成し、`blocks` に追加する */</span>
+<span class="kd">function</span> <span class="nx">addBlockPair</span><span class="p">(</span><span class="p">)</span> <span class="p">{</span>
+  <span class="kd">let</span> <span class="nx">y</span> <span class="o">=</span> <span class="nx">random</span><span class="p">(</span><span class="o">-</span><span class="mi">100</span><span class="p">,</span> <span class="mi">100</span><span class="p">)</span><span class="p">;</span>
+  <span class="nx">blocks</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span><span class="nx">createBlock</span><span class="p">(</span><span class="nx">y</span><span class="p">)</span><span class="p">)</span><span class="p">;</span> <span class="c1">// 上のブロック
+</span><span class="c1"></span>  <span class="nx">blocks</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span><span class="nx">createBlock</span><span class="p">(</span><span class="nx">y</span> <span class="o">+</span> <span class="mi">600</span><span class="p">)</span><span class="p">)</span><span class="p">;</span> <span class="c1">// 下のブロック
+</span><span class="c1"></span><span class="p">}</span>
+
+<span class="hl"><span class="cm">/** ゲームの初期化・リセット */</span>
+</span><span class="hl"><span class="kd">function</span> <span class="nx">resetGame</span><span class="p">(</span><span class="p">)</span> <span class="p">{</span>
+</span><span class="hl">  <span class="c1">// （あとで）
+</span></span><span class="hl"><span class="c1"></span><span class="p">}</span>
+</span><span class="hl">
+</span><span class="hl"><span class="cm">/** ゲームの更新 */</span>
+</span><span class="hl"><span class="kd">function</span> <span class="nx">updateGame</span><span class="p">(</span><span class="p">)</span> <span class="p">{</span>
+</span><span class="hl">  <span class="c1">// （あとで）
+</span></span><span class="hl"><span class="c1"></span><span class="p">}</span>
+</span><span class="hl">
+</span><span class="hl"><span class="cm">/** ゲームの描画 */</span>
+</span><span class="hl"><span class="kd">function</span> <span class="nx">drawGame</span><span class="p">(</span><span class="p">)</span> <span class="p">{</span>
+</span><span class="hl">  <span class="c1">// （あとで）
+</span></span><span class="hl"><span class="c1"></span><span class="p">}</span>
+</span><span class="hl">
+</span><span class="hl"><span class="cm">/** マウスボタンが押されたときのゲームへの影響 */</span>
+</span><span class="hl"><span class="kd">function</span> <span class="nx">onMousePress</span><span class="p">(</span><span class="p">)</span> <span class="p">{</span>
+</span><span class="hl">  <span class="c1">// （あとで）
+</span></span><span class="hl"><span class="c1"></span><span class="p">}</span>
+</span></code></pre></td></tr></table>
+</div>
+</div><h3 id="引っ越す">引っ越す</h3>
+<p>「setup/draw 他」セクションに書いてあった処理が、特に変更されることなく<br>
+「ゲーム全体に関わる部分」セクションにごっそり移動している</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">60
+</span><span class="lnt">61
+</span><span class="lnt">62
+</span><span class="lnt">63
+</span><span class="lnt">64
+</span><span class="lnt">65
+</span><span class="lnt">66
+</span><span class="lnt">67
+</span><span class="lnt">68
+</span><span class="lnt">69
+</span><span class="lnt">70
+</span><span class="lnt">71
+</span><span class="lnt">72
+</span><span class="lnt">73
+</span><span class="lnt">74
+</span><span class="lnt">75
+</span><span class="lnt">76
+</span><span class="hl"><span class="lnt">77
+</span></span><span class="hl"><span class="lnt">78
+</span></span><span class="hl"><span class="lnt">79
+</span></span><span class="hl"><span class="lnt">80
+</span></span><span class="hl"><span class="lnt">81
+</span></span><span class="lnt">82
+</span><span class="lnt">83
+</span><span class="lnt">84
+</span><span class="lnt">85
+</span><span class="hl"><span class="lnt">86
+</span></span><span class="hl"><span class="lnt">87
+</span></span><span class="hl"><span class="lnt">88
+</span></span><span class="hl"><span class="lnt">89
+</span></span><span class="hl"><span class="lnt">90
+</span></span><span class="hl"><span class="lnt">91
+</span></span><span class="hl"><span class="lnt">92
+</span></span><span class="hl"><span class="lnt">93
+</span></span><span class="hl"><span class="lnt">94
+</span></span><span class="hl"><span class="lnt">95
+</span></span><span class="lnt">96
+</span><span class="lnt">97
+</span><span class="lnt">98
+</span><span class="lnt">99
+</span><span class="hl"><span class="lnt">100
+</span></span><span class="hl"><span class="lnt">101
+</span></span><span class="hl"><span class="lnt">102
+</span></span><span class="hl"><span class="lnt">103
+</span></span><span class="lnt">104
+</span><span class="lnt">105
+</span><span class="lnt">106
+</span><span class="lnt">107
+</span><span class="hl"><span class="lnt">108
+</span></span><span class="hl"><span class="lnt">109
+</span></span><span class="lnt">110
+</span><span class="lnt">111
+</span><span class="lnt">112
+</span><span class="lnt">113
+</span><span class="lnt">114
+</span><span class="lnt">115
+</span><span class="lnt">116
+</span><span class="lnt">117
+</span><span class="hl"><span class="lnt">118
+</span></span><span class="lnt">119
+</span><span class="lnt">120
+</span><span class="lnt">121
+</span><span class="hl"><span class="lnt">122
+</span></span><span class="hl"><span class="lnt">123
+</span></span><span class="lnt">124
+</span><span class="lnt">125
+</span><span class="lnt">126
+</span><span class="hl"><span class="lnt">127
+</span></span><span class="lnt">128
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="c1">// ---- エンティティ関連の関数 --------------------------------------------------
-</span><span class="c1"></span>
-<span class="c1">// （省略）
-</span><span class="c1"></span>
-<span class="c1">// ---- ゲーム全体に関わる変数と関数 --------------------------------------------
+<pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="c1">// ---- ゲーム全体に関わる部分 ----------------------------------------------
 </span><span class="c1"></span>
 <span class="cm">/** プレイヤーエンティティ */</span>
 <span class="kd">let</span> <span class="nx">player</span><span class="p">;</span>
@@ -497,71 +566,75 @@ https://github.com/alex-shpak/hugo-book
 
 <span class="cm">/** ゲームの初期化・リセット */</span>
 <span class="kd">function</span> <span class="nx">resetGame</span><span class="p">(</span><span class="p">)</span> <span class="p">{</span>
-  <span class="c1">// プレイヤーを作成
-</span><span class="c1"></span>  <span class="nx">player</span> <span class="o">=</span> <span class="nx">createPlayer</span><span class="p">(</span><span class="p">)</span><span class="p">;</span>
-
-  <span class="c1">// ブロックの配列準備
-</span><span class="c1"></span>  <span class="nx">blocks</span> <span class="o">=</span> <span class="p">[</span><span class="p">]</span><span class="p">;</span>
-<span class="p">}</span>
+<span class="hl">  <span class="c1">// プレイヤーを作成
+</span></span><span class="hl"><span class="c1"></span>  <span class="nx">player</span> <span class="o">=</span> <span class="nx">createPlayer</span><span class="p">(</span><span class="p">)</span><span class="p">;</span>
+</span><span class="hl">
+</span><span class="hl">  <span class="c1">// ブロックの配列準備
+</span></span><span class="hl"><span class="c1"></span>  <span class="nx">blocks</span> <span class="o">=</span> <span class="p">[</span><span class="p">]</span><span class="p">;</span>
+</span><span class="p">}</span>
 
 <span class="cm">/** ゲームの更新 */</span>
 <span class="kd">function</span> <span class="nx">updateGame</span><span class="p">(</span><span class="p">)</span> <span class="p">{</span>
-  <span class="c1">// ブロックの追加と削除
-</span><span class="c1"></span>  <span class="k">if</span> <span class="p">(</span><span class="nx">frameCount</span> <span class="o">%</span> <span class="mi">120</span> <span class="o">===</span> <span class="mi">1</span><span class="p">)</span> <span class="nx">addBlockPair</span><span class="p">(</span><span class="nx">blocks</span><span class="p">)</span><span class="p">;</span> <span class="c1">// 一定間隔でブロック追加
-</span><span class="c1"></span>  <span class="nx">blocks</span> <span class="o">=</span> <span class="nx">blocks</span><span class="p">.</span><span class="nx">filter</span><span class="p">(</span><span class="nx">blockIsAlive</span><span class="p">)</span><span class="p">;</span> <span class="c1">// 生きているブロックだけ残す
-</span><span class="c1"></span>
-  <span class="c1">// 全エンティティの位置を更新
-</span><span class="c1"></span>  <span class="nx">updatePosition</span><span class="p">(</span><span class="nx">player</span><span class="p">)</span><span class="p">;</span>
-  <span class="k">for</span> <span class="p">(</span><span class="kd">let</span> <span class="nx">block</span> <span class="k">of</span> <span class="nx">blocks</span><span class="p">)</span> <span class="nx">updatePosition</span><span class="p">(</span><span class="nx">block</span><span class="p">)</span><span class="p">;</span>
-
-  <span class="c1">// プレイヤーに重力を適用
-</span><span class="c1"></span>  <span class="nx">applyGravity</span><span class="p">(</span><span class="nx">player</span><span class="p">)</span><span class="p">;</span>
-<span class="p">}</span>
+<span class="hl">  <span class="c1">// ブロックの追加と削除
+</span></span><span class="hl"><span class="c1"></span>  <span class="k">if</span> <span class="p">(</span><span class="nx">frameCount</span> <span class="o">%</span> <span class="mi">120</span> <span class="o">===</span> <span class="mi">1</span><span class="p">)</span> <span class="nx">addBlockPair</span><span class="p">(</span><span class="nx">blocks</span><span class="p">)</span><span class="p">;</span> <span class="c1">// 一定間隔でブロック追加
+</span></span><span class="hl"><span class="c1"></span>  <span class="nx">blocks</span> <span class="o">=</span> <span class="nx">blocks</span><span class="p">.</span><span class="nx">filter</span><span class="p">(</span><span class="nx">blockIsAlive</span><span class="p">)</span><span class="p">;</span> <span class="c1">// 生きているブロックだけ残す
+</span></span><span class="hl"><span class="c1"></span>
+</span><span class="hl">  <span class="c1">// 全エンティティの位置を更新
+</span></span><span class="hl"><span class="c1"></span>  <span class="nx">updatePosition</span><span class="p">(</span><span class="nx">player</span><span class="p">)</span><span class="p">;</span>
+</span><span class="hl">  <span class="k">for</span> <span class="p">(</span><span class="kd">let</span> <span class="nx">block</span> <span class="k">of</span> <span class="nx">blocks</span><span class="p">)</span> <span class="nx">updatePosition</span><span class="p">(</span><span class="nx">block</span><span class="p">)</span><span class="p">;</span>
+</span><span class="hl">
+</span><span class="hl">  <span class="c1">// プレイヤーに重力を適用
+</span></span><span class="hl"><span class="c1"></span>  <span class="nx">applyGravity</span><span class="p">(</span><span class="nx">player</span><span class="p">)</span><span class="p">;</span>
+</span><span class="p">}</span>
 
 <span class="cm">/** ゲームの描画 */</span>
 <span class="kd">function</span> <span class="nx">drawGame</span><span class="p">(</span><span class="p">)</span> <span class="p">{</span>
-  <span class="c1">// 全エンティティを描画
-</span><span class="c1"></span>  <span class="nx">background</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span><span class="p">;</span>
-  <span class="nx">drawPlayer</span><span class="p">(</span><span class="nx">player</span><span class="p">)</span><span class="p">;</span>
-  <span class="k">for</span> <span class="p">(</span><span class="kd">let</span> <span class="nx">block</span> <span class="k">of</span> <span class="nx">blocks</span><span class="p">)</span> <span class="nx">drawBlock</span><span class="p">(</span><span class="nx">block</span><span class="p">)</span><span class="p">;</span>
-<span class="p">}</span>
+<span class="hl">  <span class="c1">// 全エンティティを描画
+</span></span><span class="hl"><span class="c1"></span>  <span class="nx">background</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span><span class="p">;</span>
+</span><span class="hl">  <span class="nx">drawPlayer</span><span class="p">(</span><span class="nx">player</span><span class="p">)</span><span class="p">;</span>
+</span><span class="hl">  <span class="k">for</span> <span class="p">(</span><span class="kd">let</span> <span class="nx">block</span> <span class="k">of</span> <span class="nx">blocks</span><span class="p">)</span> <span class="nx">drawBlock</span><span class="p">(</span><span class="nx">block</span><span class="p">)</span><span class="p">;</span>
+</span><span class="p">}</span>
 
 <span class="cm">/** マウスボタンが押されたときのゲームへの影響 */</span>
 <span class="kd">function</span> <span class="nx">onMousePress</span><span class="p">(</span><span class="p">)</span> <span class="p">{</span>
-  <span class="c1">// プレイヤーをジャンプさせる
-</span><span class="c1"></span>  <span class="nx">applyJump</span><span class="p">(</span><span class="nx">player</span><span class="p">)</span><span class="p">;</span>
-<span class="p">}</span>
+<span class="hl">  <span class="c1">// プレイヤーをジャンプさせる
+</span></span><span class="hl"><span class="c1"></span>  <span class="nx">applyJump</span><span class="p">(</span><span class="nx">player</span><span class="p">)</span><span class="p">;</span>
+</span><span class="p">}</span>
 
-<span class="c1">// ---- setup/draw 他 -------------------------------------------------------
+<span class="c1">// ---- setup/draw 他 ---------------------------------------------------
 </span><span class="c1"></span>
 <span class="kd">function</span> <span class="nx">setup</span><span class="p">(</span><span class="p">)</span> <span class="p">{</span>
   <span class="nx">createCanvas</span><span class="p">(</span><span class="mi">800</span><span class="p">,</span> <span class="mi">600</span><span class="p">)</span><span class="p">;</span>
   <span class="nx">rectMode</span><span class="p">(</span><span class="nx">CENTER</span><span class="p">)</span><span class="p">;</span>
 
-  <span class="nx">resetGame</span><span class="p">(</span><span class="p">)</span><span class="p">;</span>
-<span class="p">}</span>
+<span class="hl">  <span class="nx">resetGame</span><span class="p">(</span><span class="p">)</span><span class="p">;</span>
+</span><span class="p">}</span>
 
 <span class="kd">function</span> <span class="nx">draw</span><span class="p">(</span><span class="p">)</span> <span class="p">{</span>
-  <span class="nx">updateGame</span><span class="p">(</span><span class="p">)</span><span class="p">;</span>
-  <span class="nx">drawGame</span><span class="p">(</span><span class="p">)</span><span class="p">;</span>
-<span class="p">}</span>
+<span class="hl">  <span class="nx">updateGame</span><span class="p">(</span><span class="p">)</span><span class="p">;</span>
+</span><span class="hl">  <span class="nx">drawGame</span><span class="p">(</span><span class="p">)</span><span class="p">;</span>
+</span><span class="p">}</span>
 
 <span class="kd">function</span> <span class="nx">mousePressed</span><span class="p">(</span><span class="p">)</span> <span class="p">{</span>
-  <span class="nx">onMousePress</span><span class="p">(</span><span class="p">)</span><span class="p">;</span>
-<span class="p">}</span>
+<span class="hl">  <span class="nx">onMousePress</span><span class="p">(</span><span class="p">)</span><span class="p">;</span>
+</span><span class="p">}</span>
 </code></pre></td></tr></table>
 </div>
 </div><h2 id="プレイゲームオーバー-の2状態を作って切り替える">プレイ／ゲームオーバー の2状態を作って切り替える</h2>
 <h3 id="ゲームオーバー状態がプレイ状態と異なる点">ゲームオーバー状態がプレイ状態と異なる点</h3>
 <ul>
-<li>画面の動きが止める</li>
+<li>画面の動きが止まる</li>
 <li>&ldquo;GAME OVER&rdquo; と表示される</li>
 <li>マウスボタンを押したらリセットされる</li>
 </ul>
 <h3 id="やること-1">やること</h3>
 <ol>
 <li>プレイ／ゲームオーバー の状態を管理する変数を用意する</li>
-<li>ゲームをリセットしたらプレイ状態で始まるようにする</li>
+<li>ゲームのリセット処理
+<ul>
+<li>プレイ状態で始まるようにする</li>
+</ul>
+</li>
 <li>ゲームの更新処理
 <ul>
 <li>ゲームオーバー状態のときは動きを止める（エンティティを更新しない）</li>
@@ -580,7 +653,164 @@ https://github.com/alex-shpak/hugo-book
 </ul>
 </li>
 </ol>
-<h3 id="ソースコード-1">ソースコード</h3>
+<h3 id="必要な関数が揃っていると仮定して書いてみる">必要な関数が揃っている、と仮定して書いてみる</h3>
+<p>※ このコードは動きません（<code>playerIsAlive()</code> と <code>drawGameoverScreen()</code> が存在しないため）</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">60
+</span><span class="lnt">61
+</span><span class="lnt">62
+</span><span class="lnt">63
+</span><span class="lnt">64
+</span><span class="lnt">65
+</span><span class="lnt">66
+</span><span class="lnt">67
+</span><span class="hl"><span class="lnt">68
+</span></span><span class="hl"><span class="lnt">69
+</span></span><span class="lnt">70
+</span><span class="lnt">71
+</span><span class="lnt">72
+</span><span class="lnt">73
+</span><span class="lnt">74
+</span><span class="lnt">75
+</span><span class="lnt">76
+</span><span class="lnt">77
+</span><span class="lnt">78
+</span><span class="lnt">79
+</span><span class="hl"><span class="lnt">80
+</span></span><span class="hl"><span class="lnt">81
+</span></span><span class="lnt">82
+</span><span class="lnt">83
+</span><span class="lnt">84
+</span><span class="lnt">85
+</span><span class="lnt">86
+</span><span class="lnt">87
+</span><span class="lnt">88
+</span><span class="lnt">89
+</span><span class="lnt">90
+</span><span class="lnt">91
+</span><span class="hl"><span class="lnt">92
+</span></span><span class="hl"><span class="lnt">93
+</span></span><span class="lnt">94
+</span><span class="lnt">95
+</span><span class="lnt">96
+</span><span class="lnt">97
+</span><span class="lnt">98
+</span><span class="lnt">99
+</span><span class="lnt">100
+</span><span class="lnt">101
+</span><span class="lnt">102
+</span><span class="lnt">103
+</span><span class="lnt">104
+</span><span class="lnt">105
+</span><span class="hl"><span class="lnt">106
+</span></span><span class="hl"><span class="lnt">107
+</span></span><span class="lnt">108
+</span><span class="lnt">109
+</span><span class="lnt">110
+</span><span class="lnt">111
+</span><span class="lnt">112
+</span><span class="lnt">113
+</span><span class="lnt">114
+</span><span class="lnt">115
+</span><span class="lnt">116
+</span><span class="hl"><span class="lnt">117
+</span></span><span class="hl"><span class="lnt">118
+</span></span><span class="lnt">119
+</span><span class="lnt">120
+</span><span class="lnt">121
+</span><span class="lnt">122
+</span><span class="hl"><span class="lnt">123
+</span></span><span class="hl"><span class="lnt">124
+</span></span><span class="hl"><span class="lnt">125
+</span></span><span class="hl"><span class="lnt">126
+</span></span><span class="hl"><span class="lnt">127
+</span></span><span class="hl"><span class="lnt">128
+</span></span><span class="hl"><span class="lnt">129
+</span></span><span class="hl"><span class="lnt">130
+</span></span><span class="hl"><span class="lnt">131
+</span></span><span class="hl"><span class="lnt">132
+</span></span><span class="lnt">133
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="c1">// ---- ゲーム全体に関わる部分 --------------------------------------------
+</span><span class="c1"></span>
+<span class="cm">/** プレイヤーエンティティ */</span>
+<span class="kd">let</span> <span class="nx">player</span><span class="p">;</span>
+
+<span class="cm">/** ブロックエンティティの配列 */</span>
+<span class="kd">let</span> <span class="nx">blocks</span><span class="p">;</span>
+
+<span class="hl"><span class="cm">/** ゲームの状態。&#34;play&#34; か &#34;gameover&#34; を入れるものとする */</span>
+</span><span class="hl"><span class="kd">let</span> <span class="nx">gameState</span><span class="p">;</span>
+</span>
+<span class="cm">/** ブロックを上下ペアで作成し、`blocks` に追加する */</span>
+<span class="kd">function</span> <span class="nx">addBlockPair</span><span class="p">(</span><span class="p">)</span> <span class="p">{</span>
+  <span class="kd">let</span> <span class="nx">y</span> <span class="o">=</span> <span class="nx">random</span><span class="p">(</span><span class="o">-</span><span class="mi">100</span><span class="p">,</span> <span class="mi">100</span><span class="p">)</span><span class="p">;</span>
+  <span class="nx">blocks</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span><span class="nx">createBlock</span><span class="p">(</span><span class="nx">y</span><span class="p">)</span><span class="p">)</span><span class="p">;</span> <span class="c1">// 上のブロック
+</span><span class="c1"></span>  <span class="nx">blocks</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span><span class="nx">createBlock</span><span class="p">(</span><span class="nx">y</span> <span class="o">+</span> <span class="mi">600</span><span class="p">)</span><span class="p">)</span><span class="p">;</span> <span class="c1">// 下のブロック
+</span><span class="c1"></span><span class="p">}</span>
+
+<span class="cm">/** ゲームの初期化・リセット */</span>
+<span class="kd">function</span> <span class="nx">resetGame</span><span class="p">(</span><span class="p">)</span> <span class="p">{</span>
+<span class="hl">  <span class="c1">// 状態をリセット
+</span></span><span class="hl"><span class="c1"></span>  <span class="nx">gameState</span> <span class="o">=</span> <span class="s2">&#34;play&#34;</span><span class="p">;</span>
+</span>
+  <span class="c1">// プレイヤーを作成
+</span><span class="c1"></span>  <span class="nx">player</span> <span class="o">=</span> <span class="nx">createPlayer</span><span class="p">(</span><span class="p">)</span><span class="p">;</span>
+
+  <span class="c1">// ブロックの配列準備
+</span><span class="c1"></span>  <span class="nx">blocks</span> <span class="o">=</span> <span class="p">[</span><span class="p">]</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="cm">/** ゲームの更新 */</span>
+<span class="kd">function</span> <span class="nx">updateGame</span><span class="p">(</span><span class="p">)</span> <span class="p">{</span>
+<span class="hl">  <span class="c1">// ゲームオーバーなら更新しない
+</span></span><span class="hl"><span class="c1"></span>  <span class="k">if</span> <span class="p">(</span><span class="nx">gameState</span> <span class="o">===</span> <span class="s2">&#34;gameover&#34;</span><span class="p">)</span> <span class="k">return</span><span class="p">;</span>
+</span>
+  <span class="c1">// ブロックの追加と削除
+</span><span class="c1"></span>  <span class="k">if</span> <span class="p">(</span><span class="nx">frameCount</span> <span class="o">%</span> <span class="mi">120</span> <span class="o">===</span> <span class="mi">1</span><span class="p">)</span> <span class="nx">addBlockPair</span><span class="p">(</span><span class="nx">blocks</span><span class="p">)</span><span class="p">;</span> <span class="c1">// 一定間隔でブロック追加
+</span><span class="c1"></span>  <span class="nx">blocks</span> <span class="o">=</span> <span class="nx">blocks</span><span class="p">.</span><span class="nx">filter</span><span class="p">(</span><span class="nx">blockIsAlive</span><span class="p">)</span><span class="p">;</span> <span class="c1">// 生きているブロックだけ残す
+</span><span class="c1"></span>
+  <span class="c1">// 全エンティティの位置を更新
+</span><span class="c1"></span>  <span class="nx">updatePosition</span><span class="p">(</span><span class="nx">player</span><span class="p">)</span><span class="p">;</span>
+  <span class="k">for</span> <span class="p">(</span><span class="kd">let</span> <span class="nx">block</span> <span class="k">of</span> <span class="nx">blocks</span><span class="p">)</span> <span class="nx">updatePosition</span><span class="p">(</span><span class="nx">block</span><span class="p">)</span><span class="p">;</span>
+
+  <span class="c1">// プレイヤーに重力を適用
+</span><span class="c1"></span>  <span class="nx">applyGravity</span><span class="p">(</span><span class="nx">player</span><span class="p">)</span><span class="p">;</span>
+
+<span class="hl">  <span class="c1">// プレイヤーが死んでいたらゲームオーバー
+</span></span><span class="hl"><span class="c1"></span>  <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nx">playerIsAlive</span><span class="p">(</span><span class="nx">player</span><span class="p">)</span><span class="p">)</span> <span class="nx">gameState</span> <span class="o">=</span> <span class="s2">&#34;gameover&#34;</span><span class="p">;</span>
+</span><span class="p">}</span>
+
+<span class="cm">/** ゲームの描画 */</span>
+<span class="kd">function</span> <span class="nx">drawGame</span><span class="p">(</span><span class="p">)</span> <span class="p">{</span>
+  <span class="c1">// 全エンティティを描画
+</span><span class="c1"></span>  <span class="nx">background</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span><span class="p">;</span>
+  <span class="nx">drawPlayer</span><span class="p">(</span><span class="nx">player</span><span class="p">)</span><span class="p">;</span>
+  <span class="k">for</span> <span class="p">(</span><span class="kd">let</span> <span class="nx">block</span> <span class="k">of</span> <span class="nx">blocks</span><span class="p">)</span> <span class="nx">drawBlock</span><span class="p">(</span><span class="nx">block</span><span class="p">)</span><span class="p">;</span>
+
+<span class="hl">  <span class="c1">// ゲームオーバーならそれ用の画面を表示
+</span></span><span class="hl"><span class="c1"></span>  <span class="k">if</span> <span class="p">(</span><span class="nx">gameState</span> <span class="o">===</span> <span class="s2">&#34;gameover&#34;</span><span class="p">)</span> <span class="nx">drawGameoverScreen</span><span class="p">(</span><span class="p">)</span><span class="p">;</span>
+</span><span class="p">}</span>
+
+<span class="cm">/** マウスボタンが押されたときのゲームへの影響 */</span>
+<span class="kd">function</span> <span class="nx">onMousePress</span><span class="p">(</span><span class="p">)</span> <span class="p">{</span>
+<span class="hl">  <span class="k">switch</span> <span class="p">(</span><span class="nx">gameState</span><span class="p">)</span> <span class="p">{</span>
+</span><span class="hl">    <span class="k">case</span> <span class="s2">&#34;play&#34;</span><span class="o">:</span>
+</span><span class="hl">      <span class="c1">// プレイ中の状態ならプレイヤーをジャンプさせる
+</span></span><span class="hl"><span class="c1"></span>      <span class="nx">applyJump</span><span class="p">(</span><span class="nx">player</span><span class="p">)</span><span class="p">;</span>
+</span><span class="hl">      <span class="k">break</span><span class="p">;</span>
+</span><span class="hl">    <span class="k">case</span> <span class="s2">&#34;gameover&#34;</span><span class="o">:</span>
+</span><span class="hl">      <span class="c1">// ゲームオーバー状態ならリセット
+</span></span><span class="hl"><span class="c1"></span>      <span class="nx">resetGame</span><span class="p">(</span><span class="p">)</span><span class="p">;</span>
+</span><span class="hl">      <span class="k">break</span><span class="p">;</span>
+</span><span class="hl">  <span class="p">}</span>
+</span><span class="p">}</span>
+</code></pre></td></tr></table>
+</div>
+</div><h3 id="必要な関数を実装して完成">必要な関数を実装して完成</h3>
+<p><code>playerIsAlive()</code> と <code>drawGameoverScreen()</code> を実装しただけ</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre class="chroma"><code><span class="lnt">  1
@@ -615,12 +845,12 @@ https://github.com/alex-shpak/hugo-book
 </span><span class="lnt"> 30
 </span><span class="lnt"> 31
 </span><span class="lnt"> 32
-</span><span class="lnt"> 33
-</span><span class="lnt"> 34
-</span><span class="lnt"> 35
-</span><span class="lnt"> 36
-</span><span class="lnt"> 37
-</span><span class="lnt"> 38
+</span><span class="hl"><span class="lnt"> 33
+</span></span><span class="hl"><span class="lnt"> 34
+</span></span><span class="hl"><span class="lnt"> 35
+</span></span><span class="hl"><span class="lnt"> 36
+</span></span><span class="hl"><span class="lnt"> 37
+</span></span><span class="lnt"> 38
 </span><span class="lnt"> 39
 </span><span class="lnt"> 40
 </span><span class="lnt"> 41
@@ -660,15 +890,15 @@ https://github.com/alex-shpak/hugo-book
 </span><span class="lnt"> 75
 </span><span class="lnt"> 76
 </span><span class="lnt"> 77
-</span><span class="lnt"> 78
-</span><span class="lnt"> 79
-</span><span class="lnt"> 80
-</span><span class="lnt"> 81
-</span><span class="lnt"> 82
-</span><span class="lnt"> 83
-</span><span class="lnt"> 84
-</span><span class="lnt"> 85
-</span><span class="lnt"> 86
+</span><span class="hl"><span class="lnt"> 78
+</span></span><span class="hl"><span class="lnt"> 79
+</span></span><span class="hl"><span class="lnt"> 80
+</span></span><span class="hl"><span class="lnt"> 81
+</span></span><span class="hl"><span class="lnt"> 82
+</span></span><span class="hl"><span class="lnt"> 83
+</span></span><span class="hl"><span class="lnt"> 84
+</span></span><span class="hl"><span class="lnt"> 85
+</span></span><span class="lnt"> 86
 </span><span class="lnt"> 87
 </span><span class="lnt"> 88
 </span><span class="lnt"> 89
@@ -742,6 +972,7 @@ https://github.com/alex-shpak/hugo-book
 </span><span class="lnt">157
 </span><span class="lnt">158
 </span><span class="lnt">159
+</span><span class="lnt">160
 </span></code></pre></td>
 <td class="lntd">
 <pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="c1">// ---- エンティティ関連の関数 -------------------------------------------------
@@ -776,12 +1007,12 @@ https://github.com/alex-shpak/hugo-book
   <span class="nx">square</span><span class="p">(</span><span class="nx">entity</span><span class="p">.</span><span class="nx">x</span><span class="p">,</span> <span class="nx">entity</span><span class="p">.</span><span class="nx">y</span><span class="p">,</span> <span class="mi">40</span><span class="p">)</span><span class="p">;</span>
 <span class="p">}</span>
 
-<span class="kd">function</span> <span class="nx">playerIsAlive</span><span class="p">(</span><span class="nx">entity</span><span class="p">)</span> <span class="p">{</span>
-  <span class="c1">// プレイヤーの位置が生存圏内なら true を返す。
-</span><span class="c1"></span>  <span class="c1">// 600 は画面の下端
-</span><span class="c1"></span>  <span class="k">return</span> <span class="nx">entity</span><span class="p">.</span><span class="nx">y</span> <span class="o">&lt;</span> <span class="mi">600</span><span class="p">;</span>
-<span class="p">}</span>
-
+<span class="hl"><span class="kd">function</span> <span class="nx">playerIsAlive</span><span class="p">(</span><span class="nx">entity</span><span class="p">)</span> <span class="p">{</span>
+</span><span class="hl">  <span class="c1">// プレイヤーの位置が生存圏内なら true を返す。
+</span></span><span class="hl"><span class="c1"></span>  <span class="c1">// 600 は画面の下端
+</span></span><span class="hl"><span class="c1"></span>  <span class="k">return</span> <span class="nx">entity</span><span class="p">.</span><span class="nx">y</span> <span class="o">&lt;</span> <span class="mi">600</span><span class="p">;</span>
+</span><span class="hl"><span class="p">}</span>
+</span>
 <span class="c1">// ブロックエンティティ用
 </span><span class="c1"></span>
 <span class="kd">function</span> <span class="nx">createBlock</span><span class="p">(</span><span class="nx">y</span><span class="p">)</span> <span class="p">{</span>
@@ -803,7 +1034,7 @@ https://github.com/alex-shpak/hugo-book
 </span><span class="c1"></span>  <span class="k">return</span> <span class="o">-</span><span class="mi">100</span> <span class="o">&lt;</span> <span class="nx">entity</span><span class="p">.</span><span class="nx">x</span><span class="p">;</span>
 <span class="p">}</span>
 
-<span class="c1">// ---- ゲーム全体に関わる変数と関数 --------------------------------------------
+<span class="c1">// ---- ゲーム全体に関わる部分 --------------------------------------------
 </span><span class="c1"></span>
 <span class="cm">/** プレイヤーエンティティ */</span>
 <span class="kd">let</span> <span class="nx">player</span><span class="p">;</span>
@@ -821,15 +1052,15 @@ https://github.com/alex-shpak/hugo-book
 </span><span class="c1"></span>  <span class="nx">blocks</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span><span class="nx">createBlock</span><span class="p">(</span><span class="nx">y</span> <span class="o">+</span> <span class="mi">600</span><span class="p">)</span><span class="p">)</span><span class="p">;</span> <span class="c1">// 下のブロック
 </span><span class="c1"></span><span class="p">}</span>
 
-<span class="cm">/** ゲームオーバー画面を表示する */</span>
-<span class="kd">function</span> <span class="nx">drawGameOverScreen</span><span class="p">(</span><span class="p">)</span> <span class="p">{</span>
-  <span class="nx">background</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">192</span><span class="p">)</span><span class="p">;</span>
-  <span class="nx">fill</span><span class="p">(</span><span class="mi">255</span><span class="p">)</span><span class="p">;</span>
-  <span class="nx">textSize</span><span class="p">(</span><span class="mi">64</span><span class="p">)</span><span class="p">;</span>
-  <span class="nx">textAlign</span><span class="p">(</span><span class="nx">CENTER</span><span class="p">,</span> <span class="nx">CENTER</span><span class="p">)</span><span class="p">;</span>
-  <span class="nx">text</span><span class="p">(</span><span class="s2">&#34;GAME OVER&#34;</span><span class="p">,</span> <span class="nx">width</span> <span class="o">/</span> <span class="mi">2</span><span class="p">,</span> <span class="nx">height</span> <span class="o">/</span> <span class="mi">2</span><span class="p">)</span><span class="p">;</span>
-<span class="p">}</span>
-
+<span class="hl"><span class="cm">/** ゲームオーバー画面を表示する */</span>
+</span><span class="hl"><span class="kd">function</span> <span class="nx">drawGameoverScreen</span><span class="p">(</span><span class="p">)</span> <span class="p">{</span>
+</span><span class="hl">  <span class="nx">background</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">192</span><span class="p">)</span><span class="p">;</span> <span class="c1">// 透明度 192 の黒
+</span></span><span class="hl"><span class="c1"></span>  <span class="nx">fill</span><span class="p">(</span><span class="mi">255</span><span class="p">)</span><span class="p">;</span>
+</span><span class="hl">  <span class="nx">textSize</span><span class="p">(</span><span class="mi">64</span><span class="p">)</span><span class="p">;</span>
+</span><span class="hl">  <span class="nx">textAlign</span><span class="p">(</span><span class="nx">CENTER</span><span class="p">,</span> <span class="nx">CENTER</span><span class="p">)</span><span class="p">;</span> <span class="c1">// 横に中央揃え ＆ 縦にも中央揃え
+</span></span><span class="hl"><span class="c1"></span>  <span class="nx">text</span><span class="p">(</span><span class="s2">&#34;GAME OVER&#34;</span><span class="p">,</span> <span class="nx">width</span> <span class="o">/</span> <span class="mi">2</span><span class="p">,</span> <span class="nx">height</span> <span class="o">/</span> <span class="mi">2</span><span class="p">)</span><span class="p">;</span> <span class="c1">// 画面中央にテキスト表示
+</span></span><span class="hl"><span class="c1"></span><span class="p">}</span>
+</span>
 <span class="cm">/** ゲームの初期化・リセット */</span>
 <span class="kd">function</span> <span class="nx">resetGame</span><span class="p">(</span><span class="p">)</span> <span class="p">{</span>
   <span class="c1">// 状態をリセット
@@ -844,7 +1075,8 @@ https://github.com/alex-shpak/hugo-book
 
 <span class="cm">/** ゲームの更新 */</span>
 <span class="kd">function</span> <span class="nx">updateGame</span><span class="p">(</span><span class="p">)</span> <span class="p">{</span>
-  <span class="k">if</span> <span class="p">(</span><span class="nx">gameState</span> <span class="o">!==</span> <span class="s2">&#34;play&#34;</span><span class="p">)</span> <span class="k">return</span><span class="p">;</span>
+  <span class="c1">// ゲームオーバーなら更新しない
+</span><span class="c1"></span>  <span class="k">if</span> <span class="p">(</span><span class="nx">gameState</span> <span class="o">===</span> <span class="s2">&#34;gameover&#34;</span><span class="p">)</span> <span class="k">return</span><span class="p">;</span>
 
   <span class="c1">// ブロックの追加と削除
 </span><span class="c1"></span>  <span class="k">if</span> <span class="p">(</span><span class="nx">frameCount</span> <span class="o">%</span> <span class="mi">120</span> <span class="o">===</span> <span class="mi">1</span><span class="p">)</span> <span class="nx">addBlockPair</span><span class="p">(</span><span class="nx">blocks</span><span class="p">)</span><span class="p">;</span> <span class="c1">// 一定間隔でブロック追加
@@ -869,7 +1101,7 @@ https://github.com/alex-shpak/hugo-book
   <span class="k">for</span> <span class="p">(</span><span class="kd">let</span> <span class="nx">block</span> <span class="k">of</span> <span class="nx">blocks</span><span class="p">)</span> <span class="nx">drawBlock</span><span class="p">(</span><span class="nx">block</span><span class="p">)</span><span class="p">;</span>
 
   <span class="c1">// ゲームオーバーならそれ用の画面を表示
-</span><span class="c1"></span>  <span class="k">if</span> <span class="p">(</span><span class="nx">gameState</span> <span class="o">===</span> <span class="s2">&#34;gameover&#34;</span><span class="p">)</span> <span class="nx">drawGameOverScreen</span><span class="p">(</span><span class="p">)</span><span class="p">;</span>
+</span><span class="c1"></span>  <span class="k">if</span> <span class="p">(</span><span class="nx">gameState</span> <span class="o">===</span> <span class="s2">&#34;gameover&#34;</span><span class="p">)</span> <span class="nx">drawGameoverScreen</span><span class="p">(</span><span class="p">)</span><span class="p">;</span>
 <span class="p">}</span>
 
 <span class="cm">/** マウスボタンが押されたときのゲームへの影響 */</span>
@@ -939,14 +1171,16 @@ https://github.com/alex-shpak/hugo-book
       <ul>
         <li><a href="#理由">理由</a></li>
         <li><a href="#やること">やること</a></li>
-        <li><a href="#ソースコード">ソースコード</a></li>
+        <li><a href="#まず引越し先を用意する">まず引越し先を用意する</a></li>
+        <li><a href="#引っ越す">引っ越す</a></li>
       </ul>
     </li>
     <li><a href="#プレイゲームオーバー-の2状態を作って切り替える">プレイ／ゲームオーバー の2状態を作って切り替える</a>
       <ul>
         <li><a href="#ゲームオーバー状態がプレイ状態と異なる点">ゲームオーバー状態がプレイ状態と異なる点</a></li>
         <li><a href="#やること-1">やること</a></li>
-        <li><a href="#ソースコード-1">ソースコード</a></li>
+        <li><a href="#必要な関数が揃っていると仮定して書いてみる">必要な関数が揃っている、と仮定して書いてみる</a></li>
+        <li><a href="#必要な関数を実装して完成">必要な関数を実装して完成</a></li>
       </ul>
     </li>
   </ul>
