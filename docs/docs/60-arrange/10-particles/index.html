@@ -13,7 +13,7 @@
 <link rel="icon" href="/make-games-with-p5js/favicon.png" type="image/x-icon">
 
 
-<link rel="stylesheet" href="/make-games-with-p5js/book.min.eea3d957aa076eb37f0dc945a01970811db19796a1057c7d8e46268703b9c8f0.css" integrity="sha256-7qPZV6oHbrN/DclFoBlwgR2xl5ahBXx9jkYmhwO5yPA=">
+<link rel="stylesheet" href="/make-games-with-p5js/book.min.b213ac0122064e36233a98a047f17aa5707402541125b620d26515c994213ee5.css" integrity="sha256-shOsASIGTjYjOpigR/F6pXB0AlQRJbYg0mUVyZQhPuU=">
 
 
 <!--
@@ -21,7 +21,7 @@ Made with Book Theme
 https://github.com/alex-shpak/hugo-book
 -->
 
-  
+  <link rel="stylesheet" href="https://fal-works.github.io/make-games-with-p5js/css/chroma-style.css" />
 </head>
 
 <body>
@@ -241,7 +241,7 @@ https://github.com/alex-shpak/hugo-book
       
 
   <a href="/make-games-with-p5js/docs/60-arrange/" >
-      アレンジ
+      アレンジいろいろ
   </a>
 
 
@@ -368,275 +368,553 @@ https://github.com/alex-shpak/hugo-book
 <p>パーティクルエンティティに持たせるデータを増やし、時間経過で減少させる</p>
 <p>例えば次のように関数を用意すれば、<br>
 <code>life</code> を徐々に減らしていってゼロになったら削除、といった使い方ができる</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-javascript" data-lang="javascript"><span style="color:#66d9ef">function</span> <span style="color:#a6e22e">createParticle</span>(<span style="color:#a6e22e">x</span>, <span style="color:#a6e22e">y</span>) {
-  <span style="color:#66d9ef">let</span> <span style="color:#a6e22e">direction</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">random</span>(<span style="color:#a6e22e">TWO_PI</span>);
-  <span style="color:#66d9ef">let</span> <span style="color:#a6e22e">speed</span> <span style="color:#f92672">=</span> <span style="color:#ae81ff">2</span>;
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="kd">function</span> <span class="nx">createParticle</span><span class="p">(</span><span class="nx">x</span><span class="p">,</span> <span class="nx">y</span><span class="p">)</span> <span class="p">{</span>
+  <span class="kd">let</span> <span class="nx">direction</span> <span class="o">=</span> <span class="nx">random</span><span class="p">(</span><span class="nx">TWO_PI</span><span class="p">)</span><span class="p">;</span>
+  <span class="kd">let</span> <span class="nx">speed</span> <span class="o">=</span> <span class="mi">2</span><span class="p">;</span>
 
-  <span style="color:#66d9ef">return</span> {
-    <span style="color:#a6e22e">x</span>,
-    <span style="color:#a6e22e">y</span>,
-    <span style="color:#a6e22e">vx</span><span style="color:#f92672">:</span> <span style="color:#f92672">-</span><span style="color:#ae81ff">2</span> <span style="color:#f92672">+</span> <span style="color:#a6e22e">speed</span> <span style="color:#f92672">*</span> <span style="color:#a6e22e">cos</span>(<span style="color:#a6e22e">direction</span>),
-    <span style="color:#a6e22e">vy</span><span style="color:#f92672">:</span> <span style="color:#a6e22e">speed</span> <span style="color:#f92672">*</span> <span style="color:#a6e22e">sin</span>(<span style="color:#a6e22e">direction</span>),
-    <span style="color:#a6e22e">life</span><span style="color:#f92672">:</span> <span style="color:#ae81ff">1</span> <span style="color:#75715e">// = 100%
-</span><span style="color:#75715e"></span>  };
-}
+  <span class="k">return</span> <span class="p">{</span>
+    <span class="nx">x</span><span class="p">,</span>
+    <span class="nx">y</span><span class="p">,</span>
+    <span class="nx">vx</span><span class="o">:</span> <span class="o">-</span><span class="mi">2</span> <span class="o">+</span> <span class="nx">speed</span> <span class="o">*</span> <span class="nx">cos</span><span class="p">(</span><span class="nx">direction</span><span class="p">)</span><span class="p">,</span>
+    <span class="nx">vy</span><span class="o">:</span> <span class="nx">speed</span> <span class="o">*</span> <span class="nx">sin</span><span class="p">(</span><span class="nx">direction</span><span class="p">)</span><span class="p">,</span>
+    <span class="nx">life</span><span class="o">:</span> <span class="mi">1</span> <span class="c1">// = 100%
+</span><span class="c1"></span>  <span class="p">}</span><span class="p">;</span>
+<span class="p">}</span>
 
-<span style="color:#66d9ef">function</span> <span style="color:#a6e22e">decreaseLife</span>(<span style="color:#a6e22e">particle</span>) {
-  <span style="color:#a6e22e">particle</span>.<span style="color:#a6e22e">life</span> <span style="color:#f92672">-=</span> <span style="color:#ae81ff">0.02</span>;
-}
+<span class="kd">function</span> <span class="nx">decreaseLife</span><span class="p">(</span><span class="nx">particle</span><span class="p">)</span> <span class="p">{</span>
+  <span class="nx">particle</span><span class="p">.</span><span class="nx">life</span> <span class="o">-=</span> <span class="mf">0.02</span><span class="p">;</span>
+<span class="p">}</span>
 
-<span style="color:#66d9ef">function</span> <span style="color:#a6e22e">particleIsAlive</span>(<span style="color:#a6e22e">particle</span>) {
-  <span style="color:#66d9ef">return</span> <span style="color:#a6e22e">particle</span>.<span style="color:#a6e22e">life</span> <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">0</span>;
-}
-</code></pre></div><h2 id="例">例</h2>
+<span class="kd">function</span> <span class="nx">particleIsAlive</span><span class="p">(</span><span class="nx">particle</span><span class="p">)</span> <span class="p">{</span>
+  <span class="k">return</span> <span class="nx">particle</span><span class="p">.</span><span class="nx">life</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></td></tr></table>
+</div>
+</div><h2 id="例">例</h2>
 <p><a href="https://fal-works.github.io/make-games-with-p5js-src/11-particles" target="_blank">▶ 動かしてみる</a></p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-javascript" data-lang="javascript"><span style="color:#75715e">// ---- エンティティ関連の関数 --------------------------------------------------
-</span><span style="color:#75715e"></span>
-<span style="color:#75715e">// 全エンティティ共通
-</span><span style="color:#75715e"></span>
-<span style="color:#66d9ef">function</span> <span style="color:#a6e22e">updatePosition</span>(<span style="color:#a6e22e">entity</span>) {
-  <span style="color:#a6e22e">entity</span>.<span style="color:#a6e22e">x</span> <span style="color:#f92672">+=</span> <span style="color:#a6e22e">entity</span>.<span style="color:#a6e22e">vx</span>;
-  <span style="color:#a6e22e">entity</span>.<span style="color:#a6e22e">y</span> <span style="color:#f92672">+=</span> <span style="color:#a6e22e">entity</span>.<span style="color:#a6e22e">vy</span>;
-}
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">  1
+</span><span class="lnt">  2
+</span><span class="lnt">  3
+</span><span class="lnt">  4
+</span><span class="lnt">  5
+</span><span class="lnt">  6
+</span><span class="lnt">  7
+</span><span class="lnt">  8
+</span><span class="lnt">  9
+</span><span class="lnt"> 10
+</span><span class="lnt"> 11
+</span><span class="lnt"> 12
+</span><span class="lnt"> 13
+</span><span class="lnt"> 14
+</span><span class="lnt"> 15
+</span><span class="lnt"> 16
+</span><span class="lnt"> 17
+</span><span class="lnt"> 18
+</span><span class="lnt"> 19
+</span><span class="lnt"> 20
+</span><span class="lnt"> 21
+</span><span class="lnt"> 22
+</span><span class="lnt"> 23
+</span><span class="lnt"> 24
+</span><span class="lnt"> 25
+</span><span class="lnt"> 26
+</span><span class="lnt"> 27
+</span><span class="lnt"> 28
+</span><span class="lnt"> 29
+</span><span class="lnt"> 30
+</span><span class="lnt"> 31
+</span><span class="lnt"> 32
+</span><span class="lnt"> 33
+</span><span class="lnt"> 34
+</span><span class="lnt"> 35
+</span><span class="lnt"> 36
+</span><span class="lnt"> 37
+</span><span class="lnt"> 38
+</span><span class="lnt"> 39
+</span><span class="lnt"> 40
+</span><span class="lnt"> 41
+</span><span class="lnt"> 42
+</span><span class="lnt"> 43
+</span><span class="lnt"> 44
+</span><span class="lnt"> 45
+</span><span class="lnt"> 46
+</span><span class="lnt"> 47
+</span><span class="lnt"> 48
+</span><span class="lnt"> 49
+</span><span class="lnt"> 50
+</span><span class="lnt"> 51
+</span><span class="lnt"> 52
+</span><span class="lnt"> 53
+</span><span class="lnt"> 54
+</span><span class="lnt"> 55
+</span><span class="lnt"> 56
+</span><span class="lnt"> 57
+</span><span class="lnt"> 58
+</span><span class="lnt"> 59
+</span><span class="lnt"> 60
+</span><span class="lnt"> 61
+</span><span class="lnt"> 62
+</span><span class="lnt"> 63
+</span><span class="lnt"> 64
+</span><span class="lnt"> 65
+</span><span class="lnt"> 66
+</span><span class="lnt"> 67
+</span><span class="lnt"> 68
+</span><span class="lnt"> 69
+</span><span class="lnt"> 70
+</span><span class="lnt"> 71
+</span><span class="lnt"> 72
+</span><span class="lnt"> 73
+</span><span class="lnt"> 74
+</span><span class="lnt"> 75
+</span><span class="lnt"> 76
+</span><span class="lnt"> 77
+</span><span class="lnt"> 78
+</span><span class="lnt"> 79
+</span><span class="lnt"> 80
+</span><span class="lnt"> 81
+</span><span class="lnt"> 82
+</span><span class="lnt"> 83
+</span><span class="lnt"> 84
+</span><span class="lnt"> 85
+</span><span class="lnt"> 86
+</span><span class="lnt"> 87
+</span><span class="lnt"> 88
+</span><span class="lnt"> 89
+</span><span class="lnt"> 90
+</span><span class="lnt"> 91
+</span><span class="lnt"> 92
+</span><span class="lnt"> 93
+</span><span class="lnt"> 94
+</span><span class="lnt"> 95
+</span><span class="lnt"> 96
+</span><span class="lnt"> 97
+</span><span class="lnt"> 98
+</span><span class="lnt"> 99
+</span><span class="lnt">100
+</span><span class="lnt">101
+</span><span class="lnt">102
+</span><span class="lnt">103
+</span><span class="lnt">104
+</span><span class="lnt">105
+</span><span class="lnt">106
+</span><span class="lnt">107
+</span><span class="lnt">108
+</span><span class="lnt">109
+</span><span class="lnt">110
+</span><span class="lnt">111
+</span><span class="lnt">112
+</span><span class="lnt">113
+</span><span class="lnt">114
+</span><span class="lnt">115
+</span><span class="lnt">116
+</span><span class="lnt">117
+</span><span class="lnt">118
+</span><span class="lnt">119
+</span><span class="lnt">120
+</span><span class="lnt">121
+</span><span class="lnt">122
+</span><span class="lnt">123
+</span><span class="lnt">124
+</span><span class="lnt">125
+</span><span class="lnt">126
+</span><span class="lnt">127
+</span><span class="lnt">128
+</span><span class="lnt">129
+</span><span class="lnt">130
+</span><span class="lnt">131
+</span><span class="lnt">132
+</span><span class="lnt">133
+</span><span class="lnt">134
+</span><span class="lnt">135
+</span><span class="lnt">136
+</span><span class="lnt">137
+</span><span class="lnt">138
+</span><span class="lnt">139
+</span><span class="lnt">140
+</span><span class="lnt">141
+</span><span class="lnt">142
+</span><span class="lnt">143
+</span><span class="lnt">144
+</span><span class="lnt">145
+</span><span class="lnt">146
+</span><span class="lnt">147
+</span><span class="lnt">148
+</span><span class="lnt">149
+</span><span class="lnt">150
+</span><span class="lnt">151
+</span><span class="lnt">152
+</span><span class="lnt">153
+</span><span class="lnt">154
+</span><span class="lnt">155
+</span><span class="lnt">156
+</span><span class="lnt">157
+</span><span class="lnt">158
+</span><span class="lnt">159
+</span><span class="lnt">160
+</span><span class="lnt">161
+</span><span class="lnt">162
+</span><span class="lnt">163
+</span><span class="lnt">164
+</span><span class="lnt">165
+</span><span class="lnt">166
+</span><span class="lnt">167
+</span><span class="lnt">168
+</span><span class="lnt">169
+</span><span class="lnt">170
+</span><span class="lnt">171
+</span><span class="lnt">172
+</span><span class="lnt">173
+</span><span class="lnt">174
+</span><span class="lnt">175
+</span><span class="lnt">176
+</span><span class="lnt">177
+</span><span class="lnt">178
+</span><span class="lnt">179
+</span><span class="lnt">180
+</span><span class="lnt">181
+</span><span class="lnt">182
+</span><span class="lnt">183
+</span><span class="lnt">184
+</span><span class="lnt">185
+</span><span class="lnt">186
+</span><span class="lnt">187
+</span><span class="lnt">188
+</span><span class="lnt">189
+</span><span class="lnt">190
+</span><span class="lnt">191
+</span><span class="lnt">192
+</span><span class="lnt">193
+</span><span class="lnt">194
+</span><span class="lnt">195
+</span><span class="lnt">196
+</span><span class="lnt">197
+</span><span class="lnt">198
+</span><span class="lnt">199
+</span><span class="lnt">200
+</span><span class="lnt">201
+</span><span class="lnt">202
+</span><span class="lnt">203
+</span><span class="lnt">204
+</span><span class="lnt">205
+</span><span class="lnt">206
+</span><span class="lnt">207
+</span><span class="lnt">208
+</span><span class="lnt">209
+</span><span class="lnt">210
+</span><span class="lnt">211
+</span><span class="lnt">212
+</span><span class="lnt">213
+</span><span class="lnt">214
+</span><span class="lnt">215
+</span><span class="lnt">216
+</span><span class="lnt">217
+</span><span class="lnt">218
+</span><span class="lnt">219
+</span><span class="lnt">220
+</span><span class="lnt">221
+</span><span class="lnt">222
+</span><span class="lnt">223
+</span><span class="lnt">224
+</span><span class="lnt">225
+</span><span class="lnt">226
+</span><span class="lnt">227
+</span><span class="lnt">228
+</span><span class="lnt">229
+</span><span class="lnt">230
+</span><span class="lnt">231
+</span><span class="lnt">232
+</span><span class="lnt">233
+</span><span class="lnt">234
+</span><span class="lnt">235
+</span><span class="lnt">236
+</span><span class="lnt">237
+</span><span class="lnt">238
+</span><span class="lnt">239
+</span><span class="lnt">240
+</span><span class="lnt">241
+</span><span class="lnt">242
+</span><span class="lnt">243
+</span><span class="lnt">244
+</span><span class="lnt">245
+</span><span class="lnt">246
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="c1">// ---- エンティティ関連の関数 --------------------------------------------------
+</span><span class="c1"></span>
+<span class="c1">// 全エンティティ共通
+</span><span class="c1"></span>
+<span class="kd">function</span> <span class="nx">updatePosition</span><span class="p">(</span><span class="nx">entity</span><span class="p">)</span> <span class="p">{</span>
+  <span class="nx">entity</span><span class="p">.</span><span class="nx">x</span> <span class="o">+=</span> <span class="nx">entity</span><span class="p">.</span><span class="nx">vx</span><span class="p">;</span>
+  <span class="nx">entity</span><span class="p">.</span><span class="nx">y</span> <span class="o">+=</span> <span class="nx">entity</span><span class="p">.</span><span class="nx">vy</span><span class="p">;</span>
+<span class="p">}</span>
 
-<span style="color:#75715e">// プレイヤーエンティティ用
-</span><span style="color:#75715e"></span>
-<span style="color:#66d9ef">function</span> <span style="color:#a6e22e">createPlayer</span>() {
-  <span style="color:#66d9ef">return</span> {
-    <span style="color:#a6e22e">x</span><span style="color:#f92672">:</span> <span style="color:#ae81ff">200</span>,
-    <span style="color:#a6e22e">y</span><span style="color:#f92672">:</span> <span style="color:#ae81ff">300</span>,
-    <span style="color:#a6e22e">vx</span><span style="color:#f92672">:</span> <span style="color:#ae81ff">0</span>,
-    <span style="color:#a6e22e">vy</span><span style="color:#f92672">:</span> <span style="color:#ae81ff">0</span>
-  };
-}
+<span class="c1">// プレイヤーエンティティ用
+</span><span class="c1"></span>
+<span class="kd">function</span> <span class="nx">createPlayer</span><span class="p">(</span><span class="p">)</span> <span class="p">{</span>
+  <span class="k">return</span> <span class="p">{</span>
+    <span class="nx">x</span><span class="o">:</span> <span class="mi">200</span><span class="p">,</span>
+    <span class="nx">y</span><span class="o">:</span> <span class="mi">300</span><span class="p">,</span>
+    <span class="nx">vx</span><span class="o">:</span> <span class="mi">0</span><span class="p">,</span>
+    <span class="nx">vy</span><span class="o">:</span> <span class="mi">0</span>
+  <span class="p">}</span><span class="p">;</span>
+<span class="p">}</span>
 
-<span style="color:#66d9ef">function</span> <span style="color:#a6e22e">applyGravity</span>(<span style="color:#a6e22e">entity</span>) {
-  <span style="color:#a6e22e">entity</span>.<span style="color:#a6e22e">vy</span> <span style="color:#f92672">+=</span> <span style="color:#ae81ff">0.15</span>;
-}
+<span class="kd">function</span> <span class="nx">applyGravity</span><span class="p">(</span><span class="nx">entity</span><span class="p">)</span> <span class="p">{</span>
+  <span class="nx">entity</span><span class="p">.</span><span class="nx">vy</span> <span class="o">+=</span> <span class="mf">0.15</span><span class="p">;</span>
+<span class="p">}</span>
 
-<span style="color:#66d9ef">function</span> <span style="color:#a6e22e">applyJump</span>(<span style="color:#a6e22e">entity</span>) {
-  <span style="color:#a6e22e">entity</span>.<span style="color:#a6e22e">vy</span> <span style="color:#f92672">=</span> <span style="color:#f92672">-</span><span style="color:#ae81ff">5</span>;
-}
+<span class="kd">function</span> <span class="nx">applyJump</span><span class="p">(</span><span class="nx">entity</span><span class="p">)</span> <span class="p">{</span>
+  <span class="nx">entity</span><span class="p">.</span><span class="nx">vy</span> <span class="o">=</span> <span class="o">-</span><span class="mi">5</span><span class="p">;</span>
+<span class="p">}</span>
 
-<span style="color:#66d9ef">function</span> <span style="color:#a6e22e">drawPlayer</span>(<span style="color:#a6e22e">entity</span>) {
-  <span style="color:#a6e22e">square</span>(<span style="color:#a6e22e">entity</span>.<span style="color:#a6e22e">x</span>, <span style="color:#a6e22e">entity</span>.<span style="color:#a6e22e">y</span>, <span style="color:#ae81ff">40</span>);
-}
+<span class="kd">function</span> <span class="nx">drawPlayer</span><span class="p">(</span><span class="nx">entity</span><span class="p">)</span> <span class="p">{</span>
+  <span class="nx">square</span><span class="p">(</span><span class="nx">entity</span><span class="p">.</span><span class="nx">x</span><span class="p">,</span> <span class="nx">entity</span><span class="p">.</span><span class="nx">y</span><span class="p">,</span> <span class="mi">40</span><span class="p">)</span><span class="p">;</span>
+<span class="p">}</span>
 
-<span style="color:#66d9ef">function</span> <span style="color:#a6e22e">playerIsAlive</span>(<span style="color:#a6e22e">entity</span>) {
-  <span style="color:#75715e">// プレイヤーの位置が生存圏内なら true を返す。
-</span><span style="color:#75715e"></span>  <span style="color:#75715e">// 600 は画面の下端
-</span><span style="color:#75715e"></span>  <span style="color:#66d9ef">return</span> <span style="color:#a6e22e">entity</span>.<span style="color:#a6e22e">y</span> <span style="color:#f92672">&lt;</span> <span style="color:#ae81ff">600</span>;
-}
+<span class="kd">function</span> <span class="nx">playerIsAlive</span><span class="p">(</span><span class="nx">entity</span><span class="p">)</span> <span class="p">{</span>
+  <span class="c1">// プレイヤーの位置が生存圏内なら true を返す。
+</span><span class="c1"></span>  <span class="c1">// 600 は画面の下端
+</span><span class="c1"></span>  <span class="k">return</span> <span class="nx">entity</span><span class="p">.</span><span class="nx">y</span> <span class="o">&lt;</span> <span class="mi">600</span><span class="p">;</span>
+<span class="p">}</span>
 
-<span style="color:#75715e">// ブロックエンティティ用
-</span><span style="color:#75715e"></span>
-<span style="color:#66d9ef">function</span> <span style="color:#a6e22e">createBlock</span>(<span style="color:#a6e22e">y</span>) {
-  <span style="color:#66d9ef">return</span> {
-    <span style="color:#a6e22e">x</span><span style="color:#f92672">:</span> <span style="color:#ae81ff">900</span>,
-    <span style="color:#a6e22e">y</span>,
-    <span style="color:#a6e22e">vx</span><span style="color:#f92672">:</span> <span style="color:#f92672">-</span><span style="color:#ae81ff">2</span>,
-    <span style="color:#a6e22e">vy</span><span style="color:#f92672">:</span> <span style="color:#ae81ff">0</span>
-  };
-}
+<span class="c1">// ブロックエンティティ用
+</span><span class="c1"></span>
+<span class="kd">function</span> <span class="nx">createBlock</span><span class="p">(</span><span class="nx">y</span><span class="p">)</span> <span class="p">{</span>
+  <span class="k">return</span> <span class="p">{</span>
+    <span class="nx">x</span><span class="o">:</span> <span class="mi">900</span><span class="p">,</span>
+    <span class="nx">y</span><span class="p">,</span>
+    <span class="nx">vx</span><span class="o">:</span> <span class="o">-</span><span class="mi">2</span><span class="p">,</span>
+    <span class="nx">vy</span><span class="o">:</span> <span class="mi">0</span>
+  <span class="p">}</span><span class="p">;</span>
+<span class="p">}</span>
 
-<span style="color:#66d9ef">function</span> <span style="color:#a6e22e">drawBlock</span>(<span style="color:#a6e22e">entity</span>) {
-  <span style="color:#a6e22e">rect</span>(<span style="color:#a6e22e">entity</span>.<span style="color:#a6e22e">x</span>, <span style="color:#a6e22e">entity</span>.<span style="color:#a6e22e">y</span>, <span style="color:#ae81ff">80</span>, <span style="color:#ae81ff">400</span>);
-}
+<span class="kd">function</span> <span class="nx">drawBlock</span><span class="p">(</span><span class="nx">entity</span><span class="p">)</span> <span class="p">{</span>
+  <span class="nx">rect</span><span class="p">(</span><span class="nx">entity</span><span class="p">.</span><span class="nx">x</span><span class="p">,</span> <span class="nx">entity</span><span class="p">.</span><span class="nx">y</span><span class="p">,</span> <span class="mi">80</span><span class="p">,</span> <span class="mi">400</span><span class="p">)</span><span class="p">;</span>
+<span class="p">}</span>
 
-<span style="color:#66d9ef">function</span> <span style="color:#a6e22e">blockIsAlive</span>(<span style="color:#a6e22e">entity</span>) {
-  <span style="color:#75715e">// ブロックの位置が生存圏内なら true を返す。
-</span><span style="color:#75715e"></span>  <span style="color:#75715e">// -100 は適当な値（ブロックが見えなくなる位置であればよい）
-</span><span style="color:#75715e"></span>  <span style="color:#66d9ef">return</span> <span style="color:#f92672">-</span><span style="color:#ae81ff">100</span> <span style="color:#f92672">&lt;</span> <span style="color:#a6e22e">entity</span>.<span style="color:#a6e22e">x</span>;
-}
+<span class="kd">function</span> <span class="nx">blockIsAlive</span><span class="p">(</span><span class="nx">entity</span><span class="p">)</span> <span class="p">{</span>
+  <span class="c1">// ブロックの位置が生存圏内なら true を返す。
+</span><span class="c1"></span>  <span class="c1">// -100 は適当な値（ブロックが見えなくなる位置であればよい）
+</span><span class="c1"></span>  <span class="k">return</span> <span class="o">-</span><span class="mi">100</span> <span class="o">&lt;</span> <span class="nx">entity</span><span class="p">.</span><span class="nx">x</span><span class="p">;</span>
+<span class="p">}</span>
 
-<span style="color:#75715e">// パーティクルエンティティ用
-</span><span style="color:#75715e"></span>
-<span style="color:#66d9ef">function</span> <span style="color:#a6e22e">createParticle</span>(<span style="color:#a6e22e">x</span>, <span style="color:#a6e22e">y</span>) {
-  <span style="color:#66d9ef">let</span> <span style="color:#a6e22e">direction</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">random</span>(<span style="color:#a6e22e">TWO_PI</span>);
-  <span style="color:#66d9ef">let</span> <span style="color:#a6e22e">speed</span> <span style="color:#f92672">=</span> <span style="color:#ae81ff">2</span>;
+<span class="c1">// パーティクルエンティティ用
+</span><span class="c1"></span>
+<span class="kd">function</span> <span class="nx">createParticle</span><span class="p">(</span><span class="nx">x</span><span class="p">,</span> <span class="nx">y</span><span class="p">)</span> <span class="p">{</span>
+  <span class="kd">let</span> <span class="nx">direction</span> <span class="o">=</span> <span class="nx">random</span><span class="p">(</span><span class="nx">TWO_PI</span><span class="p">)</span><span class="p">;</span>
+  <span class="kd">let</span> <span class="nx">speed</span> <span class="o">=</span> <span class="mi">2</span><span class="p">;</span>
 
-  <span style="color:#66d9ef">return</span> {
-    <span style="color:#a6e22e">x</span>,
-    <span style="color:#a6e22e">y</span>,
-    <span style="color:#a6e22e">vx</span><span style="color:#f92672">:</span> <span style="color:#f92672">-</span><span style="color:#ae81ff">2</span> <span style="color:#f92672">+</span> <span style="color:#a6e22e">speed</span> <span style="color:#f92672">*</span> <span style="color:#a6e22e">cos</span>(<span style="color:#a6e22e">direction</span>),
-    <span style="color:#a6e22e">vy</span><span style="color:#f92672">:</span> <span style="color:#a6e22e">speed</span> <span style="color:#f92672">*</span> <span style="color:#a6e22e">sin</span>(<span style="color:#a6e22e">direction</span>),
-    <span style="color:#a6e22e">life</span><span style="color:#f92672">:</span> <span style="color:#ae81ff">1</span> <span style="color:#75715e">// = 100%
-</span><span style="color:#75715e"></span>  };
-}
+  <span class="k">return</span> <span class="p">{</span>
+    <span class="nx">x</span><span class="p">,</span>
+    <span class="nx">y</span><span class="p">,</span>
+    <span class="nx">vx</span><span class="o">:</span> <span class="o">-</span><span class="mi">2</span> <span class="o">+</span> <span class="nx">speed</span> <span class="o">*</span> <span class="nx">cos</span><span class="p">(</span><span class="nx">direction</span><span class="p">)</span><span class="p">,</span>
+    <span class="nx">vy</span><span class="o">:</span> <span class="nx">speed</span> <span class="o">*</span> <span class="nx">sin</span><span class="p">(</span><span class="nx">direction</span><span class="p">)</span><span class="p">,</span>
+    <span class="nx">life</span><span class="o">:</span> <span class="mi">1</span> <span class="c1">// = 100%
+</span><span class="c1"></span>  <span class="p">}</span><span class="p">;</span>
+<span class="p">}</span>
 
-<span style="color:#66d9ef">function</span> <span style="color:#a6e22e">decreaseLife</span>(<span style="color:#a6e22e">particle</span>) {
-  <span style="color:#a6e22e">particle</span>.<span style="color:#a6e22e">life</span> <span style="color:#f92672">-=</span> <span style="color:#ae81ff">0.02</span>;
-}
+<span class="kd">function</span> <span class="nx">decreaseLife</span><span class="p">(</span><span class="nx">particle</span><span class="p">)</span> <span class="p">{</span>
+  <span class="nx">particle</span><span class="p">.</span><span class="nx">life</span> <span class="o">-=</span> <span class="mf">0.02</span><span class="p">;</span>
+<span class="p">}</span>
 
-<span style="color:#66d9ef">function</span> <span style="color:#a6e22e">particleIsAlive</span>(<span style="color:#a6e22e">particle</span>) {
-  <span style="color:#66d9ef">return</span> <span style="color:#a6e22e">particle</span>.<span style="color:#a6e22e">life</span> <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">0</span>;
-}
+<span class="kd">function</span> <span class="nx">particleIsAlive</span><span class="p">(</span><span class="nx">particle</span><span class="p">)</span> <span class="p">{</span>
+  <span class="k">return</span> <span class="nx">particle</span><span class="p">.</span><span class="nx">life</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
 
-<span style="color:#66d9ef">function</span> <span style="color:#a6e22e">drawParticle</span>(<span style="color:#a6e22e">particle</span>) {
-  <span style="color:#a6e22e">push</span>();
-  <span style="color:#a6e22e">noStroke</span>();
-  <span style="color:#a6e22e">fill</span>(<span style="color:#ae81ff">255</span>, <span style="color:#a6e22e">particle</span>.<span style="color:#a6e22e">life</span> <span style="color:#f92672">*</span> <span style="color:#ae81ff">255</span>);
-  <span style="color:#a6e22e">square</span>(<span style="color:#a6e22e">particle</span>.<span style="color:#a6e22e">x</span>, <span style="color:#a6e22e">particle</span>.<span style="color:#a6e22e">y</span>, <span style="color:#a6e22e">particle</span>.<span style="color:#a6e22e">life</span> <span style="color:#f92672">*</span> <span style="color:#ae81ff">10</span>);
-  <span style="color:#a6e22e">pop</span>();
-}
+<span class="kd">function</span> <span class="nx">drawParticle</span><span class="p">(</span><span class="nx">particle</span><span class="p">)</span> <span class="p">{</span>
+  <span class="nx">push</span><span class="p">(</span><span class="p">)</span><span class="p">;</span>
+  <span class="nx">noStroke</span><span class="p">(</span><span class="p">)</span><span class="p">;</span>
+  <span class="nx">fill</span><span class="p">(</span><span class="mi">255</span><span class="p">,</span> <span class="nx">particle</span><span class="p">.</span><span class="nx">life</span> <span class="o">*</span> <span class="mi">255</span><span class="p">)</span><span class="p">;</span>
+  <span class="nx">square</span><span class="p">(</span><span class="nx">particle</span><span class="p">.</span><span class="nx">x</span><span class="p">,</span> <span class="nx">particle</span><span class="p">.</span><span class="nx">y</span><span class="p">,</span> <span class="nx">particle</span><span class="p">.</span><span class="nx">life</span> <span class="o">*</span> <span class="mi">10</span><span class="p">)</span><span class="p">;</span>
+  <span class="nx">pop</span><span class="p">(</span><span class="p">)</span><span class="p">;</span>
+<span class="p">}</span>
 
-<span style="color:#75715e">// 複数のエンティティを処理する関数
-</span><span style="color:#75715e"></span>
-<span style="color:#75715e">/**
-</span><span style="color:#75715e"> * 2つのエンティティが衝突しているかどうかをチェックする
-</span><span style="color:#75715e"> *
-</span><span style="color:#75715e"> * @param entityA 衝突しているかどうかを確認したいエンティティ
-</span><span style="color:#75715e"> * @param entityB 同上
-</span><span style="color:#75715e"> * @param collisionXDistance 衝突しないギリギリのx距離
-</span><span style="color:#75715e"> * @param collisionYDistance 衝突しないギリギリのy距離
-</span><span style="color:#75715e"> * @returns 衝突していたら `true` そうでなければ `false` を返す
-</span><span style="color:#75715e"> */</span>
-<span style="color:#66d9ef">function</span> <span style="color:#a6e22e">entitiesAreColliding</span>(
-  <span style="color:#a6e22e">entityA</span>,
-  <span style="color:#a6e22e">entityB</span>,
-  <span style="color:#a6e22e">collisionXDistance</span>,
-  <span style="color:#a6e22e">collisionYDistance</span>
-) {
-  <span style="color:#75715e">// xとy、いずれかの距離が十分開いていたら、衝突していないので false を返す
-</span><span style="color:#75715e"></span>
-  <span style="color:#66d9ef">let</span> <span style="color:#a6e22e">currentXDistance</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">abs</span>(<span style="color:#a6e22e">entityA</span>.<span style="color:#a6e22e">x</span> <span style="color:#f92672">-</span> <span style="color:#a6e22e">entityB</span>.<span style="color:#a6e22e">x</span>); <span style="color:#75715e">// 現在のx距離
-</span><span style="color:#75715e"></span>  <span style="color:#66d9ef">if</span> (<span style="color:#a6e22e">collisionXDistance</span> <span style="color:#f92672">&lt;=</span> <span style="color:#a6e22e">currentXDistance</span>) <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">false</span>;
+<span class="c1">// 複数のエンティティを処理する関数
+</span><span class="c1"></span>
+<span class="cm">/**
+</span><span class="cm"> * 2つのエンティティが衝突しているかどうかをチェックする
+</span><span class="cm"> *
+</span><span class="cm"> * @param entityA 衝突しているかどうかを確認したいエンティティ
+</span><span class="cm"> * @param entityB 同上
+</span><span class="cm"> * @param collisionXDistance 衝突しないギリギリのx距離
+</span><span class="cm"> * @param collisionYDistance 衝突しないギリギリのy距離
+</span><span class="cm"> * @returns 衝突していたら `true` そうでなければ `false` を返す
+</span><span class="cm"> */</span>
+<span class="kd">function</span> <span class="nx">entitiesAreColliding</span><span class="p">(</span>
+  <span class="nx">entityA</span><span class="p">,</span>
+  <span class="nx">entityB</span><span class="p">,</span>
+  <span class="nx">collisionXDistance</span><span class="p">,</span>
+  <span class="nx">collisionYDistance</span>
+<span class="p">)</span> <span class="p">{</span>
+  <span class="c1">// xとy、いずれかの距離が十分開いていたら、衝突していないので false を返す
+</span><span class="c1"></span>
+  <span class="kd">let</span> <span class="nx">currentXDistance</span> <span class="o">=</span> <span class="nx">abs</span><span class="p">(</span><span class="nx">entityA</span><span class="p">.</span><span class="nx">x</span> <span class="o">-</span> <span class="nx">entityB</span><span class="p">.</span><span class="nx">x</span><span class="p">)</span><span class="p">;</span> <span class="c1">// 現在のx距離
+</span><span class="c1"></span>  <span class="k">if</span> <span class="p">(</span><span class="nx">collisionXDistance</span> <span class="o">&lt;=</span> <span class="nx">currentXDistance</span><span class="p">)</span> <span class="k">return</span> <span class="kc">false</span><span class="p">;</span>
 
-  <span style="color:#66d9ef">let</span> <span style="color:#a6e22e">currentYDistance</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">abs</span>(<span style="color:#a6e22e">entityA</span>.<span style="color:#a6e22e">y</span> <span style="color:#f92672">-</span> <span style="color:#a6e22e">entityB</span>.<span style="color:#a6e22e">y</span>); <span style="color:#75715e">// 現在のy距離
-</span><span style="color:#75715e"></span>  <span style="color:#66d9ef">if</span> (<span style="color:#a6e22e">collisionYDistance</span> <span style="color:#f92672">&lt;=</span> <span style="color:#a6e22e">currentYDistance</span>) <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">false</span>;
+  <span class="kd">let</span> <span class="nx">currentYDistance</span> <span class="o">=</span> <span class="nx">abs</span><span class="p">(</span><span class="nx">entityA</span><span class="p">.</span><span class="nx">y</span> <span class="o">-</span> <span class="nx">entityB</span><span class="p">.</span><span class="nx">y</span><span class="p">)</span><span class="p">;</span> <span class="c1">// 現在のy距離
+</span><span class="c1"></span>  <span class="k">if</span> <span class="p">(</span><span class="nx">collisionYDistance</span> <span class="o">&lt;=</span> <span class="nx">currentYDistance</span><span class="p">)</span> <span class="k">return</span> <span class="kc">false</span><span class="p">;</span>
 
-  <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">true</span>; <span style="color:#75715e">// ここまで来たら、x方向でもy方向でも重なっているので true
-</span><span style="color:#75715e"></span>}
+  <span class="k">return</span> <span class="kc">true</span><span class="p">;</span> <span class="c1">// ここまで来たら、x方向でもy方向でも重なっているので true
+</span><span class="c1"></span><span class="p">}</span>
 
-<span style="color:#75715e">// ---- ゲーム全体に関わる変数と関数 --------------------------------------------
-</span><span style="color:#75715e"></span>
-<span style="color:#75715e">/** プレイヤーエンティティ */</span>
-<span style="color:#66d9ef">let</span> <span style="color:#a6e22e">player</span>;
+<span class="c1">// ---- ゲーム全体に関わる変数と関数 --------------------------------------------
+</span><span class="c1"></span>
+<span class="cm">/** プレイヤーエンティティ */</span>
+<span class="kd">let</span> <span class="nx">player</span><span class="p">;</span>
 
-<span style="color:#75715e">/** ブロックエンティティの配列 */</span>
-<span style="color:#66d9ef">let</span> <span style="color:#a6e22e">blocks</span>;
+<span class="cm">/** ブロックエンティティの配列 */</span>
+<span class="kd">let</span> <span class="nx">blocks</span><span class="p">;</span>
 
-<span style="color:#75715e">/** パーティクルエンティティの配列 */</span>
-<span style="color:#66d9ef">let</span> <span style="color:#a6e22e">particles</span>;
+<span class="cm">/** パーティクルエンティティの配列 */</span>
+<span class="kd">let</span> <span class="nx">particles</span><span class="p">;</span>
 
-<span style="color:#75715e">/** ゲームの状態。&#34;play&#34; か &#34;gameover&#34; を入れるものとする */</span>
-<span style="color:#66d9ef">let</span> <span style="color:#a6e22e">gameState</span>;
+<span class="cm">/** ゲームの状態。&#34;play&#34; か &#34;gameover&#34; を入れるものとする */</span>
+<span class="kd">let</span> <span class="nx">gameState</span><span class="p">;</span>
 
-<span style="color:#75715e">/** ブロックを上下ペアで作成し、`blocks` に追加する */</span>
-<span style="color:#66d9ef">function</span> <span style="color:#a6e22e">addBlockPair</span>() {
-  <span style="color:#66d9ef">let</span> <span style="color:#a6e22e">y</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">random</span>(<span style="color:#f92672">-</span><span style="color:#ae81ff">100</span>, <span style="color:#ae81ff">100</span>);
-  <span style="color:#a6e22e">blocks</span>.<span style="color:#a6e22e">push</span>(<span style="color:#a6e22e">createBlock</span>(<span style="color:#a6e22e">y</span>)); <span style="color:#75715e">// 上のブロック
-</span><span style="color:#75715e"></span>  <span style="color:#a6e22e">blocks</span>.<span style="color:#a6e22e">push</span>(<span style="color:#a6e22e">createBlock</span>(<span style="color:#a6e22e">y</span> <span style="color:#f92672">+</span> <span style="color:#ae81ff">600</span>)); <span style="color:#75715e">// 下のブロック
-</span><span style="color:#75715e"></span>}
+<span class="cm">/** ブロックを上下ペアで作成し、`blocks` に追加する */</span>
+<span class="kd">function</span> <span class="nx">addBlockPair</span><span class="p">(</span><span class="p">)</span> <span class="p">{</span>
+  <span class="kd">let</span> <span class="nx">y</span> <span class="o">=</span> <span class="nx">random</span><span class="p">(</span><span class="o">-</span><span class="mi">100</span><span class="p">,</span> <span class="mi">100</span><span class="p">)</span><span class="p">;</span>
+  <span class="nx">blocks</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span><span class="nx">createBlock</span><span class="p">(</span><span class="nx">y</span><span class="p">)</span><span class="p">)</span><span class="p">;</span> <span class="c1">// 上のブロック
+</span><span class="c1"></span>  <span class="nx">blocks</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span><span class="nx">createBlock</span><span class="p">(</span><span class="nx">y</span> <span class="o">+</span> <span class="mi">600</span><span class="p">)</span><span class="p">)</span><span class="p">;</span> <span class="c1">// 下のブロック
+</span><span class="c1"></span><span class="p">}</span>
 
-<span style="color:#75715e">/** ゲームオーバー画面を表示する */</span>
-<span style="color:#66d9ef">function</span> <span style="color:#a6e22e">drawGameOverScreen</span>() {
-  <span style="color:#a6e22e">background</span>(<span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">192</span>);
-  <span style="color:#a6e22e">fill</span>(<span style="color:#ae81ff">255</span>);
-  <span style="color:#a6e22e">textSize</span>(<span style="color:#ae81ff">64</span>);
-  <span style="color:#a6e22e">textAlign</span>(<span style="color:#a6e22e">CENTER</span>, <span style="color:#a6e22e">CENTER</span>);
-  <span style="color:#a6e22e">text</span>(<span style="color:#e6db74">&#34;GAME OVER&#34;</span>, <span style="color:#a6e22e">width</span> <span style="color:#f92672">/</span> <span style="color:#ae81ff">2</span>, <span style="color:#a6e22e">height</span> <span style="color:#f92672">/</span> <span style="color:#ae81ff">2</span>);
-}
+<span class="cm">/** ゲームオーバー画面を表示する */</span>
+<span class="kd">function</span> <span class="nx">drawGameOverScreen</span><span class="p">(</span><span class="p">)</span> <span class="p">{</span>
+  <span class="nx">background</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">192</span><span class="p">)</span><span class="p">;</span>
+  <span class="nx">fill</span><span class="p">(</span><span class="mi">255</span><span class="p">)</span><span class="p">;</span>
+  <span class="nx">textSize</span><span class="p">(</span><span class="mi">64</span><span class="p">)</span><span class="p">;</span>
+  <span class="nx">textAlign</span><span class="p">(</span><span class="nx">CENTER</span><span class="p">,</span> <span class="nx">CENTER</span><span class="p">)</span><span class="p">;</span>
+  <span class="nx">text</span><span class="p">(</span><span class="s2">&#34;GAME OVER&#34;</span><span class="p">,</span> <span class="nx">width</span> <span class="o">/</span> <span class="mi">2</span><span class="p">,</span> <span class="nx">height</span> <span class="o">/</span> <span class="mi">2</span><span class="p">)</span><span class="p">;</span>
+<span class="p">}</span>
 
-<span style="color:#75715e">/** ゲームのリセット */</span>
-<span style="color:#66d9ef">function</span> <span style="color:#a6e22e">resetGame</span>() {
-  <span style="color:#75715e">// 状態をリセット
-</span><span style="color:#75715e"></span>  <span style="color:#a6e22e">gameState</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;play&#34;</span>;
+<span class="cm">/** ゲームのリセット */</span>
+<span class="kd">function</span> <span class="nx">resetGame</span><span class="p">(</span><span class="p">)</span> <span class="p">{</span>
+  <span class="c1">// 状態をリセット
+</span><span class="c1"></span>  <span class="nx">gameState</span> <span class="o">=</span> <span class="s2">&#34;play&#34;</span><span class="p">;</span>
 
-  <span style="color:#75715e">// プレイヤーを作成
-</span><span style="color:#75715e"></span>  <span style="color:#a6e22e">player</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">createPlayer</span>();
+  <span class="c1">// プレイヤーを作成
+</span><span class="c1"></span>  <span class="nx">player</span> <span class="o">=</span> <span class="nx">createPlayer</span><span class="p">(</span><span class="p">)</span><span class="p">;</span>
 
-  <span style="color:#75715e">// ブロックの配列準備
-</span><span style="color:#75715e"></span>  <span style="color:#a6e22e">blocks</span> <span style="color:#f92672">=</span> [];
+  <span class="c1">// ブロックの配列準備
+</span><span class="c1"></span>  <span class="nx">blocks</span> <span class="o">=</span> <span class="p">[</span><span class="p">]</span><span class="p">;</span>
 
-  <span style="color:#75715e">// パーティクルの配列準備
-</span><span style="color:#75715e"></span>  <span style="color:#a6e22e">particles</span> <span style="color:#f92672">=</span> [];
-}
+  <span class="c1">// パーティクルの配列準備
+</span><span class="c1"></span>  <span class="nx">particles</span> <span class="o">=</span> <span class="p">[</span><span class="p">]</span><span class="p">;</span>
+<span class="p">}</span>
 
-<span style="color:#75715e">/** ゲームの更新 */</span>
-<span style="color:#66d9ef">function</span> <span style="color:#a6e22e">updateGame</span>() {
-  <span style="color:#66d9ef">if</span> (<span style="color:#a6e22e">gameState</span> <span style="color:#f92672">!==</span> <span style="color:#e6db74">&#34;play&#34;</span>) <span style="color:#66d9ef">return</span>;
+<span class="cm">/** ゲームの更新 */</span>
+<span class="kd">function</span> <span class="nx">updateGame</span><span class="p">(</span><span class="p">)</span> <span class="p">{</span>
+  <span class="k">if</span> <span class="p">(</span><span class="nx">gameState</span> <span class="o">!==</span> <span class="s2">&#34;play&#34;</span><span class="p">)</span> <span class="k">return</span><span class="p">;</span>
 
-  <span style="color:#75715e">// ブロックの追加
-</span><span style="color:#75715e"></span>  <span style="color:#66d9ef">if</span> (<span style="color:#a6e22e">frameCount</span> <span style="color:#f92672">%</span> <span style="color:#ae81ff">120</span> <span style="color:#f92672">===</span> <span style="color:#ae81ff">1</span>) <span style="color:#a6e22e">addBlockPair</span>(<span style="color:#a6e22e">blocks</span>); <span style="color:#75715e">// 一定間隔でブロック追加
-</span><span style="color:#75715e"></span>
-  <span style="color:#75715e">// パーティクルの追加
-</span><span style="color:#75715e"></span>  <span style="color:#a6e22e">particles</span>.<span style="color:#a6e22e">push</span>(<span style="color:#a6e22e">createParticle</span>(<span style="color:#a6e22e">player</span>.<span style="color:#a6e22e">x</span>, <span style="color:#a6e22e">player</span>.<span style="color:#a6e22e">y</span>)); <span style="color:#75715e">// プレイヤーの位置で
-</span><span style="color:#75715e"></span>
-  <span style="color:#75715e">// 死んだエンティティの削除
-</span><span style="color:#75715e"></span>  <span style="color:#a6e22e">blocks</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">blocks</span>.<span style="color:#a6e22e">filter</span>(<span style="color:#a6e22e">blockIsAlive</span>);
-  <span style="color:#a6e22e">particles</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">particles</span>.<span style="color:#a6e22e">filter</span>(<span style="color:#a6e22e">particleIsAlive</span>);
+  <span class="c1">// ブロックの追加
+</span><span class="c1"></span>  <span class="k">if</span> <span class="p">(</span><span class="nx">frameCount</span> <span class="o">%</span> <span class="mi">120</span> <span class="o">===</span> <span class="mi">1</span><span class="p">)</span> <span class="nx">addBlockPair</span><span class="p">(</span><span class="nx">blocks</span><span class="p">)</span><span class="p">;</span> <span class="c1">// 一定間隔でブロック追加
+</span><span class="c1"></span>
+  <span class="c1">// パーティクルの追加
+</span><span class="c1"></span>  <span class="nx">particles</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span><span class="nx">createParticle</span><span class="p">(</span><span class="nx">player</span><span class="p">.</span><span class="nx">x</span><span class="p">,</span> <span class="nx">player</span><span class="p">.</span><span class="nx">y</span><span class="p">)</span><span class="p">)</span><span class="p">;</span> <span class="c1">// プレイヤーの位置で
+</span><span class="c1"></span>
+  <span class="c1">// 死んだエンティティの削除
+</span><span class="c1"></span>  <span class="nx">blocks</span> <span class="o">=</span> <span class="nx">blocks</span><span class="p">.</span><span class="nx">filter</span><span class="p">(</span><span class="nx">blockIsAlive</span><span class="p">)</span><span class="p">;</span>
+  <span class="nx">particles</span> <span class="o">=</span> <span class="nx">particles</span><span class="p">.</span><span class="nx">filter</span><span class="p">(</span><span class="nx">particleIsAlive</span><span class="p">)</span><span class="p">;</span>
 
-  <span style="color:#75715e">// 全エンティティの位置を更新
-</span><span style="color:#75715e"></span>  <span style="color:#a6e22e">updatePosition</span>(<span style="color:#a6e22e">player</span>);
-  <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">let</span> <span style="color:#a6e22e">block</span> <span style="color:#66d9ef">of</span> <span style="color:#a6e22e">blocks</span>) <span style="color:#a6e22e">updatePosition</span>(<span style="color:#a6e22e">block</span>);
-  <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">let</span> <span style="color:#a6e22e">particle</span> <span style="color:#66d9ef">of</span> <span style="color:#a6e22e">particles</span>) <span style="color:#a6e22e">updatePosition</span>(<span style="color:#a6e22e">particle</span>);
+  <span class="c1">// 全エンティティの位置を更新
+</span><span class="c1"></span>  <span class="nx">updatePosition</span><span class="p">(</span><span class="nx">player</span><span class="p">)</span><span class="p">;</span>
+  <span class="k">for</span> <span class="p">(</span><span class="kd">let</span> <span class="nx">block</span> <span class="k">of</span> <span class="nx">blocks</span><span class="p">)</span> <span class="nx">updatePosition</span><span class="p">(</span><span class="nx">block</span><span class="p">)</span><span class="p">;</span>
+  <span class="k">for</span> <span class="p">(</span><span class="kd">let</span> <span class="nx">particle</span> <span class="k">of</span> <span class="nx">particles</span><span class="p">)</span> <span class="nx">updatePosition</span><span class="p">(</span><span class="nx">particle</span><span class="p">)</span><span class="p">;</span>
 
-  <span style="color:#75715e">// プレイヤーに重力を適用
-</span><span style="color:#75715e"></span>  <span style="color:#a6e22e">applyGravity</span>(<span style="color:#a6e22e">player</span>);
+  <span class="c1">// プレイヤーに重力を適用
+</span><span class="c1"></span>  <span class="nx">applyGravity</span><span class="p">(</span><span class="nx">player</span><span class="p">)</span><span class="p">;</span>
 
-  <span style="color:#75715e">// パーティクルのライフ減少
-</span><span style="color:#75715e"></span>  <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">let</span> <span style="color:#a6e22e">particle</span> <span style="color:#66d9ef">of</span> <span style="color:#a6e22e">particles</span>) <span style="color:#a6e22e">decreaseLife</span>(<span style="color:#a6e22e">particle</span>);
+  <span class="c1">// パーティクルのライフ減少
+</span><span class="c1"></span>  <span class="k">for</span> <span class="p">(</span><span class="kd">let</span> <span class="nx">particle</span> <span class="k">of</span> <span class="nx">particles</span><span class="p">)</span> <span class="nx">decreaseLife</span><span class="p">(</span><span class="nx">particle</span><span class="p">)</span><span class="p">;</span>
 
-  <span style="color:#75715e">// プレイヤーが死んでいたらゲームオーバー
-</span><span style="color:#75715e"></span>  <span style="color:#66d9ef">if</span> (<span style="color:#f92672">!</span><span style="color:#a6e22e">playerIsAlive</span>(<span style="color:#a6e22e">player</span>)) {
-    <span style="color:#a6e22e">gameState</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;gameover&#34;</span>;
-    <span style="color:#66d9ef">return</span>;
-  }
+  <span class="c1">// プレイヤーが死んでいたらゲームオーバー
+</span><span class="c1"></span>  <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nx">playerIsAlive</span><span class="p">(</span><span class="nx">player</span><span class="p">)</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">gameState</span> <span class="o">=</span> <span class="s2">&#34;gameover&#34;</span><span class="p">;</span>
+    <span class="k">return</span><span class="p">;</span>
+  <span class="p">}</span>
 
-  <span style="color:#75715e">// 衝突判定
-</span><span style="color:#75715e"></span>  <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">let</span> <span style="color:#a6e22e">block</span> <span style="color:#66d9ef">of</span> <span style="color:#a6e22e">blocks</span>) {
-    <span style="color:#66d9ef">if</span> (<span style="color:#a6e22e">entitiesAreColliding</span>(<span style="color:#a6e22e">player</span>, <span style="color:#a6e22e">block</span>, <span style="color:#ae81ff">20</span> <span style="color:#f92672">+</span> <span style="color:#ae81ff">40</span>, <span style="color:#ae81ff">20</span> <span style="color:#f92672">+</span> <span style="color:#ae81ff">200</span>)) {
-      <span style="color:#a6e22e">gameState</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;gameover&#34;</span>;
-      <span style="color:#66d9ef">break</span>;
-    }
-  }
-}
+  <span class="c1">// 衝突判定
+</span><span class="c1"></span>  <span class="k">for</span> <span class="p">(</span><span class="kd">let</span> <span class="nx">block</span> <span class="k">of</span> <span class="nx">blocks</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">if</span> <span class="p">(</span><span class="nx">entitiesAreColliding</span><span class="p">(</span><span class="nx">player</span><span class="p">,</span> <span class="nx">block</span><span class="p">,</span> <span class="mi">20</span> <span class="o">+</span> <span class="mi">40</span><span class="p">,</span> <span class="mi">20</span> <span class="o">+</span> <span class="mi">200</span><span class="p">)</span><span class="p">)</span> <span class="p">{</span>
+      <span class="nx">gameState</span> <span class="o">=</span> <span class="s2">&#34;gameover&#34;</span><span class="p">;</span>
+      <span class="k">break</span><span class="p">;</span>
+    <span class="p">}</span>
+  <span class="p">}</span>
+<span class="p">}</span>
 
-<span style="color:#75715e">/** ゲームの描画 */</span>
-<span style="color:#66d9ef">function</span> <span style="color:#a6e22e">drawGame</span>() {
-  <span style="color:#75715e">// 全エンティティを描画
-</span><span style="color:#75715e"></span>  <span style="color:#a6e22e">background</span>(<span style="color:#ae81ff">0</span>);
-  <span style="color:#a6e22e">drawPlayer</span>(<span style="color:#a6e22e">player</span>);
-  <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">let</span> <span style="color:#a6e22e">block</span> <span style="color:#66d9ef">of</span> <span style="color:#a6e22e">blocks</span>) <span style="color:#a6e22e">drawBlock</span>(<span style="color:#a6e22e">block</span>);
-  <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">let</span> <span style="color:#a6e22e">particle</span> <span style="color:#66d9ef">of</span> <span style="color:#a6e22e">particles</span>) <span style="color:#a6e22e">drawParticle</span>(<span style="color:#a6e22e">particle</span>);
+<span class="cm">/** ゲームの描画 */</span>
+<span class="kd">function</span> <span class="nx">drawGame</span><span class="p">(</span><span class="p">)</span> <span class="p">{</span>
+  <span class="c1">// 全エンティティを描画
+</span><span class="c1"></span>  <span class="nx">background</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span><span class="p">;</span>
+  <span class="nx">drawPlayer</span><span class="p">(</span><span class="nx">player</span><span class="p">)</span><span class="p">;</span>
+  <span class="k">for</span> <span class="p">(</span><span class="kd">let</span> <span class="nx">block</span> <span class="k">of</span> <span class="nx">blocks</span><span class="p">)</span> <span class="nx">drawBlock</span><span class="p">(</span><span class="nx">block</span><span class="p">)</span><span class="p">;</span>
+  <span class="k">for</span> <span class="p">(</span><span class="kd">let</span> <span class="nx">particle</span> <span class="k">of</span> <span class="nx">particles</span><span class="p">)</span> <span class="nx">drawParticle</span><span class="p">(</span><span class="nx">particle</span><span class="p">)</span><span class="p">;</span>
 
-  <span style="color:#75715e">// ゲームオーバー状態なら、それ用の画面を表示
-</span><span style="color:#75715e"></span>  <span style="color:#66d9ef">if</span> (<span style="color:#a6e22e">gameState</span> <span style="color:#f92672">===</span> <span style="color:#e6db74">&#34;gameover&#34;</span>) <span style="color:#a6e22e">drawGameOverScreen</span>();
-}
+  <span class="c1">// ゲームオーバー状態なら、それ用の画面を表示
+</span><span class="c1"></span>  <span class="k">if</span> <span class="p">(</span><span class="nx">gameState</span> <span class="o">===</span> <span class="s2">&#34;gameover&#34;</span><span class="p">)</span> <span class="nx">drawGameOverScreen</span><span class="p">(</span><span class="p">)</span><span class="p">;</span>
+<span class="p">}</span>
 
-<span style="color:#75715e">/** マウスボタンが押されたときのゲームへの影響 */</span>
-<span style="color:#66d9ef">function</span> <span style="color:#a6e22e">onMousePress</span>() {
-  <span style="color:#66d9ef">switch</span> (<span style="color:#a6e22e">gameState</span>) {
-    <span style="color:#66d9ef">case</span> <span style="color:#e6db74">&#34;play&#34;</span><span style="color:#f92672">:</span>
-      <span style="color:#75715e">// プレイ中の状態ならプレイヤーをジャンプさせる
-</span><span style="color:#75715e"></span>      <span style="color:#a6e22e">applyJump</span>(<span style="color:#a6e22e">player</span>);
-      <span style="color:#66d9ef">break</span>;
-    <span style="color:#66d9ef">case</span> <span style="color:#e6db74">&#34;gameover&#34;</span><span style="color:#f92672">:</span>
-      <span style="color:#75715e">// ゲームオーバー状態ならリセット
-</span><span style="color:#75715e"></span>      <span style="color:#a6e22e">resetGame</span>();
-      <span style="color:#66d9ef">break</span>;
-  }
-}
+<span class="cm">/** マウスボタンが押されたときのゲームへの影響 */</span>
+<span class="kd">function</span> <span class="nx">onMousePress</span><span class="p">(</span><span class="p">)</span> <span class="p">{</span>
+  <span class="k">switch</span> <span class="p">(</span><span class="nx">gameState</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">case</span> <span class="s2">&#34;play&#34;</span><span class="o">:</span>
+      <span class="c1">// プレイ中の状態ならプレイヤーをジャンプさせる
+</span><span class="c1"></span>      <span class="nx">applyJump</span><span class="p">(</span><span class="nx">player</span><span class="p">)</span><span class="p">;</span>
+      <span class="k">break</span><span class="p">;</span>
+    <span class="k">case</span> <span class="s2">&#34;gameover&#34;</span><span class="o">:</span>
+      <span class="c1">// ゲームオーバー状態ならリセット
+</span><span class="c1"></span>      <span class="nx">resetGame</span><span class="p">(</span><span class="p">)</span><span class="p">;</span>
+      <span class="k">break</span><span class="p">;</span>
+  <span class="p">}</span>
+<span class="p">}</span>
 
-<span style="color:#75715e">// ---- setup/draw 他 ----------------------------------------------------------
-</span><span style="color:#75715e"></span>
-<span style="color:#66d9ef">function</span> <span style="color:#a6e22e">setup</span>() {
-  <span style="color:#a6e22e">createCanvas</span>(<span style="color:#ae81ff">800</span>, <span style="color:#ae81ff">600</span>);
-  <span style="color:#a6e22e">rectMode</span>(<span style="color:#a6e22e">CENTER</span>);
+<span class="c1">// ---- setup/draw 他 ----------------------------------------------------------
+</span><span class="c1"></span>
+<span class="kd">function</span> <span class="nx">setup</span><span class="p">(</span><span class="p">)</span> <span class="p">{</span>
+  <span class="nx">createCanvas</span><span class="p">(</span><span class="mi">800</span><span class="p">,</span> <span class="mi">600</span><span class="p">)</span><span class="p">;</span>
+  <span class="nx">rectMode</span><span class="p">(</span><span class="nx">CENTER</span><span class="p">)</span><span class="p">;</span>
 
-  <span style="color:#a6e22e">resetGame</span>();
-}
+  <span class="nx">resetGame</span><span class="p">(</span><span class="p">)</span><span class="p">;</span>
+<span class="p">}</span>
 
-<span style="color:#66d9ef">function</span> <span style="color:#a6e22e">draw</span>() {
-  <span style="color:#a6e22e">updateGame</span>();
-  <span style="color:#a6e22e">drawGame</span>();
-}
+<span class="kd">function</span> <span class="nx">draw</span><span class="p">(</span><span class="p">)</span> <span class="p">{</span>
+  <span class="nx">updateGame</span><span class="p">(</span><span class="p">)</span><span class="p">;</span>
+  <span class="nx">drawGame</span><span class="p">(</span><span class="p">)</span><span class="p">;</span>
+<span class="p">}</span>
 
-<span style="color:#66d9ef">function</span> <span style="color:#a6e22e">mousePressed</span>() {
-  <span style="color:#a6e22e">onMousePress</span>();
-}
-</code></pre></div><blockquote class="book-hint info">
+<span class="kd">function</span> <span class="nx">mousePressed</span><span class="p">(</span><span class="p">)</span> <span class="p">{</span>
+  <span class="nx">onMousePress</span><span class="p">(</span><span class="p">)</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></td></tr></table>
+</div>
+</div><blockquote class="book-hint info">
   <p>動かしてみましょう。</p>
 <p>個々のパーティクルの移動や表示を調整すれば、雰囲気が変わってきます。</p>
 
