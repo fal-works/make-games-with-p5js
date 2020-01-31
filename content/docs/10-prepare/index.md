@@ -15,9 +15,12 @@ weight: 10
 
 ※ 使い慣れたエディタがあればそれを使い、保存だけ Web Editor で行う、というのでも可
 
+※ 使い慣れたエディタがなく、p5.js Web Editor で画面が2分割されているのが狭く感じる人は、  
+[OpenProcessing](https://www.openprocessing.org/) を使ってみるのも良いと思われます
+
 
 {{< expand "余談： 環境関連の諸々">}}
-不特定多数の人にスケッチを見てもらいたい人は、[NEORT](https://neort.io/) や [OpenProcessing](https://www.openprocessing.org/) などの利用も検討すると良いでしょう。
+[NEORT](https://neort.io/) や [OpenProcessing](https://www.openprocessing.org/) などは、エディタ兼作品公開プラットフォームとしても機能します。ここでスケッチを公開することも検討すると良いでしょう。
 
 ローカルで使うための強力なエディタとしては、例えば [Visual Studio Code](https://azure.microsoft.com/ja-jp/products/visual-studio-code/) などがあります。  
 参考： [PCD2019の田所先生のワークショップ資料](https://yoppa.org/pcd19)

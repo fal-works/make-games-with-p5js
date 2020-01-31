@@ -1,5 +1,5 @@
 ---
-title: アレンジ
+title: アレンジいろいろ
 type: docs
 weight: 60
 ---
