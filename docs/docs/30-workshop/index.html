@@ -4,12 +4,12 @@
 <head>
   <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="リンク"><meta property="og:title" content="リンク" />
-<meta property="og:description" content="リンク p5.js チートシート https://bmoren.github.io/p5js-cheat-sheet/ja.html ここに書いていないものとしては、システム変数 frameCount も使う （draw() が呼ばれるたびに1ずつ増える値） 公式のリファレンス https://p5js.org/reference/" />
+<meta name="description" content="ワークショップの進め方"><meta property="og:title" content="ワークショップの進め方" />
+<meta property="og:description" content="ワークショップの進め方 本日の流れ メインパートは、この画面の左側に見えている Flappy Bird ライクなゲーム です。 各トピックを順番に見ていき、それぞれの最後" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://fal-works.github.io/make-games-with-p5js/docs/40-links/" />
+<meta property="og:url" content="https://fal-works.github.io/make-games-with-p5js/docs/30-workshop/" />
 
-<title>リンク | p5.js でゲーム制作</title>
+<title>ワークショップの進め方 | p5.js でゲーム制作</title>
 <link rel="icon" href="/make-games-with-p5js/favicon.png" type="image/x-icon">
 
 
@@ -82,8 +82,8 @@ https://github.com/alex-shpak/hugo-book
       
         <li>
 
-  <a href="/make-games-with-p5js/docs/30-sketch/" >
-      p5.js スケッチの基本構造
+  <a href="/make-games-with-p5js/docs/30-workshop/"  class="active">
+      ワークショップの進め方
   </a>
 
 </li>
@@ -92,8 +92,8 @@ https://github.com/alex-shpak/hugo-book
       
         <li>
 
-  <a href="/make-games-with-p5js/docs/40-links/"  class="active">
-      リンク
+  <a href="/make-games-with-p5js/docs/40-sketch/" >
+      p5.js スケッチの基本構造
   </a>
 
 </li>
@@ -346,7 +346,7 @@ https://github.com/alex-shpak/hugo-book
     <img src="/make-games-with-p5js/svg/menu.svg" class="book-icon" alt="Menu" />
   </label>
 
-  <strong>リンク</strong>
+  <strong>ワークショップの進め方</strong>
 
   <label for="toc-control">
     <img src="/make-games-with-p5js/svg/toc.svg" class="book-icon" alt="Table of Contents" />
@@ -360,8 +360,8 @@ https://github.com/alex-shpak/hugo-book
       
   <nav id="TableOfContents">
   <ul>
-    <li><a href="#p5js-チートシート">p5.js チートシート</a></li>
-    <li><a href="#公式のリファレンス">公式のリファレンス</a></li>
+    <li><a href="#本日の流れ">本日の流れ</a></li>
+    <li><a href="#取り組み方">取り組み方</a></li>
   </ul>
 </nav>
 
@@ -372,13 +372,34 @@ https://github.com/alex-shpak/hugo-book
       </header>
 
       
-<article class="markdown"><h1 id="リンク">リンク</h1>
-<h2 id="p5js-チートシート">p5.js チートシート</h2>
-<p><a href="https://bmoren.github.io/p5js-cheat-sheet/ja.html" target="_blank">https://bmoren.github.io/p5js-cheat-sheet/ja.html</a></p>
-<p>ここに書いていないものとしては、システム変数 <code>frameCount</code> も使う<br>
-（<code>draw()</code> が呼ばれるたびに1ずつ増える値）</p>
-<h2 id="公式のリファレンス">公式のリファレンス</h2>
-<p><a href="https://p5js.org/reference/" target="_blank">https://p5js.org/reference/</a></p>
+<article class="markdown"><h1 id="ワークショップの進め方">ワークショップの進め方</h1>
+<h2 id="本日の流れ">本日の流れ</h2>
+<ol>
+<li>メインパートは、この画面の左側に見えている <a href="./docs/50-flappy-bird-like" target="_blank">Flappy Bird ライクなゲーム</a> です。
+<ul>
+<li>各トピックを順番に見ていき、それぞれの最後で少しだけ時間を取って、<br>
+各自でコードの実行結果を確認していただきます。</li>
+<li>「見た目をアレンジ」の章では少し長めに時間を取り、各自で自由にアレンジします。</li>
+</ul>
+</li>
+<li>その後時間があれば、<a href="./docs/60-arrange" target="_blank">アレンジいろいろ</a> の部分を自由に進めていただきます。</li>
+</ol>
+<h2 id="取り組み方">取り組み方</h2>
+<p>今回、各トピックを通して少しずつコードを書き足していきます。<br>
+ご自分のPCで同じことを行い、コードを育てていく過程を追体験していただきたいです。</p>
+<p>この資料のサンプルコードでは、前のトピックと比較した差分を強調表示しています。<br>
+主にこの差分に注目して、部分的にコピペしつつ自分のコードに反映していきましょう。</p>
+<div class="highlight"><pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="kd">function</span> <span class="nx">setup</span><span class="p">(</span><span class="p">)</span> <span class="p">{</span>
+  <span class="nx">createCanvas</span><span class="p">(</span><span class="mi">800</span><span class="p">,</span> <span class="mi">600</span><span class="p">)</span><span class="p">;</span>
+<span class="hl">  <span class="nx">doSomethingFantastic</span><span class="p">(</span><span class="p">)</span><span class="p">;</span> <span class="c1">// ここが追加・変更した部分
+</span></span><span class="c1"></span><span class="p">}</span>
+</code></pre></div><ul>
+<li>もし追いつけなくなってきたら、改めてサンプルコードを全文コピペしてください。</li>
+<li>隅々まで理解できなくても、あまり心配しないでください。<br>
+（この資料はワークショップ後に独習にも使えるようにしたいと思っています）</li>
+<li>講師がしゃべっている最中にコードを書いたり動かしたりしても、全く問題ありません！<br>
+動かしてみないとイメージしにくい、ということはよくあると思います。</li>
+</ul>
 </article>
  
 
@@ -409,8 +430,8 @@ https://github.com/alex-shpak/hugo-book
       
   <nav id="TableOfContents">
   <ul>
-    <li><a href="#p5js-チートシート">p5.js チートシート</a></li>
-    <li><a href="#公式のリファレンス">公式のリファレンス</a></li>
+    <li><a href="#本日の流れ">本日の流れ</a></li>
+    <li><a href="#取り組み方">取り組み方</a></li>
   </ul>
 </nav>
 

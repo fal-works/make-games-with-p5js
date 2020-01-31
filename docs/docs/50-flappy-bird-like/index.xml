@@ -16,7 +16,7 @@
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>https://fal-works.github.io/make-games-with-p5js/docs/50-flappy-bird-like/10-design/</guid>
-      <description>最初に少し考えてみる 前置き ここでは、実際のコーディングに入る前に、少しだけ抽象的なことを考えてみます。 具体的なソースコードがないとイメージし</description>
+      <description>最初に少し考えてみる ここでは、実際のコーディングに入る前に、少しだけ抽象的なことを考えてみます。 具体的なソースコードがないとイメージしにくい</description>
     </item>
     
     <item>
@@ -25,7 +25,7 @@
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>https://fal-works.github.io/make-games-with-p5js/docs/50-flappy-bird-like/20-player/</guid>
-      <description>プレイヤーだけ実装してみる ソースコード全体の構成を決めておく ここからいろいろコードを増やしていくので、 整理のため、以下のように3つのセクショ</description>
+      <description>プレイヤーだけ実装してみる ソースコード全体の構成を決めておく ここからいろいろソースコードを増やしていくので、 整理のため、ソースコード全体を以</description>
     </item>
     
     <item>

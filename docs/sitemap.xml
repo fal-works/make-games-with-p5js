@@ -27,10 +27,6 @@
   </url>
   
   <url>
-    <loc>https://fal-works.github.io/make-games-with-p5js/docs/30-sketch/</loc>
-  </url>
-  
-  <url>
     <loc>https://fal-works.github.io/make-games-with-p5js/docs/50-flappy-bird-like/30-block/</loc>
   </url>
   
@@ -39,7 +35,11 @@
   </url>
   
   <url>
-    <loc>https://fal-works.github.io/make-games-with-p5js/docs/40-links/</loc>
+    <loc>https://fal-works.github.io/make-games-with-p5js/docs/30-workshop/</loc>
+  </url>
+  
+  <url>
+    <loc>https://fal-works.github.io/make-games-with-p5js/docs/40-sketch/</loc>
   </url>
   
   <url>

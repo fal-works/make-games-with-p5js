@@ -25,7 +25,7 @@
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>https://fal-works.github.io/make-games-with-p5js/docs/50-flappy-bird-like/10-design/</guid>
-      <description>最初に少し考えてみる 前置き ここでは、実際のコーディングに入る前に、少しだけ抽象的なことを考えてみます。 具体的なソースコードがないとイメージし</description>
+      <description>最初に少し考えてみる ここでは、実際のコーディングに入る前に、少しだけ抽象的なことを考えてみます。 具体的なソースコードがないとイメージしにくい</description>
     </item>
     
     <item>
@@ -34,7 +34,7 @@
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>https://fal-works.github.io/make-games-with-p5js/docs/10-prepare/</guid>
-      <description>準備 このワークショップでは p5.js Web Editor を使います。 ユーザーアカウントを持っていない人は、右上の &amp;ldquo;Sign Up&amp;rdquo; から登録してください。 （スケッチの保存・共有機能</description>
+      <description>準備 このワークショップでは p5.js Web Editor を使います。 ユーザーアカウントを持っていない人は、エディタ右上の &amp;ldquo;Sign Up&amp;rdquo; から登録してください。 （スケッチの保存・</description>
     </item>
     
     <item>
@@ -43,7 +43,7 @@
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>https://fal-works.github.io/make-games-with-p5js/docs/20-introduction/</guid>
-      <description>はじめに 講師自己紹介 &amp;hellip; はじめに プログラミングによる作品制作の醍醐味 「自分の世界」を創造できる その世界がどんな部品や構造で成り立つのかを掌握で</description>
+      <description>はじめに プログラミングによる作品制作の醍醐味 「自分の世界」を創造できる その世界がどんな部品や構造で成り立つのかを掌握できる （「作り方」を知っ</description>
     </item>
     
     <item>
@@ -52,7 +52,7 @@
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>https://fal-works.github.io/make-games-with-p5js/docs/50-flappy-bird-like/20-player/</guid>
-      <description>プレイヤーだけ実装してみる ソースコード全体の構成を決めておく ここからいろいろコードを増やしていくので、 整理のため、以下のように3つのセクショ</description>
+      <description>プレイヤーだけ実装してみる ソースコード全体の構成を決めておく ここからいろいろソースコードを増やしていくので、 整理のため、ソースコード全体を以</description>
     </item>
     
     <item>
@@ -62,15 +62,6 @@
       
       <guid>https://fal-works.github.io/make-games-with-p5js/docs/60-arrange/20-effects/</guid>
       <description>画面効果を追加 手軽な画面効果として、次のものがある スクリーンシェイク 画面を揺らす。揺れは徐々に収まる スクリーンフラッシュ 画面を明るくする。明</description>
-    </item>
-    
-    <item>
-      <title>p5.js スケッチの基本構造</title>
-      <link>https://fal-works.github.io/make-games-with-p5js/docs/30-sketch/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>https://fal-works.github.io/make-games-with-p5js/docs/30-sketch/</guid>
-      <description>p5.js スケッチの基本構造 p5.js Web Editor の操作確認も兼ねて、以下のコードを実行 1 2 3 4 5 6 7 function setup() { createCanvas(800, 600); // 800 x 600 ピクセル。今回このサイズでやっていきます } function</description>
     </item>
     
     <item>
@@ -92,12 +83,21 @@
     </item>
     
     <item>
-      <title>リンク</title>
-      <link>https://fal-works.github.io/make-games-with-p5js/docs/40-links/</link>
+      <title>ワークショップの進め方</title>
+      <link>https://fal-works.github.io/make-games-with-p5js/docs/30-workshop/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>https://fal-works.github.io/make-games-with-p5js/docs/40-links/</guid>
-      <description>リンク p5.js チートシート https://bmoren.github.io/p5js-cheat-sheet/ja.html ここに書いていないものとしては、システム変数 frameCount も使う （draw() が呼ばれるたびに1ずつ増える値） 公式のリファレンス https://p5js.org/reference/</description>
+      <guid>https://fal-works.github.io/make-games-with-p5js/docs/30-workshop/</guid>
+      <description>ワークショップの進め方 本日の流れ メインパートは、この画面の左側に見えている Flappy Bird ライクなゲーム です。 各トピックを順番に見ていき、それぞれの最後</description>
+    </item>
+    
+    <item>
+      <title>p5.js スケッチの基本構造</title>
+      <link>https://fal-works.github.io/make-games-with-p5js/docs/40-sketch/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://fal-works.github.io/make-games-with-p5js/docs/40-sketch/</guid>
+      <description>p5.js スケッチの基本構造 空っぽのスケッチ p5.js Web Editor の操作確認も兼ねて、 以下のコードを実行してみてください。 1 2 3 4 5 6 7 function setup() { createCanvas(800, 600); // 800 x 600 ピクセル。</description>
     </item>
     
     <item>

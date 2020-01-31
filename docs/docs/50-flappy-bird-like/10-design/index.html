@@ -5,7 +5,7 @@
   <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="description" content="最初に少し考えてみる"><meta property="og:title" content="最初に少し考えてみる" />
-<meta property="og:description" content="最初に少し考えてみる 前置き ここでは、実際のコーディングに入る前に、少しだけ抽象的なことを考えてみます。 具体的なソースコードがないとイメージし" />
+<meta property="og:description" content="最初に少し考えてみる ここでは、実際のコーディングに入る前に、少しだけ抽象的なことを考えてみます。 具体的なソースコードがないとイメージしにくい" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://fal-works.github.io/make-games-with-p5js/docs/50-flappy-bird-like/10-design/" />
 
@@ -82,8 +82,8 @@ https://github.com/alex-shpak/hugo-book
       
         <li>
 
-  <a href="/make-games-with-p5js/docs/30-sketch/" >
-      p5.js スケッチの基本構造
+  <a href="/make-games-with-p5js/docs/30-workshop/" >
+      ワークショップの進め方
   </a>
 
 </li>
@@ -92,8 +92,8 @@ https://github.com/alex-shpak/hugo-book
       
         <li>
 
-  <a href="/make-games-with-p5js/docs/40-links/" >
-      リンク
+  <a href="/make-games-with-p5js/docs/40-sketch/" >
+      p5.js スケッチの基本構造
   </a>
 
 </li>
@@ -360,7 +360,6 @@ https://github.com/alex-shpak/hugo-book
       
   <nav id="TableOfContents">
   <ul>
-    <li><a href="#前置き">前置き</a></li>
     <li><a href="#何を考えるべきか">何を考えるべきか</a></li>
     <li><a href="#データの種類を考える">データの種類を考える</a>
       <ul>
@@ -386,28 +385,33 @@ https://github.com/alex-shpak/hugo-book
 
       
 <article class="markdown"><h1 id="最初に少し考えてみる">最初に少し考えてみる</h1>
-<h2 id="前置き">前置き</h2>
-<p>ここでは、実際のコーディングに入る前に、少しだけ抽象的なことを考えてみます。</p>
-<p>具体的なソースコードがないとイメージしにくいという人は、いったん話半分に聞いていただいても問題ありません。</p>
+<blockquote class="book-hint info">
+  <p>ここでは、実際のコーディングに入る前に、少しだけ抽象的なことを考えてみます。</p>
+<p>具体的なソースコードがないとイメージしにくいという人は、<br>
+いったん話半分に聞いていただいても問題ありません。</p>
+
+</blockquote>
+
 <h2 id="何を考えるべきか">何を考えるべきか</h2>
 <p>突き詰めて考えると、</p>
 <ul>
 <li>あらゆるゲームの キャラ／障害物／アイテム etc. は、すべて<strong>データ</strong>の集まり</li>
 <li>ゲーム画面に動きがあるということは、<strong>データが変化している</strong>ということ</li>
 </ul>
-<p>よって、次のことがわかれば、ゲームプログラムの構成要素が分かったことになる</p>
+<p>よって、作ろうとしているゲームについて次のことがわかれば、<br>
+プログラムの構成要素が分かったことになる</p>
 <ol>
-<li>データの<strong>種類</strong>には、どういったものがあるのか？</li>
-<li>それらのデータを使う<strong>処理</strong>には、どういったものがあるのか？</li>
+<li>データの<strong>種類</strong>には、どういったものがあるか？</li>
+<li>それらのデータを使う<strong>処理</strong>には、どういったものがあるか？</li>
 </ol>
 <h2 id="データの種類を考える">データの種類を考える</h2>
 <h3 id="この世界に存在するものは何か">この世界に存在するものは何か？</h3>
 <p><img src="../flappy-bird-like.gif" alt="Abstract Flappy Bird"></p>
 <p>今回、次のように呼ぶことにする</p>
 <ul>
-<li>「プレイヤー」： 遊ぶ人が操作する対象</li>
-<li>「ブロック」： 迫ってくる障害物</li>
-<li>「エンティティ」： 「プレイヤー」と「ブロック」の総称</li>
+<li><strong>プレイヤー</strong>： 遊ぶ人が操作する対象</li>
+<li><strong>ブロック</strong>： 迫ってくる障害物</li>
+<li><strong>エンティティ</strong>： <strong>プレイヤー</strong> と <strong>ブロック</strong> の総称</li>
 </ul>
 <p>以上が今回の主役。<br>
 まずはこれらに関係するデータについて考え、その他についてはコードを書きながらおいおい考えていくことにする</p>
@@ -611,13 +615,30 @@ y座標が繰り返し 1 ずつ増えていくので、少しずつ下方向に�
   </label>
 </div>
 <h2 id="データの処理を考える">データの処理を考える</h2>
-<p>エンティティの持つデータが「位置」と「速度」だとして、これらはどんなふうに処理されるのか？</p>
+<p>エンティティの持つデータが「位置」と「速度」だとして、これらはどんなふうに処理されるのか？<br>
+プレイヤーとブロックでその処理はどう違うか？</p>
 <p>列挙してみる</p>
 <ul>
-<li>プレイヤーもブロックも、「速度を適用して<strong>位置を更新</strong>する」という点だけは共通している</li>
-<li>プレイヤーとブロックで、データを<strong>作成</strong>する（位置や速度の初期値を決める）方法が異なる</li>
-<li>プレイヤーとブロックは見た目が違うので、<strong>描画</strong>の方法も異なる</li>
+<li>みんな移動している
+<ul>
+<li>プレイヤーもブロックも、「速度を適用して<strong>位置を更新</strong>する」という点だけは共通</li>
+</ul>
+</li>
+<li>初期値がないと始まらない
+<ul>
+<li>プレイヤーとブロックで、データを作成する（位置や速度の初期値を決める）方法が異なる</li>
+</ul>
+</li>
+<li>描画しないと画面に出ない
+<ul>
+<li>プレイヤーとブロックは見た目が違うので、描画の方法も異なる</li>
+</ul>
+</li>
+<li>プレイヤーは独特の挙動あり
+<ul>
 <li>プレイヤーのみ、<strong>重力で落下</strong>したり<strong>ジャンプ</strong>したりする</li>
+</ul>
+</li>
 </ul>
 <p>整理すると……</p>
 <h3 id="全エンティティ共通">全エンティティ共通</h3>
@@ -666,7 +687,6 @@ y座標が繰り返し 1 ずつ増えていくので、少しずつ下方向に�
       
   <nav id="TableOfContents">
   <ul>
-    <li><a href="#前置き">前置き</a></li>
     <li><a href="#何を考えるべきか">何を考えるべきか</a></li>
     <li><a href="#データの種類を考える">データの種類を考える</a>
       <ul>

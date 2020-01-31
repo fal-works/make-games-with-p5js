@@ -5,9 +5,9 @@
   <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="description" content="p5.js スケッチの基本構造"><meta property="og:title" content="p5.js スケッチの基本構造" />
-<meta property="og:description" content="p5.js スケッチの基本構造 p5.js Web Editor の操作確認も兼ねて、以下のコードを実行 1 2 3 4 5 6 7 function setup() { createCanvas(800, 600); // 800 x 600 ピクセル。今回このサイズでやっていきます } function" />
+<meta property="og:description" content="p5.js スケッチの基本構造 空っぽのスケッチ p5.js Web Editor の操作確認も兼ねて、 以下のコードを実行してみてください。 1 2 3 4 5 6 7 function setup() { createCanvas(800, 600); // 800 x 600 ピクセル。" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://fal-works.github.io/make-games-with-p5js/docs/30-sketch/" />
+<meta property="og:url" content="https://fal-works.github.io/make-games-with-p5js/docs/40-sketch/" />
 
 <title>p5.js スケッチの基本構造 | p5.js でゲーム制作</title>
 <link rel="icon" href="/make-games-with-p5js/favicon.png" type="image/x-icon">
@@ -82,8 +82,8 @@ https://github.com/alex-shpak/hugo-book
       
         <li>
 
-  <a href="/make-games-with-p5js/docs/30-sketch/"  class="active">
-      p5.js スケッチの基本構造
+  <a href="/make-games-with-p5js/docs/30-workshop/" >
+      ワークショップの進め方
   </a>
 
 </li>
@@ -92,8 +92,8 @@ https://github.com/alex-shpak/hugo-book
       
         <li>
 
-  <a href="/make-games-with-p5js/docs/40-links/" >
-      リンク
+  <a href="/make-games-with-p5js/docs/40-sketch/"  class="active">
+      p5.js スケッチの基本構造
   </a>
 
 </li>
@@ -358,7 +358,17 @@ https://github.com/alex-shpak/hugo-book
     <input type="checkbox" class="hidden" id="toc-control" />
     <aside class="hidden clearfix">
       
-  <nav id="TableOfContents"></nav>
+  <nav id="TableOfContents">
+  <ul>
+    <li><a href="#空っぽのスケッチ">空っぽのスケッチ</a></li>
+    <li><a href="#リンク">リンク</a>
+      <ul>
+        <li><a href="#p5js-チートシート">p5.js チートシート</a></li>
+        <li><a href="#公式のリファレンス">公式のリファレンス</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
 
 
     </aside>
@@ -368,7 +378,12 @@ https://github.com/alex-shpak/hugo-book
 
       
 <article class="markdown"><h1 id="p5js-スケッチの基本構造">p5.js スケッチの基本構造</h1>
-<p><a href="https://editor.p5js.org/" target="_blank">p5.js Web Editor</a> の操作確認も兼ねて、以下のコードを実行</p>
+<h2 id="空っぽのスケッチ">空っぽのスケッチ</h2>
+<blockquote class="book-hint info">
+  <a href="https://editor.p5js.org/">p5.js Web Editor</a> の操作確認も兼ねて、<br>
+以下のコードを実行してみてください。
+</blockquote>
+
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre class="chroma"><code><span class="lnt">1
@@ -391,7 +406,7 @@ https://github.com/alex-shpak/hugo-book
 </div>
 </div><ul>
 <li>最初に1回だけ <code>setup()</code> が実行される</li>
-<li><code>draw()</code> が繰り返し実行されることで、動いているように見える
+<li><code>draw()</code> が繰り返し実行されることで、動いているように見せられる（この時点ではは真っ黒）
 <ul>
 <li>この1回1回を「フレーム」と呼ぶ</li>
 <li>デフォルトでは毎秒60回実行される。<br>
@@ -399,6 +414,13 @@ https://github.com/alex-shpak/hugo-book
 </ul>
 </li>
 </ul>
+<h2 id="リンク">リンク</h2>
+<h3 id="p5js-チートシート">p5.js チートシート</h3>
+<p><a href="https://bmoren.github.io/p5js-cheat-sheet/ja.html" target="_blank">https://bmoren.github.io/p5js-cheat-sheet/ja.html</a></p>
+<p>ここに書いていないものとしては、システム変数 <code>frameCount</code> も使う<br>
+（<code>draw()</code> が呼ばれるたびに1ずつ増える値）</p>
+<h3 id="公式のリファレンス">公式のリファレンス</h3>
+<p><a href="https://p5js.org/reference/" target="_blank">https://p5js.org/reference/</a></p>
 </article>
  
 
@@ -427,7 +449,17 @@ https://github.com/alex-shpak/hugo-book
     
     <aside class="book-toc">
       
-  <nav id="TableOfContents"></nav>
+  <nav id="TableOfContents">
+  <ul>
+    <li><a href="#空っぽのスケッチ">空っぽのスケッチ</a></li>
+    <li><a href="#リンク">リンク</a>
+      <ul>
+        <li><a href="#p5js-チートシート">p5.js チートシート</a></li>
+        <li><a href="#公式のリファレンス">公式のリファレンス</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
 
  
     </aside>

@@ -5,7 +5,7 @@
   <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="description" content="準備"><meta property="og:title" content="準備" />
-<meta property="og:description" content="準備 このワークショップでは p5.js Web Editor を使います。 ユーザーアカウントを持っていない人は、右上の &ldquo;Sign Up&rdquo; から登録してください。 （スケッチの保存・共有機能" />
+<meta property="og:description" content="準備 このワークショップでは p5.js Web Editor を使います。 ユーザーアカウントを持っていない人は、エディタ右上の &ldquo;Sign Up&rdquo; から登録してください。 （スケッチの保存・" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://fal-works.github.io/make-games-with-p5js/docs/10-prepare/" />
 
@@ -82,8 +82,8 @@ https://github.com/alex-shpak/hugo-book
       
         <li>
 
-  <a href="/make-games-with-p5js/docs/30-sketch/" >
-      p5.js スケッチの基本構造
+  <a href="/make-games-with-p5js/docs/30-workshop/" >
+      ワークショップの進め方
   </a>
 
 </li>
@@ -92,8 +92,8 @@ https://github.com/alex-shpak/hugo-book
       
         <li>
 
-  <a href="/make-games-with-p5js/docs/40-links/" >
-      リンク
+  <a href="/make-games-with-p5js/docs/40-sketch/" >
+      p5.js スケッチの基本構造
   </a>
 
 </li>
@@ -368,25 +368,44 @@ https://github.com/alex-shpak/hugo-book
 
       
 <article class="markdown"><h1 id="準備">準備</h1>
-<p>このワークショップでは <a href="https://editor.p5js.org/" target="_blank">p5.js Web Editor</a> を使います。</p>
+<blockquote class="book-hint info">
+  <p>このワークショップでは <a href="https://editor.p5js.org/">p5.js Web Editor</a> を使います。</p>
+<p>ユーザーアカウントを持っていない人は、エディタ右上の &ldquo;Sign Up&rdquo; から登録してください。<br>
+（スケッチの保存・共有機能を使っていただきたいため。ダミー的なアカウントでも可）</p>
+<p>登録できたら、下記の表に書いて教えて下さい。<br>
+<a href="https://docs.google.com/spreadsheets/d/1cprOYEDthfGgYqv4e8jD0QVGH_RAann-f_LLSpgYFjU/edit?usp=sharing">一覧表（Googleスプレッドシート）</a><br>
+※ この表とリンクはワークショップ終了後に削除します</p>
+
+</blockquote>
+
 <p><a href="https://editor.p5js.org/" target="_blank"><img src="./web-editor.png" alt="p5.js Web Editor"></a></p>
-<p>ユーザーアカウントを持っていない人は、右上の &ldquo;Sign Up&rdquo; から登録してください。<br>
-（スケッチの保存・共有機能を使っていただきたいため）</p>
-<p>※ 使い慣れたエディタがあればそれを使い、保存だけ Web Editor で行う、というのでも可</p>
-<p>※ 使い慣れたエディタがなく、p5.js Web Editor で画面が2分割されているのが狭く感じる人は、<br>
-<a href="https://www.openprocessing.org/" target="_blank">OpenProcessing</a> を使ってみるのも良いと思われます</p>
+<blockquote class="book-hint info">
+  <ul>
+<li>
+<p>使い慣れたエディタで編集し、保存だけ Web Editor で行う、というのもOKです。</p>
+</li>
+<li>
+<p>p5.js Web Editor では画面が2分割されています。<br>
+境界線はドラッグで動かせますが、それでも狭い（全画面がいい）と感じる人は、<br>
+<a href="https://www.openprocessing.org/">OpenProcessing</a> のエディタで編集しても良いかもしれません。<br>
+（&ldquo;Join&rdquo; ボタンからアカウント登録が必要ですが）</p>
+</li>
+</ul>
+
+</blockquote>
+
 <div class="book-expand">
   <label>
     <div class="book-expand-head flex justify-between">
-      <span>余談： 環境関連の諸々</span>
+      <span>余談： 環境関連の諸々（いますぐ読む必要はありません）</span>
       <span>↕</span>
     </div>
     <input type="checkbox" class="hidden" />
     <div class="book-expand-content markdown-inner">
-      <p><a href="https://neort.io/" target="_blank">NEORT</a> や <a href="https://www.openprocessing.org/" target="_blank">OpenProcessing</a> などは、エディタ兼作品公開プラットフォームとしても機能します。ここでスケッチを公開することも検討すると良いでしょう。</p>
+      <p><a href="https://neort.io/" target="_blank">NEORT</a> や <a href="https://www.openprocessing.org/" target="_blank">OpenProcessing</a> などは、エディタ兼作品公開プラットフォームとして機能します。不特定多数の人にスケッチを見てもらいたいときは、ここで公開するのも良いでしょう。</p>
 <p>ローカルで使うための強力なエディタとしては、例えば <a href="https://azure.microsoft.com/ja-jp/products/visual-studio-code/" target="_blank">Visual Studio Code</a> などがあります。<br>
 参考： <a href="https://yoppa.org/pcd19" target="_blank">PCD2019の田所先生のワークショップ資料</a></p>
-<p>他にもいろいろ便利なツールがあります。例えば……</p>
+<p>初めてだと使い方に戸惑うかもしれませんが、他にもいろいろツールがあります。例えば……</p>
 <ul>
 <li><a href="https://eslint.org/" target="_blank">ESLint</a> は、推奨される書き方から外れたコードについて警告したり自動で修正したりしてくれます。</li>
 <li><a href="https://prettier.io/" target="_blank">Prettier</a> は、スペースや改行や括弧の有無などを一定の規則で自動整形してくれます。</li>

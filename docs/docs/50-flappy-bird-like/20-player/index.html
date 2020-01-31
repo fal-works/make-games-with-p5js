@@ -5,7 +5,7 @@
   <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="description" content="プレイヤーだけ実装"><meta property="og:title" content="プレイヤーだけ実装" />
-<meta property="og:description" content="プレイヤーだけ実装してみる ソースコード全体の構成を決めておく ここからいろいろコードを増やしていくので、 整理のため、以下のように3つのセクショ" />
+<meta property="og:description" content="プレイヤーだけ実装してみる ソースコード全体の構成を決めておく ここからいろいろソースコードを増やしていくので、 整理のため、ソースコード全体を以" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://fal-works.github.io/make-games-with-p5js/docs/50-flappy-bird-like/20-player/" />
 
@@ -82,8 +82,8 @@ https://github.com/alex-shpak/hugo-book
       
         <li>
 
-  <a href="/make-games-with-p5js/docs/30-sketch/" >
-      p5.js スケッチの基本構造
+  <a href="/make-games-with-p5js/docs/30-workshop/" >
+      ワークショップの進め方
   </a>
 
 </li>
@@ -92,8 +92,8 @@ https://github.com/alex-shpak/hugo-book
       
         <li>
 
-  <a href="/make-games-with-p5js/docs/40-links/" >
-      リンク
+  <a href="/make-games-with-p5js/docs/40-sketch/" >
+      p5.js スケッチの基本構造
   </a>
 
 </li>
@@ -370,7 +370,12 @@ https://github.com/alex-shpak/hugo-book
     </li>
     <li><a href="#やること">やること</a></li>
     <li><a href="#必要な関数が既に揃っていると仮定して書いてみる">必要な関数が既に揃っている、と仮定して書いてみる</a></li>
-    <li><a href="#必要な関数を実際に用意する">必要な関数を実際に用意する</a></li>
+    <li><a href="#必要な関数を実際に用意する">必要な関数を実際に用意する</a>
+      <ul>
+        <li><a href="#方針">方針</a></li>
+        <li><a href="#実装">実装</a></li>
+      </ul>
+    </li>
   </ul>
 </nav>
 
@@ -383,8 +388,8 @@ https://github.com/alex-shpak/hugo-book
       
 <article class="markdown"><h1 id="プレイヤーだけ実装してみる">プレイヤーだけ実装してみる</h1>
 <h2 id="ソースコード全体の構成を決めておく">ソースコード全体の構成を決めておく</h2>
-<p>ここからいろいろコードを増やしていくので、<br>
-整理のため、以下のように3つのセクションに分けることにする</p>
+<p>ここからいろいろソースコードを増やしていくので、<br>
+整理のため、ソースコード全体を以下の3つのセクションに分けることにする</p>
 <ol>
 <li>エンティティ関連の関数</li>
 <li>ゲーム全体に関わる部分</li>
@@ -393,63 +398,63 @@ https://github.com/alex-shpak/hugo-book
 <p>ついでに <code>rectMode()</code> も書いておく（後で四角形を描画するので）</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
-</span><span class="lnt"> 2
-</span><span class="lnt"> 3
-</span><span class="lnt"> 4
-</span><span class="lnt"> 5
-</span><span class="lnt"> 6
-</span><span class="lnt"> 7
-</span><span class="lnt"> 8
-</span><span class="lnt"> 9
-</span><span class="lnt">10
-</span><span class="lnt">11
+<pre class="chroma"><code><span class="hl"><span class="lnt"> 1
+</span></span><span class="hl"><span class="lnt"> 2
+</span></span><span class="hl"><span class="lnt"> 3
+</span></span><span class="hl"><span class="lnt"> 4
+</span></span><span class="hl"><span class="lnt"> 5
+</span></span><span class="hl"><span class="lnt"> 6
+</span></span><span class="hl"><span class="lnt"> 7
+</span></span><span class="hl"><span class="lnt"> 8
+</span></span><span class="hl"><span class="lnt"> 9
+</span></span><span class="hl"><span class="lnt">10
+</span></span><span class="lnt">11
 </span><span class="lnt">12
-</span><span class="lnt">13
-</span><span class="lnt">14
-</span><span class="lnt">15
-</span><span class="lnt">16
+</span><span class="hl"><span class="lnt">13
+</span></span><span class="lnt">14
+</span><span class="hl"><span class="lnt">15
+</span></span><span class="lnt">16
 </span><span class="lnt">17
 </span><span class="lnt">18
-</span><span class="lnt">19
-</span><span class="lnt">20
+</span><span class="hl"><span class="lnt">19
+</span></span><span class="lnt">20
 </span><span class="lnt">21
-</span><span class="lnt">22
-</span><span class="lnt">23
+</span><span class="hl"><span class="lnt">22
+</span></span><span class="lnt">23
 </span><span class="lnt">24
-</span><span class="lnt">25
-</span><span class="lnt">26
-</span><span class="lnt">27
-</span></code></pre></td>
+</span><span class="hl"><span class="lnt">25
+</span></span><span class="hl"><span class="lnt">26
+</span></span><span class="hl"><span class="lnt">27
+</span></span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="c1">// ---- エンティティ関連の関数 ---------------------------------------------
-</span><span class="c1"></span>
-<span class="c1">// （ここに何かが入る）
-</span><span class="c1"></span>
-<span class="c1">// ---- ゲーム全体に関わる部分 ---------------------------------------------
-</span><span class="c1"></span>
-<span class="c1">// （ここに何かが入る）
-</span><span class="c1"></span>
-<span class="c1">// ---- setup/draw 他 --------------------------------------------------
-</span><span class="c1"></span>
-<span class="kd">function</span> <span class="nx">setup</span><span class="p">(</span><span class="p">)</span> <span class="p">{</span>
+<pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="hl"><span class="c1">// ---- エンティティ関連の関数 ---------------------------------------------
+</span></span><span class="hl"><span class="c1"></span>
+</span><span class="hl"><span class="c1">// （ここに何かが入る）
+</span></span><span class="hl"><span class="c1"></span>
+</span><span class="hl"><span class="c1">// ---- ゲーム全体に関わる部分 ---------------------------------------------
+</span></span><span class="hl"><span class="c1"></span>
+</span><span class="hl"><span class="c1">// （ここに何かが入る）
+</span></span><span class="hl"><span class="c1"></span>
+</span><span class="hl"><span class="c1">// ---- setup/draw 他 --------------------------------------------------
+</span></span><span class="hl"><span class="c1"></span>
+</span><span class="kd">function</span> <span class="nx">setup</span><span class="p">(</span><span class="p">)</span> <span class="p">{</span>
   <span class="nx">createCanvas</span><span class="p">(</span><span class="mi">800</span><span class="p">,</span> <span class="mi">600</span><span class="p">)</span><span class="p">;</span>
-  <span class="nx">rectMode</span><span class="p">(</span><span class="nx">CENTER</span><span class="p">)</span><span class="p">;</span> <span class="c1">// 四角形の基準点を角から中心に変える
-</span><span class="c1"></span>
-  <span class="c1">// （ここに初期化処理が入る）
-</span><span class="c1"></span><span class="p">}</span>
+<span class="hl">  <span class="nx">rectMode</span><span class="p">(</span><span class="nx">CENTER</span><span class="p">)</span><span class="p">;</span> <span class="c1">// 四角形の基準点を角から中心に変える
+</span></span><span class="c1"></span>
+<span class="hl">  <span class="c1">// （ここに初期化処理が入る）
+</span></span><span class="c1"></span><span class="p">}</span>
 
 <span class="kd">function</span> <span class="nx">draw</span><span class="p">(</span><span class="p">)</span> <span class="p">{</span>
-  <span class="c1">// （ここにデータ操作処理が入る）
-</span><span class="c1"></span>
+<span class="hl">  <span class="c1">// （ここにデータ操作処理が入る）
+</span></span><span class="c1"></span>
   <span class="nx">background</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span><span class="p">;</span>
-  <span class="c1">// （ここに描画処理が入る）
-</span><span class="c1"></span><span class="p">}</span>
+<span class="hl">  <span class="c1">// （ここに描画処理が入る）
+</span></span><span class="c1"></span><span class="p">}</span>
 
-<span class="kd">function</span> <span class="nx">mousePressed</span><span class="p">(</span><span class="p">)</span> <span class="p">{</span>
-  <span class="c1">// （ここにマウスボタンを押したときの処理が入る）
-</span><span class="c1"></span><span class="p">}</span>
-</code></pre></td></tr></table>
+<span class="hl"><span class="kd">function</span> <span class="nx">mousePressed</span><span class="p">(</span><span class="p">)</span> <span class="p">{</span>
+</span><span class="hl">  <span class="c1">// （ここにマウスボタンを押したときの処理が入る）
+</span></span><span class="hl"><span class="c1"></span><span class="p">}</span>
+</span></code></pre></td></tr></table>
 </div>
 </div><p><code>mousePressed()</code> は、マウスボタンが押されたときに p5.js によって自動的に実行される<br>
 （→ <a href="https://p5js.org/reference/#/p5/mousePressed" target="_blank">リファレンス</a>）</p>
@@ -488,15 +493,15 @@ https://github.com/alex-shpak/hugo-book
 <h2 id="やること">やること</h2>
 <ol>
 <li>プレイヤーを入れる変数を用意する</li>
-<li><code>setup()</code> の中で、プレイヤーを作成する</li>
+<li><code>setup()</code> の中で、プレイヤーを<strong>作成</strong>する</li>
 <li><code>draw()</code> の中で、プレイヤーについて以下を行う
 <ul>
-<li>位置の更新</li>
-<li>重力の適用</li>
-<li>描画</li>
+<li><strong>位置の更新</strong></li>
+<li><strong>重力の適用</strong></li>
+<li><strong>描画</strong></li>
 </ul>
 </li>
-<li>マウスボタンを押したときだけ、プレイヤーをジャンプさせる</li>
+<li>マウスボタンを押したときだけ、プレイヤーを<strong>ジャンプ</strong>させる</li>
 </ol>
 <h2 id="必要な関数が既に揃っていると仮定して書いてみる">必要な関数が既に揃っている、と仮定して書いてみる</h2>
 <p>※ このソースコードは動きません</p>
@@ -508,142 +513,162 @@ https://github.com/alex-shpak/hugo-book
 </span><span class="lnt"> 4
 </span><span class="lnt"> 5
 </span><span class="lnt"> 6
-</span><span class="lnt"> 7
-</span><span class="lnt"> 8
-</span><span class="lnt"> 9
+</span><span class="hl"><span class="lnt"> 7
+</span></span><span class="hl"><span class="lnt"> 8
+</span></span><span class="lnt"> 9
 </span><span class="lnt">10
 </span><span class="lnt">11
 </span><span class="lnt">12
 </span><span class="lnt">13
 </span><span class="lnt">14
 </span><span class="lnt">15
-</span><span class="lnt">16
-</span><span class="lnt">17
-</span><span class="lnt">18
+</span><span class="hl"><span class="lnt">16
+</span></span><span class="hl"><span class="lnt">17
+</span></span><span class="lnt">18
 </span><span class="lnt">19
 </span><span class="lnt">20
-</span><span class="lnt">21
-</span><span class="lnt">22
-</span><span class="lnt">23
-</span><span class="lnt">24
-</span><span class="lnt">25
-</span><span class="lnt">26
-</span><span class="lnt">27
-</span><span class="lnt">28
-</span><span class="lnt">29
-</span><span class="lnt">30
+</span><span class="hl"><span class="lnt">21
+</span></span><span class="hl"><span class="lnt">22
+</span></span><span class="hl"><span class="lnt">23
+</span></span><span class="hl"><span class="lnt">24
+</span></span><span class="hl"><span class="lnt">25
+</span></span><span class="hl"><span class="lnt">26
+</span></span><span class="hl"><span class="lnt">27
+</span></span><span class="lnt">28
+</span><span class="hl"><span class="lnt">29
+</span></span><span class="lnt">30
 </span><span class="lnt">31
 </span><span class="lnt">32
-</span><span class="lnt">33
-</span><span class="lnt">34
-</span><span class="lnt">35
+</span><span class="hl"><span class="lnt">33
+</span></span><span class="hl"><span class="lnt">34
+</span></span><span class="lnt">35
 </span></code></pre></td>
 <td class="lntd">
 <pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="c1">// ---- エンティティ関連の関数 ---------------------------------------------
 </span><span class="c1"></span>
-<span class="c1">// （あとで）
+<span class="c1">// （ここに何かが入る）
 </span><span class="c1"></span>
 <span class="c1">// ---- ゲーム全体に関わる部分 ---------------------------------------------
 </span><span class="c1"></span>
-<span class="cm">/** プレイヤーエンティティ */</span>
-<span class="kd">let</span> <span class="nx">player</span><span class="p">;</span>
-
+<span class="hl"><span class="cm">/** プレイヤーエンティティ */</span>
+</span><span class="hl"><span class="kd">let</span> <span class="nx">player</span><span class="p">;</span>
+</span>
 <span class="c1">// ---- setup/draw 他 --------------------------------------------------
 </span><span class="c1"></span>
 <span class="kd">function</span> <span class="nx">setup</span><span class="p">(</span><span class="p">)</span> <span class="p">{</span>
   <span class="nx">createCanvas</span><span class="p">(</span><span class="mi">800</span><span class="p">,</span> <span class="mi">600</span><span class="p">)</span><span class="p">;</span>
   <span class="nx">rectMode</span><span class="p">(</span><span class="nx">CENTER</span><span class="p">)</span><span class="p">;</span>
 
-  <span class="c1">// プレイヤーを作成
-</span><span class="c1"></span>  <span class="nx">player</span> <span class="o">=</span> <span class="nx">createPlayer</span><span class="p">(</span><span class="p">)</span><span class="p">;</span>
-<span class="p">}</span>
+<span class="hl">  <span class="c1">// プレイヤーを作成
+</span></span><span class="hl"><span class="c1"></span>  <span class="nx">player</span> <span class="o">=</span> <span class="nx">createPlayer</span><span class="p">(</span><span class="p">)</span><span class="p">;</span>
+</span><span class="p">}</span>
 
 <span class="kd">function</span> <span class="nx">draw</span><span class="p">(</span><span class="p">)</span> <span class="p">{</span>
-  <span class="c1">// プレイヤーの位置を更新
-</span><span class="c1"></span>  <span class="nx">updatePosition</span><span class="p">(</span><span class="nx">player</span><span class="p">)</span><span class="p">;</span>
-
-  <span class="c1">// プレイヤーに重力を適用
-</span><span class="c1"></span>  <span class="nx">applyGravity</span><span class="p">(</span><span class="nx">player</span><span class="p">)</span><span class="p">;</span>
-
-  <span class="c1">// プレイヤーを描画
-</span><span class="c1"></span>  <span class="nx">background</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span><span class="p">;</span>
-  <span class="nx">drawPlayer</span><span class="p">(</span><span class="nx">player</span><span class="p">)</span><span class="p">;</span>
-<span class="p">}</span>
+<span class="hl">  <span class="c1">// プレイヤーの位置を更新
+</span></span><span class="hl"><span class="c1"></span>  <span class="nx">updatePosition</span><span class="p">(</span><span class="nx">player</span><span class="p">)</span><span class="p">;</span>
+</span><span class="hl">
+</span><span class="hl">  <span class="c1">// プレイヤーに重力を適用
+</span></span><span class="hl"><span class="c1"></span>  <span class="nx">applyGravity</span><span class="p">(</span><span class="nx">player</span><span class="p">)</span><span class="p">;</span>
+</span><span class="hl">
+</span><span class="hl">  <span class="c1">// プレイヤーを描画
+</span></span><span class="c1"></span>  <span class="nx">background</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span><span class="p">;</span>
+<span class="hl">  <span class="nx">drawPlayer</span><span class="p">(</span><span class="nx">player</span><span class="p">)</span><span class="p">;</span>
+</span><span class="p">}</span>
 
 <span class="kd">function</span> <span class="nx">mousePressed</span><span class="p">(</span><span class="p">)</span> <span class="p">{</span>
-  <span class="c1">// プレイヤーをジャンプさせる
-</span><span class="c1"></span>  <span class="nx">applyJump</span><span class="p">(</span><span class="nx">player</span><span class="p">)</span><span class="p">;</span>
-<span class="p">}</span>
+<span class="hl">  <span class="c1">// プレイヤーをジャンプさせる
+</span></span><span class="hl"><span class="c1"></span>  <span class="nx">applyJump</span><span class="p">(</span><span class="nx">player</span><span class="p">)</span><span class="p">;</span>
+</span><span class="p">}</span>
 </code></pre></td></tr></table>
 </div>
 </div><h2 id="必要な関数を実際に用意する">必要な関数を実際に用意する</h2>
+<h3 id="方針">方針</h3>
+<p>プレイヤーは位置と速度を持っているので、次のようなデータがあると良さそう</p>
+<div class="highlight"><pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="c1">// プレイヤーデータ例
+</span><span class="c1"></span><span class="kd">let</span> <span class="nx">player</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="nx">x</span><span class="o">:</span> <span class="mi">200</span><span class="p">,</span> <span class="c1">// 位置 x座標
+</span><span class="c1"></span>  <span class="nx">y</span><span class="o">:</span> <span class="mi">300</span><span class="p">,</span> <span class="c1">// 位置 y座標
+</span><span class="c1"></span>  <span class="nx">vx</span><span class="o">:</span> <span class="mi">0</span><span class="p">,</span>  <span class="c1">// 速度 x成分
+</span><span class="c1"></span>  <span class="nx">vy</span><span class="o">:</span> <span class="mi">0</span>   <span class="c1">// 速度 y成分
+</span><span class="c1"></span><span class="p">}</span><span class="p">;</span>
+
+<span class="c1">// こうしたとき、たとえば player.x の値は 200 である
+</span></code></pre></div><p>あとは、これらの位置や速度を変化させたり、位置に応じて描画したりすれば良い</p>
+<p>なお座標 (200, 300) はこの位置
+<figure>
+    <img src="./player-initial-position.png"
+         alt="プレイヤー初期位置" width="320" height="240"/> 
+</figure>
+</p>
+<h3 id="実装">実装</h3>
+<p>※ 変化のないセクション（「ゲーム全体に関わる部分」、「setup/draw 他」）は省略</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
-</span><span class="lnt"> 3
-</span><span class="lnt"> 4
-</span><span class="lnt"> 5
-</span><span class="lnt"> 6
-</span><span class="lnt"> 7
-</span><span class="lnt"> 8
-</span><span class="lnt"> 9
-</span><span class="lnt">10
-</span><span class="lnt">11
-</span><span class="lnt">12
-</span><span class="lnt">13
-</span><span class="lnt">14
-</span><span class="lnt">15
-</span><span class="lnt">16
-</span><span class="lnt">17
-</span><span class="lnt">18
-</span><span class="lnt">19
-</span><span class="lnt">20
-</span><span class="lnt">21
-</span><span class="lnt">22
-</span><span class="lnt">23
-</span><span class="lnt">24
-</span><span class="lnt">25
-</span><span class="lnt">26
-</span><span class="lnt">27
-</span><span class="lnt">28
-</span><span class="lnt">29
-</span><span class="lnt">30
-</span><span class="lnt">31
-</span></code></pre></td>
+</span><span class="hl"><span class="lnt"> 3
+</span></span><span class="hl"><span class="lnt"> 4
+</span></span><span class="hl"><span class="lnt"> 5
+</span></span><span class="hl"><span class="lnt"> 6
+</span></span><span class="hl"><span class="lnt"> 7
+</span></span><span class="hl"><span class="lnt"> 8
+</span></span><span class="hl"><span class="lnt"> 9
+</span></span><span class="hl"><span class="lnt">10
+</span></span><span class="hl"><span class="lnt">11
+</span></span><span class="hl"><span class="lnt">12
+</span></span><span class="hl"><span class="lnt">13
+</span></span><span class="hl"><span class="lnt">14
+</span></span><span class="hl"><span class="lnt">15
+</span></span><span class="hl"><span class="lnt">16
+</span></span><span class="hl"><span class="lnt">17
+</span></span><span class="hl"><span class="lnt">18
+</span></span><span class="hl"><span class="lnt">19
+</span></span><span class="hl"><span class="lnt">20
+</span></span><span class="hl"><span class="lnt">21
+</span></span><span class="hl"><span class="lnt">22
+</span></span><span class="hl"><span class="lnt">23
+</span></span><span class="hl"><span class="lnt">24
+</span></span><span class="hl"><span class="lnt">25
+</span></span><span class="hl"><span class="lnt">26
+</span></span><span class="hl"><span class="lnt">27
+</span></span><span class="hl"><span class="lnt">28
+</span></span><span class="hl"><span class="lnt">29
+</span></span><span class="hl"><span class="lnt">30
+</span></span><span class="hl"><span class="lnt">31
+</span></span></code></pre></td>
 <td class="lntd">
 <pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="c1">// ---- エンティティ関連の関数 ---------------------------------------------
 </span><span class="c1"></span>
-<span class="c1">// 全エンティティ共通
-</span><span class="c1"></span>
-<span class="kd">function</span> <span class="nx">updatePosition</span><span class="p">(</span><span class="nx">entity</span><span class="p">)</span> <span class="p">{</span>
-  <span class="nx">entity</span><span class="p">.</span><span class="nx">x</span> <span class="o">+=</span> <span class="nx">entity</span><span class="p">.</span><span class="nx">vx</span><span class="p">;</span>
-  <span class="nx">entity</span><span class="p">.</span><span class="nx">y</span> <span class="o">+=</span> <span class="nx">entity</span><span class="p">.</span><span class="nx">vy</span><span class="p">;</span>
-<span class="p">}</span>
-
-<span class="c1">// プレイヤーエンティティ
-</span><span class="c1"></span>
-<span class="kd">function</span> <span class="nx">createPlayer</span><span class="p">(</span><span class="p">)</span> <span class="p">{</span>
-  <span class="k">return</span> <span class="p">{</span>
-    <span class="nx">x</span><span class="o">:</span> <span class="mi">200</span><span class="p">,</span>
-    <span class="nx">y</span><span class="o">:</span> <span class="mi">300</span><span class="p">,</span>
-    <span class="nx">vx</span><span class="o">:</span> <span class="mi">0</span><span class="p">,</span>
-    <span class="nx">vy</span><span class="o">:</span> <span class="mi">0</span>
-  <span class="p">}</span><span class="p">;</span>
-<span class="p">}</span>
-
-<span class="kd">function</span> <span class="nx">applyGravity</span><span class="p">(</span><span class="nx">entity</span><span class="p">)</span> <span class="p">{</span>
-  <span class="nx">entity</span><span class="p">.</span><span class="nx">vy</span> <span class="o">+=</span> <span class="mf">0.15</span><span class="p">;</span>
-<span class="p">}</span>
-
-<span class="kd">function</span> <span class="nx">applyJump</span><span class="p">(</span><span class="nx">entity</span><span class="p">)</span> <span class="p">{</span>
-  <span class="nx">entity</span><span class="p">.</span><span class="nx">vy</span> <span class="o">=</span> <span class="o">-</span><span class="mi">5</span><span class="p">;</span>
-<span class="p">}</span>
-
-<span class="kd">function</span> <span class="nx">drawPlayer</span><span class="p">(</span><span class="nx">entity</span><span class="p">)</span> <span class="p">{</span>
-  <span class="nx">square</span><span class="p">(</span><span class="nx">entity</span><span class="p">.</span><span class="nx">x</span><span class="p">,</span> <span class="nx">entity</span><span class="p">.</span><span class="nx">y</span><span class="p">,</span> <span class="mi">40</span><span class="p">)</span><span class="p">;</span>
-<span class="p">}</span>
-</code></pre></td></tr></table>
+<span class="hl"><span class="c1">// 全エンティティ共通
+</span></span><span class="hl"><span class="c1"></span>
+</span><span class="hl"><span class="kd">function</span> <span class="nx">updatePosition</span><span class="p">(</span><span class="nx">entity</span><span class="p">)</span> <span class="p">{</span>
+</span><span class="hl">  <span class="nx">entity</span><span class="p">.</span><span class="nx">x</span> <span class="o">+=</span> <span class="nx">entity</span><span class="p">.</span><span class="nx">vx</span><span class="p">;</span>
+</span><span class="hl">  <span class="nx">entity</span><span class="p">.</span><span class="nx">y</span> <span class="o">+=</span> <span class="nx">entity</span><span class="p">.</span><span class="nx">vy</span><span class="p">;</span>
+</span><span class="hl"><span class="p">}</span>
+</span><span class="hl">
+</span><span class="hl"><span class="c1">// プレイヤーエンティティ
+</span></span><span class="hl"><span class="c1"></span>
+</span><span class="hl"><span class="kd">function</span> <span class="nx">createPlayer</span><span class="p">(</span><span class="p">)</span> <span class="p">{</span>
+</span><span class="hl">  <span class="k">return</span> <span class="p">{</span>
+</span><span class="hl">    <span class="nx">x</span><span class="o">:</span> <span class="mi">200</span><span class="p">,</span>
+</span><span class="hl">    <span class="nx">y</span><span class="o">:</span> <span class="mi">300</span><span class="p">,</span>
+</span><span class="hl">    <span class="nx">vx</span><span class="o">:</span> <span class="mi">0</span><span class="p">,</span>
+</span><span class="hl">    <span class="nx">vy</span><span class="o">:</span> <span class="mi">0</span>
+</span><span class="hl">  <span class="p">}</span><span class="p">;</span>
+</span><span class="hl"><span class="p">}</span>
+</span><span class="hl">
+</span><span class="hl"><span class="kd">function</span> <span class="nx">applyGravity</span><span class="p">(</span><span class="nx">entity</span><span class="p">)</span> <span class="p">{</span>
+</span><span class="hl">  <span class="nx">entity</span><span class="p">.</span><span class="nx">vy</span> <span class="o">+=</span> <span class="mf">0.15</span><span class="p">;</span>
+</span><span class="hl"><span class="p">}</span>
+</span><span class="hl">
+</span><span class="hl"><span class="kd">function</span> <span class="nx">applyJump</span><span class="p">(</span><span class="nx">entity</span><span class="p">)</span> <span class="p">{</span>
+</span><span class="hl">  <span class="nx">entity</span><span class="p">.</span><span class="nx">vy</span> <span class="o">=</span> <span class="o">-</span><span class="mi">5</span><span class="p">;</span>
+</span><span class="hl"><span class="p">}</span>
+</span><span class="hl">
+</span><span class="hl"><span class="kd">function</span> <span class="nx">drawPlayer</span><span class="p">(</span><span class="nx">entity</span><span class="p">)</span> <span class="p">{</span>
+</span><span class="hl">  <span class="nx">square</span><span class="p">(</span><span class="nx">entity</span><span class="p">.</span><span class="nx">x</span><span class="p">,</span> <span class="nx">entity</span><span class="p">.</span><span class="nx">y</span><span class="p">,</span> <span class="mi">40</span><span class="p">)</span><span class="p">;</span>
+</span><span class="hl"><span class="p">}</span>
+</span></code></pre></td></tr></table>
 </div>
 </div><blockquote class="book-hint info">
   <p>各自実行してみて、プレイヤーが</p>
@@ -682,7 +707,8 @@ https://github.com/alex-shpak/hugo-book
 <li>その関数を使う</li>
 <li>ダミー部分をちゃんと実装する</li>
 </ol>
-<p>という流れになることもそこそこあるように思います。</p>
+<p>という流れになることもそこそこあるように思います。<br>
+先に宣言しておくと（エディタによっては）コード補完が使えるので。</p>
 
     </div>
   </label>
@@ -871,7 +897,12 @@ https://github.com/alex-shpak/hugo-book
     </li>
     <li><a href="#やること">やること</a></li>
     <li><a href="#必要な関数が既に揃っていると仮定して書いてみる">必要な関数が既に揃っている、と仮定して書いてみる</a></li>
-    <li><a href="#必要な関数を実際に用意する">必要な関数を実際に用意する</a></li>
+    <li><a href="#必要な関数を実際に用意する">必要な関数を実際に用意する</a>
+      <ul>
+        <li><a href="#方針">方針</a></li>
+        <li><a href="#実装">実装</a></li>
+      </ul>
+    </li>
   </ul>
 </nav>
 
