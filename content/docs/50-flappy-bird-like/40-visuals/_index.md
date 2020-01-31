@@ -172,9 +172,17 @@ function mousePressed() {
 }
 ```
 
-## 例2
+## 例2（おまけ）
 
-おまけです。めっちゃ目に悪い
+システム変数 `frameCount` を使ったりすれば、簡単なアニメーションも可能
+
+三角関数（`sin()`や`cos()`）が周期関数であることを利用すると、たとえば次のコードで「-1 ～ 1 の間を揺れ動く数値」が得られる
+
+```javascript { linenos=false }
+sin(frameCount * 0.1) // 0.1 のところは好きに調整
+```
+
+例、めっちゃ目に悪い
 
 ![Example2](flappy-bird-like-sample-viz2.gif)
 

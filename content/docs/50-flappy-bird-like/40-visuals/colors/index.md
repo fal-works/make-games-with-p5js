@@ -9,17 +9,19 @@ type: docs
 
 数値で指定する場合、デフォルトでは 赤、緑、青 を指定する RGB モードとなっている
 
-```javascript
+```javascript { linenos=false }
 function setup() {
   createCanvas(800, 600);
   noStroke();
 
   background(255); // 引数が1つだとグレースケール。0 が黒で 255 が白
   
+  background(0, 32); // 引数が2つだとグレースケール + α値（不透明度）
+  
   fill(0, 128, 255); // 引数が3つだとRGB指定。赤、緑、青 の順
   circle(250, 300, 200);
 
-  fill(0, 128, 255, 64); // 4つ目の引数はα値（不透明度）
+  fill(0, 128, 255, 64); // 引数が4つだと RGB + α値（不透明度）
   circle(550, 300, 200);
 }
 ```
@@ -33,7 +35,7 @@ function setup() {
 
 **※ 値の先頭に** `#` **を付けることに注意**
 
-```javascript
+```javascript { linenos=false }
 function setup() {
   createCanvas(800, 600);
   noStroke();
@@ -63,7 +65,7 @@ Adobe Color と同じく、バランスを調整してくれる
 
 色の数値を自分で調整する場合は、こちらのほうが RGB よりも直感的
 
-```javascript
+```javascript { linenos=false }
 function setup() {
   createCanvas(800, 600);
   
