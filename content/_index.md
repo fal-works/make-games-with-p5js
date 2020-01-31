@@ -3,7 +3,7 @@ title: Home
 type: docs
 ---
 
-# Processing Community Day 2020 Tokyo
+# Processing Community Day Tokyo 2020
 
 **ワークショップ「p5.js でゲーム制作」by FAL**
 
