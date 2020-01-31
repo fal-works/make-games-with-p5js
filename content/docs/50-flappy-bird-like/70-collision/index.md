@@ -75,7 +75,7 @@ function entitiesAreColliding(
 1. 上述の衝突判定関数を用意する
 1. プレイヤー 対 各ブロック について判定し、衝突していたらゲームオーバー
 
-```javascript
+```javascript { hl_lines=["60-86", "146-152"], linenostart=1 }
 // ---- エンティティ関連の関数 --------------------------------------------------
 
 // 全エンティティ共通
@@ -219,10 +219,7 @@ function updateGame() {
   applyGravity(player);
 
   // プレイヤーが死んでいたらゲームオーバー
-  if (!playerIsAlive(player)) {
-    gameState = "gameover";
-    return;
-  }
+  if (!playerIsAlive(player)) gameState = "gameover";
 
   // 衝突判定
   for (let block of blocks) {

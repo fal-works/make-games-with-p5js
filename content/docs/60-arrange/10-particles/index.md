@@ -6,16 +6,22 @@ weight: 10
 
 # パーティクルを追加
 
-ブロックと同じ要領で、パーティクル（直訳：粒子）を追加することが可能
+小さな粒や破片を大量に散らかすことで、様々な効果が得られる。  
+これは「パーティクル」（直訳：粒子）と呼ばれる
+
+パーティクルを新たなエンティティの一種として追加し、  
+複数のブロックを動かすのと同じ要領で動作させることができる
+
 
 ## 一定時間で消えるようにするには
 
-パーティクルエンティティに持たせるデータを増やし、時間経過で減少させる
+パーティクルエンティティに持たせるデータとして、「時間経過で減少する数値」を増やす。  
+ここでは `life`（ライフ）と名付けた
 
-例えば次のように関数を用意すれば、  
-`life` を徐々に減らしていってゼロになったら削除、といった使い方ができる
+※ 速度については、今回の例では一定スピード＆ランダムな角度で、  
+　 さらに少し左側に流れるように `vx` をいじっている
 
-```javascript
+```javascript { linenos=false }
 function createParticle(x, y) {
   let direction = random(TWO_PI);
   let speed = 2;
@@ -28,7 +34,12 @@ function createParticle(x, y) {
     life: 1 // = 100%
   };
 }
+```
 
+加えて、次のように関数を用意すれば、  
+`life` を徐々に減らしていってゼロになったら削除、といった使い方ができる
+
+```javascript { linenos=false }
 function decreaseLife(particle) {
   particle.life -= 0.02;
 }
@@ -42,7 +53,7 @@ function particleIsAlive(particle) {
 
 [▶ 動かしてみる](https://fal-works.github.io/make-games-with-p5js-src/11-particles)
 
-```javascript
+```javascript { hl_lines=["60-89", "127-128", "172-173", 177, 182, "187-188"], linenostart=1 }
 // ---- エンティティ関連の関数 --------------------------------------------------
 
 // 全エンティティ共通
@@ -233,10 +244,7 @@ function updateGame() {
   for (let particle of particles) decreaseLife(particle);
 
   // プレイヤーが死んでいたらゲームオーバー
-  if (!playerIsAlive(player)) {
-    gameState = "gameover";
-    return;
-  }
+  if (!playerIsAlive(player)) gameState = "gameover";
 
   // 衝突判定
   for (let block of blocks) {
@@ -293,20 +301,20 @@ function mousePressed() {
 ```
 
 {{< hint info >}}
-動かしてみましょう。
+動かしたり改造したりしてみましょう。
 
 個々のパーティクルの移動や表示を調整すれば、雰囲気が変わってきます。
 {{< /hint >}}
 
 {{< hint info >}}
-たとえば、ゲームオーバーになったときに爆発（多数のパーティクルを生成）させるのも良いかもしれません。
+他の使用例としては、ゲームオーバーになったときに爆発（一度に多数のパーティクルを生成）させるのも良いかもしれません。
 
 その場合、ゲームオーバー状態のときには
 
 - パーティクルだけ更新する
 - プレイヤーは表示しない
 
-のようにする必要があります（簡易的な対処ではありますが）。
+などの変更が必要そうです（簡易的な対処ではありますが）。
 {{< /hint >}}
 
 
