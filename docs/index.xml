@@ -16,7 +16,7 @@
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>https://fal-works.github.io/make-games-with-p5js/docs/60-arrange/10-particles/</guid>
-      <description>パーティクルを追加 ブロックと同じ要領で、パーティクル（直訳：粒子）を追加することが可能 一定時間で消えるようにするには パーティクルエンティティ</description>
+      <description>パーティクルを追加 小さな粒や破片を大量に散らかすことで、様々な効果が得られる。 これは「パーティクル」（直訳：粒子）と呼ばれる パーティクルを新</description>
     </item>
     
     <item>

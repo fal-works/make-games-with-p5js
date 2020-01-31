@@ -350,8 +350,18 @@ https://github.com/alex-shpak/hugo-book
       
   <nav id="TableOfContents">
   <ul>
-    <li><a href="#スクリーンシェイク">スクリーンシェイク</a></li>
-    <li><a href="#スクリーンフラッシュ">スクリーンフラッシュ</a></li>
+    <li><a href="#スクリーンシェイク">スクリーンシェイク</a>
+      <ul>
+        <li><a href="#原理">原理</a></li>
+        <li><a href="#実装例">実装例</a></li>
+      </ul>
+    </li>
+    <li><a href="#スクリーンフラッシュ">スクリーンフラッシュ</a>
+      <ul>
+        <li><a href="#原理-1">原理</a></li>
+        <li><a href="#実装例-1">実装例</a></li>
+      </ul>
+    </li>
     <li><a href="#使用例">使用例</a></li>
   </ul>
 </nav>
@@ -378,7 +388,15 @@ https://github.com/alex-shpak/hugo-book
 </li>
 </ul>
 <h2 id="スクリーンシェイク">スクリーンシェイク</h2>
-<p>たとえば、次のようなコードを用意し、</p>
+<h3 id="原理">原理</h3>
+<ul>
+<li>p5.js の <code>translate()</code> で画面をずらすことができるので、<br>
+ランダムな値で <code>translate()</code> すれば画面を揺らすことができる</li>
+<li>揺れ効果を任意のタイミングで開始できて、<br>
+その後、揺れの強さを徐々に減衰させるような仕組みが必要</li>
+</ul>
+<h3 id="実装例">実装例</h3>
+<p>次のようなコードを用意し、</p>
 <ul>
 <li><code>resetShake()</code></li>
 <li><code>updateShake()</code></li>
@@ -386,45 +404,7 @@ https://github.com/alex-shpak/hugo-book
 </ul>
 <p>をそれぞれ適切な場所で実行する。</p>
 <p>すると、後は <code>setShake()</code> を任意のタイミングで使うだけで画面を揺らすことができる</p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
-</span><span class="lnt"> 2
-</span><span class="lnt"> 3
-</span><span class="lnt"> 4
-</span><span class="lnt"> 5
-</span><span class="lnt"> 6
-</span><span class="lnt"> 7
-</span><span class="lnt"> 8
-</span><span class="lnt"> 9
-</span><span class="lnt">10
-</span><span class="lnt">11
-</span><span class="lnt">12
-</span><span class="lnt">13
-</span><span class="lnt">14
-</span><span class="lnt">15
-</span><span class="lnt">16
-</span><span class="lnt">17
-</span><span class="lnt">18
-</span><span class="lnt">19
-</span><span class="lnt">20
-</span><span class="lnt">21
-</span><span class="lnt">22
-</span><span class="lnt">23
-</span><span class="lnt">24
-</span><span class="lnt">25
-</span><span class="lnt">26
-</span><span class="lnt">27
-</span><span class="lnt">28
-</span><span class="lnt">29
-</span><span class="lnt">30
-</span><span class="lnt">31
-</span><span class="lnt">32
-</span><span class="lnt">33
-</span></code></pre></td>
-<td class="lntd">
-<pre class="chroma"><code class="language-javascript" data-lang="javascript">
-<span class="cm">/** シェイクの現在の強さ */</span>
+<div class="highlight"><pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="cm">/** シェイクの現在の強さ */</span>
 <span class="kd">let</span> <span class="nx">shakeMagnitude</span><span class="p">;</span>
 
 <span class="cm">/** シェイクの減衰に使う係数 */</span>
@@ -456,50 +436,15 @@ https://github.com/alex-shpak/hugo-book
     <span class="nx">random</span><span class="p">(</span><span class="o">-</span><span class="nx">shakeMagnitude</span><span class="p">,</span> <span class="nx">shakeMagnitude</span><span class="p">)</span>
   <span class="p">)</span><span class="p">;</span>
 <span class="p">}</span>
-</code></pre></td></tr></table>
-</div>
-</div><h2 id="スクリーンフラッシュ">スクリーンフラッシュ</h2>
-<p>スクリーンシェイクとほぼ同様。</p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
-</span><span class="lnt"> 2
-</span><span class="lnt"> 3
-</span><span class="lnt"> 4
-</span><span class="lnt"> 5
-</span><span class="lnt"> 6
-</span><span class="lnt"> 7
-</span><span class="lnt"> 8
-</span><span class="lnt"> 9
-</span><span class="lnt">10
-</span><span class="lnt">11
-</span><span class="lnt">12
-</span><span class="lnt">13
-</span><span class="lnt">14
-</span><span class="lnt">15
-</span><span class="lnt">16
-</span><span class="lnt">17
-</span><span class="lnt">18
-</span><span class="lnt">19
-</span><span class="lnt">20
-</span><span class="lnt">21
-</span><span class="lnt">22
-</span><span class="lnt">23
-</span><span class="lnt">24
-</span><span class="lnt">25
-</span><span class="lnt">26
-</span><span class="lnt">27
-</span><span class="lnt">28
-</span><span class="lnt">29
-</span><span class="lnt">30
-</span><span class="lnt">31
-</span><span class="lnt">32
-</span><span class="lnt">33
-</span><span class="lnt">34
-</span><span class="lnt">35
-</span></code></pre></td>
-<td class="lntd">
-<pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="cm">/** フラッシュのα値 */</span>
+</code></pre></div><h2 id="スクリーンフラッシュ">スクリーンフラッシュ</h2>
+<h3 id="原理-1">原理</h3>
+<p>p5.js の <code>background()</code> は、α値を指定すれば画面全体を半透明に塗りつぶせる。<br>
+白など明るい色でこれを行い、徐々に明るさを減衰させれば、フラッシュのようになる</p>
+<h3 id="実装例-1">実装例</h3>
+<p>構造的にはスクリーンシェイクとほぼ同様</p>
+<p>スクリーンシェイクでは掛け算で減衰させていたが、<br>
+こちらは、徐々に減少する「残り時間」を使って明るさを決めている</p>
+<div class="highlight"><pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="cm">/** フラッシュのα値 */</span>
 <span class="kd">let</span> <span class="nx">flashAlpha</span><span class="p">;</span>
 
 <span class="cm">/** フラッシュの持続時間（フレーム数） */</span>
@@ -534,9 +479,7 @@ https://github.com/alex-shpak/hugo-book
   <span class="kd">let</span> <span class="nx">alphaRatio</span> <span class="o">=</span> <span class="nx">flashRemainingCount</span> <span class="o">/</span> <span class="nx">flashDuration</span><span class="p">;</span>
   <span class="nx">background</span><span class="p">(</span><span class="mi">255</span><span class="p">,</span> <span class="nx">alphaRatio</span> <span class="o">*</span> <span class="nx">flashAlpha</span><span class="p">)</span><span class="p">;</span>
 <span class="p">}</span>
-</code></pre></td></tr></table>
-</div>
-</div><h2 id="使用例">使用例</h2>
+</code></pre></div><h2 id="使用例">使用例</h2>
 <p><a href="https://fal-works.github.io/make-games-with-p5js-src/12-effects" target="_blank">▶ 動かしてみる</a></p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
@@ -627,81 +570,81 @@ https://github.com/alex-shpak/hugo-book
 </span><span class="lnt"> 85
 </span><span class="lnt"> 86
 </span><span class="lnt"> 87
-</span><span class="lnt"> 88
-</span><span class="lnt"> 89
-</span><span class="lnt"> 90
-</span><span class="lnt"> 91
-</span><span class="lnt"> 92
-</span><span class="lnt"> 93
-</span><span class="lnt"> 94
-</span><span class="lnt"> 95
-</span><span class="lnt"> 96
-</span><span class="lnt"> 97
-</span><span class="lnt"> 98
-</span><span class="lnt"> 99
-</span><span class="lnt">100
-</span><span class="lnt">101
-</span><span class="lnt">102
-</span><span class="lnt">103
-</span><span class="lnt">104
-</span><span class="lnt">105
-</span><span class="lnt">106
-</span><span class="lnt">107
-</span><span class="lnt">108
-</span><span class="lnt">109
-</span><span class="lnt">110
-</span><span class="lnt">111
-</span><span class="lnt">112
-</span><span class="lnt">113
-</span><span class="lnt">114
-</span><span class="lnt">115
-</span><span class="lnt">116
-</span><span class="lnt">117
-</span><span class="lnt">118
-</span><span class="lnt">119
-</span><span class="lnt">120
-</span><span class="lnt">121
-</span><span class="lnt">122
-</span><span class="lnt">123
-</span><span class="lnt">124
-</span><span class="lnt">125
-</span><span class="lnt">126
-</span><span class="lnt">127
-</span><span class="lnt">128
-</span><span class="lnt">129
-</span><span class="lnt">130
-</span><span class="lnt">131
-</span><span class="lnt">132
-</span><span class="lnt">133
-</span><span class="lnt">134
-</span><span class="lnt">135
-</span><span class="lnt">136
-</span><span class="lnt">137
-</span><span class="lnt">138
-</span><span class="lnt">139
-</span><span class="lnt">140
-</span><span class="lnt">141
-</span><span class="lnt">142
-</span><span class="lnt">143
-</span><span class="lnt">144
-</span><span class="lnt">145
-</span><span class="lnt">146
-</span><span class="lnt">147
-</span><span class="lnt">148
-</span><span class="lnt">149
-</span><span class="lnt">150
-</span><span class="lnt">151
-</span><span class="lnt">152
-</span><span class="lnt">153
-</span><span class="lnt">154
-</span><span class="lnt">155
-</span><span class="lnt">156
-</span><span class="lnt">157
-</span><span class="lnt">158
-</span><span class="lnt">159
-</span><span class="lnt">160
-</span><span class="lnt">161
-</span><span class="lnt">162
+</span><span class="hl"><span class="lnt"> 88
+</span></span><span class="hl"><span class="lnt"> 89
+</span></span><span class="hl"><span class="lnt"> 90
+</span></span><span class="hl"><span class="lnt"> 91
+</span></span><span class="hl"><span class="lnt"> 92
+</span></span><span class="hl"><span class="lnt"> 93
+</span></span><span class="hl"><span class="lnt"> 94
+</span></span><span class="hl"><span class="lnt"> 95
+</span></span><span class="hl"><span class="lnt"> 96
+</span></span><span class="hl"><span class="lnt"> 97
+</span></span><span class="hl"><span class="lnt"> 98
+</span></span><span class="hl"><span class="lnt"> 99
+</span></span><span class="hl"><span class="lnt">100
+</span></span><span class="hl"><span class="lnt">101
+</span></span><span class="hl"><span class="lnt">102
+</span></span><span class="hl"><span class="lnt">103
+</span></span><span class="hl"><span class="lnt">104
+</span></span><span class="hl"><span class="lnt">105
+</span></span><span class="hl"><span class="lnt">106
+</span></span><span class="hl"><span class="lnt">107
+</span></span><span class="hl"><span class="lnt">108
+</span></span><span class="hl"><span class="lnt">109
+</span></span><span class="hl"><span class="lnt">110
+</span></span><span class="hl"><span class="lnt">111
+</span></span><span class="hl"><span class="lnt">112
+</span></span><span class="hl"><span class="lnt">113
+</span></span><span class="hl"><span class="lnt">114
+</span></span><span class="hl"><span class="lnt">115
+</span></span><span class="hl"><span class="lnt">116
+</span></span><span class="hl"><span class="lnt">117
+</span></span><span class="hl"><span class="lnt">118
+</span></span><span class="hl"><span class="lnt">119
+</span></span><span class="hl"><span class="lnt">120
+</span></span><span class="hl"><span class="lnt">121
+</span></span><span class="hl"><span class="lnt">122
+</span></span><span class="hl"><span class="lnt">123
+</span></span><span class="hl"><span class="lnt">124
+</span></span><span class="hl"><span class="lnt">125
+</span></span><span class="hl"><span class="lnt">126
+</span></span><span class="hl"><span class="lnt">127
+</span></span><span class="hl"><span class="lnt">128
+</span></span><span class="hl"><span class="lnt">129
+</span></span><span class="hl"><span class="lnt">130
+</span></span><span class="hl"><span class="lnt">131
+</span></span><span class="hl"><span class="lnt">132
+</span></span><span class="hl"><span class="lnt">133
+</span></span><span class="hl"><span class="lnt">134
+</span></span><span class="hl"><span class="lnt">135
+</span></span><span class="hl"><span class="lnt">136
+</span></span><span class="hl"><span class="lnt">137
+</span></span><span class="hl"><span class="lnt">138
+</span></span><span class="hl"><span class="lnt">139
+</span></span><span class="hl"><span class="lnt">140
+</span></span><span class="hl"><span class="lnt">141
+</span></span><span class="hl"><span class="lnt">142
+</span></span><span class="hl"><span class="lnt">143
+</span></span><span class="hl"><span class="lnt">144
+</span></span><span class="hl"><span class="lnt">145
+</span></span><span class="hl"><span class="lnt">146
+</span></span><span class="hl"><span class="lnt">147
+</span></span><span class="hl"><span class="lnt">148
+</span></span><span class="hl"><span class="lnt">149
+</span></span><span class="hl"><span class="lnt">150
+</span></span><span class="hl"><span class="lnt">151
+</span></span><span class="hl"><span class="lnt">152
+</span></span><span class="hl"><span class="lnt">153
+</span></span><span class="hl"><span class="lnt">154
+</span></span><span class="hl"><span class="lnt">155
+</span></span><span class="hl"><span class="lnt">156
+</span></span><span class="hl"><span class="lnt">157
+</span></span><span class="hl"><span class="lnt">158
+</span></span><span class="hl"><span class="lnt">159
+</span></span><span class="hl"><span class="lnt">160
+</span></span><span class="hl"><span class="lnt">161
+</span></span><span class="lnt">162
 </span><span class="lnt">163
 </span><span class="lnt">164
 </span><span class="lnt">165
@@ -740,23 +683,23 @@ https://github.com/alex-shpak/hugo-book
 </span><span class="lnt">198
 </span><span class="lnt">199
 </span><span class="lnt">200
-</span><span class="lnt">201
-</span><span class="lnt">202
-</span><span class="lnt">203
-</span><span class="lnt">204
+</span><span class="hl"><span class="lnt">201
+</span></span><span class="hl"><span class="lnt">202
+</span></span><span class="hl"><span class="lnt">203
+</span></span><span class="lnt">204
 </span><span class="lnt">205
-</span><span class="lnt">206
-</span><span class="lnt">207
-</span><span class="lnt">208
-</span><span class="lnt">209
-</span><span class="lnt">210
-</span><span class="lnt">211
+</span><span class="hl"><span class="lnt">206
+</span></span><span class="hl"><span class="lnt">207
+</span></span><span class="hl"><span class="lnt">208
+</span></span><span class="hl"><span class="lnt">209
+</span></span><span class="hl"><span class="lnt">210
+</span></span><span class="lnt">211
 </span><span class="lnt">212
 </span><span class="lnt">213
-</span><span class="lnt">214
-</span><span class="lnt">215
-</span><span class="lnt">216
-</span><span class="lnt">217
+</span><span class="hl"><span class="lnt">214
+</span></span><span class="hl"><span class="lnt">215
+</span></span><span class="hl"><span class="lnt">216
+</span></span><span class="lnt">217
 </span><span class="lnt">218
 </span><span class="lnt">219
 </span><span class="lnt">220
@@ -788,9 +731,9 @@ https://github.com/alex-shpak/hugo-book
 </span><span class="lnt">246
 </span><span class="lnt">247
 </span><span class="lnt">248
-</span><span class="lnt">249
-</span><span class="lnt">250
-</span><span class="lnt">251
+</span><span class="hl"><span class="lnt">249
+</span></span><span class="hl"><span class="lnt">250
+</span></span><span class="lnt">251
 </span><span class="lnt">252
 </span><span class="lnt">253
 </span><span class="lnt">254
@@ -799,9 +742,9 @@ https://github.com/alex-shpak/hugo-book
 </span><span class="lnt">257
 </span><span class="lnt">258
 </span><span class="lnt">259
-</span><span class="lnt">260
-</span><span class="lnt">261
-</span><span class="lnt">262
+</span><span class="hl"><span class="lnt">260
+</span></span><span class="hl"><span class="lnt">261
+</span></span><span class="lnt">262
 </span><span class="lnt">263
 </span><span class="lnt">264
 </span><span class="lnt">265
@@ -923,81 +866,81 @@ https://github.com/alex-shpak/hugo-book
   <span class="k">return</span> <span class="kc">true</span><span class="p">;</span> <span class="c1">// ここまで来たら、x方向でもy方向でも重なっているので true
 </span><span class="c1"></span><span class="p">}</span>
 
-<span class="c1">// ---- 画面効果 ---------------------------------------------------------------
-</span><span class="c1"></span>
-<span class="c1">// スクリーンシェイク
-</span><span class="c1"></span>
-<span class="cm">/** シェイクの現在の強さ */</span>
-<span class="kd">let</span> <span class="nx">shakeMagnitude</span><span class="p">;</span>
-
-<span class="cm">/** シェイクの減衰に使う係数 */</span>
-<span class="kd">let</span> <span class="nx">shakeDampingFactor</span><span class="p">;</span>
-
-<span class="cm">/** シェイクをリセット */</span>
-<span class="kd">function</span> <span class="nx">resetShake</span><span class="p">(</span><span class="p">)</span> <span class="p">{</span>
-  <span class="nx">shakeMagnitude</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
-  <span class="nx">shakeDampingFactor</span> <span class="o">=</span> <span class="mf">0.95</span><span class="p">;</span>
-<span class="p">}</span>
-
-<span class="cm">/** シェイクを任意の強さで発動 */</span>
-<span class="kd">function</span> <span class="nx">setShake</span><span class="p">(</span><span class="nx">magnitude</span><span class="p">)</span> <span class="p">{</span>
-  <span class="nx">shakeMagnitude</span> <span class="o">=</span> <span class="nx">magnitude</span><span class="p">;</span>
-<span class="p">}</span>
-
-<span class="cm">/** シェイクを更新 */</span>
-<span class="kd">function</span> <span class="nx">updateShake</span><span class="p">(</span><span class="p">)</span> <span class="p">{</span>
-  <span class="nx">shakeMagnitude</span> <span class="o">*=</span> <span class="nx">shakeDampingFactor</span><span class="p">;</span> <span class="c1">// シェイクの大きさを徐々に減衰
-</span><span class="c1"></span><span class="p">}</span>
-
-<span class="cm">/** シェイクを適用。描画処理の前に実行する必要あり */</span>
-<span class="kd">function</span> <span class="nx">applyShake</span><span class="p">(</span><span class="p">)</span> <span class="p">{</span>
-  <span class="k">if</span> <span class="p">(</span><span class="nx">shakeMagnitude</span> <span class="o">&lt;</span> <span class="mi">1</span><span class="p">)</span> <span class="k">return</span><span class="p">;</span>
-
-  <span class="c1">// currentMagnitude の範囲内で、ランダムに画面をずらす
-</span><span class="c1"></span>  <span class="nx">translate</span><span class="p">(</span>
-    <span class="nx">random</span><span class="p">(</span><span class="o">-</span><span class="nx">shakeMagnitude</span><span class="p">,</span> <span class="nx">shakeMagnitude</span><span class="p">)</span><span class="p">,</span>
-    <span class="nx">random</span><span class="p">(</span><span class="o">-</span><span class="nx">shakeMagnitude</span><span class="p">,</span> <span class="nx">shakeMagnitude</span><span class="p">)</span>
-  <span class="p">)</span><span class="p">;</span>
-<span class="p">}</span>
-
-<span class="c1">// スクリーンフラッシュ
-</span><span class="c1"></span>
-<span class="cm">/** フラッシュのα値 */</span>
-<span class="kd">let</span> <span class="nx">flashAlpha</span><span class="p">;</span>
-
-<span class="cm">/** フラッシュの持続時間（フレーム数） */</span>
-<span class="kd">let</span> <span class="nx">flashDuration</span><span class="p">;</span>
-
-<span class="cm">/** フラッシュの残り時間（フレーム数） */</span>
-<span class="kd">let</span> <span class="nx">flashRemainingCount</span><span class="p">;</span>
-
-<span class="cm">/** フラッシュをリセット */</span>
-<span class="kd">function</span> <span class="nx">resetFlash</span><span class="p">(</span><span class="p">)</span> <span class="p">{</span>
-  <span class="nx">flashAlpha</span> <span class="o">=</span> <span class="mi">255</span><span class="p">;</span>
-  <span class="nx">flashDuration</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
-  <span class="nx">flashRemainingCount</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
-<span class="p">}</span>
-
-<span class="cm">/** フラッシュを、任意のα値と持続時間で発動 */</span>
-<span class="kd">function</span> <span class="nx">setFlash</span><span class="p">(</span><span class="nx">alpha</span><span class="p">,</span> <span class="nx">duration</span><span class="p">)</span> <span class="p">{</span>
-  <span class="nx">flashAlpha</span> <span class="o">=</span> <span class="nx">alpha</span><span class="p">;</span>
-  <span class="nx">flashDuration</span> <span class="o">=</span> <span class="nx">duration</span><span class="p">;</span>
-  <span class="nx">flashRemainingCount</span> <span class="o">=</span> <span class="nx">duration</span><span class="p">;</span>
-<span class="p">}</span>
-
-<span class="cm">/** フラッシュを更新 */</span>
-<span class="kd">function</span> <span class="nx">updateFlash</span><span class="p">(</span><span class="p">)</span> <span class="p">{</span>
-  <span class="nx">flashRemainingCount</span> <span class="o">-=</span> <span class="mi">1</span><span class="p">;</span>
-<span class="p">}</span>
-
-<span class="cm">/** フラッシュを適用。描画処理の後に呼ぶ必要あり */</span>
-<span class="kd">function</span> <span class="nx">applyFlash</span><span class="p">(</span><span class="p">)</span> <span class="p">{</span>
-  <span class="k">if</span> <span class="p">(</span><span class="nx">flashRemainingCount</span> <span class="o">&lt;=</span> <span class="mi">0</span><span class="p">)</span> <span class="k">return</span><span class="p">;</span>
-
-  <span class="kd">let</span> <span class="nx">alphaRatio</span> <span class="o">=</span> <span class="nx">flashRemainingCount</span> <span class="o">/</span> <span class="nx">flashDuration</span><span class="p">;</span>
-  <span class="nx">background</span><span class="p">(</span><span class="mi">255</span><span class="p">,</span> <span class="nx">alphaRatio</span> <span class="o">*</span> <span class="nx">flashAlpha</span><span class="p">)</span><span class="p">;</span>
-<span class="p">}</span>
-
+<span class="hl"><span class="c1">// ---- 画面効果 ---------------------------------------------------------------
+</span></span><span class="hl"><span class="c1"></span>
+</span><span class="hl"><span class="c1">// スクリーンシェイク
+</span></span><span class="hl"><span class="c1"></span>
+</span><span class="hl"><span class="cm">/** シェイクの現在の強さ */</span>
+</span><span class="hl"><span class="kd">let</span> <span class="nx">shakeMagnitude</span><span class="p">;</span>
+</span><span class="hl">
+</span><span class="hl"><span class="cm">/** シェイクの減衰に使う係数 */</span>
+</span><span class="hl"><span class="kd">let</span> <span class="nx">shakeDampingFactor</span><span class="p">;</span>
+</span><span class="hl">
+</span><span class="hl"><span class="cm">/** シェイクをリセット */</span>
+</span><span class="hl"><span class="kd">function</span> <span class="nx">resetShake</span><span class="p">(</span><span class="p">)</span> <span class="p">{</span>
+</span><span class="hl">  <span class="nx">shakeMagnitude</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+</span><span class="hl">  <span class="nx">shakeDampingFactor</span> <span class="o">=</span> <span class="mf">0.95</span><span class="p">;</span>
+</span><span class="hl"><span class="p">}</span>
+</span><span class="hl">
+</span><span class="hl"><span class="cm">/** シェイクを任意の強さで発動 */</span>
+</span><span class="hl"><span class="kd">function</span> <span class="nx">setShake</span><span class="p">(</span><span class="nx">magnitude</span><span class="p">)</span> <span class="p">{</span>
+</span><span class="hl">  <span class="nx">shakeMagnitude</span> <span class="o">=</span> <span class="nx">magnitude</span><span class="p">;</span>
+</span><span class="hl"><span class="p">}</span>
+</span><span class="hl">
+</span><span class="hl"><span class="cm">/** シェイクを更新 */</span>
+</span><span class="hl"><span class="kd">function</span> <span class="nx">updateShake</span><span class="p">(</span><span class="p">)</span> <span class="p">{</span>
+</span><span class="hl">  <span class="nx">shakeMagnitude</span> <span class="o">*=</span> <span class="nx">shakeDampingFactor</span><span class="p">;</span> <span class="c1">// シェイクの大きさを徐々に減衰
+</span></span><span class="hl"><span class="c1"></span><span class="p">}</span>
+</span><span class="hl">
+</span><span class="hl"><span class="cm">/** シェイクを適用。描画処理の前に実行する必要あり */</span>
+</span><span class="hl"><span class="kd">function</span> <span class="nx">applyShake</span><span class="p">(</span><span class="p">)</span> <span class="p">{</span>
+</span><span class="hl">  <span class="k">if</span> <span class="p">(</span><span class="nx">shakeMagnitude</span> <span class="o">&lt;</span> <span class="mi">1</span><span class="p">)</span> <span class="k">return</span><span class="p">;</span>
+</span><span class="hl">
+</span><span class="hl">  <span class="c1">// currentMagnitude の範囲内で、ランダムに画面をずらす
+</span></span><span class="hl"><span class="c1"></span>  <span class="nx">translate</span><span class="p">(</span>
+</span><span class="hl">    <span class="nx">random</span><span class="p">(</span><span class="o">-</span><span class="nx">shakeMagnitude</span><span class="p">,</span> <span class="nx">shakeMagnitude</span><span class="p">)</span><span class="p">,</span>
+</span><span class="hl">    <span class="nx">random</span><span class="p">(</span><span class="o">-</span><span class="nx">shakeMagnitude</span><span class="p">,</span> <span class="nx">shakeMagnitude</span><span class="p">)</span>
+</span><span class="hl">  <span class="p">)</span><span class="p">;</span>
+</span><span class="hl"><span class="p">}</span>
+</span><span class="hl">
+</span><span class="hl"><span class="c1">// スクリーンフラッシュ
+</span></span><span class="hl"><span class="c1"></span>
+</span><span class="hl"><span class="cm">/** フラッシュのα値 */</span>
+</span><span class="hl"><span class="kd">let</span> <span class="nx">flashAlpha</span><span class="p">;</span>
+</span><span class="hl">
+</span><span class="hl"><span class="cm">/** フラッシュの持続時間（フレーム数） */</span>
+</span><span class="hl"><span class="kd">let</span> <span class="nx">flashDuration</span><span class="p">;</span>
+</span><span class="hl">
+</span><span class="hl"><span class="cm">/** フラッシュの残り時間（フレーム数） */</span>
+</span><span class="hl"><span class="kd">let</span> <span class="nx">flashRemainingCount</span><span class="p">;</span>
+</span><span class="hl">
+</span><span class="hl"><span class="cm">/** フラッシュをリセット */</span>
+</span><span class="hl"><span class="kd">function</span> <span class="nx">resetFlash</span><span class="p">(</span><span class="p">)</span> <span class="p">{</span>
+</span><span class="hl">  <span class="nx">flashAlpha</span> <span class="o">=</span> <span class="mi">255</span><span class="p">;</span>
+</span><span class="hl">  <span class="nx">flashDuration</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+</span><span class="hl">  <span class="nx">flashRemainingCount</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+</span><span class="hl"><span class="p">}</span>
+</span><span class="hl">
+</span><span class="hl"><span class="cm">/** フラッシュを、任意のα値と持続時間で発動 */</span>
+</span><span class="hl"><span class="kd">function</span> <span class="nx">setFlash</span><span class="p">(</span><span class="nx">alpha</span><span class="p">,</span> <span class="nx">duration</span><span class="p">)</span> <span class="p">{</span>
+</span><span class="hl">  <span class="nx">flashAlpha</span> <span class="o">=</span> <span class="nx">alpha</span><span class="p">;</span>
+</span><span class="hl">  <span class="nx">flashDuration</span> <span class="o">=</span> <span class="nx">duration</span><span class="p">;</span>
+</span><span class="hl">  <span class="nx">flashRemainingCount</span> <span class="o">=</span> <span class="nx">duration</span><span class="p">;</span>
+</span><span class="hl"><span class="p">}</span>
+</span><span class="hl">
+</span><span class="hl"><span class="cm">/** フラッシュを更新 */</span>
+</span><span class="hl"><span class="kd">function</span> <span class="nx">updateFlash</span><span class="p">(</span><span class="p">)</span> <span class="p">{</span>
+</span><span class="hl">  <span class="nx">flashRemainingCount</span> <span class="o">-=</span> <span class="mi">1</span><span class="p">;</span>
+</span><span class="hl"><span class="p">}</span>
+</span><span class="hl">
+</span><span class="hl"><span class="cm">/** フラッシュを適用。描画処理の後に呼ぶ必要あり */</span>
+</span><span class="hl"><span class="kd">function</span> <span class="nx">applyFlash</span><span class="p">(</span><span class="p">)</span> <span class="p">{</span>
+</span><span class="hl">  <span class="k">if</span> <span class="p">(</span><span class="nx">flashRemainingCount</span> <span class="o">&lt;=</span> <span class="mi">0</span><span class="p">)</span> <span class="k">return</span><span class="p">;</span>
+</span><span class="hl">
+</span><span class="hl">  <span class="kd">let</span> <span class="nx">alphaRatio</span> <span class="o">=</span> <span class="nx">flashRemainingCount</span> <span class="o">/</span> <span class="nx">flashDuration</span><span class="p">;</span>
+</span><span class="hl">  <span class="nx">background</span><span class="p">(</span><span class="mi">255</span><span class="p">,</span> <span class="nx">alphaRatio</span> <span class="o">*</span> <span class="nx">flashAlpha</span><span class="p">)</span><span class="p">;</span>
+</span><span class="hl"><span class="p">}</span>
+</span>
 <span class="c1">// ---- ゲーム全体に関わる部分 --------------------------------------------
 </span><span class="c1"></span>
 <span class="cm">/** プレイヤーエンティティ */</span>
@@ -1036,23 +979,23 @@ https://github.com/alex-shpak/hugo-book
   <span class="c1">// ブロックの配列準備
 </span><span class="c1"></span>  <span class="nx">blocks</span> <span class="o">=</span> <span class="p">[</span><span class="p">]</span><span class="p">;</span>
 
-  <span class="c1">// 画面効果をリセット
-</span><span class="c1"></span>  <span class="nx">resetShake</span><span class="p">(</span><span class="p">)</span><span class="p">;</span>
-  <span class="nx">resetFlash</span><span class="p">(</span><span class="p">)</span><span class="p">;</span>
-<span class="p">}</span>
+<span class="hl">  <span class="c1">// 画面効果をリセット
+</span></span><span class="hl"><span class="c1"></span>  <span class="nx">resetShake</span><span class="p">(</span><span class="p">)</span><span class="p">;</span>
+</span><span class="hl">  <span class="nx">resetFlash</span><span class="p">(</span><span class="p">)</span><span class="p">;</span>
+</span><span class="p">}</span>
 
-<span class="kd">function</span> <span class="nx">setGameOver</span><span class="p">(</span><span class="p">)</span> <span class="p">{</span>
-  <span class="nx">gameState</span> <span class="o">=</span> <span class="s2">&#34;gameover&#34;</span><span class="p">;</span>
-  <span class="nx">setShake</span><span class="p">(</span><span class="mi">300</span><span class="p">)</span><span class="p">;</span>
-  <span class="nx">setFlash</span><span class="p">(</span><span class="mi">128</span><span class="p">,</span> <span class="mi">60</span><span class="p">)</span><span class="p">;</span>
-<span class="p">}</span>
-
+<span class="hl"><span class="kd">function</span> <span class="nx">setGameOver</span><span class="p">(</span><span class="p">)</span> <span class="p">{</span>
+</span><span class="hl">  <span class="nx">gameState</span> <span class="o">=</span> <span class="s2">&#34;gameover&#34;</span><span class="p">;</span>
+</span><span class="hl">  <span class="nx">setShake</span><span class="p">(</span><span class="mi">300</span><span class="p">)</span><span class="p">;</span>
+</span><span class="hl">  <span class="nx">setFlash</span><span class="p">(</span><span class="mi">128</span><span class="p">,</span> <span class="mi">60</span><span class="p">)</span><span class="p">;</span>
+</span><span class="hl"><span class="p">}</span>
+</span>
 <span class="cm">/** ゲームの更新 */</span>
 <span class="kd">function</span> <span class="nx">updateGame</span><span class="p">(</span><span class="p">)</span> <span class="p">{</span>
-  <span class="c1">// 画面効果を更新
-</span><span class="c1"></span>  <span class="nx">updateShake</span><span class="p">(</span><span class="p">)</span><span class="p">;</span>
-  <span class="nx">updateFlash</span><span class="p">(</span><span class="p">)</span><span class="p">;</span>
-
+<span class="hl">  <span class="c1">// 画面効果を更新
+</span></span><span class="hl"><span class="c1"></span>  <span class="nx">updateShake</span><span class="p">(</span><span class="p">)</span><span class="p">;</span>
+</span><span class="hl">  <span class="nx">updateFlash</span><span class="p">(</span><span class="p">)</span><span class="p">;</span>
+</span>
   <span class="c1">// ゲームオーバーなら更新しない
 </span><span class="c1"></span>  <span class="k">if</span> <span class="p">(</span><span class="nx">gameState</span> <span class="o">===</span> <span class="s2">&#34;gameover&#34;</span><span class="p">)</span> <span class="k">return</span><span class="p">;</span>
 
@@ -1084,9 +1027,9 @@ https://github.com/alex-shpak/hugo-book
 
 <span class="cm">/** ゲームの描画 */</span>
 <span class="kd">function</span> <span class="nx">drawGame</span><span class="p">(</span><span class="p">)</span> <span class="p">{</span>
-  <span class="c1">// スクリーンシェイクを適用
-</span><span class="c1"></span>  <span class="nx">applyShake</span><span class="p">(</span><span class="p">)</span><span class="p">;</span>
-
+<span class="hl">  <span class="c1">// スクリーンシェイクを適用
+</span></span><span class="hl"><span class="c1"></span>  <span class="nx">applyShake</span><span class="p">(</span><span class="p">)</span><span class="p">;</span>
+</span>
   <span class="c1">// 全エンティティを描画
 </span><span class="c1"></span>  <span class="nx">background</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span><span class="p">;</span>
   <span class="nx">drawPlayer</span><span class="p">(</span><span class="nx">player</span><span class="p">)</span><span class="p">;</span>
@@ -1095,9 +1038,9 @@ https://github.com/alex-shpak/hugo-book
   <span class="c1">// ゲームオーバー状態なら、それ用の画面を表示
 </span><span class="c1"></span>  <span class="k">if</span> <span class="p">(</span><span class="nx">gameState</span> <span class="o">===</span> <span class="s2">&#34;gameover&#34;</span><span class="p">)</span> <span class="nx">drawGameoverScreen</span><span class="p">(</span><span class="p">)</span><span class="p">;</span>
 
-  <span class="c1">// スクリーンフラッシュを適用
-</span><span class="c1"></span>  <span class="nx">applyFlash</span><span class="p">(</span><span class="p">)</span><span class="p">;</span>
-<span class="p">}</span>
+<span class="hl">  <span class="c1">// スクリーンフラッシュを適用
+</span></span><span class="hl"><span class="c1"></span>  <span class="nx">applyFlash</span><span class="p">(</span><span class="p">)</span><span class="p">;</span>
+</span><span class="p">}</span>
 
 <span class="cm">/** マウスボタンが押されたときのゲームへの影響 */</span>
 <span class="kd">function</span> <span class="nx">onMousePress</span><span class="p">(</span><span class="p">)</span> <span class="p">{</span>
@@ -1133,7 +1076,11 @@ https://github.com/alex-shpak/hugo-book
 </code></pre></td></tr></table>
 </div>
 </div><blockquote class="book-hint info">
-  ということで、やってみましょう。
+  <p>咳嗽中のコードがあったらそれに組み込んでみて、<br>
+本当にちゃんと機能しているか、実行して確かめてみましょう。</p>
+<p>スクリーンシェイクについては、たとえば縦だけ・横だけにするなど、<br>
+カスタマイズしてみる余地もあるかもしれません。</p>
+
 </blockquote>
 
 <div class="book-expand">
@@ -1145,8 +1092,8 @@ https://github.com/alex-shpak/hugo-book
     <input type="checkbox" class="hidden" />
     <div class="book-expand-content markdown-inner">
       <p>ここで新たに追加した変数（<code>shakeMagnitude</code> など）は、外から直接読み書きする機会は無いので、グローバル空間に置きたくないな、といった懸念がありえます。</p>
-<p>モジュールに分割すれば解決する話ではありますが、仮にそれをしないとすると、他には即時関数に閉じ込めるという方法もあります。</p>
-<p>即時関数とは、次のように、関数を宣言と同時に即座に実行するような使い方のことです。</p>
+<p>モジュールに分割すれば解決する話ではありますが、仮にそれをしないとすると、他にはクラスに閉じ込めるか、あるいは即時関数に閉じ込めるという方法もあります。</p>
+<p>クラスの話は割愛するとして、即時関数というのは、次のように宣言と同時に即座に実行するような使い方をしている関数のことです。</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre class="chroma"><code><span class="lnt">1
@@ -1259,8 +1206,18 @@ https://github.com/alex-shpak/hugo-book
       
   <nav id="TableOfContents">
   <ul>
-    <li><a href="#スクリーンシェイク">スクリーンシェイク</a></li>
-    <li><a href="#スクリーンフラッシュ">スクリーンフラッシュ</a></li>
+    <li><a href="#スクリーンシェイク">スクリーンシェイク</a>
+      <ul>
+        <li><a href="#原理">原理</a></li>
+        <li><a href="#実装例">実装例</a></li>
+      </ul>
+    </li>
+    <li><a href="#スクリーンフラッシュ">スクリーンフラッシュ</a>
+      <ul>
+        <li><a href="#原理-1">原理</a></li>
+        <li><a href="#実装例-1">実装例</a></li>
+      </ul>
+    </li>
     <li><a href="#使用例">使用例</a></li>
   </ul>
 </nav>

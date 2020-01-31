@@ -5,7 +5,7 @@
   <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="description" content="パーティクルを追加"><meta property="og:title" content="パーティクルを追加" />
-<meta property="og:description" content="パーティクルを追加 ブロックと同じ要領で、パーティクル（直訳：粒子）を追加することが可能 一定時間で消えるようにするには パーティクルエンティティ" />
+<meta property="og:description" content="パーティクルを追加 小さな粒や破片を大量に散らかすことで、様々な効果が得られる。 これは「パーティクル」（直訳：粒子）と呼ばれる パーティクルを新" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://fal-works.github.io/make-games-with-p5js/docs/60-arrange/10-particles/" />
 
@@ -363,36 +363,16 @@ https://github.com/alex-shpak/hugo-book
 
       
 <article class="markdown"><h1 id="パーティクルを追加">パーティクルを追加</h1>
-<p>ブロックと同じ要領で、パーティクル（直訳：粒子）を追加することが可能</p>
+<p>小さな粒や破片を大量に散らかすことで、様々な効果が得られる。<br>
+これは「パーティクル」（直訳：粒子）と呼ばれる</p>
+<p>パーティクルを新たなエンティティの一種として追加し、<br>
+複数のブロックを動かすのと同じ要領で動作させることができる</p>
 <h2 id="一定時間で消えるようにするには">一定時間で消えるようにするには</h2>
-<p>パーティクルエンティティに持たせるデータを増やし、時間経過で減少させる</p>
-<p>例えば次のように関数を用意すれば、<br>
-<code>life</code> を徐々に減らしていってゼロになったら削除、といった使い方ができる</p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
-</span><span class="lnt"> 2
-</span><span class="lnt"> 3
-</span><span class="lnt"> 4
-</span><span class="lnt"> 5
-</span><span class="lnt"> 6
-</span><span class="lnt"> 7
-</span><span class="lnt"> 8
-</span><span class="lnt"> 9
-</span><span class="lnt">10
-</span><span class="lnt">11
-</span><span class="lnt">12
-</span><span class="lnt">13
-</span><span class="lnt">14
-</span><span class="lnt">15
-</span><span class="lnt">16
-</span><span class="lnt">17
-</span><span class="lnt">18
-</span><span class="lnt">19
-</span><span class="lnt">20
-</span></code></pre></td>
-<td class="lntd">
-<pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="kd">function</span> <span class="nx">createParticle</span><span class="p">(</span><span class="nx">x</span><span class="p">,</span> <span class="nx">y</span><span class="p">)</span> <span class="p">{</span>
+<p>パーティクルエンティティに持たせるデータとして、「時間経過で減少する数値」を増やす。<br>
+ここでは <code>life</code>（ライフ）と名付けた</p>
+<p>※ 速度については、今回の例では一定スピード＆ランダムな角度で、<br>
+　 さらに少し左側に流れるように <code>vx</code> をいじっている</p>
+<div class="highlight"><pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="kd">function</span> <span class="nx">createParticle</span><span class="p">(</span><span class="nx">x</span><span class="p">,</span> <span class="nx">y</span><span class="p">)</span> <span class="p">{</span>
   <span class="kd">let</span> <span class="nx">direction</span> <span class="o">=</span> <span class="nx">random</span><span class="p">(</span><span class="nx">TWO_PI</span><span class="p">)</span><span class="p">;</span>
   <span class="kd">let</span> <span class="nx">speed</span> <span class="o">=</span> <span class="mi">2</span><span class="p">;</span>
 
@@ -404,17 +384,16 @@ https://github.com/alex-shpak/hugo-book
     <span class="nx">life</span><span class="o">:</span> <span class="mi">1</span> <span class="c1">// = 100%
 </span><span class="c1"></span>  <span class="p">}</span><span class="p">;</span>
 <span class="p">}</span>
-
-<span class="kd">function</span> <span class="nx">decreaseLife</span><span class="p">(</span><span class="nx">particle</span><span class="p">)</span> <span class="p">{</span>
+</code></pre></div><p>加えて、次のように関数を用意すれば、<br>
+<code>life</code> を徐々に減らしていってゼロになったら削除、といった使い方ができる</p>
+<div class="highlight"><pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="kd">function</span> <span class="nx">decreaseLife</span><span class="p">(</span><span class="nx">particle</span><span class="p">)</span> <span class="p">{</span>
   <span class="nx">particle</span><span class="p">.</span><span class="nx">life</span> <span class="o">-=</span> <span class="mf">0.02</span><span class="p">;</span>
 <span class="p">}</span>
 
 <span class="kd">function</span> <span class="nx">particleIsAlive</span><span class="p">(</span><span class="nx">particle</span><span class="p">)</span> <span class="p">{</span>
   <span class="k">return</span> <span class="nx">particle</span><span class="p">.</span><span class="nx">life</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">;</span>
 <span class="p">}</span>
-</code></pre></td></tr></table>
-</div>
-</div><h2 id="例">例</h2>
+</code></pre></div><h2 id="例">例</h2>
 <p><a href="https://fal-works.github.io/make-games-with-p5js-src/11-particles" target="_blank">▶ 動かしてみる</a></p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
@@ -477,37 +456,37 @@ https://github.com/alex-shpak/hugo-book
 </span><span class="lnt"> 57
 </span><span class="lnt"> 58
 </span><span class="lnt"> 59
-</span><span class="lnt"> 60
-</span><span class="lnt"> 61
-</span><span class="lnt"> 62
-</span><span class="lnt"> 63
-</span><span class="lnt"> 64
-</span><span class="lnt"> 65
-</span><span class="lnt"> 66
-</span><span class="lnt"> 67
-</span><span class="lnt"> 68
-</span><span class="lnt"> 69
-</span><span class="lnt"> 70
-</span><span class="lnt"> 71
-</span><span class="lnt"> 72
-</span><span class="lnt"> 73
-</span><span class="lnt"> 74
-</span><span class="lnt"> 75
-</span><span class="lnt"> 76
-</span><span class="lnt"> 77
-</span><span class="lnt"> 78
-</span><span class="lnt"> 79
-</span><span class="lnt"> 80
-</span><span class="lnt"> 81
-</span><span class="lnt"> 82
-</span><span class="lnt"> 83
-</span><span class="lnt"> 84
-</span><span class="lnt"> 85
-</span><span class="lnt"> 86
-</span><span class="lnt"> 87
-</span><span class="lnt"> 88
-</span><span class="lnt"> 89
-</span><span class="lnt"> 90
+</span><span class="hl"><span class="lnt"> 60
+</span></span><span class="hl"><span class="lnt"> 61
+</span></span><span class="hl"><span class="lnt"> 62
+</span></span><span class="hl"><span class="lnt"> 63
+</span></span><span class="hl"><span class="lnt"> 64
+</span></span><span class="hl"><span class="lnt"> 65
+</span></span><span class="hl"><span class="lnt"> 66
+</span></span><span class="hl"><span class="lnt"> 67
+</span></span><span class="hl"><span class="lnt"> 68
+</span></span><span class="hl"><span class="lnt"> 69
+</span></span><span class="hl"><span class="lnt"> 70
+</span></span><span class="hl"><span class="lnt"> 71
+</span></span><span class="hl"><span class="lnt"> 72
+</span></span><span class="hl"><span class="lnt"> 73
+</span></span><span class="hl"><span class="lnt"> 74
+</span></span><span class="hl"><span class="lnt"> 75
+</span></span><span class="hl"><span class="lnt"> 76
+</span></span><span class="hl"><span class="lnt"> 77
+</span></span><span class="hl"><span class="lnt"> 78
+</span></span><span class="hl"><span class="lnt"> 79
+</span></span><span class="hl"><span class="lnt"> 80
+</span></span><span class="hl"><span class="lnt"> 81
+</span></span><span class="hl"><span class="lnt"> 82
+</span></span><span class="hl"><span class="lnt"> 83
+</span></span><span class="hl"><span class="lnt"> 84
+</span></span><span class="hl"><span class="lnt"> 85
+</span></span><span class="hl"><span class="lnt"> 86
+</span></span><span class="hl"><span class="lnt"> 87
+</span></span><span class="hl"><span class="lnt"> 88
+</span></span><span class="hl"><span class="lnt"> 89
+</span></span><span class="lnt"> 90
 </span><span class="lnt"> 91
 </span><span class="lnt"> 92
 </span><span class="lnt"> 93
@@ -544,9 +523,9 @@ https://github.com/alex-shpak/hugo-book
 </span><span class="lnt">124
 </span><span class="lnt">125
 </span><span class="lnt">126
-</span><span class="lnt">127
-</span><span class="lnt">128
-</span><span class="lnt">129
+</span><span class="hl"><span class="lnt">127
+</span></span><span class="hl"><span class="lnt">128
+</span></span><span class="lnt">129
 </span><span class="lnt">130
 </span><span class="lnt">131
 </span><span class="lnt">132
@@ -589,24 +568,24 @@ https://github.com/alex-shpak/hugo-book
 </span><span class="lnt">169
 </span><span class="lnt">170
 </span><span class="lnt">171
-</span><span class="lnt">172
-</span><span class="lnt">173
-</span><span class="lnt">174
+</span><span class="hl"><span class="lnt">172
+</span></span><span class="hl"><span class="lnt">173
+</span></span><span class="lnt">174
 </span><span class="lnt">175
 </span><span class="lnt">176
-</span><span class="lnt">177
-</span><span class="lnt">178
+</span><span class="hl"><span class="lnt">177
+</span></span><span class="lnt">178
 </span><span class="lnt">179
 </span><span class="lnt">180
 </span><span class="lnt">181
-</span><span class="lnt">182
-</span><span class="lnt">183
+</span><span class="hl"><span class="lnt">182
+</span></span><span class="lnt">183
 </span><span class="lnt">184
 </span><span class="lnt">185
 </span><span class="lnt">186
-</span><span class="lnt">187
-</span><span class="lnt">188
-</span><span class="lnt">189
+</span><span class="hl"><span class="lnt">187
+</span></span><span class="hl"><span class="lnt">188
+</span></span><span class="lnt">189
 </span><span class="lnt">190
 </span><span class="lnt">191
 </span><span class="lnt">192
@@ -662,9 +641,6 @@ https://github.com/alex-shpak/hugo-book
 </span><span class="lnt">242
 </span><span class="lnt">243
 </span><span class="lnt">244
-</span><span class="lnt">245
-</span><span class="lnt">246
-</span><span class="lnt">247
 </span></code></pre></td>
 <td class="lntd">
 <pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="c1">// ---- エンティティ関連の関数 --------------------------------------------------
@@ -726,37 +702,37 @@ https://github.com/alex-shpak/hugo-book
 </span><span class="c1"></span>  <span class="k">return</span> <span class="o">-</span><span class="mi">100</span> <span class="o">&lt;</span> <span class="nx">entity</span><span class="p">.</span><span class="nx">x</span><span class="p">;</span>
 <span class="p">}</span>
 
-<span class="c1">// パーティクルエンティティ用
-</span><span class="c1"></span>
-<span class="kd">function</span> <span class="nx">createParticle</span><span class="p">(</span><span class="nx">x</span><span class="p">,</span> <span class="nx">y</span><span class="p">)</span> <span class="p">{</span>
-  <span class="kd">let</span> <span class="nx">direction</span> <span class="o">=</span> <span class="nx">random</span><span class="p">(</span><span class="nx">TWO_PI</span><span class="p">)</span><span class="p">;</span>
-  <span class="kd">let</span> <span class="nx">speed</span> <span class="o">=</span> <span class="mi">2</span><span class="p">;</span>
-
-  <span class="k">return</span> <span class="p">{</span>
-    <span class="nx">x</span><span class="p">,</span>
-    <span class="nx">y</span><span class="p">,</span>
-    <span class="nx">vx</span><span class="o">:</span> <span class="o">-</span><span class="mi">2</span> <span class="o">+</span> <span class="nx">speed</span> <span class="o">*</span> <span class="nx">cos</span><span class="p">(</span><span class="nx">direction</span><span class="p">)</span><span class="p">,</span>
-    <span class="nx">vy</span><span class="o">:</span> <span class="nx">speed</span> <span class="o">*</span> <span class="nx">sin</span><span class="p">(</span><span class="nx">direction</span><span class="p">)</span><span class="p">,</span>
-    <span class="nx">life</span><span class="o">:</span> <span class="mi">1</span> <span class="c1">// = 100%
-</span><span class="c1"></span>  <span class="p">}</span><span class="p">;</span>
-<span class="p">}</span>
-
-<span class="kd">function</span> <span class="nx">decreaseLife</span><span class="p">(</span><span class="nx">particle</span><span class="p">)</span> <span class="p">{</span>
-  <span class="nx">particle</span><span class="p">.</span><span class="nx">life</span> <span class="o">-=</span> <span class="mf">0.02</span><span class="p">;</span>
-<span class="p">}</span>
-
-<span class="kd">function</span> <span class="nx">particleIsAlive</span><span class="p">(</span><span class="nx">particle</span><span class="p">)</span> <span class="p">{</span>
-  <span class="k">return</span> <span class="nx">particle</span><span class="p">.</span><span class="nx">life</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">;</span>
-<span class="p">}</span>
-
-<span class="kd">function</span> <span class="nx">drawParticle</span><span class="p">(</span><span class="nx">particle</span><span class="p">)</span> <span class="p">{</span>
-  <span class="nx">push</span><span class="p">(</span><span class="p">)</span><span class="p">;</span>
-  <span class="nx">noStroke</span><span class="p">(</span><span class="p">)</span><span class="p">;</span>
-  <span class="nx">fill</span><span class="p">(</span><span class="mi">255</span><span class="p">,</span> <span class="nx">particle</span><span class="p">.</span><span class="nx">life</span> <span class="o">*</span> <span class="mi">255</span><span class="p">)</span><span class="p">;</span>
-  <span class="nx">square</span><span class="p">(</span><span class="nx">particle</span><span class="p">.</span><span class="nx">x</span><span class="p">,</span> <span class="nx">particle</span><span class="p">.</span><span class="nx">y</span><span class="p">,</span> <span class="nx">particle</span><span class="p">.</span><span class="nx">life</span> <span class="o">*</span> <span class="mi">10</span><span class="p">)</span><span class="p">;</span>
-  <span class="nx">pop</span><span class="p">(</span><span class="p">)</span><span class="p">;</span>
-<span class="p">}</span>
-
+<span class="hl"><span class="c1">// パーティクルエンティティ用
+</span></span><span class="hl"><span class="c1"></span>
+</span><span class="hl"><span class="kd">function</span> <span class="nx">createParticle</span><span class="p">(</span><span class="nx">x</span><span class="p">,</span> <span class="nx">y</span><span class="p">)</span> <span class="p">{</span>
+</span><span class="hl">  <span class="kd">let</span> <span class="nx">direction</span> <span class="o">=</span> <span class="nx">random</span><span class="p">(</span><span class="nx">TWO_PI</span><span class="p">)</span><span class="p">;</span>
+</span><span class="hl">  <span class="kd">let</span> <span class="nx">speed</span> <span class="o">=</span> <span class="mi">2</span><span class="p">;</span>
+</span><span class="hl">
+</span><span class="hl">  <span class="k">return</span> <span class="p">{</span>
+</span><span class="hl">    <span class="nx">x</span><span class="p">,</span>
+</span><span class="hl">    <span class="nx">y</span><span class="p">,</span>
+</span><span class="hl">    <span class="nx">vx</span><span class="o">:</span> <span class="o">-</span><span class="mi">2</span> <span class="o">+</span> <span class="nx">speed</span> <span class="o">*</span> <span class="nx">cos</span><span class="p">(</span><span class="nx">direction</span><span class="p">)</span><span class="p">,</span>
+</span><span class="hl">    <span class="nx">vy</span><span class="o">:</span> <span class="nx">speed</span> <span class="o">*</span> <span class="nx">sin</span><span class="p">(</span><span class="nx">direction</span><span class="p">)</span><span class="p">,</span>
+</span><span class="hl">    <span class="nx">life</span><span class="o">:</span> <span class="mi">1</span> <span class="c1">// = 100%
+</span></span><span class="hl"><span class="c1"></span>  <span class="p">}</span><span class="p">;</span>
+</span><span class="hl"><span class="p">}</span>
+</span><span class="hl">
+</span><span class="hl"><span class="kd">function</span> <span class="nx">decreaseLife</span><span class="p">(</span><span class="nx">particle</span><span class="p">)</span> <span class="p">{</span>
+</span><span class="hl">  <span class="nx">particle</span><span class="p">.</span><span class="nx">life</span> <span class="o">-=</span> <span class="mf">0.02</span><span class="p">;</span>
+</span><span class="hl"><span class="p">}</span>
+</span><span class="hl">
+</span><span class="hl"><span class="kd">function</span> <span class="nx">particleIsAlive</span><span class="p">(</span><span class="nx">particle</span><span class="p">)</span> <span class="p">{</span>
+</span><span class="hl">  <span class="k">return</span> <span class="nx">particle</span><span class="p">.</span><span class="nx">life</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">;</span>
+</span><span class="hl"><span class="p">}</span>
+</span><span class="hl">
+</span><span class="hl"><span class="kd">function</span> <span class="nx">drawParticle</span><span class="p">(</span><span class="nx">particle</span><span class="p">)</span> <span class="p">{</span>
+</span><span class="hl">  <span class="nx">push</span><span class="p">(</span><span class="p">)</span><span class="p">;</span>
+</span><span class="hl">  <span class="nx">noStroke</span><span class="p">(</span><span class="p">)</span><span class="p">;</span>
+</span><span class="hl">  <span class="nx">fill</span><span class="p">(</span><span class="mi">255</span><span class="p">,</span> <span class="nx">particle</span><span class="p">.</span><span class="nx">life</span> <span class="o">*</span> <span class="mi">255</span><span class="p">)</span><span class="p">;</span>
+</span><span class="hl">  <span class="nx">square</span><span class="p">(</span><span class="nx">particle</span><span class="p">.</span><span class="nx">x</span><span class="p">,</span> <span class="nx">particle</span><span class="p">.</span><span class="nx">y</span><span class="p">,</span> <span class="nx">particle</span><span class="p">.</span><span class="nx">life</span> <span class="o">*</span> <span class="mi">10</span><span class="p">)</span><span class="p">;</span>
+</span><span class="hl">  <span class="nx">pop</span><span class="p">(</span><span class="p">)</span><span class="p">;</span>
+</span><span class="hl"><span class="p">}</span>
+</span>
 <span class="c1">// 複数のエンティティを処理する関数
 </span><span class="c1"></span>
 <span class="cm">/**
@@ -793,9 +769,9 @@ https://github.com/alex-shpak/hugo-book
 <span class="cm">/** ブロックエンティティの配列 */</span>
 <span class="kd">let</span> <span class="nx">blocks</span><span class="p">;</span>
 
-<span class="cm">/** パーティクルエンティティの配列 */</span>
-<span class="kd">let</span> <span class="nx">particles</span><span class="p">;</span>
-
+<span class="hl"><span class="cm">/** パーティクルエンティティの配列 */</span>
+</span><span class="hl"><span class="kd">let</span> <span class="nx">particles</span><span class="p">;</span>
+</span>
 <span class="cm">/** ゲームの状態。&#34;play&#34; か &#34;gameover&#34; を入れるものとする */</span>
 <span class="kd">let</span> <span class="nx">gameState</span><span class="p">;</span>
 
@@ -838,29 +814,26 @@ https://github.com/alex-shpak/hugo-book
   <span class="c1">// ブロックの追加
 </span><span class="c1"></span>  <span class="k">if</span> <span class="p">(</span><span class="nx">frameCount</span> <span class="o">%</span> <span class="mi">120</span> <span class="o">===</span> <span class="mi">1</span><span class="p">)</span> <span class="nx">addBlockPair</span><span class="p">(</span><span class="nx">blocks</span><span class="p">)</span><span class="p">;</span> <span class="c1">// 一定間隔でブロック追加
 </span><span class="c1"></span>
-  <span class="c1">// パーティクルの追加
-</span><span class="c1"></span>  <span class="nx">particles</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span><span class="nx">createParticle</span><span class="p">(</span><span class="nx">player</span><span class="p">.</span><span class="nx">x</span><span class="p">,</span> <span class="nx">player</span><span class="p">.</span><span class="nx">y</span><span class="p">)</span><span class="p">)</span><span class="p">;</span> <span class="c1">// プレイヤーの位置で
-</span><span class="c1"></span>
+<span class="hl">  <span class="c1">// パーティクルの追加
+</span></span><span class="hl"><span class="c1"></span>  <span class="nx">particles</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span><span class="nx">createParticle</span><span class="p">(</span><span class="nx">player</span><span class="p">.</span><span class="nx">x</span><span class="p">,</span> <span class="nx">player</span><span class="p">.</span><span class="nx">y</span><span class="p">)</span><span class="p">)</span><span class="p">;</span> <span class="c1">// プレイヤーの位置で
+</span></span><span class="c1"></span>
   <span class="c1">// 死んだエンティティの削除
 </span><span class="c1"></span>  <span class="nx">blocks</span> <span class="o">=</span> <span class="nx">blocks</span><span class="p">.</span><span class="nx">filter</span><span class="p">(</span><span class="nx">blockIsAlive</span><span class="p">)</span><span class="p">;</span>
-  <span class="nx">particles</span> <span class="o">=</span> <span class="nx">particles</span><span class="p">.</span><span class="nx">filter</span><span class="p">(</span><span class="nx">particleIsAlive</span><span class="p">)</span><span class="p">;</span>
-
+<span class="hl">  <span class="nx">particles</span> <span class="o">=</span> <span class="nx">particles</span><span class="p">.</span><span class="nx">filter</span><span class="p">(</span><span class="nx">particleIsAlive</span><span class="p">)</span><span class="p">;</span>
+</span>
   <span class="c1">// 全エンティティの位置を更新
 </span><span class="c1"></span>  <span class="nx">updatePosition</span><span class="p">(</span><span class="nx">player</span><span class="p">)</span><span class="p">;</span>
   <span class="k">for</span> <span class="p">(</span><span class="kd">let</span> <span class="nx">block</span> <span class="k">of</span> <span class="nx">blocks</span><span class="p">)</span> <span class="nx">updatePosition</span><span class="p">(</span><span class="nx">block</span><span class="p">)</span><span class="p">;</span>
-  <span class="k">for</span> <span class="p">(</span><span class="kd">let</span> <span class="nx">particle</span> <span class="k">of</span> <span class="nx">particles</span><span class="p">)</span> <span class="nx">updatePosition</span><span class="p">(</span><span class="nx">particle</span><span class="p">)</span><span class="p">;</span>
-
+<span class="hl">  <span class="k">for</span> <span class="p">(</span><span class="kd">let</span> <span class="nx">particle</span> <span class="k">of</span> <span class="nx">particles</span><span class="p">)</span> <span class="nx">updatePosition</span><span class="p">(</span><span class="nx">particle</span><span class="p">)</span><span class="p">;</span>
+</span>
   <span class="c1">// プレイヤーに重力を適用
 </span><span class="c1"></span>  <span class="nx">applyGravity</span><span class="p">(</span><span class="nx">player</span><span class="p">)</span><span class="p">;</span>
 
-  <span class="c1">// パーティクルのライフ減少
-</span><span class="c1"></span>  <span class="k">for</span> <span class="p">(</span><span class="kd">let</span> <span class="nx">particle</span> <span class="k">of</span> <span class="nx">particles</span><span class="p">)</span> <span class="nx">decreaseLife</span><span class="p">(</span><span class="nx">particle</span><span class="p">)</span><span class="p">;</span>
-
+<span class="hl">  <span class="c1">// パーティクルのライフ減少
+</span></span><span class="hl"><span class="c1"></span>  <span class="k">for</span> <span class="p">(</span><span class="kd">let</span> <span class="nx">particle</span> <span class="k">of</span> <span class="nx">particles</span><span class="p">)</span> <span class="nx">decreaseLife</span><span class="p">(</span><span class="nx">particle</span><span class="p">)</span><span class="p">;</span>
+</span>
   <span class="c1">// プレイヤーが死んでいたらゲームオーバー
-</span><span class="c1"></span>  <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nx">playerIsAlive</span><span class="p">(</span><span class="nx">player</span><span class="p">)</span><span class="p">)</span> <span class="p">{</span>
-    <span class="nx">gameState</span> <span class="o">=</span> <span class="s2">&#34;gameover&#34;</span><span class="p">;</span>
-    <span class="k">return</span><span class="p">;</span>
-  <span class="p">}</span>
+</span><span class="c1"></span>  <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nx">playerIsAlive</span><span class="p">(</span><span class="nx">player</span><span class="p">)</span><span class="p">)</span> <span class="nx">gameState</span> <span class="o">=</span> <span class="s2">&#34;gameover&#34;</span><span class="p">;</span>
 
   <span class="c1">// 衝突判定
 </span><span class="c1"></span>  <span class="k">for</span> <span class="p">(</span><span class="kd">let</span> <span class="nx">block</span> <span class="k">of</span> <span class="nx">blocks</span><span class="p">)</span> <span class="p">{</span>
@@ -917,19 +890,19 @@ https://github.com/alex-shpak/hugo-book
 </code></pre></td></tr></table>
 </div>
 </div><blockquote class="book-hint info">
-  <p>動かしてみましょう。</p>
+  <p>動かしたり改造したりしてみましょう。</p>
 <p>個々のパーティクルの移動や表示を調整すれば、雰囲気が変わってきます。</p>
 
 </blockquote>
 
 <blockquote class="book-hint info">
-  <p>たとえば、ゲームオーバーになったときに爆発（多数のパーティクルを生成）させるのも良いかもしれません。</p>
+  <p>他の使用例としては、ゲームオーバーになったときに爆発（一度に多数のパーティクルを生成）させるのも良いかもしれません。</p>
 <p>その場合、ゲームオーバー状態のときには</p>
 <ul>
 <li>パーティクルだけ更新する</li>
 <li>プレイヤーは表示しない</li>
 </ul>
-<p>のようにする必要があります（簡易的な対処ではありますが）。</p>
+<p>などの変更が必要そうです（簡易的な対処ではありますが）。</p>
 
 </blockquote>
 

@@ -523,34 +523,34 @@ https://github.com/alex-shpak/hugo-book
 </span><span class="lnt"> 57
 </span><span class="lnt"> 58
 </span><span class="lnt"> 59
-</span><span class="lnt"> 60
-</span><span class="lnt"> 61
-</span><span class="lnt"> 62
-</span><span class="lnt"> 63
-</span><span class="lnt"> 64
-</span><span class="lnt"> 65
-</span><span class="lnt"> 66
-</span><span class="lnt"> 67
-</span><span class="lnt"> 68
-</span><span class="lnt"> 69
-</span><span class="lnt"> 70
-</span><span class="lnt"> 71
-</span><span class="lnt"> 72
-</span><span class="lnt"> 73
-</span><span class="lnt"> 74
-</span><span class="lnt"> 75
-</span><span class="lnt"> 76
-</span><span class="lnt"> 77
-</span><span class="lnt"> 78
-</span><span class="lnt"> 79
-</span><span class="lnt"> 80
-</span><span class="lnt"> 81
-</span><span class="lnt"> 82
-</span><span class="lnt"> 83
-</span><span class="lnt"> 84
-</span><span class="lnt"> 85
-</span><span class="lnt"> 86
-</span><span class="lnt"> 87
+</span><span class="hl"><span class="lnt"> 60
+</span></span><span class="hl"><span class="lnt"> 61
+</span></span><span class="hl"><span class="lnt"> 62
+</span></span><span class="hl"><span class="lnt"> 63
+</span></span><span class="hl"><span class="lnt"> 64
+</span></span><span class="hl"><span class="lnt"> 65
+</span></span><span class="hl"><span class="lnt"> 66
+</span></span><span class="hl"><span class="lnt"> 67
+</span></span><span class="hl"><span class="lnt"> 68
+</span></span><span class="hl"><span class="lnt"> 69
+</span></span><span class="hl"><span class="lnt"> 70
+</span></span><span class="hl"><span class="lnt"> 71
+</span></span><span class="hl"><span class="lnt"> 72
+</span></span><span class="hl"><span class="lnt"> 73
+</span></span><span class="hl"><span class="lnt"> 74
+</span></span><span class="hl"><span class="lnt"> 75
+</span></span><span class="hl"><span class="lnt"> 76
+</span></span><span class="hl"><span class="lnt"> 77
+</span></span><span class="hl"><span class="lnt"> 78
+</span></span><span class="hl"><span class="lnt"> 79
+</span></span><span class="hl"><span class="lnt"> 80
+</span></span><span class="hl"><span class="lnt"> 81
+</span></span><span class="hl"><span class="lnt"> 82
+</span></span><span class="hl"><span class="lnt"> 83
+</span></span><span class="hl"><span class="lnt"> 84
+</span></span><span class="hl"><span class="lnt"> 85
+</span></span><span class="hl"><span class="lnt"> 86
+</span></span><span class="lnt"> 87
 </span><span class="lnt"> 88
 </span><span class="lnt"> 89
 </span><span class="lnt"> 90
@@ -609,14 +609,14 @@ https://github.com/alex-shpak/hugo-book
 </span><span class="lnt">143
 </span><span class="lnt">144
 </span><span class="lnt">145
-</span><span class="lnt">146
-</span><span class="lnt">147
-</span><span class="lnt">148
-</span><span class="lnt">149
-</span><span class="lnt">150
-</span><span class="lnt">151
-</span><span class="lnt">152
-</span><span class="lnt">153
+</span><span class="hl"><span class="lnt">146
+</span></span><span class="hl"><span class="lnt">147
+</span></span><span class="hl"><span class="lnt">148
+</span></span><span class="hl"><span class="lnt">149
+</span></span><span class="hl"><span class="lnt">150
+</span></span><span class="hl"><span class="lnt">151
+</span></span><span class="hl"><span class="lnt">152
+</span></span><span class="lnt">153
 </span><span class="lnt">154
 </span><span class="lnt">155
 </span><span class="lnt">156
@@ -660,9 +660,6 @@ https://github.com/alex-shpak/hugo-book
 </span><span class="lnt">194
 </span><span class="lnt">195
 </span><span class="lnt">196
-</span><span class="lnt">197
-</span><span class="lnt">198
-</span><span class="lnt">199
 </span></code></pre></td>
 <td class="lntd">
 <pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="c1">// ---- エンティティ関連の関数 --------------------------------------------------
@@ -724,34 +721,34 @@ https://github.com/alex-shpak/hugo-book
 </span><span class="c1"></span>  <span class="k">return</span> <span class="o">-</span><span class="mi">100</span> <span class="o">&lt;</span> <span class="nx">entity</span><span class="p">.</span><span class="nx">x</span><span class="p">;</span>
 <span class="p">}</span>
 
-<span class="c1">// 複数のエンティティを処理する関数
-</span><span class="c1"></span>
-<span class="cm">/**
-</span><span class="cm"> * 2つのエンティティが衝突しているかどうかをチェックする
-</span><span class="cm"> *
-</span><span class="cm"> * @param entityA 衝突しているかどうかを確認したいエンティティ
-</span><span class="cm"> * @param entityB 同上
-</span><span class="cm"> * @param collisionXDistance 衝突しないギリギリのx距離
-</span><span class="cm"> * @param collisionYDistance 衝突しないギリギリのy距離
-</span><span class="cm"> * @returns 衝突していたら `true` そうでなければ `false` を返す
-</span><span class="cm"> */</span>
-<span class="kd">function</span> <span class="nx">entitiesAreColliding</span><span class="p">(</span>
-  <span class="nx">entityA</span><span class="p">,</span>
-  <span class="nx">entityB</span><span class="p">,</span>
-  <span class="nx">collisionXDistance</span><span class="p">,</span>
-  <span class="nx">collisionYDistance</span>
-<span class="p">)</span> <span class="p">{</span>
-  <span class="c1">// xとy、いずれかの距離が十分開いていたら、衝突していないので false を返す
-</span><span class="c1"></span>
-  <span class="kd">let</span> <span class="nx">currentXDistance</span> <span class="o">=</span> <span class="nx">abs</span><span class="p">(</span><span class="nx">entityA</span><span class="p">.</span><span class="nx">x</span> <span class="o">-</span> <span class="nx">entityB</span><span class="p">.</span><span class="nx">x</span><span class="p">)</span><span class="p">;</span> <span class="c1">// 現在のx距離
-</span><span class="c1"></span>  <span class="k">if</span> <span class="p">(</span><span class="nx">collisionXDistance</span> <span class="o">&lt;=</span> <span class="nx">currentXDistance</span><span class="p">)</span> <span class="k">return</span> <span class="kc">false</span><span class="p">;</span>
-
-  <span class="kd">let</span> <span class="nx">currentYDistance</span> <span class="o">=</span> <span class="nx">abs</span><span class="p">(</span><span class="nx">entityA</span><span class="p">.</span><span class="nx">y</span> <span class="o">-</span> <span class="nx">entityB</span><span class="p">.</span><span class="nx">y</span><span class="p">)</span><span class="p">;</span> <span class="c1">// 現在のy距離
-</span><span class="c1"></span>  <span class="k">if</span> <span class="p">(</span><span class="nx">collisionYDistance</span> <span class="o">&lt;=</span> <span class="nx">currentYDistance</span><span class="p">)</span> <span class="k">return</span> <span class="kc">false</span><span class="p">;</span>
-
-  <span class="k">return</span> <span class="kc">true</span><span class="p">;</span> <span class="c1">// ここまで来たら、x方向でもy方向でも重なっているので true
-</span><span class="c1"></span><span class="p">}</span>
-
+<span class="hl"><span class="c1">// 複数のエンティティを処理する関数
+</span></span><span class="hl"><span class="c1"></span>
+</span><span class="hl"><span class="cm">/**
+</span></span><span class="hl"><span class="cm"> * 2つのエンティティが衝突しているかどうかをチェックする
+</span></span><span class="hl"><span class="cm"> *
+</span></span><span class="hl"><span class="cm"> * @param entityA 衝突しているかどうかを確認したいエンティティ
+</span></span><span class="hl"><span class="cm"> * @param entityB 同上
+</span></span><span class="hl"><span class="cm"> * @param collisionXDistance 衝突しないギリギリのx距離
+</span></span><span class="hl"><span class="cm"> * @param collisionYDistance 衝突しないギリギリのy距離
+</span></span><span class="hl"><span class="cm"> * @returns 衝突していたら `true` そうでなければ `false` を返す
+</span></span><span class="hl"><span class="cm"> */</span>
+</span><span class="hl"><span class="kd">function</span> <span class="nx">entitiesAreColliding</span><span class="p">(</span>
+</span><span class="hl">  <span class="nx">entityA</span><span class="p">,</span>
+</span><span class="hl">  <span class="nx">entityB</span><span class="p">,</span>
+</span><span class="hl">  <span class="nx">collisionXDistance</span><span class="p">,</span>
+</span><span class="hl">  <span class="nx">collisionYDistance</span>
+</span><span class="hl"><span class="p">)</span> <span class="p">{</span>
+</span><span class="hl">  <span class="c1">// xとy、いずれかの距離が十分開いていたら、衝突していないので false を返す
+</span></span><span class="hl"><span class="c1"></span>
+</span><span class="hl">  <span class="kd">let</span> <span class="nx">currentXDistance</span> <span class="o">=</span> <span class="nx">abs</span><span class="p">(</span><span class="nx">entityA</span><span class="p">.</span><span class="nx">x</span> <span class="o">-</span> <span class="nx">entityB</span><span class="p">.</span><span class="nx">x</span><span class="p">)</span><span class="p">;</span> <span class="c1">// 現在のx距離
+</span></span><span class="hl"><span class="c1"></span>  <span class="k">if</span> <span class="p">(</span><span class="nx">collisionXDistance</span> <span class="o">&lt;=</span> <span class="nx">currentXDistance</span><span class="p">)</span> <span class="k">return</span> <span class="kc">false</span><span class="p">;</span>
+</span><span class="hl">
+</span><span class="hl">  <span class="kd">let</span> <span class="nx">currentYDistance</span> <span class="o">=</span> <span class="nx">abs</span><span class="p">(</span><span class="nx">entityA</span><span class="p">.</span><span class="nx">y</span> <span class="o">-</span> <span class="nx">entityB</span><span class="p">.</span><span class="nx">y</span><span class="p">)</span><span class="p">;</span> <span class="c1">// 現在のy距離
+</span></span><span class="hl"><span class="c1"></span>  <span class="k">if</span> <span class="p">(</span><span class="nx">collisionYDistance</span> <span class="o">&lt;=</span> <span class="nx">currentYDistance</span><span class="p">)</span> <span class="k">return</span> <span class="kc">false</span><span class="p">;</span>
+</span><span class="hl">
+</span><span class="hl">  <span class="k">return</span> <span class="kc">true</span><span class="p">;</span> <span class="c1">// ここまで来たら、x方向でもy方向でも重なっているので true
+</span></span><span class="hl"><span class="c1"></span><span class="p">}</span>
+</span>
 <span class="c1">// ---- ゲーム全体に関わる部分 --------------------------------------------
 </span><span class="c1"></span>
 <span class="cm">/** プレイヤーエンティティ */</span>
@@ -808,19 +805,16 @@ https://github.com/alex-shpak/hugo-book
 </span><span class="c1"></span>  <span class="nx">applyGravity</span><span class="p">(</span><span class="nx">player</span><span class="p">)</span><span class="p">;</span>
 
   <span class="c1">// プレイヤーが死んでいたらゲームオーバー
-</span><span class="c1"></span>  <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nx">playerIsAlive</span><span class="p">(</span><span class="nx">player</span><span class="p">)</span><span class="p">)</span> <span class="p">{</span>
-    <span class="nx">gameState</span> <span class="o">=</span> <span class="s2">&#34;gameover&#34;</span><span class="p">;</span>
-    <span class="k">return</span><span class="p">;</span>
-  <span class="p">}</span>
+</span><span class="c1"></span>  <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nx">playerIsAlive</span><span class="p">(</span><span class="nx">player</span><span class="p">)</span><span class="p">)</span> <span class="nx">gameState</span> <span class="o">=</span> <span class="s2">&#34;gameover&#34;</span><span class="p">;</span>
 
-  <span class="c1">// 衝突判定
-</span><span class="c1"></span>  <span class="k">for</span> <span class="p">(</span><span class="kd">let</span> <span class="nx">block</span> <span class="k">of</span> <span class="nx">blocks</span><span class="p">)</span> <span class="p">{</span>
-    <span class="k">if</span> <span class="p">(</span><span class="nx">entitiesAreColliding</span><span class="p">(</span><span class="nx">player</span><span class="p">,</span> <span class="nx">block</span><span class="p">,</span> <span class="mi">20</span> <span class="o">+</span> <span class="mi">40</span><span class="p">,</span> <span class="mi">20</span> <span class="o">+</span> <span class="mi">200</span><span class="p">)</span><span class="p">)</span> <span class="p">{</span>
-      <span class="nx">gameState</span> <span class="o">=</span> <span class="s2">&#34;gameover&#34;</span><span class="p">;</span>
-      <span class="k">break</span><span class="p">;</span>
-    <span class="p">}</span>
-  <span class="p">}</span>
-<span class="p">}</span>
+<span class="hl">  <span class="c1">// 衝突判定
+</span></span><span class="hl"><span class="c1"></span>  <span class="k">for</span> <span class="p">(</span><span class="kd">let</span> <span class="nx">block</span> <span class="k">of</span> <span class="nx">blocks</span><span class="p">)</span> <span class="p">{</span>
+</span><span class="hl">    <span class="k">if</span> <span class="p">(</span><span class="nx">entitiesAreColliding</span><span class="p">(</span><span class="nx">player</span><span class="p">,</span> <span class="nx">block</span><span class="p">,</span> <span class="mi">20</span> <span class="o">+</span> <span class="mi">40</span><span class="p">,</span> <span class="mi">20</span> <span class="o">+</span> <span class="mi">200</span><span class="p">)</span><span class="p">)</span> <span class="p">{</span>
+</span><span class="hl">      <span class="nx">gameState</span> <span class="o">=</span> <span class="s2">&#34;gameover&#34;</span><span class="p">;</span>
+</span><span class="hl">      <span class="k">break</span><span class="p">;</span>
+</span><span class="hl">    <span class="p">}</span>
+</span><span class="hl">  <span class="p">}</span>
+</span><span class="p">}</span>
 
 <span class="cm">/** ゲームの描画 */</span>
 <span class="kd">function</span> <span class="nx">drawGame</span><span class="p">(</span><span class="p">)</span> <span class="p">{</span>
