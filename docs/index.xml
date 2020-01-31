@@ -106,7 +106,7 @@
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>https://fal-works.github.io/make-games-with-p5js/docs/50-flappy-bird-like/50-blocks/</guid>
-      <description>ブロックを複数にする やること ブロックを配列に格納するように変える draw() の中で、ブロックの配列に対して以下を行う 一定の時間間隔で、上下ペアでブロッ</description>
+      <description>ブロックを複数にする この先の内容を取り入れる前に、前項 見た目をアレンジ で改造した結果のソースコードを別名保存しておくと良いでしょう。 このペー</description>
     </item>
     
     <item>

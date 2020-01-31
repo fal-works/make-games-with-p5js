@@ -5,7 +5,7 @@
   <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="description" content="ブロックを複数にする"><meta property="og:title" content="ブロックを複数にする" />
-<meta property="og:description" content="ブロックを複数にする やること ブロックを配列に格納するように変える draw() の中で、ブロックの配列に対して以下を行う 一定の時間間隔で、上下ペアでブロッ" />
+<meta property="og:description" content="ブロックを複数にする この先の内容を取り入れる前に、前項 見た目をアレンジ で改造した結果のソースコードを別名保存しておくと良いでしょう。 このペー" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://fal-works.github.io/make-games-with-p5js/docs/50-flappy-bird-like/50-blocks/" />
 
@@ -13,7 +13,7 @@
 <link rel="icon" href="/make-games-with-p5js/favicon.png" type="image/x-icon">
 
 
-<link rel="stylesheet" href="/make-games-with-p5js/book.min.b213ac0122064e36233a98a047f17aa5707402541125b620d26515c994213ee5.css" integrity="sha256-shOsASIGTjYjOpigR/F6pXB0AlQRJbYg0mUVyZQhPuU=">
+<link rel="stylesheet" href="/make-games-with-p5js/book.min.06fb39c93b652f68daea0425ce9d8c8e89546af90f99fdeaeca4ef34558ed719.css" integrity="sha256-Bvs5yTtlL2ja6gQlzp2MjolUavkPmf3q7KTvNFWO1xk=">
 
 
 <!--
@@ -363,6 +363,12 @@ https://github.com/alex-shpak/hugo-book
 
       
 <article class="markdown"><h1 id="ブロックを複数にする">ブロックを複数にする</h1>
+<blockquote class="book-hint info">
+  <p>この先の内容を取り入れる前に、前項 <a href="../40-visuals">見た目をアレンジ</a> で改造した結果のソースコードを別名保存しておくと良いでしょう。</p>
+<p>このページのサンプルコードは、<a href="../30-block">ブロック1個だけ実装</a> のものをベースにしており、装飾が無い状態に戻っています。ご自分の改造結果を保ったまま増築していけると良いですが、厳しそうだったら、サンプルコードを全文コピペして装飾の無い状態に戻すのもOKです。</p>
+
+</blockquote>
+
 <h2 id="やること">やること</h2>
 <ol>
 <li>ブロックを配列に格納するように変える</li>
@@ -390,22 +396,7 @@ https://github.com/alex-shpak/hugo-book
       <p>百聞不如一見</p>
 <p>※ <code>console.log()</code> は値をコンソールに出力します。<br>
 　p5.js Web Editor の場合だと画面左下に結果が表示される</p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
-</span><span class="lnt"> 2
-</span><span class="lnt"> 3
-</span><span class="lnt"> 4
-</span><span class="lnt"> 5
-</span><span class="lnt"> 6
-</span><span class="lnt"> 7
-</span><span class="lnt"> 8
-</span><span class="lnt"> 9
-</span><span class="lnt">10
-</span><span class="lnt">11
-</span></code></pre></td>
-<td class="lntd">
-<pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="kd">let</span> <span class="nx">countries</span> <span class="o">=</span> <span class="p">[</span><span class="p">]</span><span class="p">;</span> <span class="c1">// 中身のない空っぽの配列を作成
+<div class="highlight"><pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="kd">let</span> <span class="nx">countries</span> <span class="o">=</span> <span class="p">[</span><span class="p">]</span><span class="p">;</span> <span class="c1">// 中身のない空っぽの配列を作成
 </span><span class="c1"></span>
 <span class="nx">countries</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span><span class="s2">&#34;Japan&#34;</span><span class="p">)</span><span class="p">;</span> <span class="c1">// push で配列に値を追加
 </span><span class="c1"></span><span class="nx">countries</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span><span class="s2">&#34;USA&#34;</span><span class="p">)</span><span class="p">;</span>
@@ -416,36 +407,13 @@ https://github.com/alex-shpak/hugo-book
 </span><span class="c1"></span>
 <span class="c1">// for...of 構文。配列の各要素を取り出して country と名付けている
 </span><span class="c1"></span><span class="k">for</span> <span class="p">(</span><span class="kd">let</span> <span class="nx">country</span> <span class="k">of</span> <span class="nx">countries</span><span class="p">)</span> <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">country</span><span class="p">)</span><span class="p">;</span> <span class="c1">// 全要素が出力される
-</span></code></pre></td></tr></table>
-</div>
-</div><p>この <strong>for&hellip;of 構文</strong>は、次のように普通の for で書いたときと結果は同じです。</p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
-</span></code></pre></td>
-<td class="lntd">
-<pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="k">for</span> <span class="p">(</span><span class="kd">let</span> <span class="nx">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="nx">i</span> <span class="o">&lt;</span> <span class="nx">countries</span><span class="p">.</span><span class="nx">length</span><span class="p">;</span> <span class="nx">i</span> <span class="o">+=</span> <span class="mi">1</span><span class="p">)</span> <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">countries</span><span class="p">[</span><span class="nx">i</span><span class="p">]</span><span class="p">)</span><span class="p">;</span>
-</code></pre></td></tr></table>
-</div>
-</div><p>配列の <code>push()</code> は可変長引数なので、次のように一度に追加しても良いです。</p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
-</span></code></pre></td>
-<td class="lntd">
-<pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="nx">countries</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span><span class="s2">&#34;Japan&#34;</span><span class="p">,</span> <span class="s2">&#34;USA&#34;</span><span class="p">,</span> <span class="s2">&#34;Germany&#34;</span><span class="p">)</span><span class="p">;</span>
-</code></pre></td></tr></table>
-</div>
-</div><p>またこの例だと、そもそも初期化と同時にまとめて登録しておくこともできます。</p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
-</span></code></pre></td>
-<td class="lntd">
-<pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="kd">let</span> <span class="nx">countries</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&#34;Japan&#34;</span><span class="p">,</span> <span class="s2">&#34;USA&#34;</span><span class="p">,</span> <span class="s2">&#34;Germany&#34;</span><span class="p">]</span><span class="p">;</span>
-</code></pre></td></tr></table>
-</div>
-</div>
+</span></code></pre></div><p>この <strong>for&hellip;of 構文</strong>は、次のように普通の for で書いたときと結果は同じです。</p>
+<div class="highlight"><pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="k">for</span> <span class="p">(</span><span class="kd">let</span> <span class="nx">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="nx">i</span> <span class="o">&lt;</span> <span class="nx">countries</span><span class="p">.</span><span class="nx">length</span><span class="p">;</span> <span class="nx">i</span> <span class="o">+=</span> <span class="mi">1</span><span class="p">)</span> <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">countries</span><span class="p">[</span><span class="nx">i</span><span class="p">]</span><span class="p">)</span><span class="p">;</span>
+</code></pre></div><p>配列の <code>push()</code> は可変長引数なので、次のように一度に追加しても良いです。</p>
+<div class="highlight"><pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="nx">countries</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span><span class="s2">&#34;Japan&#34;</span><span class="p">,</span> <span class="s2">&#34;USA&#34;</span><span class="p">,</span> <span class="s2">&#34;Germany&#34;</span><span class="p">)</span><span class="p">;</span>
+</code></pre></div><p>またこの例だと、そもそも初期化と同時にまとめて登録しておくこともできます。</p>
+<div class="highlight"><pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="kd">let</span> <span class="nx">countries</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&#34;Japan&#34;</span><span class="p">,</span> <span class="s2">&#34;USA&#34;</span><span class="p">,</span> <span class="s2">&#34;Germany&#34;</span><span class="p">]</span><span class="p">;</span>
+</code></pre></div>
     </div>
   </label>
 </div>
@@ -459,49 +427,21 @@ https://github.com/alex-shpak/hugo-book
     <div class="book-expand-content markdown-inner">
       <p><code>filter()</code> を使うと、条件に合致した要素だけを含む新たな配列を作ることができます。</p>
 <p>例えば、このような配列と関数があったとします。</p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
-</span><span class="lnt">2
-</span><span class="lnt">3
-</span><span class="lnt">4
-</span><span class="lnt">5
-</span><span class="lnt">6
-</span><span class="lnt">7
-</span></code></pre></td>
-<td class="lntd">
-<pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="cm">/** 元となる数列 */</span>
+<div class="highlight"><pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="cm">/** 元となる数列 */</span>
 <span class="kd">let</span> <span class="nx">numbers</span> <span class="o">=</span> <span class="p">[</span><span class="mi">10</span><span class="p">,</span> <span class="mi">20</span><span class="p">,</span> <span class="mi">30</span><span class="p">,</span> <span class="mi">40</span><span class="p">]</span><span class="p">;</span>
 
 <span class="cm">/** 値が 20 より大きければ true、そうでなければ false を返す */</span>
 <span class="kd">function</span> <span class="nx">greaterThan20</span><span class="p">(</span><span class="nx">n</span><span class="p">)</span> <span class="p">{</span>
   <span class="k">return</span> <span class="nx">n</span> <span class="o">&gt;</span> <span class="mi">20</span><span class="p">;</span>
 <span class="p">}</span>
-</code></pre></td></tr></table>
-</div>
-</div><p>このとき、<code>filter()</code> を使って、「20 より大きい値」だけを含む新たな配列が作れます。</p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
-</span></code></pre></td>
-<td class="lntd">
-<pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="kd">let</span> <span class="nx">newNumbers</span> <span class="o">=</span> <span class="nx">numbers</span><span class="p">.</span><span class="nx">filter</span><span class="p">(</span><span class="nx">greaterThan20</span><span class="p">)</span><span class="p">;</span> <span class="c1">// 結果は新たな配列 [30, 40]
-</span></code></pre></td></tr></table>
-</div>
-</div><p>つまり <code>filter()</code> は、「値に応じて <code>true</code> か <code>false</code> を返す関数」を引数として与えると、それを使って配列の各要素をチェックし、フィルタリングしてくれるのです。</p>
+</code></pre></div><p>このとき、<code>filter()</code> を使って、「20 より大きい値」だけを含む新たな配列が作れます。</p>
+<div class="highlight"><pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="kd">let</span> <span class="nx">newNumbers</span> <span class="o">=</span> <span class="nx">numbers</span><span class="p">.</span><span class="nx">filter</span><span class="p">(</span><span class="nx">greaterThan20</span><span class="p">)</span><span class="p">;</span> <span class="c1">// 結果は新たな配列 [30, 40]
+</span></code></pre></div><p>つまり <code>filter()</code> は、「値に応じて <code>true</code> か <code>false</code> を返す関数」を引数として与えると、それを使って配列の各要素をチェックし、フィルタリングしてくれるのです。</p>
 <p>※ 厳密には <code>true</code>/<code>false</code> というより truthy/falsy で判定</p>
 <p>なお、念のため…… <code>return n &gt; 20;</code> のところは、次のように書くのと同じ結果です。</p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
-</span><span class="lnt">2
-</span></code></pre></td>
-<td class="lntd">
-<pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="k">if</span> <span class="p">(</span><span class="nx">n</span> <span class="o">&gt;</span> <span class="mi">20</span><span class="p">)</span> <span class="k">return</span> <span class="kc">true</span><span class="p">;</span>
+<div class="highlight"><pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="k">if</span> <span class="p">(</span><span class="nx">n</span> <span class="o">&gt;</span> <span class="mi">20</span><span class="p">)</span> <span class="k">return</span> <span class="kc">true</span><span class="p">;</span>
 <span class="k">else</span> <span class="k">return</span> <span class="kc">false</span><span class="p">;</span>
-</code></pre></td></tr></table>
-</div>
-</div>
+</code></pre></div>
     </div>
   </label>
 </div>
