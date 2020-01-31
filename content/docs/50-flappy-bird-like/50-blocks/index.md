@@ -6,6 +6,12 @@ weight: 50
 
 # ブロックを複数にする
 
+{{< hint info >}}
+この先の内容を取り入れる前に、前項 [見た目をアレンジ](../40-visuals) で改造した結果のソースコードを別名保存しておくと良いでしょう。
+
+このページのサンプルコードは、[ブロック1個だけ実装](../30-block) のものをベースにしており、装飾が無い状態に戻っています。ご自分の改造結果を保ったまま増築していけると良いですが、厳しそうだったら、サンプルコードを全文コピペして装飾の無い状態に戻すのもOKです。
+{{< /hint >}}
+
 ## やること
 
 1. ブロックを配列に格納するように変える
@@ -22,7 +28,7 @@ weight: 50
 ※ `console.log()` は値をコンソールに出力します。  
 　p5.js Web Editor の場合だと画面左下に結果が表示される
 
-```javascript
+```javascript { linenos=false }　
 let countries = []; // 中身のない空っぽの配列を作成
 
 countries.push("Japan"); // push で配列に値を追加
@@ -37,17 +43,17 @@ for (let country of countries) console.log(country); // 全要素が出力され
 ```
 
 この **for...of 構文**は、次のように普通の for で書いたときと結果は同じです。
-```javascript
+```javascript { linenos=false }　
 for (let i = 0; i < countries.length; i += 1) console.log(countries[i]);
 ```
 
 配列の `push()` は可変長引数なので、次のように一度に追加しても良いです。
-```javascript
+```javascript { linenos=false }　
 countries.push("Japan", "USA", "Germany");
 ```
 
 またこの例だと、そもそも初期化と同時にまとめて登録しておくこともできます。
-```javascript
+```javascript { linenos=false }　
 let countries = ["Japan", "USA", "Germany"];
 ```
 {{< /expand >}}
@@ -56,7 +62,7 @@ let countries = ["Japan", "USA", "Germany"];
 `filter()` を使うと、条件に合致した要素だけを含む新たな配列を作ることができます。
 
 例えば、このような配列と関数があったとします。
-```javascript
+```javascript { linenos=false }　
 /** 元となる数列 */
 let numbers = [10, 20, 30, 40];
 
@@ -67,7 +73,7 @@ function greaterThan20(n) {
 ```
 
 このとき、`filter()` を使って、「20 より大きい値」だけを含む新たな配列が作れます。
-```javascript
+```javascript { linenos=false }　
 let newNumbers = numbers.filter(greaterThan20); // 結果は新たな配列 [30, 40]
 ```
 
@@ -76,7 +82,7 @@ let newNumbers = numbers.filter(greaterThan20); // 結果は新たな配列 [30,
 ※ 厳密には `true`/`false` というより truthy/falsy で判定
 
 なお、念のため…… `return n > 20;` のところは、次のように書くのと同じ結果です。
-```javascript
+```javascript { linenos=false }　
 if (n > 20) return true;
 else return false;
 ```
