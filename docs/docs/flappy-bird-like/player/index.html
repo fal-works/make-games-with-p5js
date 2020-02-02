@@ -280,7 +280,7 @@ https://github.com/alex-shpak/hugo-book
       
         <li>
 
-  <a href="/make-games-with-p5js/docs/arrange/10-particles/" >
+  <a href="/make-games-with-p5js/docs/arrange/particles/" >
       パーティクルを追加
   </a>
 
@@ -290,7 +290,7 @@ https://github.com/alex-shpak/hugo-book
       
         <li>
 
-  <a href="/make-games-with-p5js/docs/arrange/20-effects/" >
+  <a href="/make-games-with-p5js/docs/arrange/effects/" >
       画面効果を追加
   </a>
 
@@ -300,7 +300,7 @@ https://github.com/alex-shpak/hugo-book
       
         <li>
 
-  <a href="/make-games-with-p5js/docs/arrange/30-rules/" >
+  <a href="/make-games-with-p5js/docs/arrange/rules/" >
       ルール変更
   </a>
 
@@ -310,7 +310,7 @@ https://github.com/alex-shpak/hugo-book
       
         <li>
 
-  <a href="/make-games-with-p5js/docs/arrange/40-links/" >
+  <a href="/make-games-with-p5js/docs/arrange/links/" >
       リンク（後学のために）
   </a>
 
@@ -1048,7 +1048,7 @@ https://github.com/alex-shpak/hugo-book
 <p>ということで上記のコードが一つの選択肢になりますが、単純にデータと関数を並べて都度組み合わせる方法に比べて、このようなコードを書くメリットがどのくらいあるのか？ という話になります（特にこの資料では、読者があまり class 構文に慣れていないことを想定していて、それでもぜひ使おう！ と言うべきかどうかという話でもあります）。</p>
 <h3 id="クラスのメリット">クラスのメリット</h3>
 <p>メリットはもちろんあって、まず、クラスの説明やクラスを使ったサンプルコードはネット上に溢れていて、いろいろ読み漁るときにクラスに慣れていないと厳しいというのがあります。p5.js の場合でも、公式サンプルコードのほとんどが Java ベースの Processing と互換性を持つように書かれている印象があり、つまりクラスが多用されています（古いコードは ES5 なので prototype でやってたりしますが、同じことです）。</p>
-<p>先月（2020年1月）刊行されたばかりの<a href="https://gihyo.jp/book/2020/978-4-297-11085-7" target="_blank">『グラフィックスプログラミング入門』</a> でも、JavaScript でゲームを作るにあたって、プレイヤーキャラクターや敵キャラクターをクラスで作っていました。</p>
+<p>先月（2020年1月）刊行されたばかりの書籍<a href="https://gihyo.jp/book/2020/978-4-297-11085-7" target="_blank">『グラフィックスプログラミング入門』</a> でも、JavaScript でゲームを作るにあたって、プレイヤーキャラクターや敵キャラクターをクラスで作っていました。</p>
 <p>それと、コードを読み書きする側のメンタルモデルと一致するかどうかという観点もあります。データと振る舞いがひとまとめになっていたほうがなんだか直感的に分かりやすい気がする、というのは確かにありえて、これもクラスベースの言語が広まっている理由の一つだと思います（といって、他のタイプの言語をそんなに知っているわけではないのですが）。</p>
 <h3 id="関数主体のメリット">関数主体のメリット</h3>
 <p>他方、データと関数だけでなんとかする方法に軍配が上がる要素の一つとしては、ゲームプログラムにおいては大量の似たようなオブジェクトを配列に入れてそれをループ処理することがとても多い、という点があります。</p>

@@ -280,7 +280,7 @@ https://github.com/alex-shpak/hugo-book
       
         <li>
 
-  <a href="/make-games-with-p5js/docs/arrange/10-particles/" >
+  <a href="/make-games-with-p5js/docs/arrange/particles/" >
       パーティクルを追加
   </a>
 
@@ -290,7 +290,7 @@ https://github.com/alex-shpak/hugo-book
       
         <li>
 
-  <a href="/make-games-with-p5js/docs/arrange/20-effects/" >
+  <a href="/make-games-with-p5js/docs/arrange/effects/" >
       画面効果を追加
   </a>
 
@@ -300,7 +300,7 @@ https://github.com/alex-shpak/hugo-book
       
         <li>
 
-  <a href="/make-games-with-p5js/docs/arrange/30-rules/" >
+  <a href="/make-games-with-p5js/docs/arrange/rules/" >
       ルール変更
   </a>
 
@@ -310,7 +310,7 @@ https://github.com/alex-shpak/hugo-book
       
         <li>
 
-  <a href="/make-games-with-p5js/docs/arrange/40-links/" >
+  <a href="/make-games-with-p5js/docs/arrange/links/" >
       リンク（後学のために）
   </a>
 
@@ -769,6 +769,58 @@ https://github.com/alex-shpak/hugo-book
 </div><p><code>forEach()</code> で書くと、コードがまるで文章みたいになって（「ブロックのそれぞれについて位置を更新せよ」と読める）、スマートな感じがしますね。<br>
 パフォーマンス的には <code>forEach()</code> の方がちょっと遅いらしいという話がありますが、少なくとも今回の例で気にする必要はありません。</p>
 <p>ちなみに、<code>filter()</code> や <code>forEach()</code> のような関数に引数として渡す関数（上の例だと <code>updatePosition()</code>）のことを「コールバック関数」と呼んだりします。</p>
+
+    </div>
+  </label>
+</div>
+<div class="book-expand">
+  <label>
+    <div class="book-expand-head flex justify-between">
+      <span>余談： オブジェクト生成破棄のコスト</span>
+      <span>↕</span>
+    </div>
+    <input type="checkbox" class="hidden" />
+    <div class="book-expand-content markdown-inner">
+      <h2 id="問題">問題</h2>
+<p><code>createBlock()</code> は新たなオブジェクトを生成する処理ですが（<code>createPlayer()</code> も同様）、こういうのはメモリを確保するために若干の処理負荷がかかります。</p>
+<p>さらに問題なのは破棄するときで、JavaScript では、使われなくなった（誰からも参照されなくなった）オブジェクトはガベージコレクション（略して GC）という機能によって自動的に破棄されますが、これによっても処理不可がかかります。
+参考： <a href="https://developer.mozilla.org/ja/docs/Web/JavaScript/Memory_Management" target="_blank">メモリ管理 - JavaScript | MDN</a></p>
+<p><code>filter()</code> で毎度新たな配列を作り直している（古いのは GC で破棄している）のも同様です。</p>
+<p>今回の例だと気にする必要はありませんが、たとえばスマホ向けにゲームを作ったりする場合、けっこうシビアに考えないと処理が追いつかなくてカクカクしたりします。弾幕シューティングみたいにオブジェクト数が多くてサイクルも速いと、PC でも怪しい。</p>
+<p>GC でどのオブジェクトが破棄されるかはプログラマには正確に予測・制御できないので、そもそも破棄が行われないように気をつける必要があります。</p>
+<h2 id="対策個々のエンティティの生成破棄">対策（個々のエンティティの生成破棄）</h2>
+<p>オブジェクトプールという手法があります。十分な量のオブジェクトをあらかじめ用意しておいて（プール＝貯める）、使うときにはプールから取り出して使い終わったらプールに戻す、というやり方でオブジェクトを使い回すというものです。</p>
+<p>良い可視化になっているかは分かりませんが、筆者が p5.js で可視化を試みてみたスケッチがこちら： <a href="https://www.fal-works.com/creative-coding-posts/object-pool" target="_blank">Object Pool — FAL Works</a></p>
+<p>あるオブジェクトを使って、使い終わって、また使って……としたときに、その前後の状態を厳密に区別する方法がないのと、オブジェクトが持っているデータのリセットを徹底的にやらないと変な結果になるのとで、この方法はものすごくバグを出しやすいのですが、背に腹は替えられんという感じでやむなく使ったりします。</p>
+<p>オブジェクトプールは配列で実装することになりますが、「使っているオブジェクトのリスト」を別に作るかどうか、別に作らないとしたら使っているオブジェクトをどうやって判別するか、という点で実装上の違いが出てきます。</p>
+<p>最も簡易的な方法は、一つ一つのオブジェクトに 生きている／死んでいる のフラグを持たせるというもので、これは全オブジェクトについて生死のチェックをループのたびに毎回やらなきゃいけませんが、そのぶん実装は楽だと思います。</p>
+<p>他にどんなのが……という詳しい話は書籍<a href="https://www.amazon.co.jp/dp/B015R0M8W0/" target="_blank">『Game Programming Patterns』</a>などが良いかもしれません（サンプルコードは C++ ですが）。</p>
+<h2 id="対策配列の生成破棄">対策（配列の生成破棄）</h2>
+<p>Java の <code>ArrayList</code> が取っている方法に近いですが、十分な長さの配列と、その長さとは別に「有効な値がいくつ入っているか」を記録しておいて、有効な要素だけを対象としてループ処理をする、という方法があります。</p>
+<p>こうすると要素が増減しても配列オブジェクト自体が生成・破棄されることはなくなります。</p>
+<div class="highlight"><pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="kr">class</span> <span class="nx">ArrayList</span> <span class="p">{</span>
+  <span class="nx">constructor</span><span class="p">(</span><span class="nx">initialCapacity</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">array</span> <span class="o">=</span> <span class="k">new</span> <span class="nb">Array</span><span class="p">(</span><span class="nx">initialCapacity</span><span class="p">)</span><span class="p">;</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">size</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+  <span class="p">}</span>
+
+  <span class="nx">add</span><span class="p">(</span><span class="nx">element</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">array</span><span class="p">[</span><span class="k">this</span><span class="p">.</span><span class="nx">size</span><span class="p">]</span> <span class="o">=</span> <span class="nx">element</span><span class="p">;</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">size</span> <span class="o">+=</span> <span class="mi">1</span><span class="p">;</span>
+  <span class="p">}</span>
+
+  <span class="nx">loop</span><span class="p">(</span><span class="nx">callback</span><span class="p">)</span> <span class="p">{</span>
+    <span class="kr">const</span> <span class="p">{</span> <span class="nx">array</span><span class="p">,</span> <span class="nx">size</span> <span class="p">}</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
+    <span class="k">for</span> <span class="p">(</span><span class="kd">let</span> <span class="nx">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="nx">i</span> <span class="o">&lt;</span> <span class="nx">size</span><span class="p">;</span> <span class="nx">i</span> <span class="o">+=</span> <span class="mi">1</span><span class="p">)</span> <span class="nx">callback</span><span class="p">(</span><span class="nx">array</span><span class="p">[</span><span class="nx">i</span><span class="p">]</span><span class="p">,</span> <span class="nx">i</span><span class="p">,</span> <span class="nx">array</span><span class="p">)</span><span class="p">;</span>
+  <span class="p">}</span>
+
+  <span class="c1">// 他、filter() とかは省略
+</span><span class="c1"></span><span class="p">}</span>
+</code></pre></div><p>なんでこんなこと手動でやらなきゃいけないんだろうな、という気分にならないでもない。</p>
+<h2 id="余談の余談">余談の余談</h2>
+<p>GC 自体は無いと困るレベルの便利な機能なので、GC を悪く言うのは風評被害な感じがあるかもしれませんね。</p>
+<p>あと Wikipedia の項目名だと「ガベージコレクション」となっていますが、本場の発音を考慮すると「ガベージ」ではなく「ガーベジ」や「ガービッジ」ではないか、とかがあるのでこの言葉にはそこそこ表記揺れがあります。<br>
+個人的な考えとしては、英語がカタカナに変換されるにあたっては一定の慣習みたいなものがあり、「ガベージ」はそれに則っている雰囲気がするのでこれでもいいと思っています。</p>
 
     </div>
   </label>

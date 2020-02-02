@@ -280,7 +280,7 @@ https://github.com/alex-shpak/hugo-book
       
         <li>
 
-  <a href="/make-games-with-p5js/docs/arrange/10-particles/" >
+  <a href="/make-games-with-p5js/docs/arrange/particles/" >
       パーティクルを追加
   </a>
 
@@ -290,7 +290,7 @@ https://github.com/alex-shpak/hugo-book
       
         <li>
 
-  <a href="/make-games-with-p5js/docs/arrange/20-effects/" >
+  <a href="/make-games-with-p5js/docs/arrange/effects/" >
       画面効果を追加
   </a>
 
@@ -300,7 +300,7 @@ https://github.com/alex-shpak/hugo-book
       
         <li>
 
-  <a href="/make-games-with-p5js/docs/arrange/30-rules/" >
+  <a href="/make-games-with-p5js/docs/arrange/rules/" >
       ルール変更
   </a>
 
@@ -310,7 +310,7 @@ https://github.com/alex-shpak/hugo-book
       
         <li>
 
-  <a href="/make-games-with-p5js/docs/arrange/40-links/" >
+  <a href="/make-games-with-p5js/docs/arrange/links/" >
       リンク（後学のために）
   </a>
 
@@ -905,7 +905,21 @@ https://github.com/alex-shpak/hugo-book
 </div><div class="book-expand">
   <label>
     <div class="book-expand-head flex justify-between">
-      <span>余談： 処理効率の最適化</span>
+      <span>余談： 命名について再び</span>
+      <span>↕</span>
+    </div>
+    <input type="checkbox" class="hidden" />
+    <div class="book-expand-content markdown-inner">
+      <p>衝突したらプレイヤーは死んでいるとみなすべきで、<code>playerIsAlive()</code> ではプレイヤーが画面下端まで落ちたかどうかしか分からない、これは名が体を表していないのでは？ という問題があります。</p>
+<p>これはちょっと良い状態ではなくて、筆者も動作確認時にちょっと混乱したので、要改善な気がします。位置の判定と衝突の判定を別々に処理している以上、処理結果を保存しておく必要があるはずで、となるとやっぱりエンティティに生死フラグを持たせるべきなのかもしれません。</p>
+
+    </div>
+  </label>
+</div>
+<div class="book-expand">
+  <label>
+    <div class="book-expand-head flex justify-between">
+      <span>余談： 衝突判定の最適化</span>
       <span>↕</span>
     </div>
     <input type="checkbox" class="hidden" />
@@ -913,7 +927,7 @@ https://github.com/alex-shpak/hugo-book
       <p>今回の例では総当たり的に衝突判定をしていますがこの場合、例えば物体が1000個あって相互に衝突可能だったりすると百万回弱のループが必要になり、しかもそれを継続的に繰り返さなければなりません。つまり、衝突判定は全体の中でもパフォーマンス上のボトルネックになりやすい要素の一つなのです。</p>
 <p>そのため、無駄な判定を削減するような高度な工夫がいろいろ存在します（筆者は自力でやったことはありません）。<br>
 参考： <a href="https://sbfl.net/blog/2017/12/03/javascript-collision/" target="_blank">JavaScriptで大量のオブジェクトの当たり判定を効率的にとる</a></p>
-<p>単純な削減方法としては、2フレームに1回判定すれば十分でしょ、みたいなサボり方をするというのがあり、市販のゲームでもそうしているケースはあるようです。</p>
+<p>単純な削減方法としては、2フレームに1回判定すれば十分でしょ、みたいなサボり方をするというのがあり、市販のゲームでもそうしているケースはあるようです。半分になるだけで、桁が減るわけではないのですが（「計算量」の概念を調べよう）、キリキリ削減しなきゃいけない場合にはこういうのも選択肢になります。</p>
 
     </div>
   </label>

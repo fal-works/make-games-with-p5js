@@ -12,10 +12,10 @@
     
     <item>
       <title>パーティクルを追加</title>
-      <link>https://fal-works.github.io/make-games-with-p5js/docs/arrange/10-particles/</link>
+      <link>https://fal-works.github.io/make-games-with-p5js/docs/arrange/particles/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>https://fal-works.github.io/make-games-with-p5js/docs/arrange/10-particles/</guid>
+      <guid>https://fal-works.github.io/make-games-with-p5js/docs/arrange/particles/</guid>
       <description>パーティクルを追加 小さな粒や破片を大量に散らかすことで、様々な効果が得られる。 これは「パーティクル」（直訳：粒子）と呼ばれる パーティクルを新</description>
     </item>
     
@@ -52,15 +52,15 @@
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>https://fal-works.github.io/make-games-with-p5js/docs/introduction/prepare/</guid>
-      <description>準備 開発・実行環境を準備します。 公式のエディタ p5.js Web Editor で、コードを書いて即実行できます。 ユーザーアカウントを登録すれば、スケッチの保存・共有も</description>
+      <description>準備 開発・実行環境を準備します。 公式のオンラインエディタを使うなら、それを開くだけなので秒で準備完了です。 公式のエディタ p5.js Web Editor で、コードを書</description>
     </item>
     
     <item>
       <title>画面効果を追加</title>
-      <link>https://fal-works.github.io/make-games-with-p5js/docs/arrange/20-effects/</link>
+      <link>https://fal-works.github.io/make-games-with-p5js/docs/arrange/effects/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>https://fal-works.github.io/make-games-with-p5js/docs/arrange/20-effects/</guid>
+      <guid>https://fal-works.github.io/make-games-with-p5js/docs/arrange/effects/</guid>
       <description>画面効果を追加 手軽な画面効果として、次のものがある スクリーンシェイク 画面を揺らす。揺れは徐々に収まる スクリーンフラッシュ 画面を明るくする。明</description>
     </item>
     
@@ -84,19 +84,19 @@
     
     <item>
       <title>ルール変更</title>
-      <link>https://fal-works.github.io/make-games-with-p5js/docs/arrange/30-rules/</link>
+      <link>https://fal-works.github.io/make-games-with-p5js/docs/arrange/rules/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>https://fal-works.github.io/make-games-with-p5js/docs/arrange/30-rules/</guid>
+      <guid>https://fal-works.github.io/make-games-with-p5js/docs/arrange/rules/</guid>
       <description>ルール変更 今回作ってきたプログラムは、少し手を加えるだけで色々なゲームに化けることができます。 どんな改造ができるでしょうか？ 思いつくままに改</description>
     </item>
     
     <item>
       <title>リンク（後学のために）</title>
-      <link>https://fal-works.github.io/make-games-with-p5js/docs/arrange/40-links/</link>
+      <link>https://fal-works.github.io/make-games-with-p5js/docs/arrange/links/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>https://fal-works.github.io/make-games-with-p5js/docs/arrange/40-links/</guid>
+      <guid>https://fal-works.github.io/make-games-with-p5js/docs/arrange/links/</guid>
       <description>リンク（後学のために） 演出 Juice it or lose it - YouTube 単調なブロック崩しゲームでも演出次第でこう化けるのだというプレゼン。 14:14 あたりから before/after の比較を見せている</description>
     </item>
     

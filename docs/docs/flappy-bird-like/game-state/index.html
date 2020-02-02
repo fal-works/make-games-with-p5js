@@ -280,7 +280,7 @@ https://github.com/alex-shpak/hugo-book
       
         <li>
 
-  <a href="/make-games-with-p5js/docs/arrange/10-particles/" >
+  <a href="/make-games-with-p5js/docs/arrange/particles/" >
       パーティクルを追加
   </a>
 
@@ -290,7 +290,7 @@ https://github.com/alex-shpak/hugo-book
       
         <li>
 
-  <a href="/make-games-with-p5js/docs/arrange/20-effects/" >
+  <a href="/make-games-with-p5js/docs/arrange/effects/" >
       画面効果を追加
   </a>
 
@@ -300,7 +300,7 @@ https://github.com/alex-shpak/hugo-book
       
         <li>
 
-  <a href="/make-games-with-p5js/docs/arrange/30-rules/" >
+  <a href="/make-games-with-p5js/docs/arrange/rules/" >
       ルール変更
   </a>
 
@@ -310,7 +310,7 @@ https://github.com/alex-shpak/hugo-book
       
         <li>
 
-  <a href="/make-games-with-p5js/docs/arrange/40-links/" >
+  <a href="/make-games-with-p5js/docs/arrange/links/" >
       リンク（後学のために）
   </a>
 
@@ -1185,7 +1185,7 @@ https://github.com/alex-shpak/hugo-book
 </div><div class="book-expand">
   <label>
     <div class="book-expand-head flex justify-between">
-      <span>余談： frameCount の利用</span>
+      <span>余談： frameCount の扱い</span>
       <span>↕</span>
     </div>
     <input type="checkbox" class="hidden" />
@@ -1193,6 +1193,26 @@ https://github.com/alex-shpak/hugo-book
       <p>描画系の関数の中で <code>frameCount</code> を使って動きを出している場合、ゲームの更新処理を実行しようがしまいが <code>frameCount</code> の値は増えるので、その部分については動きを止められません。</p>
 <p><code>noLoop()</code> を使って <code>draw()</code> の実行を止めるという方法もありますが、これは本当にスケッチ全体を止めてしまうので、やっぱり一部だけ動かしたい、となったときに不便です。</p>
 <p>より綺麗に実装するなら、<code>frameCount</code> に相当する変数を他にもう一つ作ったり、エンティティごとに固有の <code>frameCount</code> 変数を持たせたりすると良いでしょう。</p>
+
+    </div>
+  </label>
+</div>
+<div class="book-expand">
+  <label>
+    <div class="book-expand-head flex justify-between">
+      <span>余談： 状態による分岐</span>
+      <span>↕</span>
+    </div>
+    <input type="checkbox" class="hidden" />
+    <div class="book-expand-content markdown-inner">
+      <p><code>gameState</code> の値を見て <code>if</code> や <code>switch</code> で判定するのには、次の難点があります。</p>
+<ul>
+<li><code>if</code> や <code>switch</code> での分岐をいろいろな場所でやっているので、状態の種類を増やすときにそれを全部見つけ出して直さねばならず、見落としが発生しやすい</li>
+<li>状態の種類が多いと分岐自体も複雑になって、読みにくいコードになる</li>
+</ul>
+<p>こういうときこそポリモーフィズムではないか、ということで状態によって変わる部分の処理を別の関数に切り出して、状態に応じて差し替えることでこの辺は改善されると思います。</p>
+<p>ただ、今回はプレイ状態でもゲームオーバー状態でも変数（<code>player</code> と <code>blocks</code>）を共有していますが、たとえばタイトル画面のための状態を増やすときにはそれは共有しないんじゃないの、そういうのを含めてどう構成するのがいいのかしら、という疑問がありえます。そのへん筆者はまだベストプラクティスみたいなのを分かっていないので、この先どんな改造をしたいかによるなぁくらいしか言えず、ひとまず今回は素朴な分岐にしました。</p>
+<p>あとゲーム状態（<code>gameState</code>）と書いたけど、ゲームシーンという呼び方をされることも多いです、ググるときのご参考に。</p>
 
     </div>
   </label>
