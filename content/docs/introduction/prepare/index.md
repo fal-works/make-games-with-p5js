@@ -1,7 +1,7 @@
 ---
 title: 準備
 type: docs
-weight: 10
+weight: 20
 ---
 
 # 準備

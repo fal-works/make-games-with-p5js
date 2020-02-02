@@ -34,7 +34,7 @@ type: docs
 以下をおさえておいていただけるとスムーズです。
 
 - プログラミングの初歩（変数、関数、配列、if、for など）
-- [Processing](https://processing.org/) または [p5.js](https://p5js.org/) の基本（setup/draw、図形の描画、色の指定など）
+- [Processing](https://processing.org/) または [p5.js](https://p5js.org/) の基本（setup/draw、座標、図形の描画、色の指定など）
 - Processing (Java) しかやったことない場合、p5.js での書き方の違いについて  
 （変数や関数の宣言、型を書かない、など）
 

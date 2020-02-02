@@ -1,7 +1,7 @@
 ---
 title: p5.js スケッチの基本構造
 type: docs
-weight: 40
+weight: 30
 ---
 
 # p5.js スケッチの基本構造

@@ -223,7 +223,7 @@ function updateGame() {
   if (gameState === "gameover") return;
 
   // ブロックの追加
-  if (frameCount % 120 === 1) addBlockPair(blocks); // 一定間隔でブロック追加
+  if (frameCount % 120 === 1) addBlockPair(blocks); // 一定間隔で追加
 
   // パーティクルの追加
   particles.push(createParticle(player.x, player.y)); // プレイヤーの位置で

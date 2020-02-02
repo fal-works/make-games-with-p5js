@@ -1,7 +1,7 @@
 ---
 title: 進め方
 type: docs
-weight: 30
+weight: 10
 ---
 
 # 進め方

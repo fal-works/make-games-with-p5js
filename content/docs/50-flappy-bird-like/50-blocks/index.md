@@ -91,6 +91,8 @@ else return false;
 
 ## 実装
 
+変数 `block` が複数形の `blocks` に変わっていることに注意
+
 ```javascript { hl_lines=["48-52", "59-60", "62-67", "78-79", "83-85", 89, 97], linenostart=1 }
 // ---- エンティティ関連の関数 ---------------------------------------------
 
@@ -160,7 +162,7 @@ function addBlockPair() {
   blocks.push(createBlock(y + 600)); // 下のブロック
 }
 
-// ---- setup/draw 他 ----------------------------------------------------------
+// ---- setup/draw 他 --------------------------------------------------
 
 function setup() {
   createCanvas(800, 600);
@@ -175,7 +177,7 @@ function setup() {
 
 function draw() {
   // ブロックの追加と削除
-  if (frameCount % 120 === 1) addBlockPair(blocks); // 一定間隔でブロック追加
+  if (frameCount % 120 === 1) addBlockPair(blocks); // 一定間隔で追加
   blocks = blocks.filter(blockIsAlive); // 生きているブロックだけ残す
 
   // 全エンティティの位置を更新
@@ -197,8 +199,20 @@ function mousePressed() {
 }
 ```
 
+{{< expand "補足： 一定間隔" >}}
+```javascript { linenos=false }
+if (frameCount % 120 === 1) addBlockPair(blocks);
+```
+のところですが、ここでは `frameCount` を `120` で割った余りを計算しています。
+
+すると、`frameCount` が `1` のとき、`121` のとき、`241` のとき……という具合で、120 フレームに 1 回、すなわち（今は 60 FPS なので）2 秒に 1 回、ブロックの追加が行われます。
+
+ちなみになぜ `0` とかではなくて `1` と比較しているのかというと、どうも `frameCount` は `1` から始まるようなので、最初の待ち時間が無いほうが良いと思ってこうしています。
+{{< /expand >}}
+
+
 {{< hint info >}}
-各自実行してみて、上下ペアのブロックが一定間隔で現れることを確認してください。
+実行してみて、上下ペアのブロックが一定間隔で現れることを確認してください。
 {{< /hint >}}
 
 {{< hint info >}}

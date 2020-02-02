@@ -22,10 +22,13 @@ weight: 60
 
 - 初期化処理が `setup()` の中にあると「リセットして最初に戻る」のがやりにくい
 - `draw()` の中身が増えてきたので、更新処理／描画処理 の2つに分けて整理したい
+- `setup()`/`draw()` は p5.js スケッチを実行するときの入り口にあたる。  
+入り口をシンプルに保っておくと全体の複雑化に対応できる
 
 ### やること
 
-以下のそれぞれについて、新たに専用の関数を用意して引っ越す
+以下のそれぞれについて、新たに専用の関数を用意し、  
+「setup/draw 他」セクションから「ゲーム全体に関わる部分」セクションへ引っ越す
 
 1. `setup()` の中の初期化処理
 1. `draw()` の中の更新処理
@@ -106,7 +109,7 @@ function resetGame() {
 /** ゲームの更新 */
 function updateGame() {
   // ブロックの追加と削除
-  if (frameCount % 120 === 1) addBlockPair(blocks); // 一定間隔でブロック追加
+  if (frameCount % 120 === 1) addBlockPair(blocks); // 一定間隔で追加
   blocks = blocks.filter(blockIsAlive); // 生きているブロックだけ残す
 
   // 全エンティティの位置を更新
@@ -215,7 +218,7 @@ function updateGame() {
   if (gameState === "gameover") return;
 
   // ブロックの追加と削除
-  if (frameCount % 120 === 1) addBlockPair(blocks); // 一定間隔でブロック追加
+  if (frameCount % 120 === 1) addBlockPair(blocks); // 一定間隔で追加
   blocks = blocks.filter(blockIsAlive); // 生きているブロックだけ残す
 
   // 全エンティティの位置を更新
@@ -365,7 +368,7 @@ function updateGame() {
   if (gameState === "gameover") return;
 
   // ブロックの追加と削除
-  if (frameCount % 120 === 1) addBlockPair(blocks); // 一定間隔でブロック追加
+  if (frameCount % 120 === 1) addBlockPair(blocks); // 一定間隔で追加
   blocks = blocks.filter(blockIsAlive); // 生きているブロックだけ残す
 
   // 全エンティティの位置を更新
@@ -422,3 +425,11 @@ function mousePressed() {
   onMousePress();
 }
 ```
+
+{{< expand "余談： frameCount の利用" >}}
+描画系の関数の中で `frameCount` を使って動きを出している場合、ゲームの更新処理を実行しようがしまいが `frameCount` の値は増えるので、その部分については動きを止められません。
+
+`noLoop()` を使って `draw()` の実行を止めるという方法もありますが、これは本当にスケッチ全体を止めてしまうので、やっぱり一部だけ動かしたい、となったときに不便です。
+
+より綺麗に実装するなら、`frameCount` に相当する変数を他にもう一つ作ったり、エンティティごとに固有の `frameCount` 変数を持たせたりすると良いでしょう。
+{{< /expand >}}

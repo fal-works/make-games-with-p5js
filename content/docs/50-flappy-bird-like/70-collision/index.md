@@ -208,7 +208,7 @@ function updateGame() {
   if (gameState === "gameover") return;
 
   // ブロックの追加と削除
-  if (frameCount % 120 === 1) addBlockPair(blocks); // 一定間隔でブロック追加
+  if (frameCount % 120 === 1) addBlockPair(blocks); // 一定間隔で追加
   blocks = blocks.filter(blockIsAlive); // 生きているブロックだけ残す
 
   // 全エンティティの位置を更新
