@@ -60,29 +60,31 @@ https://github.com/alex-shpak/hugo-book
   <ul>
     
       
-        <li>
+        
 
-  <a href="/make-games-with-p5js/docs/10-prepare/" >
-      準備
-  </a>
-
-</li>
-      
+  <li >
     
       
-        <li>
 
-  <a href="/make-games-with-p5js/docs/20-introduction/" >
+  <a href="/make-games-with-p5js/docs/introduction/" >
       はじめに
   </a>
 
-</li>
-      
+
+    
+
+    
+
+
+
+
+  
+  <ul>
     
       
         <li>
 
-  <a href="/make-games-with-p5js/docs/30-workshop/" >
+  <a href="/make-games-with-p5js/docs/introduction/overview/" >
       進め方
   </a>
 
@@ -92,11 +94,31 @@ https://github.com/alex-shpak/hugo-book
       
         <li>
 
-  <a href="/make-games-with-p5js/docs/40-sketch/" >
+  <a href="/make-games-with-p5js/docs/introduction/prepare/" >
+      準備
+  </a>
+
+</li>
+      
+    
+      
+        <li>
+
+  <a href="/make-games-with-p5js/docs/introduction/basic-sketch/" >
       p5.js スケッチの基本構造
   </a>
 
 </li>
+      
+    
+  </ul>
+  
+
+
+
+  </li>
+
+
       
     
       
@@ -514,7 +536,12 @@ https://github.com/alex-shpak/hugo-book
 <li>マウスボタンを押したときだけ、プレイヤーを<strong>ジャンプ</strong>させる</li>
 </ol>
 <h2 id="必要な関数が既に揃っていると仮定して書いてみる">必要な関数が既に揃っている、と仮定して書いてみる</h2>
-<p>※ このソースコードは動きません</p>
+<ul>
+<li>魔法のようにプレイヤーエンティティを作成してくれる <code>createPlayer()</code> 関数があるとする</li>
+<li>魔法のようにエンティティの位置を更新してくれる <code>updatePosition()</code> 関数があるとする</li>
+<li>魔法のように略</li>
+</ul>
+<p>※ <code>createPlayer()</code> その他の関数は実際には存在しないので、このソースコードは動きません</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre class="chroma"><code><span class="lnt"> 1
@@ -591,7 +618,47 @@ https://github.com/alex-shpak/hugo-book
 </span><span class="p">}</span>
 </code></pre></td></tr></table>
 </div>
-</div><h2 id="必要な関数を実際に用意する">必要な関数を実際に用意する</h2>
+</div><div class="book-expand">
+  <label>
+    <div class="book-expand-head flex justify-between">
+      <span>余談： let player; の上の /** ... */ って何？</span>
+      <span>↕</span>
+    </div>
+    <input type="checkbox" class="hidden" />
+    <div class="book-expand-content markdown-inner">
+      <p>これは <a href="https://jsdoc.app/" target="_blank">JSDoc</a> という記法のコメントです。<br>
+参考： <a href="https://ja.wikipedia.org/wiki/JSDoc" target="_blank">JSDoc - Wikipedia</a></p>
+<p>p5.js Web Editor などを使っている場合、これに特別な意味は無く、<code>// ...</code> とか <code>/* ... */</code> とかで書いたときと扱いは変わりませんので、気にする必要もありません。</p>
+<p>しかし <a href="https://azure.microsoft.com/ja-jp/products/visual-studio-code/" target="_blank">Visual Studio Code</a> などの賢いエディタを使うと、JSDoc で書いた部分をエディタが読み取ってくれて、プログラマを補佐してくれます。たとえば今回 <code>let player;</code> の上に書いたように、ある変数宣言のすぐ上に JSDoc 記法でその変数の説明を書いたとします。他の場所でその変数を参照するとき（たとえば <code>player = createPlayer();</code> のところ）、変数名の上にマウスカーソルを重ねると、宣言時に書いたコメントをフワッと表示してくれます。変数だけでなく関数などでも同様です。</p>
+<p>使うエディタは人によるとしても、ソースコードに説明書を埋め込む目的で、この JSDoc 記法は広く使われています。たとえば p5.js 本体のソースコードを見ると、公式のリファレンスにある説明文が、この JSDoc 形式でソースコード中に埋め込まれていることが分かります。</p>
+<p>せっかくなのでこの資料でも、特定の関数や変数の説明を書く場合は <code>/** ... */</code> で書いています。逆に <code>// ...</code> で書いてあるコメントは、ちょっとしたメモとして付箋を貼ってあるようなイメージです。</p>
+
+    </div>
+  </label>
+</div>
+<div class="book-expand">
+  <label>
+    <div class="book-expand-head flex justify-between">
+      <span>余談： 宣言と初期化と undefined</span>
+      <span>↕</span>
+    </div>
+    <input type="checkbox" class="hidden" />
+    <div class="book-expand-content markdown-inner">
+      <div class="highlight"><pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="kd">let</span> <span class="nx">player</span><span class="p">;</span>
+</code></pre></div><p>で宣言だけしていて何も値を入れないのを気持ち悪いと思うかもしれません<br>
+（いろいろバグを経験しているとそうなると思います）。</p>
+<p>これは</p>
+<div class="highlight"><pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="kd">let</span> <span class="nx">player</span> <span class="o">=</span> <span class="kc">undefined</span><span class="p">;</span>
+</code></pre></div><p>と書くのと同じことで、この状態で <code>player</code> の何らかのプロパティ、たとえば <code>player.x</code> を参照しようとすると、</p>
+<pre><code>Uncaught TypeError: Cannot read property 'x' of undefined
+</code></pre><p>というエラーが出ます。</p>
+<p>これはとてもよくあるエラーで、こうならないように我々は、変数に意図せず <code>undefined</code> が入っている状況をできるだけ避けなければならない。</p>
+<p>ダミー的に何か入れておくという方法もありますがそれも良し悪しがあり、この場合はまあ、一瞬 undefined なのは許容してもいいんじゃないかということで、このようなサンプルコードになりました。</p>
+
+    </div>
+  </label>
+</div>
+<h2 id="必要な関数を実際に用意する">必要な関数を実際に用意する</h2>
 <h3 id="方針">方針</h3>
 <p>プレイヤーは位置と速度を持っているので、次のようなデータがあると良さそう</p>
 <div class="highlight"><pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="c1">// プレイヤーデータ例
@@ -603,7 +670,36 @@ https://github.com/alex-shpak/hugo-book
 </span><span class="c1"></span><span class="p">}</span><span class="p">;</span>
 
 <span class="c1">// こうしたとき、たとえば player.x の値は 200 である
-</span></code></pre></div><p>あとは、これらの位置や速度を変化させたり、位置に応じて描画したりすれば良い</p>
+</span></code></pre></div><div class="book-expand">
+  <label>
+    <div class="book-expand-head flex justify-between">
+      <span>余談： ベクトルにしないの？</span>
+      <span>↕</span>
+    </div>
+    <input type="checkbox" class="hidden" />
+    <div class="book-expand-content markdown-inner">
+      <p><code>x</code> と <code>y</code>、<code>vx</code> と <code>vy</code>、これらはそれぞれセットになって意味を持つので、それぞれをオブジェクトにまとめるべきではないか、という考え方がありえます。</p>
+<p>たとえば</p>
+<div class="highlight"><pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="kd">let</span> <span class="nx">player</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="nx">position</span><span class="o">:</span> <span class="p">{</span> <span class="nx">x</span><span class="o">:</span> <span class="mi">200</span><span class="p">,</span> <span class="nx">y</span><span class="o">:</span> <span class="mi">300</span> <span class="p">}</span><span class="p">,</span>
+  <span class="nx">velocity</span><span class="o">:</span> <span class="p">{</span> <span class="nx">x</span><span class="o">:</span> <span class="mi">0</span><span class="p">,</span> <span class="nx">y</span><span class="o">:</span> <span class="mi">0</span> <span class="p">}</span>
+<span class="p">}</span><span class="p">;</span>
+</code></pre></div><p>もしくは、p5.js には <code>p5.Vector</code> クラスがあるのでそれを使って</p>
+<div class="highlight"><pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="kd">let</span> <span class="nx">player</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="nx">position</span><span class="o">:</span> <span class="nx">createVector</span><span class="p">(</span><span class="mi">200</span><span class="p">,</span> <span class="mi">300</span><span class="p">)</span><span class="p">,</span>
+  <span class="nx">velocity</span><span class="o">:</span> <span class="nx">createVector</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+<span class="p">}</span><span class="p">;</span>
+</code></pre></div><p>いずれも、コードと意味が合致しているし、物理をやった人ならベクトルで考えたほうが収まりが良いでしょう（ベクトルと聞いただけでウッとなる人も対象者として想定したいというのもあるのですが）。</p>
+<p>それと、<code>{ x, y }</code> の構造を持つオブジェクトを引数に取るような関数が <code>position</code> と <code>velocity</code> の両方に使えるというのも非常に大きなメリットです。</p>
+<p>一方で、このように構造の階層を深くすると、ただ <code>player</code> の x 座標が知りたいだけのときに <code>player.position.x</code> と書かねばならない。<br>
+<a href="https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Functions/get" target="_blank">ゲッター</a> で表記を短縮できますが、内部的な処理は変わらないのと、いちいちそれやるのもな、という感じも個人的にはある。</p>
+<p>p5.js から離れてゲームプログラミング一般の話をすると、このようにオブジェクトを入れ子状にしていく場合、深い階層の <code>x</code> とかを参照するためにちょっぴりオーバーヘッドがあります。普通は全く気にしないレベルですが、そういうデータや処理がたくさんあってものすごい回数でループしていたりすると、チリツモで遅くなることもありえます。とはいえ、そんな状況だとしたらそもそもエンティティをオブジェクトで表現すること自体どうなんだという話にもなり（参考： <a href="https://tech.cygames.co.jp/archives/2843/" target="_blank">データ指向設計 | Cygames Engineers&rsquo; Blog</a>）、どのみち p5.js で気にする話ではありません。</p>
+<p>とりあえず今回の例ではベクトルにする利点が（いまのところ）あまり無いので、ベタっと書くほうが簡単でいいだろうということでこうしましたが、それがベストかどうかは一概には言えません。<code>position</code> と <code>velocity</code> にまとめるメリットは十分あるのでそうしても OK だと思います。</p>
+
+    </div>
+  </label>
+</div>
+<p>あとは、これらの位置や速度を変化させたり、位置に応じて描画したりすれば良い</p>
 <p>なお座標 (200, 300) はこの位置
 <figure>
     <img src="./player-initial-position.png"
@@ -681,7 +777,7 @@ https://github.com/alex-shpak/hugo-book
 </span></code></pre></td></tr></table>
 </div>
 </div><blockquote class="book-hint info">
-  <p>各自実行してみて、プレイヤーが</p>
+  <p>実行してみて、プレイヤーが</p>
 <ul>
 <li>画面に表示されていること</li>
 <li>放っておくと落下していくこと</li>
@@ -695,34 +791,6 @@ https://github.com/alex-shpak/hugo-book
   余裕があれば、各関数の中の数字部分（<code>200</code> とか <code>0.15</code> とか <code>-5</code> とか）について、いろいろ値を変えてみて、実行結果がどんなふうに変わるかを見てみてください。
 </blockquote>
 
-<div class="book-expand">
-  <label>
-    <div class="book-expand-head flex justify-between">
-      <span>補足： ホントにこういう順番で書くの？</span>
-      <span>↕</span>
-    </div>
-    <input type="checkbox" class="hidden" />
-    <div class="book-expand-content markdown-inner">
-      <p>実際には、ごく普通に</p>
-<ol>
-<li>関数を定義する</li>
-<li>その関数を使う</li>
-</ol>
-<p>という流れで書くことも多いかもしれません。</p>
-<p>ただ、処理の具体的な中身を真っ先に書こうとすると、何度も書き直すことになったり、どこから手を付けてよいかが分かりにくくなったりする可能性が高まります（そういうところで困ったことがないのであれば、この話はあまり気にする必要はありません）。</p>
-<p>「こういう関数があればいいのにな」という思考から出発すると、穴埋め式の問題を埋めていくような感覚で書き進めることができてスムーズなことも多いです、というのをお伝えしたかったのでした。</p>
-<p>ちなみに筆者の場合だと</p>
-<ol>
-<li>関数を宣言する、ただし中身は適当なダミー</li>
-<li>その関数を使う</li>
-<li>ダミー部分をちゃんと実装する</li>
-</ol>
-<p>という流れになることもそこそこあるように思います。<br>
-先に宣言しておくと（エディタによっては）コード補完が使えるので。</p>
-
-    </div>
-  </label>
-</div>
 <div class="book-expand">
   <label>
     <div class="book-expand-head flex justify-between">
@@ -864,6 +932,134 @@ https://github.com/alex-shpak/hugo-book
 </code></pre></td></tr></table>
 </div>
 </div>
+    </div>
+  </label>
+</div>
+<div class="book-expand">
+  <label>
+    <div class="book-expand-head flex justify-between">
+      <span>補足： ホントにこういう順番で書くの？</span>
+      <span>↕</span>
+    </div>
+    <input type="checkbox" class="hidden" />
+    <div class="book-expand-content markdown-inner">
+      <p>実際には、ごく普通に</p>
+<ol>
+<li>関数を定義する</li>
+<li>その関数を使う</li>
+</ol>
+<p>という流れで書くことも多いかもしれません。</p>
+<p>ただ、処理の具体的な中身を真っ先に書こうとすると、何度も書き直すことになったり、どこから手を付けてよいかが分かりにくくなったりする可能性が高まります（そういうところで困ったことがないのであれば、この話はあまり気にする必要はありません）。</p>
+<p>「こういう関数があればいいのにな」という思考から出発すると、穴埋め式の問題を埋めていくような感覚で書き進めることができてスムーズなことも多いです、というのをお伝えしたかったのでした。</p>
+<p>ちなみに筆者の場合だと</p>
+<ol>
+<li>関数を宣言する、ただし中身は適当なダミー</li>
+<li>その関数を使う</li>
+<li>ダミー部分をちゃんと実装する</li>
+</ol>
+<p>という流れになることもそこそこあるように思います。<br>
+先に宣言しておくと（エディタによっては）コード補完が使えるので。</p>
+
+    </div>
+  </label>
+</div>
+<div class="book-expand">
+  <label>
+    <div class="book-expand-head flex justify-between">
+      <span>余談： クラスにしないの？ （長いです）</span>
+      <span>↕</span>
+    </div>
+    <input type="checkbox" class="hidden" />
+    <div class="book-expand-content markdown-inner">
+      <p>データと振る舞いをまとめる手段として<a href="https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Classes" target="_blank">クラス</a>がありますね。</p>
+<p>迷った結果、僅差でクラスを使わない方向にしたのですが、エンティティやプレイヤーをクラスにするのも良いと思います。</p>
+<h2 id="tldr">TL;DR</h2>
+<p>好きにしてくれ！</p>
+<h2 id="継承の話">継承の話</h2>
+<p>クラスを知っている人向けの話をするのでクラス自体の説明は省きますが、まず継承ありだとすると、今回の例はこうでしょうか。</p>
+<div class="highlight"><pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="kr">class</span> <span class="nx">Entity</span> <span class="p">{</span>
+  <span class="nx">constructor</span><span class="p">(</span><span class="nx">x</span><span class="p">,</span> <span class="nx">y</span><span class="p">,</span> <span class="nx">vx</span><span class="p">,</span> <span class="nx">vy</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">x</span> <span class="o">=</span> <span class="nx">x</span><span class="p">;</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">y</span> <span class="o">=</span> <span class="nx">y</span><span class="p">;</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">vx</span> <span class="o">=</span> <span class="nx">vx</span><span class="p">;</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">vy</span> <span class="o">=</span> <span class="nx">vy</span><span class="p">;</span>
+  <span class="p">}</span>
+
+  <span class="nx">updatePosition</span><span class="p">(</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">x</span> <span class="o">+=</span> <span class="k">this</span><span class="p">.</span><span class="nx">vx</span><span class="p">;</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">y</span> <span class="o">+=</span> <span class="k">this</span><span class="p">.</span><span class="nx">vy</span><span class="p">;</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="kr">class</span> <span class="nx">Player</span> <span class="kr">extends</span> <span class="nx">Entity</span> <span class="p">{</span>
+  <span class="nx">constructor</span><span class="p">(</span><span class="p">)</span> <span class="p">{</span>
+    <span class="kr">super</span><span class="p">(</span><span class="mi">200</span><span class="p">,</span> <span class="mi">300</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span><span class="p">;</span>
+  <span class="p">}</span>
+
+  <span class="nx">applyGravity</span><span class="p">(</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">vy</span> <span class="o">+=</span> <span class="mf">0.15</span><span class="p">;</span>
+  <span class="p">}</span>
+
+  <span class="nx">applyJump</span><span class="p">(</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">vy</span> <span class="o">=</span> <span class="o">-</span><span class="mi">5</span><span class="p">;</span>
+  <span class="p">}</span>
+
+  <span class="nx">draw</span><span class="p">(</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">square</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">x</span><span class="p">,</span> <span class="k">this</span><span class="p">.</span><span class="nx">y</span><span class="p">,</span> <span class="mi">40</span><span class="p">)</span><span class="p">;</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div><p>この継承というものを使うのがふさわしいケースというのは、クラスで表現している概念（ここではプレイヤーやエンティティ）の関係が綺麗にツリー状になり、その階層が深くなく（深いと理解が困難になるので）、しかもその状態が将来変化することを心配する必要がない場合に限られます。</p>
+<p>そして、ゲームのエンティティが綺麗なツリー状になることはあまり期待しないほうが良いと思います。</p>
+<p><img src="./multi-extension.png" alt="non-tree graph"></p>
+<p>もし（初学者が混乱しがちと言われる）<code>this</code> の扱いが分かっているのなら、prototype のプロパティを直接いじれば多重継承っぽいことができると思いますが、筆者はそういうことをしたことがないのでそれで問題が出ないかはよく分かりません（個人的には TypeScript で <code>this</code> の型がどうなるかを考えるとめんどくさそうな印象）。</p>
+<p>では継承に頼らないならどうするかとすると、Java なら委譲とかコンポジションとか言うところですが、JavaScript なら普通に関数を値として持たせておくことができる。</p>
+<p><code>Player</code> クラスの <code>draw()</code> を例に取ると、</p>
+<div class="highlight"><pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="c1">// 名前は適当
+</span><span class="c1"></span><span class="kd">function</span> <span class="nx">drawSmallSquare</span><span class="p">(</span><span class="nx">entity</span><span class="p">)</span> <span class="p">{</span>
+  <span class="nx">square</span><span class="p">(</span><span class="nx">entity</span><span class="p">.</span><span class="nx">x</span><span class="p">,</span> <span class="nx">entity</span><span class="p">.</span><span class="nx">y</span><span class="p">,</span> <span class="mi">40</span><span class="p">)</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="kr">class</span> <span class="nx">Player</span> <span class="kr">extends</span> <span class="nx">Entity</span> <span class="p">{</span>
+  <span class="nx">constructor</span><span class="p">(</span><span class="p">)</span> <span class="p">{</span>
+    <span class="kr">super</span><span class="p">(</span><span class="mi">200</span><span class="p">,</span> <span class="mi">300</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span><span class="p">;</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">drawGraphics</span> <span class="o">=</span> <span class="nx">drawSmallSquare</span><span class="p">;</span>
+  <span class="p">}</span>
+
+  <span class="nx">draw</span><span class="p">(</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">drawGraphics</span><span class="p">(</span><span class="k">this</span><span class="p">)</span><span class="p">;</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div><p>もしくは</p>
+<div class="highlight"><pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="kd">function</span> <span class="nx">drawSmallSquare</span><span class="p">(</span><span class="nx">entity</span><span class="p">)</span> <span class="p">{</span>
+  <span class="nx">square</span><span class="p">(</span><span class="nx">entity</span><span class="p">.</span><span class="nx">x</span><span class="p">,</span> <span class="nx">entity</span><span class="p">.</span><span class="nx">y</span><span class="p">,</span> <span class="mi">40</span><span class="p">)</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="kr">class</span> <span class="nx">Player</span> <span class="kr">extends</span> <span class="nx">Entity</span> <span class="p">{</span>
+  <span class="nx">constructor</span><span class="p">(</span><span class="p">)</span> <span class="p">{</span>
+    <span class="kr">super</span><span class="p">(</span><span class="mi">200</span><span class="p">,</span> <span class="mi">300</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span><span class="p">;</span>
+
+    <span class="c1">// bind() で、drawSmallSquare() の引数 entity を this で予約した関数を作る
+</span><span class="c1"></span>    <span class="k">this</span><span class="p">.</span><span class="nx">draw</span> <span class="o">=</span> <span class="nx">drawSmallSquare</span><span class="p">.</span><span class="nx">bind</span><span class="p">(</span><span class="kc">undefined</span><span class="p">,</span> <span class="k">this</span><span class="p">)</span><span class="p">;</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div><p>これで継承の問題は減ると思います。</p>
+<p>prototype と違ってインスタンス一つ一つに関数を持たせるのは厳密には無駄なのですが、インスタンスの数とプロパティの数を掛け算したらめちゃめちゃ多くなるみたいなケースでもない限り（つまりほとんどの場合）問題ではありません。</p>
+<h2 id="どっちが良いのか">どっちが良いのか</h2>
+<p>ということで上記のコードが一つの選択肢になりますが、単純にデータと関数を並べて都度組み合わせる方法に比べて、このようなコードを書くメリットがどのくらいあるのか？ という話になります（特にこの資料では、読者があまり class 構文に慣れていないことを想定していて、それでもぜひ使おう！ と言うべきかどうかという話でもあります）。</p>
+<h3 id="クラスのメリット">クラスのメリット</h3>
+<p>メリットはもちろんあって、まず、クラスの説明やクラスを使ったサンプルコードはネット上に溢れていて、いろいろ読み漁るときにクラスに慣れていないと厳しいというのがあります。p5.js の場合でも、公式サンプルコードのほとんどが Java ベースの Processing と互換性を持つように書かれている印象があり、つまりクラスが多用されています（古いコードは ES5 なので prototype でやってたりしますが、同じことです）。</p>
+<p>先月（2020年1月）刊行されたばかりの<a href="https://gihyo.jp/book/2020/978-4-297-11085-7" target="_blank">『グラフィックスプログラミング入門』</a> でも、JavaScript でゲームを作るにあたって、プレイヤーキャラクターや敵キャラクターをクラスで作っていました。</p>
+<p>それと、コードを読み書きする側のメンタルモデルと一致するかどうかという観点もあります。データと振る舞いがひとまとめになっていたほうがなんだか直感的に分かりやすい気がする、というのは確かにありえて、これもクラスベースの言語が広まっている理由の一つだと思います（といって、他のタイプの言語をそんなに知っているわけではないのですが）。</p>
+<h3 id="関数主体のメリット">関数主体のメリット</h3>
+<p>他方、データと関数だけでなんとかする方法に軍配が上がる要素の一つとしては、ゲームプログラムにおいては大量の似たようなオブジェクトを配列に入れてそれをループ処理することがとても多い、という点があります。</p>
+<p>インスタンスにメソッドが生えている形なら</p>
+<div class="highlight"><pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="k">for</span> <span class="p">(</span><span class="kr">const</span> <span class="nx">entity</span> <span class="k">of</span> <span class="nx">entities</span><span class="p">)</span> <span class="nx">entity</span><span class="p">.</span><span class="nx">updatePosition</span><span class="p">(</span><span class="p">)</span><span class="p">;</span>
+</code></pre></div><p>とするところ、関数主体の場合は</p>
+<div class="highlight"><pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="nx">entities</span><span class="p">.</span><span class="nx">forEach</span><span class="p">(</span><span class="nx">updatePosition</span><span class="p">)</span><span class="p">;</span>
+</code></pre></div><p>みたいなスマートな書き方がやりやすい。</p>
+<p>あと個人的なメンタルモデルとしては、エンティティの一つ一つが振る舞いを持っているというより、配列に並んだオブジェクトたちがベルトコンベア式に一つの関数に流し込まれるイメージのほうが最近はしっくりきつつあります（ベルトコンベアの比喩は Unity の ECS を説明した<a href="http://tsubakit1.hateblo.jp/entry/2018/03/25/180203" target="_blank">この記事</a>を読んでなるほどと思ったのでした、Unity エアプですが）。</p>
+<p>結局のところは好みの問題じゃんということになるのかもしれませんが、委譲、じゃなかった以上、ご参考までに……。</p>
+
     </div>
   </label>
 </div>

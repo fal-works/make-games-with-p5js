@@ -4,12 +4,12 @@
 <head>
   <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="進め方"><meta property="og:title" content="進め方" />
-<meta property="og:description" content="進め方 全体の流れ メインパートは、この画面の左側に見えている Flappy Bird ライクなゲーム です。 各トピックを順番に見ていき、要所要所でコードの実行結果を確" />
+<meta name="description" content="p5.js スケッチの基本構造"><meta property="og:title" content="p5.js スケッチの基本構造" />
+<meta property="og:description" content="p5.js スケッチの基本構造 空っぽのスケッチ p5.js Web Editor （あるいはその他、お使いの環境）の操作確認も兼ねて、 以下のコードを実行してみてください。 1 2 3 4 5" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://fal-works.github.io/make-games-with-p5js/docs/30-workshop/" />
+<meta property="og:url" content="https://fal-works.github.io/make-games-with-p5js/docs/introduction/basic-sketch/" />
 
-<title>進め方 | p5.js でゲーム制作</title>
+<title>p5.js スケッチの基本構造 | p5.js でゲーム制作</title>
 <link rel="icon" href="/make-games-with-p5js/favicon.png" type="image/x-icon">
 
 
@@ -60,29 +60,31 @@ https://github.com/alex-shpak/hugo-book
   <ul>
     
       
-        <li>
+        
 
-  <a href="/make-games-with-p5js/docs/10-prepare/" >
-      準備
-  </a>
-
-</li>
-      
+  <li >
     
       
-        <li>
 
-  <a href="/make-games-with-p5js/docs/20-introduction/" >
+  <a href="/make-games-with-p5js/docs/introduction/" >
       はじめに
   </a>
 
-</li>
-      
+
+    
+
+    
+
+
+
+
+  
+  <ul>
     
       
         <li>
 
-  <a href="/make-games-with-p5js/docs/30-workshop/"  class="active">
+  <a href="/make-games-with-p5js/docs/introduction/overview/" >
       進め方
   </a>
 
@@ -92,11 +94,31 @@ https://github.com/alex-shpak/hugo-book
       
         <li>
 
-  <a href="/make-games-with-p5js/docs/40-sketch/" >
+  <a href="/make-games-with-p5js/docs/introduction/prepare/" >
+      準備
+  </a>
+
+</li>
+      
+    
+      
+        <li>
+
+  <a href="/make-games-with-p5js/docs/introduction/basic-sketch/"  class="active">
       p5.js スケッチの基本構造
   </a>
 
 </li>
+      
+    
+  </ul>
+  
+
+
+
+  </li>
+
+
       
     
       
@@ -356,7 +378,7 @@ https://github.com/alex-shpak/hugo-book
     <img src="/make-games-with-p5js/svg/menu.svg" class="book-icon" alt="Menu" />
   </label>
 
-  <strong>進め方</strong>
+  <strong>p5.js スケッチの基本構造</strong>
 
   <label for="toc-control">
     <img src="/make-games-with-p5js/svg/toc.svg" class="book-icon" alt="Table of Contents" />
@@ -370,8 +392,13 @@ https://github.com/alex-shpak/hugo-book
       
   <nav id="TableOfContents">
   <ul>
-    <li><a href="#全体の流れ">全体の流れ</a></li>
-    <li><a href="#取り組み方">取り組み方</a></li>
+    <li><a href="#空っぽのスケッチ">空っぽのスケッチ</a></li>
+    <li><a href="#リンク">リンク</a>
+      <ul>
+        <li><a href="#p5js-チートシート">p5.js チートシート</a></li>
+        <li><a href="#公式のリファレンス">公式のリファレンス</a></li>
+      </ul>
+    </li>
   </ul>
 </nav>
 
@@ -382,31 +409,50 @@ https://github.com/alex-shpak/hugo-book
       </header>
 
       
-<article class="markdown"><h1 id="進め方">進め方</h1>
-<h2 id="全体の流れ">全体の流れ</h2>
-<ol>
-<li>メインパートは、この画面の左側に見えている <a href="./docs/50-flappy-bird-like" target="_blank">Flappy Bird ライクなゲーム</a> です。
+<article class="markdown"><h1 id="p5js-スケッチの基本構造">p5.js スケッチの基本構造</h1>
+<h2 id="空っぽのスケッチ">空っぽのスケッチ</h2>
+<blockquote class="book-hint info">
+  <a href="https://editor.p5js.org/">p5.js Web Editor</a> （あるいはその他、お使いの環境）の操作確認も兼ねて、<br>
+以下のコードを実行してみてください。
+</blockquote>
+
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="kd">function</span> <span class="nx">setup</span><span class="p">(</span><span class="p">)</span> <span class="p">{</span>
+  <span class="nx">createCanvas</span><span class="p">(</span><span class="mi">800</span><span class="p">,</span> <span class="mi">600</span><span class="p">)</span><span class="p">;</span> <span class="c1">// 800 x 600 ピクセル。今回このサイズでやっていきます
+</span><span class="c1"></span><span class="p">}</span>
+
+<span class="kd">function</span> <span class="nx">draw</span><span class="p">(</span><span class="p">)</span> <span class="p">{</span>
+  <span class="nx">background</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span><span class="p">;</span> <span class="c1">// 黒背景。後で自由に変えていただきます
+</span><span class="c1"></span><span class="p">}</span>
+</code></pre></td></tr></table>
+</div>
+</div><ul>
+<li>最初に1回だけ <code>setup()</code> が実行される</li>
+<li><code>draw()</code> が繰り返し実行されることで、動いているように見せられる（この時点では真っ黒）
 <ul>
-<li>各トピックを順番に見ていき、要所要所でコードの実行結果を確認していただきます。</li>
-<li>「見た目をアレンジ」の章では少し長めに時間を取り、自分で自由にアレンジします。</li>
+<li>この1回1回を「フレーム」と呼ぶ</li>
+<li>デフォルトでは毎秒60回実行される。<br>
+これを「フレームレートは 60 FPS」などと言う（FPS = frames per second）</li>
 </ul>
 </li>
-<li>メインパートが終わったら、<a href="./docs/60-arrange" target="_blank">アレンジいろいろ</a> の部分を自由な順番で進めてみましょう。</li>
-</ol>
-<h2 id="取り組み方">取り組み方</h2>
-<p>今回、各トピックを通して少しずつコードを書き足していきます。<br>
-ご自分の手で同じことを行い、「コードを育てていく」過程を追体験していただきたいです。</p>
-<p>この資料のサンプルコードでは、変更前と比較した差分を強調表示しています。<br>
-主にこの差分に注目して、部分的にコピペしつつ自分のコードに反映していきましょう。</p>
-<div class="highlight"><pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="kd">function</span> <span class="nx">setup</span><span class="p">(</span><span class="p">)</span> <span class="p">{</span>
-  <span class="nx">createCanvas</span><span class="p">(</span><span class="mi">800</span><span class="p">,</span> <span class="mi">600</span><span class="p">)</span><span class="p">;</span>
-<span class="hl">  <span class="nx">doSomethingFantastic</span><span class="p">(</span><span class="p">)</span><span class="p">;</span> <span class="c1">// ここが追加・変更した部分
-</span></span><span class="c1"></span><span class="p">}</span>
-</code></pre></div><ul>
-<li>もし追いつけなくなってきたら、改めてサンプルコードを全文コピペしてください。</li>
-<li>隅々まで理解できなくても心配しないでください（後から復習しても遅くありません）。</li>
-<li>とりあえずコードを動かしてみる → 部分的に変えてみて結果がどう変わるか確認する、というのを繰り返すと理解が進みやすいかもしれません。</li>
 </ul>
+<h2 id="リンク">リンク</h2>
+<h3 id="p5js-チートシート">p5.js チートシート</h3>
+<p><a href="https://bmoren.github.io/p5js-cheat-sheet/ja.html" target="_blank">https://bmoren.github.io/p5js-cheat-sheet/ja.html</a></p>
+<p>ここに書いていないものとしては、システム変数 <code>frameCount</code> なども使う<br>
+（<code>draw()</code> が呼ばれるたびに1ずつ増える値）</p>
+<h3 id="公式のリファレンス">公式のリファレンス</h3>
+<p><a href="https://p5js.org/reference/" target="_blank">https://p5js.org/reference/</a></p>
 </article>
  
 
@@ -437,8 +483,13 @@ https://github.com/alex-shpak/hugo-book
       
   <nav id="TableOfContents">
   <ul>
-    <li><a href="#全体の流れ">全体の流れ</a></li>
-    <li><a href="#取り組み方">取り組み方</a></li>
+    <li><a href="#空っぽのスケッチ">空っぽのスケッチ</a></li>
+    <li><a href="#リンク">リンク</a>
+      <ul>
+        <li><a href="#p5js-チートシート">p5.js チートシート</a></li>
+        <li><a href="#公式のリファレンス">公式のリファレンス</a></li>
+      </ul>
+    </li>
   </ul>
 </nav>
 

@@ -29,21 +29,12 @@
     </item>
     
     <item>
-      <title>準備</title>
-      <link>https://fal-works.github.io/make-games-with-p5js/docs/10-prepare/</link>
+      <title>進め方</title>
+      <link>https://fal-works.github.io/make-games-with-p5js/docs/introduction/overview/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>https://fal-works.github.io/make-games-with-p5js/docs/10-prepare/</guid>
-      <description>準備 開発・実行環境を準備します。 公式のエディタ p5.js Web Editor で、コードを書いて即実行できます。 ユーザーアカウントを登録すれば、スケッチの保存・共有も</description>
-    </item>
-    
-    <item>
-      <title>はじめに</title>
-      <link>https://fal-works.github.io/make-games-with-p5js/docs/20-introduction/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>https://fal-works.github.io/make-games-with-p5js/docs/20-introduction/</guid>
-      <description>はじめに プログラミングによる作品制作の醍醐味 「自分の世界」を創造できる その世界がどんな部品や構造で成り立つのかを掌握できる （「作り方」を知っ</description>
+      <guid>https://fal-works.github.io/make-games-with-p5js/docs/introduction/overview/</guid>
+      <description>進め方 全体の流れ メインパートは、この画面の左側に見えている Flappy Bird ライクなゲーム です。 各トピックを順番に見ていき、要所要所でコードの実行結果を確</description>
     </item>
     
     <item>
@@ -56,12 +47,30 @@
     </item>
     
     <item>
+      <title>準備</title>
+      <link>https://fal-works.github.io/make-games-with-p5js/docs/introduction/prepare/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://fal-works.github.io/make-games-with-p5js/docs/introduction/prepare/</guid>
+      <description>準備 開発・実行環境を準備します。 公式のエディタ p5.js Web Editor で、コードを書いて即実行できます。 ユーザーアカウントを登録すれば、スケッチの保存・共有も</description>
+    </item>
+    
+    <item>
       <title>画面効果を追加</title>
       <link>https://fal-works.github.io/make-games-with-p5js/docs/60-arrange/20-effects/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>https://fal-works.github.io/make-games-with-p5js/docs/60-arrange/20-effects/</guid>
       <description>画面効果を追加 手軽な画面効果として、次のものがある スクリーンシェイク 画面を揺らす。揺れは徐々に収まる スクリーンフラッシュ 画面を明るくする。明</description>
+    </item>
+    
+    <item>
+      <title>p5.js スケッチの基本構造</title>
+      <link>https://fal-works.github.io/make-games-with-p5js/docs/introduction/basic-sketch/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://fal-works.github.io/make-games-with-p5js/docs/introduction/basic-sketch/</guid>
+      <description>p5.js スケッチの基本構造 空っぽのスケッチ p5.js Web Editor （あるいはその他、お使いの環境）の操作確認も兼ねて、 以下のコードを実行してみてください。 1 2 3 4 5</description>
     </item>
     
     <item>
@@ -80,24 +89,6 @@
       
       <guid>https://fal-works.github.io/make-games-with-p5js/docs/60-arrange/30-rules/</guid>
       <description>ルール変更 今回作ってきたプログラムは、少し手を加えるだけで色々なゲームに化けることができます。 どんな改造ができるでしょうか？ 思いつくままに改</description>
-    </item>
-    
-    <item>
-      <title>進め方</title>
-      <link>https://fal-works.github.io/make-games-with-p5js/docs/30-workshop/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>https://fal-works.github.io/make-games-with-p5js/docs/30-workshop/</guid>
-      <description>進め方 全体の流れ メインパートは、この画面の左側に見えている Flappy Bird ライクなゲーム です。 各トピックを順番に見ていき、要所要所でコードの実行結果を確</description>
-    </item>
-    
-    <item>
-      <title>p5.js スケッチの基本構造</title>
-      <link>https://fal-works.github.io/make-games-with-p5js/docs/40-sketch/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>https://fal-works.github.io/make-games-with-p5js/docs/40-sketch/</guid>
-      <description>p5.js スケッチの基本構造 空っぽのスケッチ p5.js Web Editor （あるいはその他、お使いの環境）の操作確認も兼ねて、 以下のコードを実行してみてください。 1 2 3 4 5</description>
     </item>
     
     <item>

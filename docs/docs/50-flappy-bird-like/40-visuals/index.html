@@ -61,29 +61,31 @@ https://github.com/alex-shpak/hugo-book
   <ul>
     
       
-        <li>
+        
 
-  <a href="/make-games-with-p5js/docs/10-prepare/" >
-      準備
-  </a>
-
-</li>
-      
+  <li >
     
       
-        <li>
 
-  <a href="/make-games-with-p5js/docs/20-introduction/" >
+  <a href="/make-games-with-p5js/docs/introduction/" >
       はじめに
   </a>
 
-</li>
-      
+
+    
+
+    
+
+
+
+
+  
+  <ul>
     
       
         <li>
 
-  <a href="/make-games-with-p5js/docs/30-workshop/" >
+  <a href="/make-games-with-p5js/docs/introduction/overview/" >
       進め方
   </a>
 
@@ -93,11 +95,31 @@ https://github.com/alex-shpak/hugo-book
       
         <li>
 
-  <a href="/make-games-with-p5js/docs/40-sketch/" >
+  <a href="/make-games-with-p5js/docs/introduction/prepare/" >
+      準備
+  </a>
+
+</li>
+      
+    
+      
+        <li>
+
+  <a href="/make-games-with-p5js/docs/introduction/basic-sketch/" >
       p5.js スケッチの基本構造
   </a>
 
 </li>
+      
+    
+  </ul>
+  
+
+
+
+  </li>
+
+
       
     
       
@@ -386,8 +408,7 @@ https://github.com/alex-shpak/hugo-book
 <article class="markdown"><h1 id="見た目をアレンジしてみる">見た目をアレンジしてみる</h1>
 <blockquote class="book-hint info">
   <p>無味乾燥な画面が続いたので、ここで気分転換を兼ねて……</p>
-<p>各自、好みの雰囲気になるように、見た目をいろいろいじってみてください。</p>
-<p>編集後のソースコードは <a href="https://editor.p5js.org/">p5.js Web Editor</a> で保存してください。</p>
+<p>自分の好みの雰囲気になるように、見た目をいろいろいじってみてください。</p>
 
 </blockquote>
 
@@ -668,8 +689,10 @@ https://github.com/alex-shpak/hugo-book
 </code></pre></td></tr></table>
 </div>
 </div><h2 id="例2おまけ">例2（おまけ）</h2>
-<p>システム変数 <code>frameCount</code> を使ったりすれば、簡単なアニメーションも可能</p>
-<p>三角関数（<code>sin()</code>や<code>cos()</code>）が周期関数であることを利用すると、たとえば次のコードで「-1 ～ 1 の間を揺れ動く数値」が得られる</p>
+<p>システム変数 <code>frameCount</code> を使ったりすれば、<br>
+エンティティごとに簡単なアニメーションも可能</p>
+<p>三角関数（<code>sin()</code>や<code>cos()</code>）が周期関数であることを利用すると、<br>
+たとえば次のコードで「-1 ～ 1 の間を揺れ動く数値」が得られる</p>
 <div class="highlight"><pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="nx">sin</span><span class="p">(</span><span class="nx">frameCount</span> <span class="o">*</span> <span class="mf">0.1</span><span class="p">)</span> <span class="c1">// 0.1 のところは好きに調整
 </span></code></pre></div><p>例、めっちゃ目に悪い</p>
 <p><img src="flappy-bird-like-sample-viz2.gif" alt="Example2"></p>

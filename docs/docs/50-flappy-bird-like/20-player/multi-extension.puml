@@ -1,0 +1,11 @@
+@startuml multi-extension
+hide empty members
+A <|-- B
+A <|-- C
+A <|-- D
+B <|-- E
+C <|-- E
+C <|-- F
+D <|-- F
+D <|-- G
+@enduml

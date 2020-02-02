@@ -3,6 +3,10 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
+    <loc>https://fal-works.github.io/make-games-with-p5js/docs/introduction/</loc>
+  </url>
+  
+  <url>
     <loc>https://fal-works.github.io/make-games-with-p5js/docs/60-arrange/10-particles/</loc>
   </url>
   
@@ -11,11 +15,7 @@
   </url>
   
   <url>
-    <loc>https://fal-works.github.io/make-games-with-p5js/docs/10-prepare/</loc>
-  </url>
-  
-  <url>
-    <loc>https://fal-works.github.io/make-games-with-p5js/docs/20-introduction/</loc>
+    <loc>https://fal-works.github.io/make-games-with-p5js/docs/introduction/overview/</loc>
   </url>
   
   <url>
@@ -23,7 +23,15 @@
   </url>
   
   <url>
+    <loc>https://fal-works.github.io/make-games-with-p5js/docs/introduction/prepare/</loc>
+  </url>
+  
+  <url>
     <loc>https://fal-works.github.io/make-games-with-p5js/docs/60-arrange/20-effects/</loc>
+  </url>
+  
+  <url>
+    <loc>https://fal-works.github.io/make-games-with-p5js/docs/introduction/basic-sketch/</loc>
   </url>
   
   <url>
@@ -32,14 +40,6 @@
   
   <url>
     <loc>https://fal-works.github.io/make-games-with-p5js/docs/60-arrange/30-rules/</loc>
-  </url>
-  
-  <url>
-    <loc>https://fal-works.github.io/make-games-with-p5js/docs/30-workshop/</loc>
-  </url>
-  
-  <url>
-    <loc>https://fal-works.github.io/make-games-with-p5js/docs/40-sketch/</loc>
   </url>
   
   <url>
