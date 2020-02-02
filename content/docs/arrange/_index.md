@@ -1,7 +1,7 @@
 ---
 title: アレンジいろいろ
 type: docs
-weight: 60
+weight: 30
 ---
 
 # アレンジいろいろ

@@ -1,7 +1,7 @@
 ---
 title: Flappy Bird ライクなゲーム
 type: docs
-weight: 50
+weight: 20
 ---
 
 # Flappy Bird ライクなゲーム
