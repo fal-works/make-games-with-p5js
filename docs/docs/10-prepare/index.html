@@ -5,7 +5,7 @@
   <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="description" content="準備"><meta property="og:title" content="準備" />
-<meta property="og:description" content="準備 このワークショップでは p5.js Web Editor を使います。 ユーザーアカウントを持っていない人は、エディタ右上の &ldquo;Sign Up&rdquo; から登録してください。 （スケッチの保存・" />
+<meta property="og:description" content="準備 開発・実行環境を準備します。 公式のエディタ p5.js Web Editor で、コードを書いて即実行できます。 ユーザーアカウントを登録すれば、スケッチの保存・共有も" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://fal-works.github.io/make-games-with-p5js/docs/10-prepare/" />
 
@@ -83,7 +83,7 @@ https://github.com/alex-shpak/hugo-book
         <li>
 
   <a href="/make-games-with-p5js/docs/30-workshop/" >
-      ワークショップの進め方
+      進め方
   </a>
 
 </li>
@@ -368,7 +368,12 @@ https://github.com/alex-shpak/hugo-book
     <input type="checkbox" class="hidden" id="toc-control" />
     <aside class="hidden clearfix">
       
-  <nav id="TableOfContents"></nav>
+  <nav id="TableOfContents">
+  <ul>
+    <li><a href="#公式のエディタ">公式のエディタ</a></li>
+    <li><a href="#他のオンラインエディタ">他のオンラインエディタ</a></li>
+  </ul>
+</nav>
 
 
     </aside>
@@ -378,49 +383,78 @@ https://github.com/alex-shpak/hugo-book
 
       
 <article class="markdown"><h1 id="準備">準備</h1>
-<blockquote class="book-hint info">
-  <p>このワークショップでは <a href="https://editor.p5js.org/">p5.js Web Editor</a> を使います。</p>
-<p>ユーザーアカウントを持っていない人は、エディタ右上の &ldquo;Sign Up&rdquo; から登録してください。<br>
-（スケッチの保存・共有機能を使っていただきたいため。ダミー的なアカウントでも可）</p>
-<p>登録できたら、下記の表に書いて教えて下さい。<br>
-<a href="https://docs.google.com/spreadsheets/d/1cprOYEDthfGgYqv4e8jD0QVGH_RAann-f_LLSpgYFjU/edit?usp=sharing">一覧表（Googleスプレッドシート）</a><br>
-※ この表とリンクはワークショップ終了後に削除します</p>
-
-</blockquote>
-
+<p>開発・実行環境を準備します。</p>
+<h2 id="公式のエディタ">公式のエディタ</h2>
+<p><a href="https://editor.p5js.org/" target="_blank">p5.js Web Editor</a> で、コードを書いて即実行できます。</p>
 <p><a href="https://editor.p5js.org/" target="_blank"><img src="./web-editor.png" alt="p5.js Web Editor"></a></p>
-<blockquote class="book-hint info">
-  <ul>
-<li>
-<p>使い慣れたエディタで編集し、保存だけ Web Editor で行う、というのもOKです。</p>
-</li>
-<li>
+<p>ユーザーアカウントを登録すれば、スケッチの保存・共有も行えます。<br>
+<code>https://editor.p5js.org/(ユーザー名)/sketches</code> で他のユーザーのスケッチも参照可能。</p>
+<h2 id="他のオンラインエディタ">他のオンラインエディタ</h2>
 <p>p5.js Web Editor では画面が2分割されています。<br>
-境界線はドラッグで動かせますが、それでも狭い（全画面がいい）と感じる人は、<br>
-<a href="https://www.openprocessing.org/">OpenProcessing</a> のエディタで編集しても良いかもしれません。<br>
-（&ldquo;Join&rdquo; ボタンからアカウント登録が必要ですが）</p>
-</li>
-</ul>
-
-</blockquote>
-
+境界線はドラッグで動かせますが、ノートPCとかで画面が狭いと不便かもしれません<br>
+（<a href="https://github.com/processing/p5.js-web-editor/issues/208" target="_blank">議論されている形跡</a>があるが2020年2月時点でどういう状態かは不明）。</p>
+<p><a href="https://www.openprocessing.org/" target="_blank">OpenProcessing</a> という選択肢もあり、こちらは編集と実行がそれぞれ全画面でできます。<br>
+&ldquo;Join&rdquo; ボタンからアカウント登録して使います。</p>
 <div class="book-expand">
   <label>
     <div class="book-expand-head flex justify-between">
-      <span>余談： 環境関連の諸々（いますぐ読む必要はありません）</span>
+      <span>余談： 作品の公開</span>
       <span>↕</span>
     </div>
     <input type="checkbox" class="hidden" />
     <div class="book-expand-content markdown-inner">
-      <p><a href="https://neort.io/" target="_blank">NEORT</a> や <a href="https://www.openprocessing.org/" target="_blank">OpenProcessing</a> などは、エディタ兼作品公開プラットフォームとして機能します。不特定多数の人にスケッチを見てもらいたいときは、ここで公開するのも良いでしょう。</p>
-<p>ローカルで使うための強力なエディタとしては、例えば <a href="https://azure.microsoft.com/ja-jp/products/visual-studio-code/" target="_blank">Visual Studio Code</a> などがあります。<br>
+      <p><a href="https://www.openprocessing.org/" target="_blank">OpenProcessing</a> や <a href="https://neort.io/" target="_blank">NEORT</a>（こちらは p5.js に限らずいろいろなデジタルアートが対象）などは、エディタ兼作品公開プラットフォームとして機能します。不特定多数の人にスケッチを見てもらいたいときは、ここで公開するのも良いでしょう。</p>
+<p>動画を撮りたいときは、筆者の場合は <a href="https://obsproject.com/ja" target="_blank">Open Broadcaster Software (OBS)</a> を使っています。<br>
+（ブラウザのハードウェアアクセラレーションを切らないと撮れなかったりする？ かもしれないのですがちょっと筆者もまだ詳しくありません）</p>
+
+    </div>
+  </label>
+</div>
+<div class="book-expand">
+  <label>
+    <div class="book-expand-head flex justify-between">
+      <span>余談： ローカル環境での開発</span>
+      <span>↕</span>
+    </div>
+    <input type="checkbox" class="hidden" />
+    <div class="book-expand-content markdown-inner">
+      <p>ローカルで使うための強力なエディタとしては、例えば <a href="https://azure.microsoft.com/ja-jp/products/visual-studio-code/" target="_blank">Visual Studio Code</a> などがあります。<br>
 参考： <a href="https://yoppa.org/pcd19" target="_blank">PCD2019の田所先生のワークショップ資料</a></p>
-<p>初めてだと使い方に戸惑うかもしれませんが、他にもいろいろツールがあります。例えば……</p>
+<p>ローカルで編集する場合、ソースコードは *.js ファイルとして保存し、別に用意した html ファイルでそれを呼び出すことで実行できます。</p>
+<p>筆者の場合、ソースコードを sketch.js とし、その隣に index.html というファイルを作って、その中を以下のようにしています。<br>
+4 行目では p5.js の本体をインターネット経由で引っ張ってきており、現行バージョンは v0.10.2 ですが、これは今後もバージョンアップしていくことが予想されます。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-html" data-lang="html"><span class="p">&lt;</span><span class="nt">html</span><span class="p"></span><span class="p">&gt;</span>
+
+<span class="p">&lt;</span><span class="nt">head</span><span class="p"></span><span class="p">&gt;</span>
+  <span class="p">&lt;</span><span class="nt">script</span> <span class="na">type</span><span class="o">=</span><span class="s">&#34;text/javascript&#34;</span> <span class="na">src</span><span class="o">=</span><span class="s">&#34;https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.10.2/p5.min.js&#34;</span> <span class="na">defer</span><span class="p"></span><span class="p">&gt;</span><span class="p">&lt;</span><span class="p">/</span><span class="nt">script</span><span class="p">&gt;</span>
+  <span class="p">&lt;</span><span class="nt">script</span> <span class="na">type</span><span class="o">=</span><span class="s">&#34;text/javascript&#34;</span> <span class="na">src</span><span class="o">=</span><span class="s">&#34;./sketch.js&#34;</span> <span class="na">defer</span><span class="p"></span><span class="p">&gt;</span><span class="p">&lt;</span><span class="p">/</span><span class="nt">script</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="p">/</span><span class="nt">head</span><span class="p">&gt;</span>
+
+<span class="p">&lt;</span><span class="nt">body</span> <span class="na">style</span><span class="o">=</span><span class="s">&#34;margin: 0px;&#34;</span><span class="p"></span><span class="p">&gt;</span><span class="p">&lt;</span><span class="p">/</span><span class="nt">body</span><span class="p">&gt;</span>
+
+<span class="p">&lt;</span><span class="p">/</span><span class="nt">html</span><span class="p">&gt;</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>他にもいろいろツールがあります、初めてだと使い方に戸惑うかもしれませんが。例えば……</p>
 <ul>
 <li><a href="https://eslint.org/" target="_blank">ESLint</a> は、推奨される書き方から外れたコードについて警告したり自動で修正したりしてくれます。</li>
 <li><a href="https://prettier.io/" target="_blank">Prettier</a> は、スペースや改行や括弧の有無などを一定の規則で自動整形してくれます。</li>
 <li>ツールと呼ぶのも微妙ですが <a href="https://www.typescriptlang.org/" target="_blank">TypeScript</a> は、JavaScript に静的型付けを導入した言語です。</li>
-<li>モジュールバンドラ（<a href="https://webpack.js.org/" target="_blank">webpack</a> 他色々）は、複数のファイルに分けて書いたソースコードを統合してくれます。</li>
+<li>モジュールバンドラ（<a href="https://webpack.js.org/" target="_blank">webpack</a> や <a href="https://rollupjs.org/" target="_blank">Rollup</a> 等）は、複数のファイルに分けて書いたソースコードを統合してくれます。</li>
 <li>パッケージ管理ツール（<a href="https://www.npmjs.com/" target="_blank">npm</a> や <a href="https://yarnpkg.com/lang/ja/" target="_blank">Yarn</a>）は、以上のような各種ツールのダウンロードや実行を補佐してくれます。</li>
 </ul>
 <p>なにいってだこいつ、と思った人は正常です。これがジャバスクリプトだ！<br>
@@ -457,7 +491,12 @@ https://github.com/alex-shpak/hugo-book
     
     <aside class="book-toc">
       
-  <nav id="TableOfContents"></nav>
+  <nav id="TableOfContents">
+  <ul>
+    <li><a href="#公式のエディタ">公式のエディタ</a></li>
+    <li><a href="#他のオンラインエディタ">他のオンラインエディタ</a></li>
+  </ul>
+</nav>
 
  
     </aside>

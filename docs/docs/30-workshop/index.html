@@ -4,12 +4,12 @@
 <head>
   <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="ワークショップの進め方"><meta property="og:title" content="ワークショップの進め方" />
-<meta property="og:description" content="ワークショップの進め方 本日の流れ メインパートは、この画面の左側に見えている Flappy Bird ライクなゲーム です。 各トピックを順番に見ていき、それぞれの最後" />
+<meta name="description" content="進め方"><meta property="og:title" content="進め方" />
+<meta property="og:description" content="進め方 全体の流れ メインパートは、この画面の左側に見えている Flappy Bird ライクなゲーム です。 各トピックを順番に見ていき、要所要所でコードの実行結果を確" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://fal-works.github.io/make-games-with-p5js/docs/30-workshop/" />
 
-<title>ワークショップの進め方 | p5.js でゲーム制作</title>
+<title>進め方 | p5.js でゲーム制作</title>
 <link rel="icon" href="/make-games-with-p5js/favicon.png" type="image/x-icon">
 
 
@@ -83,7 +83,7 @@ https://github.com/alex-shpak/hugo-book
         <li>
 
   <a href="/make-games-with-p5js/docs/30-workshop/"  class="active">
-      ワークショップの進め方
+      進め方
   </a>
 
 </li>
@@ -356,7 +356,7 @@ https://github.com/alex-shpak/hugo-book
     <img src="/make-games-with-p5js/svg/menu.svg" class="book-icon" alt="Menu" />
   </label>
 
-  <strong>ワークショップの進め方</strong>
+  <strong>進め方</strong>
 
   <label for="toc-control">
     <img src="/make-games-with-p5js/svg/toc.svg" class="book-icon" alt="Table of Contents" />
@@ -370,7 +370,7 @@ https://github.com/alex-shpak/hugo-book
       
   <nav id="TableOfContents">
   <ul>
-    <li><a href="#本日の流れ">本日の流れ</a></li>
+    <li><a href="#全体の流れ">全体の流れ</a></li>
     <li><a href="#取り組み方">取り組み方</a></li>
   </ul>
 </nav>
@@ -382,22 +382,21 @@ https://github.com/alex-shpak/hugo-book
       </header>
 
       
-<article class="markdown"><h1 id="ワークショップの進め方">ワークショップの進め方</h1>
-<h2 id="本日の流れ">本日の流れ</h2>
+<article class="markdown"><h1 id="進め方">進め方</h1>
+<h2 id="全体の流れ">全体の流れ</h2>
 <ol>
 <li>メインパートは、この画面の左側に見えている <a href="./docs/50-flappy-bird-like" target="_blank">Flappy Bird ライクなゲーム</a> です。
 <ul>
-<li>各トピックを順番に見ていき、それぞれの最後で少しだけ時間を取って、<br>
-各自でコードの実行結果を確認していただきます。</li>
-<li>「見た目をアレンジ」の章では少し長めに時間を取り、各自で自由にアレンジします。</li>
+<li>各トピックを順番に見ていき、要所要所でコードの実行結果を確認していただきます。</li>
+<li>「見た目をアレンジ」の章では少し長めに時間を取り、自分で自由にアレンジします。</li>
 </ul>
 </li>
-<li>その後時間があれば、<a href="./docs/60-arrange" target="_blank">アレンジいろいろ</a> の部分を自由に進めていただきます。</li>
+<li>メインパートが終わったら、<a href="./docs/60-arrange" target="_blank">アレンジいろいろ</a> の部分を自由な順番で進めてみましょう。</li>
 </ol>
 <h2 id="取り組み方">取り組み方</h2>
 <p>今回、各トピックを通して少しずつコードを書き足していきます。<br>
-ご自分のPCで同じことを行い、コードを育てていく過程を追体験していただきたいです。</p>
-<p>この資料のサンプルコードでは、前のトピックと比較した差分を強調表示しています。<br>
+ご自分の手で同じことを行い、「コードを育てていく」過程を追体験していただきたいです。</p>
+<p>この資料のサンプルコードでは、変更前と比較した差分を強調表示しています。<br>
 主にこの差分に注目して、部分的にコピペしつつ自分のコードに反映していきましょう。</p>
 <div class="highlight"><pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="kd">function</span> <span class="nx">setup</span><span class="p">(</span><span class="p">)</span> <span class="p">{</span>
   <span class="nx">createCanvas</span><span class="p">(</span><span class="mi">800</span><span class="p">,</span> <span class="mi">600</span><span class="p">)</span><span class="p">;</span>
@@ -405,10 +404,8 @@ https://github.com/alex-shpak/hugo-book
 </span></span><span class="c1"></span><span class="p">}</span>
 </code></pre></div><ul>
 <li>もし追いつけなくなってきたら、改めてサンプルコードを全文コピペしてください。</li>
-<li>隅々まで理解できなくても、あまり心配しないでください。<br>
-（この資料はワークショップ後に独習にも使えるようにしたいと思っています）</li>
-<li>講師がしゃべっている最中にコードを書いたり動かしたりしても、全く問題ありません！<br>
-動かしてみないとイメージしにくい、ということはよくあると思います。</li>
+<li>隅々まで理解できなくても心配しないでください（後から復習しても遅くありません）。</li>
+<li>とりあえずコードを動かしてみる → 部分的に変えてみて結果がどう変わるか確認する、というのを繰り返すと理解が進みやすいかもしれません。</li>
 </ul>
 </article>
  
@@ -440,7 +437,7 @@ https://github.com/alex-shpak/hugo-book
       
   <nav id="TableOfContents">
   <ul>
-    <li><a href="#本日の流れ">本日の流れ</a></li>
+    <li><a href="#全体の流れ">全体の流れ</a></li>
     <li><a href="#取り組み方">取り組み方</a></li>
   </ul>
 </nav>
