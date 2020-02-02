@@ -4,19 +4,19 @@
 <head>
   <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="Tags"><meta property="og:title" content="Tags" />
+<meta name="description" content="Flappy Bird ライクなゲーム"><meta property="og:title" content="Flappy Bird ライクなゲーム" />
 <meta property="og:description" content="" />
 <meta property="og:type" content="website" />
-<meta property="og:url" content="https://fal-works.github.io/make-games-with-p5js/tags/" />
+<meta property="og:url" content="https://fal-works.github.io/make-games-with-p5js/docs/flappy-bird-like/" />
 
-<title>Tags | p5.js でゲーム制作</title>
+<title>Flappy Bird ライクなゲーム | p5.js でゲーム制作</title>
 <link rel="icon" href="/make-games-with-p5js/favicon.png" type="image/x-icon">
 
 
 <link rel="stylesheet" href="/make-games-with-p5js/book.min.06fb39c93b652f68daea0425ce9d8c8e89546af90f99fdeaeca4ef34558ed719.css" integrity="sha256-Bvs5yTtlL2ja6gQlzp2MjolUavkPmf3q7KTvNFWO1xk=">
 
 
-<link rel="alternate" type="application/rss+xml" href="https://fal-works.github.io/make-games-with-p5js/tags/index.xml" title="p5.js でゲーム制作" />
+<link rel="alternate" type="application/rss+xml" href="https://fal-works.github.io/make-games-with-p5js/docs/flappy-bird-like/index.xml" title="p5.js でゲーム制作" />
 <!--
 Made with Book Theme
 https://github.com/alex-shpak/hugo-book
@@ -129,7 +129,7 @@ https://github.com/alex-shpak/hugo-book
     
       
 
-  <a href="/make-games-with-p5js/docs/flappy-bird-like/" >
+  <a href="/make-games-with-p5js/docs/flappy-bird-like/"  class="active">
       Flappy Bird ライクなゲーム
   </a>
 
@@ -379,7 +379,7 @@ https://github.com/alex-shpak/hugo-book
     <img src="/make-games-with-p5js/svg/menu.svg" class="book-icon" alt="Menu" />
   </label>
 
-  <strong>Tags</strong>
+  <strong>Flappy Bird ライクなゲーム</strong>
 
   <label for="toc-control">
     <img src="/make-games-with-p5js/svg/toc.svg" class="book-icon" alt="Table of Contents" />
@@ -391,27 +391,14 @@ https://github.com/alex-shpak/hugo-book
     <input type="checkbox" class="hidden" id="toc-control" />
     <aside class="hidden clearfix">
       
-  <nav>
+  <nav id="TableOfContents">
   <ul>
-  
-    
-    <li class="book-section-flat">
-      <strong>Categories</strong>
+    <li><a href="#flappy-bird-とは">Flappy Bird とは</a></li>
+    <li><a href="#今回作るゲームの概要">今回作るゲームの概要</a>
       <ul>
-      
+        <li><a href="#ルール">ルール</a></li>
       </ul>
     </li>
-    
-  
-    
-    <li class="book-section-flat">
-      <strong>Tags</strong>
-      <ul>
-      
-      </ul>
-    </li>
-    
-  
   </ul>
 </nav>
 
@@ -422,10 +409,30 @@ https://github.com/alex-shpak/hugo-book
       </header>
 
       
-<article class="markdown">
-  <h1>Tags</h1>
-  
-  
+<article class="markdown"><h1 id="flappy-bird-ライクなゲーム">Flappy Bird ライクなゲーム</h1>
+<h2 id="flappy-bird-とは">Flappy Bird とは</h2>
+<p><a href="https://www.youtube.com/watch?v=fQoJZuBwrkU" target="_blank">Flappy Bird Gameplay - IGN - YouTube</a></p>
+<figure>
+    <img src="https://img.youtube.com/vi/fQoJZuBwrkU/0.jpg"
+         alt="Flappy Bird (image)" width="320" height="240"/> 
+</figure>
+
+<ul>
+<li>土管にぶつからないように鳥を操作する、非常にシンプルなモバイルゲーム</li>
+<li>開発者： Dong Nguyen</li>
+<li>2014年頃に爆発的に流行（現在は削除済み）</li>
+<li>いろいろなゲームの中でも特に作りやすく、かつ基礎を学ぶにも適している</li>
+</ul>
+<h2 id="今回作るゲームの概要">今回作るゲームの概要</h2>
+<p>Flappy Bird を抽象化した、次のようなミニゲームを作る<br>
+（この例では見た目に全く気を使っていませんが、各自アレンジしていただきます）</p>
+<p><img src="./flappy-bird-like.gif" alt="Abstract Flappy Bird"></p>
+<h3 id="ルール">ルール</h3>
+<ul>
+<li>マウスボタンを押すとジャンプ</li>
+<li>画面下端まで落ちるか、障害物にぶつかるとゲームオーバー</li>
+<li>（本当は点数もカウントして表示したいけど、一旦省略）</li>
+</ul>
 </article>
  
 
@@ -442,6 +449,10 @@ https://github.com/alex-shpak/hugo-book
  
         
   
+  <div class="book-comments">
+
+</div>
+  
  
       </footer>
       
@@ -450,27 +461,14 @@ https://github.com/alex-shpak/hugo-book
     
     <aside class="book-toc">
       
-  <nav>
+  <nav id="TableOfContents">
   <ul>
-  
-    
-    <li class="book-section-flat">
-      <strong>Categories</strong>
+    <li><a href="#flappy-bird-とは">Flappy Bird とは</a></li>
+    <li><a href="#今回作るゲームの概要">今回作るゲームの概要</a>
       <ul>
-      
+        <li><a href="#ルール">ルール</a></li>
       </ul>
     </li>
-    
-  
-    
-    <li class="book-section-flat">
-      <strong>Tags</strong>
-      <ul>
-      
-      </ul>
-    </li>
-    
-  
   </ul>
 </nav>
 

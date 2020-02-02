@@ -12,19 +12,19 @@
     
     <item>
       <title>パーティクルを追加</title>
-      <link>https://fal-works.github.io/make-games-with-p5js/docs/60-arrange/10-particles/</link>
+      <link>https://fal-works.github.io/make-games-with-p5js/docs/arrange/10-particles/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>https://fal-works.github.io/make-games-with-p5js/docs/60-arrange/10-particles/</guid>
+      <guid>https://fal-works.github.io/make-games-with-p5js/docs/arrange/10-particles/</guid>
       <description>パーティクルを追加 小さな粒や破片を大量に散らかすことで、様々な効果が得られる。 これは「パーティクル」（直訳：粒子）と呼ばれる パーティクルを新</description>
     </item>
     
     <item>
       <title>最初に少し考えてみる</title>
-      <link>https://fal-works.github.io/make-games-with-p5js/docs/50-flappy-bird-like/10-design/</link>
+      <link>https://fal-works.github.io/make-games-with-p5js/docs/flappy-bird-like/design/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>https://fal-works.github.io/make-games-with-p5js/docs/50-flappy-bird-like/10-design/</guid>
+      <guid>https://fal-works.github.io/make-games-with-p5js/docs/flappy-bird-like/design/</guid>
       <description>最初に少し考えてみる ここでは、実際のコーディングに入る前に、少しだけ抽象的なことを考えてみます。 具体的なソースコードがないとイメージしにくい</description>
     </item>
     
@@ -39,10 +39,10 @@
     
     <item>
       <title>プレイヤーだけ実装</title>
-      <link>https://fal-works.github.io/make-games-with-p5js/docs/50-flappy-bird-like/20-player/</link>
+      <link>https://fal-works.github.io/make-games-with-p5js/docs/flappy-bird-like/player/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>https://fal-works.github.io/make-games-with-p5js/docs/50-flappy-bird-like/20-player/</guid>
+      <guid>https://fal-works.github.io/make-games-with-p5js/docs/flappy-bird-like/player/</guid>
       <description>プレイヤーだけ実装してみる ソースコード全体の構成を決めておく ここからいろいろソースコードを増やしていくので、 整理のため、ソースコード全体を以</description>
     </item>
     
@@ -57,10 +57,10 @@
     
     <item>
       <title>画面効果を追加</title>
-      <link>https://fal-works.github.io/make-games-with-p5js/docs/60-arrange/20-effects/</link>
+      <link>https://fal-works.github.io/make-games-with-p5js/docs/arrange/20-effects/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>https://fal-works.github.io/make-games-with-p5js/docs/60-arrange/20-effects/</guid>
+      <guid>https://fal-works.github.io/make-games-with-p5js/docs/arrange/20-effects/</guid>
       <description>画面効果を追加 手軽な画面効果として、次のものがある スクリーンシェイク 画面を揺らす。揺れは徐々に収まる スクリーンフラッシュ 画面を明るくする。明</description>
     </item>
     
@@ -75,73 +75,73 @@
     
     <item>
       <title>ブロック1個だけ実装</title>
-      <link>https://fal-works.github.io/make-games-with-p5js/docs/50-flappy-bird-like/30-block/</link>
+      <link>https://fal-works.github.io/make-games-with-p5js/docs/flappy-bird-like/block/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>https://fal-works.github.io/make-games-with-p5js/docs/50-flappy-bird-like/30-block/</guid>
+      <guid>https://fal-works.github.io/make-games-with-p5js/docs/flappy-bird-like/block/</guid>
       <description>ブロックを1個だけ実装してみる 【再掲】エンティティ関連の処理 全エンティティ共通 位置の更新 プレイヤー用 作成 重力の適用 ジャンプ 描画 ブロック用 作成</description>
     </item>
     
     <item>
       <title>ルール変更</title>
-      <link>https://fal-works.github.io/make-games-with-p5js/docs/60-arrange/30-rules/</link>
+      <link>https://fal-works.github.io/make-games-with-p5js/docs/arrange/30-rules/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>https://fal-works.github.io/make-games-with-p5js/docs/60-arrange/30-rules/</guid>
+      <guid>https://fal-works.github.io/make-games-with-p5js/docs/arrange/30-rules/</guid>
       <description>ルール変更 今回作ってきたプログラムは、少し手を加えるだけで色々なゲームに化けることができます。 どんな改造ができるでしょうか？ 思いつくままに改</description>
     </item>
     
     <item>
       <title>リンク（後学のために）</title>
-      <link>https://fal-works.github.io/make-games-with-p5js/docs/60-arrange/40-links/</link>
+      <link>https://fal-works.github.io/make-games-with-p5js/docs/arrange/40-links/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>https://fal-works.github.io/make-games-with-p5js/docs/60-arrange/40-links/</guid>
+      <guid>https://fal-works.github.io/make-games-with-p5js/docs/arrange/40-links/</guid>
       <description>リンク（後学のために） 演出 Juice it or lose it - YouTube 単調なブロック崩しゲームでも演出次第でこう化けるのだというプレゼン。 14:14 あたりから before/after の比較を見せている</description>
     </item>
     
     <item>
       <title>ブロックを複数にする</title>
-      <link>https://fal-works.github.io/make-games-with-p5js/docs/50-flappy-bird-like/50-blocks/</link>
+      <link>https://fal-works.github.io/make-games-with-p5js/docs/flappy-bird-like/blocks/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>https://fal-works.github.io/make-games-with-p5js/docs/50-flappy-bird-like/50-blocks/</guid>
+      <guid>https://fal-works.github.io/make-games-with-p5js/docs/flappy-bird-like/blocks/</guid>
       <description>ブロックを複数にする この先の内容を取り入れる前に、前項 見た目をアレンジ で改造した結果のソースコードを別名保存しておくと良いでしょう。 このペー</description>
     </item>
     
     <item>
       <title>ゲームオーバーを実装</title>
-      <link>https://fal-works.github.io/make-games-with-p5js/docs/50-flappy-bird-like/60-game-state/</link>
+      <link>https://fal-works.github.io/make-games-with-p5js/docs/flappy-bird-like/game-state/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>https://fal-works.github.io/make-games-with-p5js/docs/50-flappy-bird-like/60-game-state/</guid>
+      <guid>https://fal-works.github.io/make-games-with-p5js/docs/flappy-bird-like/game-state/</guid>
       <description>ゲームオーバーを実装 ゲームオーバーになる条件は プレイヤーが画面下端まで落ちる プレイヤーがブロックに衝突する だったが、このうち 1. は 2. より簡単そ</description>
     </item>
     
     <item>
       <title>衝突判定を実装</title>
-      <link>https://fal-works.github.io/make-games-with-p5js/docs/50-flappy-bird-like/70-collision/</link>
+      <link>https://fal-works.github.io/make-games-with-p5js/docs/flappy-bird-like/collision/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>https://fal-works.github.io/make-games-with-p5js/docs/50-flappy-bird-like/70-collision/</guid>
+      <guid>https://fal-works.github.io/make-games-with-p5js/docs/flappy-bird-like/collision/</guid>
       <description>衝突判定を実装 判定方法 説明用スケッチ 四角形 A と四角形 B が衝突しているかどうかを確認する方法： A, B の x 軸方向での距離が十分に開いていたら、衝突</description>
     </item>
     
     <item>
       <title>著作権情報</title>
-      <link>https://fal-works.github.io/make-games-with-p5js/docs/90-license/</link>
+      <link>https://fal-works.github.io/make-games-with-p5js/docs/license/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>https://fal-works.github.io/make-games-with-p5js/docs/90-license/</guid>
+      <guid>https://fal-works.github.io/make-games-with-p5js/docs/license/</guid>
       <description>著作権情報 Copyright (c) 2020 FAL この資料は MIT ライセンスで提供されているので、条項を守れば自由に利用可能です。 参考： MIT License - Wikipedia たとえば、この資料に書いてあるコ</description>
     </item>
     
     <item>
       <title>p5.js の色指定</title>
-      <link>https://fal-works.github.io/make-games-with-p5js/docs/50-flappy-bird-like/40-visuals/colors/</link>
+      <link>https://fal-works.github.io/make-games-with-p5js/docs/flappy-bird-like/visuals/colors/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>https://fal-works.github.io/make-games-with-p5js/docs/50-flappy-bird-like/40-visuals/colors/</guid>
+      <guid>https://fal-works.github.io/make-games-with-p5js/docs/flappy-bird-like/visuals/colors/</guid>
       <description>p5.js の色指定 RGB指定 数値で指定する場合、デフォルトでは 赤、緑、青 を指定する RGB モードとなっている function setup() { createCanvas(800, 600); noStroke(); background(255); // 引数が1つだとグレースケール。</description>
     </item>
     

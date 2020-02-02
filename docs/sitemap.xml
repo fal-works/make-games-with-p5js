@@ -7,11 +7,11 @@
   </url>
   
   <url>
-    <loc>https://fal-works.github.io/make-games-with-p5js/docs/60-arrange/10-particles/</loc>
+    <loc>https://fal-works.github.io/make-games-with-p5js/docs/arrange/10-particles/</loc>
   </url>
   
   <url>
-    <loc>https://fal-works.github.io/make-games-with-p5js/docs/50-flappy-bird-like/10-design/</loc>
+    <loc>https://fal-works.github.io/make-games-with-p5js/docs/flappy-bird-like/design/</loc>
   </url>
   
   <url>
@@ -19,7 +19,11 @@
   </url>
   
   <url>
-    <loc>https://fal-works.github.io/make-games-with-p5js/docs/50-flappy-bird-like/20-player/</loc>
+    <loc>https://fal-works.github.io/make-games-with-p5js/docs/flappy-bird-like/</loc>
+  </url>
+  
+  <url>
+    <loc>https://fal-works.github.io/make-games-with-p5js/docs/flappy-bird-like/player/</loc>
   </url>
   
   <url>
@@ -27,7 +31,7 @@
   </url>
   
   <url>
-    <loc>https://fal-works.github.io/make-games-with-p5js/docs/60-arrange/20-effects/</loc>
+    <loc>https://fal-works.github.io/make-games-with-p5js/docs/arrange/20-effects/</loc>
   </url>
   
   <url>
@@ -35,43 +39,39 @@
   </url>
   
   <url>
-    <loc>https://fal-works.github.io/make-games-with-p5js/docs/50-flappy-bird-like/30-block/</loc>
+    <loc>https://fal-works.github.io/make-games-with-p5js/docs/arrange/</loc>
   </url>
   
   <url>
-    <loc>https://fal-works.github.io/make-games-with-p5js/docs/60-arrange/30-rules/</loc>
+    <loc>https://fal-works.github.io/make-games-with-p5js/docs/flappy-bird-like/block/</loc>
   </url>
   
   <url>
-    <loc>https://fal-works.github.io/make-games-with-p5js/docs/60-arrange/40-links/</loc>
+    <loc>https://fal-works.github.io/make-games-with-p5js/docs/arrange/30-rules/</loc>
   </url>
   
   <url>
-    <loc>https://fal-works.github.io/make-games-with-p5js/docs/50-flappy-bird-like/40-visuals/</loc>
+    <loc>https://fal-works.github.io/make-games-with-p5js/docs/arrange/40-links/</loc>
   </url>
   
   <url>
-    <loc>https://fal-works.github.io/make-games-with-p5js/docs/50-flappy-bird-like/</loc>
+    <loc>https://fal-works.github.io/make-games-with-p5js/docs/flappy-bird-like/visuals/</loc>
   </url>
   
   <url>
-    <loc>https://fal-works.github.io/make-games-with-p5js/docs/50-flappy-bird-like/50-blocks/</loc>
+    <loc>https://fal-works.github.io/make-games-with-p5js/docs/flappy-bird-like/blocks/</loc>
   </url>
   
   <url>
-    <loc>https://fal-works.github.io/make-games-with-p5js/docs/60-arrange/</loc>
+    <loc>https://fal-works.github.io/make-games-with-p5js/docs/flappy-bird-like/game-state/</loc>
   </url>
   
   <url>
-    <loc>https://fal-works.github.io/make-games-with-p5js/docs/50-flappy-bird-like/60-game-state/</loc>
+    <loc>https://fal-works.github.io/make-games-with-p5js/docs/flappy-bird-like/collision/</loc>
   </url>
   
   <url>
-    <loc>https://fal-works.github.io/make-games-with-p5js/docs/50-flappy-bird-like/70-collision/</loc>
-  </url>
-  
-  <url>
-    <loc>https://fal-works.github.io/make-games-with-p5js/docs/90-license/</loc>
+    <loc>https://fal-works.github.io/make-games-with-p5js/docs/license/</loc>
   </url>
   
   <url>
@@ -87,7 +87,7 @@
   </url>
   
   <url>
-    <loc>https://fal-works.github.io/make-games-with-p5js/docs/50-flappy-bird-like/40-visuals/colors/</loc>
+    <loc>https://fal-works.github.io/make-games-with-p5js/docs/flappy-bird-like/visuals/colors/</loc>
   </url>
   
   <url>
