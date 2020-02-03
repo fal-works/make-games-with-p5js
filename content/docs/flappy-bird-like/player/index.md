@@ -431,7 +431,7 @@ class Player extends Entity {
 
 ![non-tree graph](./multi-extension.png)
 
-もし（初学者が混乱しがちと言われる）`this` の扱いが分かっているのなら、prototype のプロパティを直接いじれば多重継承っぽいことができると思いますが、筆者はそういうことをしたことがないのでそれで問題が出ないかはよく分かりません（個人的には TypeScript で `this` の型がどうなるかを考えるとめんどくさそうな印象）。
+もし（初学者が混乱しがちと言われる）`this` の扱いが分かっているのなら、prototype のプロパティを直接いじれば多重継承っぽいことができると思いますが、筆者はそういうことをしたことがないのでそれで問題が出ないかはよく分かりません（そのうち確認してみたいです）。
 
 では継承に頼らないならどうするかとすると、Java なら委譲とかコンポジションとか言うところですが、JavaScript なら普通に関数を値として持たせておくことができる。
 
@@ -514,22 +514,21 @@ function drawSquare(entity) {
 }
 
 function createPlayer() {
-  const player = {
+  return {
     x: 200,
     y: 300,
     vx: 0,
     vy: 0,
     draw: function() {
-      drawSquare(player);
+      drawSquare(this);
     }
   };
-  return player;
 }
 ```
 
 つまりクラスがどうこうというよりは、突き詰めると
 
-- まずオブジェクトがあって、それが関数を持っている → `player.draw();`
+- まずオブジェクトがあって、それに関数が結びついている → `player.draw();`
 - まず関数があって、それにオブジェクトを渡す → `drawSquare(player);`
 
 のどちらが良いか、あるいはオブジェクトと関数を結びつける作業をどの時点で行うか、  
