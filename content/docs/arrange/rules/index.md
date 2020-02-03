@@ -36,9 +36,9 @@ weight: 30
 {{< /expand >}}
 
 
-## 案
+## ルール変更案
 
-おおむね簡単順。後ろの方のはワークショップ時間内では厳しいかも
+おおむね簡単順。後ろの方のはちょっと力が要るかも
 
 ### 数値調整
 
@@ -105,7 +105,7 @@ weight: 30
 
 ### 『BIT.TRIP Runner』
 
-地面でジャンプ ＋ コイン／アイテム ＋ 障害物破壊 ＋ リズムゲーム化
+地面でジャンプ ＋ コイン／アイテム ＋ スライディング＆障害物破壊 ＋ リズムゲーム化
 
 [BIT.TRIP Runner - Trailer - YouTube](https://www.youtube.com/watch?v=RKFJHH9iklQ)
 

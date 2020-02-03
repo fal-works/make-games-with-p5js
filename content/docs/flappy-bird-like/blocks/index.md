@@ -217,7 +217,7 @@ if (frameCount % 120 === 1) addBlockPair(blocks);
 
 {{< hint info >}}
 ブロックの削除がうまくいっているかを確認するには、例えば次のようなものをソースコード下端に加えて実行すると、何かキーを押すたびに現在のブロックの数が表示されます。
-```javascript
+```javascript { linenos=false }
 function keyTyped() {
   console.log(`blocks: ${blocks.length}`);
 }
@@ -231,7 +231,7 @@ function keyTyped() {
 `filter()` のように、引数として別の関数を受け取るような関数というのは Processing (Java) （少なくとも 3.x 以前のバージョン）には無いものなので、そちらから来た人には新鮮かもしれません。
 
 他にも例えば `forEach()` というのがあり、これは `for` 文の代わりに使えます。
-```javascript
+```javascript { linenos=false }
 // 次の2つは同じ結果をもたらす
 
 for (let block of blocks) updatePosition(block);
