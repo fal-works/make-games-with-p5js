@@ -34,7 +34,7 @@ p5.js Web Editor では画面が2分割されています。
 {{< expand "余談： 作品の公開">}}
 [OpenProcessing](https://www.openprocessing.org/) や [NEORT](https://neort.io/)（こちらは p5.js に限らずいろいろなデジタルアートが対象）などは、エディタ兼作品公開プラットフォームとして機能します。不特定多数の人にスケッチを見てもらいたいときは、ここで公開するのも良いでしょう。
 
-動画を撮りたいときは、筆者の場合は [Open Broadcaster Software (OBS)](https://obsproject.com/ja) を使っています。  
+動画を撮りたいときは、筆者の場合は [OBS Studio](https://obsproject.com/ja) を使っています。  
 （ブラウザのハードウェアアクセラレーションを切らないと撮れなかったりする？ かもしれないのですがちょっと筆者もまだ詳しくありません）
 {{< /expand >}}
 
