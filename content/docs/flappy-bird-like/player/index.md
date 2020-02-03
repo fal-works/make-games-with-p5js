@@ -174,6 +174,8 @@ Uncaught TypeError: Cannot read property 'x' of undefined
 
 ## 必要な関数を実際に用意する
 
+無いなら作ればよい
+
 ### 方針
 
 プレイヤーは位置と速度を持っているので、次のようなデータがあると良さそう
