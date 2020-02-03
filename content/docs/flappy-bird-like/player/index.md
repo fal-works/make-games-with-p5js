@@ -526,6 +526,22 @@ function createPlayer() {
 }
 ```
 
+あるいは
+
+```javascript {linenos=false }
+function createPlayer() {
+  return {
+    x: 200,
+    y: 300,
+    vx: 0,
+    vy: 0,
+    draw: function() {
+      square(this.x, this.y, 40);
+    }
+  };
+}
+```
+
 つまりクラスがどうこうというよりは、突き詰めると
 
 - まずオブジェクトがあって、それに関数が結びついている → `player.draw();`
