@@ -1,5 +1,5 @@
 ---
-title: Home
+title: p5.js でゲーム制作
 type: docs
 ---
 

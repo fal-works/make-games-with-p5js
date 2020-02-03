@@ -8,11 +8,13 @@ publishDir = "docs"
 [params]
   BookRepo = 'https://github.com/fal-works/make-games-with-p5js'
   BookSearch = false
+  title = "p5.js でゲーム制作"
+  description = "JavaScript と p5.js を使って、一からゲームを作り上げるまでの過程をレクチャーします。Flappy Bird を題材にしていますが、他のゲームにも応用可能です。"
+  # images = ["site-feature-image.jpg"]
 [markup]
   [markup.highlight]
     codeFences = true
     guessSyntax = false
-    hl_Lines = ""
     lineNoStart = 1
     lineNos = true
     lineNumbersInTable = true
