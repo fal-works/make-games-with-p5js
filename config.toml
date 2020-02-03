@@ -10,7 +10,7 @@ publishDir = "docs"
   BookSearch = false
   title = "p5.js でゲーム制作"
   description = "JavaScript と p5.js を使って、一からゲームを作り上げるまでの過程をレクチャーします。Flappy Bird を題材にしていますが、他のゲームにも応用可能です。"
-  # images = ["site-feature-image.jpg"]
+  images = ["ogp-image.png"]
 [markup]
   [markup.highlight]
     codeFences = true
