@@ -534,16 +534,19 @@ https://github.com/alex-shpak/hugo-book
                 <p>というエラーが出ます。</p>
                 <p>
                   これはとてもよくあるエラーで、こうならないように我々は、変数に意図せず
-                  <code>undefined</code> が入っている状況をできるだけ避けなければならない。
+                  <code>undefined</code>
+                  が入っている状況をできるだけ避けなければならない。そのためこの例を単体で見ると、宣言と同時に
+                  <code>createPlayer()</code> でデータを作って入れておくのが正解に近いです。
                 </p>
                 <p>
-                  ダミー的に何か入れておくという方法もありますがそれも良し悪しがあり、この場合はまあ、一瞬 undefined
-                  なのは許容してもいいんじゃないかということで、このようなサンプルコードになりました。
+                  しかし、後々リセット処理とかを作ったりする予定なので、それに繋げやすいよう今の時点からデータの初期化を
+                  <code>setup()</code> の中でやるようにしています。という背景があるのでご了承いただければと思います。
                 </p>
               </div>
             </label>
           </div>
           <h2 id="必要な関数を実際に用意する">必要な関数を実際に用意する</h2>
+          <p>無いなら作ればよい</p>
           <h3 id="方針">方針</h3>
           <p>プレイヤーは位置と速度を持っているので、次のようなデータがあると良さそう</p>
           <div class="highlight">
@@ -994,14 +997,14 @@ https://github.com/alex-shpak/hugo-book
                   <pre
                     class="chroma"
                   ><code class="language-javascript" data-lang="javascript"><span class="c1">// 名前は適当
-</span><span class="c1"></span><span class="kd">function</span> <span class="nx">drawSmallSquare</span><span class="p">(</span><span class="nx">entity</span><span class="p">)</span> <span class="p">{</span>
+</span><span class="c1"></span><span class="kd">function</span> <span class="nx">drawSquare</span><span class="p">(</span><span class="nx">entity</span><span class="p">)</span> <span class="p">{</span>
   <span class="nx">square</span><span class="p">(</span><span class="nx">entity</span><span class="p">.</span><span class="nx">x</span><span class="p">,</span> <span class="nx">entity</span><span class="p">.</span><span class="nx">y</span><span class="p">,</span> <span class="mi">40</span><span class="p">)</span><span class="p">;</span>
 <span class="p">}</span>
 
 <span class="kr">class</span> <span class="nx">Player</span> <span class="kr">extends</span> <span class="nx">Entity</span> <span class="p">{</span>
   <span class="nx">constructor</span><span class="p">(</span><span class="p">)</span> <span class="p">{</span>
     <span class="kr">super</span><span class="p">(</span><span class="mi">200</span><span class="p">,</span> <span class="mi">300</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span><span class="p">;</span>
-    <span class="k">this</span><span class="p">.</span><span class="nx">drawGraphics</span> <span class="o">=</span> <span class="nx">drawSmallSquare</span><span class="p">;</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">drawGraphics</span> <span class="o">=</span> <span class="nx">drawSquare</span><span class="p">;</span>
   <span class="p">}</span>
 
   <span class="nx">draw</span><span class="p">(</span><span class="p">)</span> <span class="p">{</span>
@@ -1014,7 +1017,7 @@ https://github.com/alex-shpak/hugo-book
                 <div class="highlight">
                   <pre
                     class="chroma"
-                  ><code class="language-javascript" data-lang="javascript"><span class="kd">function</span> <span class="nx">drawSmallSquare</span><span class="p">(</span><span class="nx">entity</span><span class="p">)</span> <span class="p">{</span>
+                  ><code class="language-javascript" data-lang="javascript"><span class="kd">function</span> <span class="nx">drawSquare</span><span class="p">(</span><span class="nx">entity</span><span class="p">)</span> <span class="p">{</span>
   <span class="nx">square</span><span class="p">(</span><span class="nx">entity</span><span class="p">.</span><span class="nx">x</span><span class="p">,</span> <span class="nx">entity</span><span class="p">.</span><span class="nx">y</span><span class="p">,</span> <span class="mi">40</span><span class="p">)</span><span class="p">;</span>
 <span class="p">}</span>
 
@@ -1022,20 +1025,20 @@ https://github.com/alex-shpak/hugo-book
   <span class="nx">constructor</span><span class="p">(</span><span class="p">)</span> <span class="p">{</span>
     <span class="kr">super</span><span class="p">(</span><span class="mi">200</span><span class="p">,</span> <span class="mi">300</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span><span class="p">;</span>
 
-    <span class="c1">// bind() で、drawSmallSquare() の引数 entity を this で予約した関数を作る
-</span><span class="c1"></span>    <span class="k">this</span><span class="p">.</span><span class="nx">draw</span> <span class="o">=</span> <span class="nx">drawSmallSquare</span><span class="p">.</span><span class="nx">bind</span><span class="p">(</span><span class="kc">undefined</span><span class="p">,</span> <span class="k">this</span><span class="p">)</span><span class="p">;</span>
+    <span class="c1">// bind() で、drawSquare() の引数 entity を this で予約した関数を作る
+</span><span class="c1"></span>    <span class="k">this</span><span class="p">.</span><span class="nx">draw</span> <span class="o">=</span> <span class="nx">drawSquare</span><span class="p">.</span><span class="nx">bind</span><span class="p">(</span><span class="kc">undefined</span><span class="p">,</span> <span class="k">this</span><span class="p">)</span><span class="p">;</span>
   <span class="p">}</span>
 <span class="p">}</span>
 </code></pre>
                 </div>
-                <p>これで継承の問題は減ると思います。</p>
+                <p>ベストかどうかはともかく、これで継承の問題は減ると思います。</p>
                 <p>
                   prototype
-                  と違ってインスタンス一つ一つに関数を持たせるのは厳密には無駄なのですが、インスタンスの数とプロパティの数を掛け算したらめちゃめちゃ多くなるみたいなケースでもない限り（つまりほとんどの場合）問題ではありません。
+                  と違ってインスタンス一つ一つに関数を持たせるのは厳密には無駄なのですが、インスタンスの数とプロパティの数を掛け算したらめちゃめちゃ多くなるみたいなケースでもない限りは大きな問題ではありません。
                 </p>
                 <h2 id="どっちが良いのか">どっちが良いのか</h2>
                 <p>
-                  ということで上記のコードが一つの選択肢になりますが、単純にデータと関数を並べて都度組み合わせる方法に比べて、このようなコードを書くメリットがどのくらいあるのか？
+                  ということで上記のようなコードが一つの選択肢になりますが、単純にデータと関数を並べて都度組み合わせる方法に比べて、このようなコードを書くメリットがどのくらいあるのか？
                   という話になります（特にこの資料では、読者があまり class
                   構文に慣れていないことを想定していて、それでもぜひ使おう！ と言うべきかどうかという話でもあります）。
                 </p>
@@ -1083,8 +1086,46 @@ https://github.com/alex-shpak/hugo-book
                     >この記事</a
                   >を読んでなるほどと思ったのでした、Unity エアプですが）。
                 </p>
+                <h3 id="そもそもクラス-or-not-なのかというと">そもそもクラス or not なのかというと……</h3>
                 <p>
-                  結局のところは好みの問題じゃんということになるのかもしれませんが、委譲、じゃなかった以上、ご参考までに……。
+                  上で書いた、クラスを使いつつ個別のインスタンスに関数を持たせる方法ですが、これはもうほとんど prototype
+                  を活用していないので、単なるオブジェクト形式で良くない？ という話にもなりえます。
+                </p>
+                <div class="highlight">
+                  <pre
+                    class="chroma"
+                  ><code class="language-javascript" data-lang="javascript"><span class="kd">function</span> <span class="nx">drawSquare</span><span class="p">(</span><span class="nx">entity</span><span class="p">)</span> <span class="p">{</span>
+  <span class="nx">square</span><span class="p">(</span><span class="nx">entity</span><span class="p">.</span><span class="nx">x</span><span class="p">,</span> <span class="nx">entity</span><span class="p">.</span><span class="nx">y</span><span class="p">,</span> <span class="mi">40</span><span class="p">)</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="kd">function</span> <span class="nx">createPlayer</span><span class="p">(</span><span class="p">)</span> <span class="p">{</span>
+  <span class="kr">const</span> <span class="nx">player</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="nx">x</span><span class="o">:</span> <span class="mi">200</span><span class="p">,</span>
+    <span class="nx">y</span><span class="o">:</span> <span class="mi">300</span><span class="p">,</span>
+    <span class="nx">vx</span><span class="o">:</span> <span class="mi">0</span><span class="p">,</span>
+    <span class="nx">vy</span><span class="o">:</span> <span class="mi">0</span><span class="p">,</span>
+    <span class="nx">draw</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="p">)</span> <span class="p">{</span>
+      <span class="nx">drawSquare</span><span class="p">(</span><span class="nx">player</span><span class="p">)</span><span class="p">;</span>
+    <span class="p">}</span>
+  <span class="p">}</span><span class="p">;</span>
+  <span class="k">return</span> <span class="nx">player</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre>
+                </div>
+                <p>つまりクラスがどうこうというよりは、突き詰めると</p>
+                <ul>
+                  <li>まずオブジェクトがあって、それが関数を持っている → <code>player.draw();</code></li>
+                  <li>まず関数があって、それにオブジェクトを渡す → <code>drawSquare(player);</code></li>
+                </ul>
+                <p>
+                  のどちらが良いか、あるいはオブジェクトと関数を結びつける作業をどの時点で行うか、<br />
+                  といった話になってくるのかもしれません。
+                </p>
+                <p>
+                  で、オブジェクト作成時にそれを関数と結びつける作業を行うよりは、都度自由に組み合わせて実行できるほうが書き方としては素朴に思えたので、そのようにしている次第です。
+                </p>
+                <p>
+                  決着をつける材料を筆者が持っていないので、あとはお好みで……としか言えない状態ではありますが、委譲、じゃなかった以上、ご参考までに……。
                 </p>
               </div>
             </label>
