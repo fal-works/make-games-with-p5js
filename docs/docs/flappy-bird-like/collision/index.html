@@ -311,7 +311,7 @@ https://github.com/alex-shpak/hugo-book
         <li>
 
   <a href="/make-games-with-p5js/docs/arrange/links/" >
-      リンク（後学のために）
+      参考リンク
   </a>
 
 </li>
@@ -479,12 +479,13 @@ https://github.com/alex-shpak/hugo-book
 <div class="book-expand">
   <label>
     <div class="book-expand-head flex justify-between">
-      <span>余談： 衝突対象の形状</span>
+      <span>余談： 衝突対象の形状と大きさ</span>
       <span>↕</span>
     </div>
     <input type="checkbox" class="hidden" />
     <div class="book-expand-content markdown-inner">
-      <p>2次元空間で2つの物体の衝突を確認する方法として、大雑把に分けると次のようなものがあります。</p>
+      <h2 id="形状について">形状について</h2>
+<p>2次元空間で2つの物体の衝突を確認する方法として、大雑把に分けると次のようなものがあります。</p>
 <ul>
 <li>両方とも矩形（くけい）とみなし、x距離/y距離 を確認する</li>
 <li>両方とも円形とみなし、中心点同士の距離を確認する</li>
@@ -495,6 +496,9 @@ https://github.com/alex-shpak/hugo-book
 <p>このなかで最も処理効率が良いのは、矩形同士の判定です。</p>
 <p>例えばストⅡなどの2D格闘ゲームでも、キャラ同士の当たり判定を矩形の組み合わせで行っていたようです。<br>
 参考： <a href="https://game.capcom.com/cfn/sfv/column-130393.html" target="_blank">https://game.capcom.com/cfn/sfv/column-130393.html</a></p>
+<h2 id="大きさについて">大きさについて</h2>
+<p>今回は表示する四角形の大きさと当たり判定に使う矩形の大きさを一致させていますが、その必然性は無いことに注意してください。</p>
+<p>また、今回の例だと当たるとゲームオーバーになりますが、遊ぶ人に「えぇ～いまの当たってなかったでしょ！！」と思わせてしまうと満足感が下がってしまいます。逆に、当たったように見えてゲームオーバーにならなかった場合は「ラッキー！ 当たらなかった」くらいにしか思われないので、表示されているグラフィックよりも当たり判定部分の大きさを少し小さめにするくらいでちょうどよい、ということも多いです。</p>
 
     </div>
   </label>
@@ -905,13 +909,71 @@ https://github.com/alex-shpak/hugo-book
 </div><div class="book-expand">
   <label>
     <div class="book-expand-head flex justify-between">
-      <span>余談： 命名について再び</span>
+      <span>余談： マジックナンバー</span>
       <span>↕</span>
     </div>
     <input type="checkbox" class="hidden" />
     <div class="book-expand-content markdown-inner">
-      <p>衝突したらプレイヤーは死んでいるとみなすべきで、<code>playerIsAlive()</code> ではプレイヤーが画面下端まで落ちたかどうかしか分からない、これは名が体を表していないのでは？ という問題があります。</p>
-<p>これはちょっと良い状態ではなくて、筆者も動作確認時にちょっと混乱したので、要改善な気がします。位置の判定と衝突の判定を別々に処理している以上、処理結果を保存しておく必要があるはずで、となるとやっぱりエンティティに生死フラグを持たせるべきなのかもしれません。</p>
+      <h2 id="問題">問題</h2>
+<div class="highlight"><pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="k">if</span> <span class="p">(</span><span class="nx">entitiesAreColliding</span><span class="p">(</span><span class="nx">player</span><span class="p">,</span> <span class="nx">block</span><span class="p">,</span> <span class="mi">20</span> <span class="o">+</span> <span class="mi">40</span><span class="p">,</span> <span class="mi">20</span> <span class="o">+</span> <span class="mi">200</span><span class="p">)</span><span class="p">)</span> <span class="p">{</span>
+  <span class="c1">// ...
+</span><span class="c1"></span><span class="p">}</span>
+</code></pre></div><p>ここの第3-4引数、「衝突しないギリギリの距離（x, y）」をプレイヤーの大きさとブロックの大きさを元にして決めているわけですが、パッと見なんだかよくわからないので、あまり良い書き方ではありませんね。</p>
+<p>これに限らず、コードのあちこちで数字を直接書いているので、「なにこの数字？」と思わせてしまう箇所が他にもあるかもしれません。</p>
+<p>こういうソースコード中に書かれた数字を<strong>マジックナンバー</strong>と言います。<br>
+参考： <a href="https://ja.wikipedia.org/wiki/%E3%83%9E%E3%82%B8%E3%83%83%E3%82%AF%E3%83%8A%E3%83%B3%E3%83%90%E3%83%BC_%28%E3%83%97%E3%83%AD%E3%82%B0%E3%83%A9%E3%83%A0%29" target="_blank">マジックナンバー（プログラム） - Wikipedia</a></p>
+<p>今回は素朴な書き方で進めましたが、こういったものは極力減らしたほうが後々のためになります。対処しない場合、たとえば数値を変えたいときに影響箇所を探しにくいというデメリットもあります。</p>
+<h2 id="対処">対処</h2>
+<h3 id="説明変数">説明変数</h3>
+<p>なんだこの数字？ と思わせてしまうのを避ける最も手軽な方法はコメントを付けることだと思われますが、場合によっては説明変数というものを書いたほうが読みやすくなります。</p>
+<p>問題の数値を使う直前のところで、いったんそれを変数（定数）として宣言しておくというもので、上記の <code>entitiesAreColliding()</code> の例で言うと、（命名にあまり自信ないのですが）次のような感じです。</p>
+<div class="highlight"><pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="kr">const</span> <span class="nx">playerHalfWidth</span> <span class="o">=</span> <span class="mi">20</span><span class="p">;</span>
+<span class="kr">const</span> <span class="nx">playerHalfHeight</span> <span class="o">=</span> <span class="mi">20</span><span class="p">;</span>
+<span class="kr">const</span> <span class="nx">blockHalfWidth</span> <span class="o">=</span> <span class="mi">40</span><span class="p">;</span>
+<span class="kr">const</span> <span class="nx">blockHalfHeight</span> <span class="o">=</span> <span class="mi">200</span><span class="p">;</span>
+<span class="kr">const</span> <span class="nx">collisionXDistance</span> <span class="o">=</span> <span class="nx">playerHalfWidth</span> <span class="o">+</span> <span class="nx">blockHalfWidth</span><span class="p">;</span>
+<span class="kr">const</span> <span class="nx">collisionYDistance</span> <span class="o">=</span> <span class="nx">playerHalfHeight</span> <span class="o">+</span> <span class="nx">blockHalfHeight</span><span class="p">;</span>
+
+<span class="k">if</span> <span class="p">(</span>
+  <span class="nx">entitiesAreColliding</span><span class="p">(</span><span class="nx">player</span><span class="p">,</span> <span class="nx">block</span><span class="p">,</span> <span class="nx">collisionXDistance</span><span class="p">,</span> <span class="nx">collisionYDistance</span><span class="p">)</span>
+<span class="p">)</span> <span class="p">{</span>
+  <span class="c1">// ...
+</span><span class="c1"></span><span class="p">}</span>
+</code></pre></div><p>このように、数値の意味などを説明する目的で宣言する変数を<strong>説明変数</strong>と言います。</p>
+<p>コメントだと厳密にどの部分を指しているのか分かりにくく、「この〇〇っていう関数の、この第3引数に入れた数値の意味はですねぇ、……」みたいに迂遠になりがちなところ、説明変数は問題の対象をダイレクトで説明できます。</p>
+<h3 id="定数をまとめる">定数をまとめる</h3>
+<p>どうせ定数なんだったら一箇所でまとめて定義しておいたら分かりやすいのでは？</p>
+<p>ということで、次のような対処がありえます。</p>
+<ol>
+<li>プレイヤーとブロックの「描画する四角形のサイズ（width/height）」を定数として定める</li>
+<li>同じ場所に、プレイヤーとブロックの「衝突判定に用いる x/y 距離」を定数として定める</li>
+<li>1 と 2 はゆるやかに連動していて、どちらかを変えたらもう一方も調整が必要である旨、注釈を書いておく</li>
+<li><code>entitiesAreColliding()</code> の引数は、2 の数値を加算したものを入れる、<br>
+もしくは加算した結果をさらに別の定数として定める</li>
+</ol>
+<h3 id="グループ管理用オブジェクト">グループ管理用オブジェクト</h3>
+<p>定数をズラッと並べるのが美しくないと感じる場合は、プレイヤーやブロックといった単位でエンティティの種類を管理するための「エンティティグループ」という概念を新たに考えるという方法もあります。</p>
+<p>実装は、以下のような情報をまとめたオブジェクトという形になるでしょう。</p>
+<ul>
+<li>エンティティの配列</li>
+<li>描画用の関数など、そのグループ固有の関数群</li>
+<li>描画の大きさや衝突判定用の数値など、そのグループ固有のデータ</li>
+</ul>
+
+    </div>
+  </label>
+</div>
+<div class="book-expand">
+  <label>
+    <div class="book-expand-head flex justify-between">
+      <span>余談： 関数名 xxxIsAlive() の命名</span>
+      <span>↕</span>
+    </div>
+    <input type="checkbox" class="hidden" />
+    <div class="book-expand-content markdown-inner">
+      <p>衝突したらプレイヤーエンティティは死ぬ、とみなすほうが自然で、<code>playerIsAlive()</code> ではプレイヤーエンティティが画面下端まで落ちたかどうかしか分からない、これは名が体を表していないのでは？ という問題があります。</p>
+<p>これはちょっと良い状態ではなくて、筆者も動作確認時にちょっと混乱したので、要改善な気がします。</p>
+<p>位置の判定と衝突の判定を別々に処理している以上、処理結果を保存しておく必要があるはずで、となるとやっぱりエンティティに生死フラグを持たせるべきなのかもしれません。</p>
 
     </div>
   </label>

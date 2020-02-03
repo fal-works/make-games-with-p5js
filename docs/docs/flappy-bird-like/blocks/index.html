@@ -311,7 +311,7 @@ https://github.com/alex-shpak/hugo-book
         <li>
 
   <a href="/make-games-with-p5js/docs/arrange/links/" >
-      リンク（後学のために）
+      参考リンク
   </a>
 
 </li>
@@ -723,19 +723,10 @@ https://github.com/alex-shpak/hugo-book
 
 <blockquote class="book-hint info">
   <p>ブロックの削除がうまくいっているかを確認するには、例えば次のようなものをソースコード下端に加えて実行すると、何かキーを押すたびに現在のブロックの数が表示されます。</p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
-</span><span class="lnt">2
-</span><span class="lnt">3
-</span></code></pre></td>
-<td class="lntd">
-<pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="kd">function</span> <span class="nx">keyTyped</span><span class="p">(</span><span class="p">)</span> <span class="p">{</span>
+<div class="highlight"><pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="kd">function</span> <span class="nx">keyTyped</span><span class="p">(</span><span class="p">)</span> <span class="p">{</span>
   <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="sb">`</span><span class="sb">blocks: </span><span class="si">${</span><span class="nx">blocks</span><span class="p">.</span><span class="nx">length</span><span class="si">}</span><span class="sb">`</span><span class="p">)</span><span class="p">;</span>
 <span class="p">}</span>
-</code></pre></td></tr></table>
-</div>
-</div>
+</code></pre></div>
 </blockquote>
 
 <div class="book-expand">
@@ -750,23 +741,12 @@ https://github.com/alex-shpak/hugo-book
 参考： <a href="https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Global_Objects/Array" target="_blank">Array - JavaScript | MDN</a></p>
 <p><code>filter()</code> のように、引数として別の関数を受け取るような関数というのは Processing (Java) （少なくとも 3.x 以前のバージョン）には無いものなので、そちらから来た人には新鮮かもしれません。</p>
 <p>他にも例えば <code>forEach()</code> というのがあり、これは <code>for</code> 文の代わりに使えます。</p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
-</span><span class="lnt">2
-</span><span class="lnt">3
-</span><span class="lnt">4
-</span><span class="lnt">5
-</span></code></pre></td>
-<td class="lntd">
-<pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="c1">// 次の2つは同じ結果をもたらす
+<div class="highlight"><pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="c1">// 次の2つは同じ結果をもたらす
 </span><span class="c1"></span>
 <span class="k">for</span> <span class="p">(</span><span class="kd">let</span> <span class="nx">block</span> <span class="k">of</span> <span class="nx">blocks</span><span class="p">)</span> <span class="nx">updatePosition</span><span class="p">(</span><span class="nx">block</span><span class="p">)</span><span class="p">;</span>
 
 <span class="nx">blocks</span><span class="p">.</span><span class="nx">forEach</span><span class="p">(</span><span class="nx">updatePosition</span><span class="p">)</span><span class="p">;</span>
-</code></pre></td></tr></table>
-</div>
-</div><p><code>forEach()</code> で書くと、コードがまるで文章みたいになって（「ブロックのそれぞれについて位置を更新せよ」と読める）、スマートな感じがしますね。<br>
+</code></pre></div><p><code>forEach()</code> で書くと、コードがまるで文章みたいになって（「ブロックのそれぞれについて位置を更新せよ」と読める）、スマートな感じがしますね。<br>
 パフォーマンス的には <code>forEach()</code> の方がちょっと遅いらしいという話がありますが、少なくとも今回の例で気にする必要はありません。</p>
 <p>ちなみに、<code>filter()</code> や <code>forEach()</code> のような関数に引数として渡す関数（上の例だと <code>updatePosition()</code>）のことを「コールバック関数」と呼んだりします。</p>
 

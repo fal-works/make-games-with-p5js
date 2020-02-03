@@ -311,7 +311,7 @@ https://github.com/alex-shpak/hugo-book
         <li>
 
   <a href="/make-games-with-p5js/docs/arrange/links/" >
-      リンク（後学のために）
+      参考リンク
   </a>
 
 </li>
@@ -1118,9 +1118,9 @@ https://github.com/alex-shpak/hugo-book
 </code></pre></td></tr></table>
 </div>
 </div><blockquote class="book-hint info">
-  <p>咳嗽中のコードがあったらそれに組み込んでみて、<br>
+  <p>改造中のコードがあったらそれに組み込んでみて、<br>
 本当にちゃんと機能しているか、実行して確かめてみましょう。</p>
-<p>スクリーンシェイクについては、たとえば縦だけ・横だけにするなど、<br>
+<p>たとえばスクリーンシェイクを縦だけ・横だけにするなど、<br>
 カスタマイズしてみる余地もあるかもしれません。</p>
 
 </blockquote>
@@ -1134,7 +1134,7 @@ https://github.com/alex-shpak/hugo-book
     <input type="checkbox" class="hidden" />
     <div class="book-expand-content markdown-inner">
       <p>ここで新たに追加した変数（<code>shakeMagnitude</code> など）は、外から直接読み書きする機会は無いので、グローバル空間に置きたくないな、といった懸念がありえます。</p>
-<p>モジュールに分割すれば解決する話ではありますが、仮にそれをしないとすると、他にはクラスに閉じ込めるか、あるいは即時関数に閉じ込めるという方法もあります。</p>
+<p>モジュールに分割すれば解決する話ではありますが（全体がだいぶ長くなってきたのでそれを検討する価値はあります）、仮にそれをしないとすると、他にはクラスに閉じ込めるか、あるいは即時関数に閉じ込めるという方法もあります。</p>
 <p>クラスの話は割愛するとして、即時関数というのは、次のように宣言と同時に即座に実行するような使い方をしている関数のことです。</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
@@ -1213,7 +1213,7 @@ https://github.com/alex-shpak/hugo-book
 </code></pre></td></tr></table>
 </div>
 </div><p>と書けば、必要な変数は <code>shake</code> だけとなり、<code>shake.reset()</code> <code>shake.set()</code> といった形で各種関数を呼び出すことができます。</p>
-<p>モジュール化にしてもそうですが、<code>reset</code> などのような一般的な関数名を使っても重複の心配がないというメリットもあります。</p>
+<p>モジュール化にしてもそうですが、<code>reset</code> などのような短い関数名を使っても他とバッティングする心配がないというメリットもあります。</p>
 
     </div>
   </label>
