@@ -439,14 +439,14 @@ class Player extends Entity {
 
 ```javascript { linenos=false }
 // 名前は適当
-function drawSmallSquare(entity) {
+function drawSquare(entity) {
   square(entity.x, entity.y, 40);
 }
 
 class Player extends Entity {
   constructor() {
     super(200, 300, 0, 0);
-    this.drawGraphics = drawSmallSquare;
+    this.drawGraphics = drawSquare;
   }
 
   draw() {
@@ -458,7 +458,7 @@ class Player extends Entity {
 もしくは
 
 ```javascript { linenos=false }
-function drawSmallSquare(entity) {
+function drawSquare(entity) {
   square(entity.x, entity.y, 40);
 }
 
@@ -466,19 +466,19 @@ class Player extends Entity {
   constructor() {
     super(200, 300, 0, 0);
 
-    // bind() で、drawSmallSquare() の引数 entity を this で予約した関数を作る
-    this.draw = drawSmallSquare.bind(undefined, this);
+    // bind() で、drawSquare() の引数 entity を this で予約した関数を作る
+    this.draw = drawSquare.bind(undefined, this);
   }
 }
 ```
 
-これで継承の問題は減ると思います。
+ベストかどうかはともかく、これで継承の問題は減ると思います。
 
-prototype と違ってインスタンス一つ一つに関数を持たせるのは厳密には無駄なのですが、インスタンスの数とプロパティの数を掛け算したらめちゃめちゃ多くなるみたいなケースでもない限り（つまりほとんどの場合）問題ではありません。
+prototype と違ってインスタンス一つ一つに関数を持たせるのは厳密には無駄なのですが、インスタンスの数とプロパティの数を掛け算したらめちゃめちゃ多くなるみたいなケースでもない限りは大きな問題ではありません。
 
 ## どっちが良いのか
 
-ということで上記のコードが一つの選択肢になりますが、単純にデータと関数を並べて都度組み合わせる方法に比べて、このようなコードを書くメリットがどのくらいあるのか？ という話になります（特にこの資料では、読者があまり class 構文に慣れていないことを想定していて、それでもぜひ使おう！ と言うべきかどうかという話でもあります）。
+ということで上記のようなコードが一つの選択肢になりますが、単純にデータと関数を並べて都度組み合わせる方法に比べて、このようなコードを書くメリットがどのくらいあるのか？ という話になります（特にこの資料では、読者があまり class 構文に慣れていないことを想定していて、それでもぜひ使おう！ と言うべきかどうかという話でもあります）。
 
 ### クラスのメリット
 
@@ -504,5 +504,38 @@ entities.forEach(updatePosition);
 
 あと個人的なメンタルモデルとしては、エンティティの一つ一つが振る舞いを持っているというより、配列に並んだオブジェクトたちがベルトコンベア式に一つの関数に流し込まれるイメージのほうが最近はしっくりきつつあります（ベルトコンベアの比喩は Unity の ECS を説明した[この記事](http://tsubakit1.hateblo.jp/entry/2018/03/25/180203)を読んでなるほどと思ったのでした、Unity エアプですが）。
 
-結局のところは好みの問題じゃんということになるのかもしれませんが、委譲、じゃなかった以上、ご参考までに……。
+### そもそもクラス or not なのかというと……
+
+上で書いた、クラスを使いつつ個別のインスタンスに関数を持たせる方法ですが、これはもうほとんど prototype を活用していないので、単なるオブジェクト形式で良くない？ という話にもなりえます。
+
+```javascript {linenos=false }
+function drawSquare(entity) {
+  square(entity.x, entity.y, 40);
+}
+
+function createPlayer() {
+  const player = {
+    x: 200,
+    y: 300,
+    vx: 0,
+    vy: 0,
+    draw: function() {
+      drawSquare(player);
+    }
+  };
+  return player;
+}
+```
+
+つまりクラスがどうこうというよりは、突き詰めると
+
+- まずオブジェクトがあって、それが関数を持っている → `player.draw();`
+- まず関数があって、それにオブジェクトを渡す → `drawSquare(player);`
+
+のどちらが良いか、あるいはオブジェクトと関数を結びつける作業をどの時点で行うか、  
+といった話になってくるのかもしれません。
+
+で、オブジェクト作成時にそれを関数と結びつける作業を行うよりは、都度自由に組み合わせて実行できるほうが書き方としては素朴に思えたので、そのようにしている次第です。
+
+決着をつける材料を筆者が持っていないので、あとはお好みで……としか言えない状態ではありますが、委譲、じゃなかった以上、ご参考までに……。
 {{< /expand >}}
