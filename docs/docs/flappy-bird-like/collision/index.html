@@ -1,433 +1,237 @@
 <!DOCTYPE html>
 <html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="衝突判定を実装" />
+    <meta property="og:title" content="衝突判定を実装" />
+    <meta
+      property="og:description"
+      content="衝突判定を実装 判定方法 説明用スケッチ 四角形 A と四角形 B が衝突しているかどうかを確認する方法： A, B の x 軸方向での距離が十分に開いていたら、衝突"
+    />
+    <meta property="og:type" content="article" />
+    <meta
+      property="og:url"
+      content="https://fal-works.github.io/make-games-with-p5js/docs/flappy-bird-like/collision/"
+    />
+    <meta property="og:site_name" content="p5.js でゲーム制作" />
+    <title>衝突判定を実装 | p5.js でゲーム制作</title>
+    <link rel="icon" href="/make-games-with-p5js/favicon.png" type="image/x-icon" />
 
-<head>
-  <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="衝突判定を実装"><meta property="og:title" content="衝突判定を実装" />
-<meta property="og:description" content="衝突判定を実装 判定方法 説明用スケッチ 四角形 A と四角形 B が衝突しているかどうかを確認する方法： A, B の x 軸方向での距離が十分に開いていたら、衝突" />
-<meta property="og:type" content="article" />
-<meta property="og:url" content="https://fal-works.github.io/make-games-with-p5js/docs/flappy-bird-like/collision/" />
+    <link
+      rel="stylesheet"
+      href="/make-games-with-p5js/book.min.06fb39c93b652f68daea0425ce9d8c8e89546af90f99fdeaeca4ef34558ed719.css"
+      integrity="sha256-Bvs5yTtlL2ja6gQlzp2MjolUavkPmf3q7KTvNFWO1xk="
+    />
 
-<title>衝突判定を実装 | p5.js でゲーム制作</title>
-<link rel="icon" href="/make-games-with-p5js/favicon.png" type="image/x-icon">
-
-
-<link rel="stylesheet" href="/make-games-with-p5js/book.min.06fb39c93b652f68daea0425ce9d8c8e89546af90f99fdeaeca4ef34558ed719.css" integrity="sha256-Bvs5yTtlL2ja6gQlzp2MjolUavkPmf3q7KTvNFWO1xk=">
-
-
-<!--
+    <!--
 Made with Book Theme
 https://github.com/alex-shpak/hugo-book
 -->
 
-  <link rel="stylesheet" href="https://fal-works.github.io/make-games-with-p5js/css/chroma-style.css" />
-</head>
-
-<body>
-  <input type="checkbox" class="hidden" id="menu-control" />
-  <main class="container flex">
-    <aside class="book-menu">
-      
-  <nav>
-<h2 class="book-brand">
-  <a href="/make-games-with-p5js"><span>p5.js でゲーム制作</span>
-  </a>
-</h2>
-
-
-
-
-
-
-  
-
-  
-  
-
-
-
-
-
- 
-  
-    
-
-
-
-
-  
-  <ul>
-    
-      
-        
-
-  <li >
-    
-      
-
-  <a href="/make-games-with-p5js/docs/introduction/" >
-      はじめに
-  </a>
-
-
-    
-
-    
-
-
-
-
-  
-  <ul>
-    
-      
-        <li>
-
-  <a href="/make-games-with-p5js/docs/introduction/overview/" >
-      進め方
-  </a>
-
-</li>
-      
-    
-      
-        <li>
-
-  <a href="/make-games-with-p5js/docs/introduction/prepare/" >
-      準備
-  </a>
-
-</li>
-      
-    
-      
-        <li>
-
-  <a href="/make-games-with-p5js/docs/introduction/basic-sketch/" >
-      p5.js スケッチの基本構造
-  </a>
-
-</li>
-      
-    
-  </ul>
-  
-
-
-
-  </li>
-
-
-      
-    
-      
-        
-
-  <li >
-    
-      
-
-  <a href="/make-games-with-p5js/docs/flappy-bird-like/" >
-      Flappy Bird ライクなゲーム
-  </a>
-
-
-    
-
-    
-
-
-
-
-  
-  <ul>
-    
-      
-        <li>
-
-  <a href="/make-games-with-p5js/docs/flappy-bird-like/design/" >
-      最初に少し考えてみる
-  </a>
-
-</li>
-      
-    
-      
-        <li>
-
-  <a href="/make-games-with-p5js/docs/flappy-bird-like/player/" >
-      プレイヤーだけ実装
-  </a>
-
-</li>
-      
-    
-      
-        <li>
-
-  <a href="/make-games-with-p5js/docs/flappy-bird-like/block/" >
-      ブロック1個だけ実装
-  </a>
-
-</li>
-      
-    
-      
-        
-
-  <li >
-    
-      
-
-  <a href="/make-games-with-p5js/docs/flappy-bird-like/visuals/" >
-      見た目をアレンジ
-  </a>
-
-
-    
-
-    
-
-
-
-
-  
-  <ul>
-    
-      
-        <li>
-
-  <a href="/make-games-with-p5js/docs/flappy-bird-like/visuals/colors/" >
-      p5.js の色指定
-  </a>
-
-</li>
-      
-    
-  </ul>
-  
-
-
-
-  </li>
-
-
-      
-    
-      
-        <li>
-
-  <a href="/make-games-with-p5js/docs/flappy-bird-like/blocks/" >
-      ブロックを複数にする
-  </a>
-
-</li>
-      
-    
-      
-        <li>
-
-  <a href="/make-games-with-p5js/docs/flappy-bird-like/game-state/" >
-      ゲームオーバーを実装
-  </a>
-
-</li>
-      
-    
-      
-        <li>
-
-  <a href="/make-games-with-p5js/docs/flappy-bird-like/collision/"  class="active">
-      衝突判定を実装
-  </a>
-
-</li>
-      
-    
-  </ul>
-  
-
-
-
-  </li>
-
-
-      
-    
-      
-        
-
-  <li >
-    
-      
-
-  <a href="/make-games-with-p5js/docs/arrange/" >
-      アレンジいろいろ
-  </a>
-
-
-    
-
-    
-
-
-
-
-  
-  <ul>
-    
-      
-        <li>
-
-  <a href="/make-games-with-p5js/docs/arrange/particles/" >
-      パーティクルを追加
-  </a>
-
-</li>
-      
-    
-      
-        <li>
-
-  <a href="/make-games-with-p5js/docs/arrange/effects/" >
-      画面効果を追加
-  </a>
-
-</li>
-      
-    
-      
-        <li>
-
-  <a href="/make-games-with-p5js/docs/arrange/rules/" >
-      ルール変更
-  </a>
-
-</li>
-      
-    
-      
-        <li>
-
-  <a href="/make-games-with-p5js/docs/arrange/use-assets.md/" >
-      画像や音を使う
-  </a>
-
-</li>
-      
-    
-      
-        <li>
-
-  <a href="/make-games-with-p5js/docs/arrange/links/" >
-      参考リンク
-  </a>
-
-</li>
-      
-    
-  </ul>
-  
-
-
-
-  </li>
-
-
-      
-    
-      
-        <li>
-
-  <a href="/make-games-with-p5js/docs/license/" >
-      著作権情報
-  </a>
-
-</li>
-      
-    
-  </ul>
-  
-
-
-
-  
-
-
-
-
-
-
-
-
-
-
-
-</nav>
-
-
-<script>
-(function() {
-  var menu = document.querySelector("aside.book-menu nav");
-  addEventListener("beforeunload", function(event) {
-    localStorage.setItem("menu.scrollTop", menu.scrollTop);
-  });
-  menu.scrollTop = localStorage.getItem("menu.scrollTop");
-})();
-</script>
-
- 
-    </aside>
-
-    <div class="book-page">
-      <header class="book-header">
-        
-  <div class="flex align-center justify-between">
-  <label for="menu-control">
-    <img src="/make-games-with-p5js/svg/menu.svg" class="book-icon" alt="Menu" />
-  </label>
-
-  <strong>衝突判定を実装</strong>
-
-  <label for="toc-control">
-    <img src="/make-games-with-p5js/svg/toc.svg" class="book-icon" alt="Table of Contents" />
-  </label>
-</div>
-
-
-  
-    <input type="checkbox" class="hidden" id="toc-control" />
-    <aside class="hidden clearfix">
-      
-  <nav id="TableOfContents">
-  <ul>
-    <li><a href="#判定方法">判定方法</a></li>
-    <li><a href="#実装">実装</a></li>
-  </ul>
-</nav>
-
-
-    </aside>
-  
- 
-      </header>
-
-      
-<article class="markdown"><h1 id="衝突判定を実装">衝突判定を実装</h1>
-<h2 id="判定方法">判定方法</h2>
-<p><a href="https://fal-works.github.io/make-games-with-p5js-src/07-collision/one-on-one/" target="_blank">説明用スケッチ</a>
-<a href="https://fal-works.github.io/make-games-with-p5js-src/07-collision/one-on-one/" target="_blank"><img src="./one-on-one-collision.png" alt="説明用スケッチ"></a></p>
-<p>四角形 A と四角形 B が衝突しているかどうかを確認する方法：</p>
-<ol>
-<li>A, B の x 軸方向での距離が十分に開いていたら、衝突していない</li>
-<li>A, B の y 軸方向での距離が十分に開いていたら、衝突していない</li>
-<li>x, y 両方で距離が近ければ、衝突している</li>
-</ol>
-<p>これを実装すると次のようになる</p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
+    <link rel="stylesheet" href="https://fal-works.github.io/make-games-with-p5js/css/chroma-style.css" />
+  </head>
+
+  <body>
+    <input type="checkbox" class="hidden" id="menu-control" />
+    <main class="container flex">
+      <aside class="book-menu">
+        <nav>
+          <h2 class="book-brand">
+            <a href="/make-games-with-p5js"><span>p5.js でゲーム制作</span> </a>
+          </h2>
+
+          <ul>
+            <li>
+              <a href="/make-games-with-p5js/docs/introduction/">
+                はじめに
+              </a>
+
+              <ul>
+                <li>
+                  <a href="/make-games-with-p5js/docs/introduction/overview/">
+                    進め方
+                  </a>
+                </li>
+
+                <li>
+                  <a href="/make-games-with-p5js/docs/introduction/prepare/">
+                    準備
+                  </a>
+                </li>
+
+                <li>
+                  <a href="/make-games-with-p5js/docs/introduction/basic-sketch/">
+                    p5.js スケッチの基本構造
+                  </a>
+                </li>
+              </ul>
+            </li>
+
+            <li>
+              <a href="/make-games-with-p5js/docs/flappy-bird-like/">
+                Flappy Bird ライクなゲーム
+              </a>
+
+              <ul>
+                <li>
+                  <a href="/make-games-with-p5js/docs/flappy-bird-like/design/">
+                    最初に少し考えてみる
+                  </a>
+                </li>
+
+                <li>
+                  <a href="/make-games-with-p5js/docs/flappy-bird-like/player/">
+                    プレイヤーだけ実装
+                  </a>
+                </li>
+
+                <li>
+                  <a href="/make-games-with-p5js/docs/flappy-bird-like/block/">
+                    ブロック1個だけ実装
+                  </a>
+                </li>
+
+                <li>
+                  <a href="/make-games-with-p5js/docs/flappy-bird-like/visuals/">
+                    見た目をアレンジ
+                  </a>
+
+                  <ul>
+                    <li>
+                      <a href="/make-games-with-p5js/docs/flappy-bird-like/visuals/colors/">
+                        p5.js の色指定
+                      </a>
+                    </li>
+                  </ul>
+                </li>
+
+                <li>
+                  <a href="/make-games-with-p5js/docs/flappy-bird-like/blocks/">
+                    ブロックを複数にする
+                  </a>
+                </li>
+
+                <li>
+                  <a href="/make-games-with-p5js/docs/flappy-bird-like/game-state/">
+                    ゲームオーバーを実装
+                  </a>
+                </li>
+
+                <li>
+                  <a href="/make-games-with-p5js/docs/flappy-bird-like/collision/" class="active">
+                    衝突判定を実装
+                  </a>
+                </li>
+              </ul>
+            </li>
+
+            <li>
+              <a href="/make-games-with-p5js/docs/arrange/">
+                アレンジいろいろ
+              </a>
+
+              <ul>
+                <li>
+                  <a href="/make-games-with-p5js/docs/arrange/particles/">
+                    パーティクルを追加
+                  </a>
+                </li>
+
+                <li>
+                  <a href="/make-games-with-p5js/docs/arrange/effects/">
+                    画面効果を追加
+                  </a>
+                </li>
+
+                <li>
+                  <a href="/make-games-with-p5js/docs/arrange/rules/">
+                    ルール変更
+                  </a>
+                </li>
+
+                <li>
+                  <a href="/make-games-with-p5js/docs/arrange/use-assets.md/">
+                    画像や音を使う
+                  </a>
+                </li>
+
+                <li>
+                  <a href="/make-games-with-p5js/docs/arrange/links/">
+                    参考リンク
+                  </a>
+                </li>
+              </ul>
+            </li>
+
+            <li>
+              <a href="/make-games-with-p5js/docs/license/">
+                著作権情報
+              </a>
+            </li>
+          </ul>
+        </nav>
+
+        <script>
+          (function() {
+            var menu = document.querySelector("aside.book-menu nav");
+            addEventListener("beforeunload", function(event) {
+              localStorage.setItem("menu.scrollTop", menu.scrollTop);
+            });
+            menu.scrollTop = localStorage.getItem("menu.scrollTop");
+          })();
+        </script>
+      </aside>
+
+      <div class="book-page">
+        <header class="book-header">
+          <div class="flex align-center justify-between">
+            <label for="menu-control">
+              <img src="/make-games-with-p5js/svg/menu.svg" class="book-icon" alt="Menu" />
+            </label>
+
+            <strong>衝突判定を実装</strong>
+
+            <label for="toc-control">
+              <img src="/make-games-with-p5js/svg/toc.svg" class="book-icon" alt="Table of Contents" />
+            </label>
+          </div>
+
+          <input type="checkbox" class="hidden" id="toc-control" />
+          <aside class="hidden clearfix">
+            <nav id="TableOfContents">
+              <ul>
+                <li><a href="#判定方法">判定方法</a></li>
+                <li><a href="#実装">実装</a></li>
+              </ul>
+            </nav>
+          </aside>
+        </header>
+
+        <article class="markdown">
+          <h1 id="衝突判定を実装">衝突判定を実装</h1>
+          <h2 id="判定方法">判定方法</h2>
+          <p>
+            <a href="https://fal-works.github.io/make-games-with-p5js-src/07-collision/one-on-one/" target="_blank"
+              >説明用スケッチ</a
+            >
+            <a href="https://fal-works.github.io/make-games-with-p5js-src/07-collision/one-on-one/" target="_blank"
+              ><img src="./one-on-one-collision.png" alt="説明用スケッチ"
+            /></a>
+          </p>
+          <p>四角形 A と四角形 B が衝突しているかどうかを確認する方法：</p>
+          <ol>
+            <li>A, B の x 軸方向での距離が十分に開いていたら、衝突していない</li>
+            <li>A, B の y 軸方向での距離が十分に開いていたら、衝突していない</li>
+            <li>x, y 両方で距離が近ければ、衝突している</li>
+          </ol>
+          <p>これを実装すると次のようになる</p>
+          <div class="highlight">
+            <div class="chroma">
+              <table class="lntable">
+                <tr>
+                  <td class="lntd">
+                    <pre class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -452,9 +256,10 @@ https://github.com/alex-shpak/hugo-book
 </span><span class="lnt">23
 </span><span class="lnt">24
 </span><span class="lnt">25
-</span></code></pre></td>
-<td class="lntd">
-<pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="cm">/**
+</span></code></pre>
+                  </td>
+                  <td class="lntd">
+                    <pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="cm">/**
 </span><span class="cm"> * 2つのエンティティが衝突しているかどうかをチェックする
 </span><span class="cm"> *
 </span><span class="cm"> * @param entityA 衝突しているかどうかを確認したいエンティティ
@@ -479,48 +284,66 @@ https://github.com/alex-shpak/hugo-book
 
   <span class="k">return</span> <span class="kc">true</span><span class="p">;</span> <span class="c1">// ここまで来たら、x方向でもy方向でも重なっているので true
 </span><span class="c1"></span><span class="p">}</span>
-</code></pre></td></tr></table>
-</div>
-</div><p>ここで、「衝突しないギリギリの距離」は次の通り</p>
-<ul>
-<li>x軸方向： <code>(A の幅の半分) + (B の幅の半分)</code></li>
-<li>y軸方向： <code>(A の高さの半分) + (B の高さの半分)</code></li>
-</ul>
-<div class="book-expand">
-  <label>
-    <div class="book-expand-head flex justify-between">
-      <span>余談： 衝突対象の形状と大きさ</span>
-      <span>↕</span>
-    </div>
-    <input type="checkbox" class="hidden" />
-    <div class="book-expand-content markdown-inner">
-      <h2 id="形状について">形状について</h2>
-<p>2次元空間で2つの物体の衝突を確認する方法として、大雑把に分けると次のようなものがあります。</p>
-<ul>
-<li>両方とも矩形（くけい）とみなし、x距離/y距離 を確認する</li>
-<li>両方とも円形とみなし、中心点同士の距離を確認する</li>
-<li>それぞれ別個に形状の情報をもたせ、形状の組み合わせに応じて適した処理をする</li>
-</ul>
-<p>※ 矩形は長方形と同じ意味。この文脈では矩形と呼ぶことの方がたぶん多い<br>
-※ 3次元だと矩形や円の代わりに立方体や球になる</p>
-<p>このなかで最も処理効率が良いのは、矩形同士の判定です。</p>
-<p>例えばストⅡなどの2D格闘ゲームでも、キャラ同士の当たり判定を矩形の組み合わせで行っていたようです。<br>
-参考： <a href="https://game.capcom.com/cfn/sfv/column-130393.html" target="_blank">https://game.capcom.com/cfn/sfv/column-130393.html</a></p>
-<h2 id="大きさについて">大きさについて</h2>
-<p>今回は表示する四角形の大きさと当たり判定に使う矩形の大きさを一致させていますが、その必然性は無いことに注意してください。</p>
-<p>また、今回の例だと当たるとゲームオーバーになりますが、遊ぶ人に「えぇ～いまの当たってなかったでしょ！！」と思わせてしまうと満足感が下がってしまいます。逆に、当たったように見えてゲームオーバーにならなかった場合は「ラッキー！ 当たらなかった」くらいにしか思われないので、表示されているグラフィックよりも当たり判定部分の大きさを少し小さめにするくらいでちょうどよい、ということも多いです。</p>
-
-    </div>
-  </label>
-</div>
-<h2 id="実装">実装</h2>
-<ol>
-<li>上述の衝突判定関数を用意する</li>
-<li>プレイヤー 対 各ブロック について判定し、衝突していたらゲームオーバー</li>
-</ol>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">  1
+</code></pre>
+                  </td>
+                </tr>
+              </table>
+            </div>
+          </div>
+          <p>ここで、「衝突しないギリギリの距離」は次の通り</p>
+          <ul>
+            <li>x軸方向： <code>(A の幅の半分) + (B の幅の半分)</code></li>
+            <li>y軸方向： <code>(A の高さの半分) + (B の高さの半分)</code></li>
+          </ul>
+          <div class="book-expand">
+            <label>
+              <div class="book-expand-head flex justify-between">
+                <span>余談： 衝突対象の形状と大きさ</span>
+                <span>↕</span>
+              </div>
+              <input type="checkbox" class="hidden" />
+              <div class="book-expand-content markdown-inner">
+                <h2 id="形状について">形状について</h2>
+                <p>2次元空間で2つの物体の衝突を確認する方法として、大雑把に分けると次のようなものがあります。</p>
+                <ul>
+                  <li>両方とも矩形（くけい）とみなし、x距離/y距離 を確認する</li>
+                  <li>両方とも円形とみなし、中心点同士の距離を確認する</li>
+                  <li>それぞれ別個に形状の情報をもたせ、形状の組み合わせに応じて適した処理をする</li>
+                </ul>
+                <p>
+                  ※ 矩形は長方形と同じ意味。この文脈では矩形と呼ぶことの方がたぶん多い<br />
+                  ※ 3次元だと矩形や円の代わりに立方体や球になる
+                </p>
+                <p>このなかで最も処理効率が良いのは、矩形同士の判定です。</p>
+                <p>
+                  例えばストⅡなどの2D格闘ゲームでも、キャラ同士の当たり判定を矩形の組み合わせで行っていたようです。<br />
+                  参考：
+                  <a href="https://game.capcom.com/cfn/sfv/column-130393.html" target="_blank"
+                    >https://game.capcom.com/cfn/sfv/column-130393.html</a
+                  >
+                </p>
+                <h2 id="大きさについて">大きさについて</h2>
+                <p>
+                  今回は表示する四角形の大きさと当たり判定に使う矩形の大きさを一致させていますが、その必然性は無いことに注意してください。
+                </p>
+                <p>
+                  また、今回の例だと当たるとゲームオーバーになりますが、遊ぶ人に「えぇ～いまの当たってなかったでしょ！！」と思わせてしまうと満足感が下がってしまいます。逆に、当たったように見えてゲームオーバーにならなかった場合は「ラッキー！
+                  当たらなかった」くらいにしか思われないので、表示されているグラフィックよりも当たり判定部分の大きさを少し小さめにするくらいでちょうどよい、ということも多いです。
+                </p>
+              </div>
+            </label>
+          </div>
+          <h2 id="実装">実装</h2>
+          <ol>
+            <li>上述の衝突判定関数を用意する</li>
+            <li>プレイヤー 対 各ブロック について判定し、衝突していたらゲームオーバー</li>
+          </ol>
+          <div class="highlight">
+            <div class="chroma">
+              <table class="lntable">
+                <tr>
+                  <td class="lntd">
+                    <pre class="chroma"><code><span class="lnt">  1
 </span><span class="lnt">  2
 </span><span class="lnt">  3
 </span><span class="lnt">  4
@@ -716,9 +539,12 @@ https://github.com/alex-shpak/hugo-book
 </span><span class="lnt">194
 </span><span class="lnt">195
 </span><span class="lnt">196
-</span></code></pre></td>
-<td class="lntd">
-<pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="c1">// ---- エンティティ関連の関数 ---------------------------------------------
+</span></code></pre>
+                  </td>
+                  <td class="lntd">
+                    <pre
+                      class="chroma"
+                    ><code class="language-javascript" data-lang="javascript"><span class="c1">// ---- エンティティ関連の関数 ---------------------------------------------
 </span><span class="c1"></span>
 <span class="c1">// 全エンティティ共通
 </span><span class="c1"></span>
@@ -914,30 +740,62 @@ https://github.com/alex-shpak/hugo-book
 <span class="kd">function</span> <span class="nx">mousePressed</span><span class="p">(</span><span class="p">)</span> <span class="p">{</span>
   <span class="nx">onMousePress</span><span class="p">(</span><span class="p">)</span><span class="p">;</span>
 <span class="p">}</span>
-</code></pre></td></tr></table>
-</div>
-</div><div class="book-expand">
-  <label>
-    <div class="book-expand-head flex justify-between">
-      <span>余談： マジックナンバー</span>
-      <span>↕</span>
-    </div>
-    <input type="checkbox" class="hidden" />
-    <div class="book-expand-content markdown-inner">
-      <h2 id="問題">問題</h2>
-<div class="highlight"><pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="k">if</span> <span class="p">(</span><span class="nx">entitiesAreColliding</span><span class="p">(</span><span class="nx">player</span><span class="p">,</span> <span class="nx">block</span><span class="p">,</span> <span class="mi">20</span> <span class="o">+</span> <span class="mi">40</span><span class="p">,</span> <span class="mi">20</span> <span class="o">+</span> <span class="mi">200</span><span class="p">)</span><span class="p">)</span> <span class="p">{</span>
+</code></pre>
+                  </td>
+                </tr>
+              </table>
+            </div>
+          </div>
+          <div class="book-expand">
+            <label>
+              <div class="book-expand-head flex justify-between">
+                <span>余談： マジックナンバー</span>
+                <span>↕</span>
+              </div>
+              <input type="checkbox" class="hidden" />
+              <div class="book-expand-content markdown-inner">
+                <h2 id="問題">問題</h2>
+                <div class="highlight">
+                  <pre
+                    class="chroma"
+                  ><code class="language-javascript" data-lang="javascript"><span class="k">if</span> <span class="p">(</span><span class="nx">entitiesAreColliding</span><span class="p">(</span><span class="nx">player</span><span class="p">,</span> <span class="nx">block</span><span class="p">,</span> <span class="mi">20</span> <span class="o">+</span> <span class="mi">40</span><span class="p">,</span> <span class="mi">20</span> <span class="o">+</span> <span class="mi">200</span><span class="p">)</span><span class="p">)</span> <span class="p">{</span>
   <span class="c1">// ...
 </span><span class="c1"></span><span class="p">}</span>
-</code></pre></div><p>ここの第3-4引数、「衝突しないギリギリの距離（x, y）」をプレイヤーの大きさとブロックの大きさを元にして決めているわけですが、パッと見なんだかよくわからないので、あまり良い書き方ではありませんね。</p>
-<p>これに限らず、コードのあちこちで数字を直接書いているので、「なにこの数字？」と思わせてしまう箇所が他にもあるかもしれません。</p>
-<p>こういうソースコード中に書かれた数字を<strong>マジックナンバー</strong>と言います。<br>
-参考： <a href="https://ja.wikipedia.org/wiki/%E3%83%9E%E3%82%B8%E3%83%83%E3%82%AF%E3%83%8A%E3%83%B3%E3%83%90%E3%83%BC_%28%E3%83%97%E3%83%AD%E3%82%B0%E3%83%A9%E3%83%A0%29" target="_blank">マジックナンバー（プログラム） - Wikipedia</a></p>
-<p>今回は素朴な書き方で進めましたが、こういったものは極力減らしたほうが後々のためになります。対処しない場合、たとえば数値を変えたいときに影響箇所を探しにくいというデメリットもあります。</p>
-<h2 id="対処">対処</h2>
-<h3 id="説明変数">説明変数</h3>
-<p>なんだこの数字？ と思わせてしまうのを避ける最も手軽な方法はコメントを付けることだと思われますが、場合によっては説明変数というものを書いたほうが読みやすくなります。</p>
-<p>問題の数値を使う直前のところで、いったんそれを変数（定数）として宣言しておくというもので、上記の <code>entitiesAreColliding()</code> の例で言うと、（命名にあまり自信ないのですが）次のような感じです。</p>
-<div class="highlight"><pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="kr">const</span> <span class="nx">playerHalfWidth</span> <span class="o">=</span> <span class="mi">20</span><span class="p">;</span>
+</code></pre>
+                </div>
+                <p>
+                  ここの第3-4引数、「衝突しないギリギリの距離（x,
+                  y）」をプレイヤーの大きさとブロックの大きさを元にして決めているわけですが、パッと見なんだかよくわからないので、あまり良い書き方ではありませんね。
+                </p>
+                <p>
+                  これに限らず、コードのあちこちで数字を直接書いているので、「なにこの数字？」と思わせてしまう箇所が他にもあるかもしれません。
+                </p>
+                <p>
+                  こういうソースコード中に書かれた数字を<strong>マジックナンバー</strong>と言います。<br />
+                  参考：
+                  <a
+                    href="https://ja.wikipedia.org/wiki/%E3%83%9E%E3%82%B8%E3%83%83%E3%82%AF%E3%83%8A%E3%83%B3%E3%83%90%E3%83%BC_%28%E3%83%97%E3%83%AD%E3%82%B0%E3%83%A9%E3%83%A0%29"
+                    target="_blank"
+                    >マジックナンバー（プログラム） - Wikipedia</a
+                  >
+                </p>
+                <p>
+                  今回は素朴な書き方で進めましたが、こういったものは極力減らしたほうが後々のためになります。対処しない場合、たとえば数値を変えたいときに影響箇所を探しにくいというデメリットもあります。
+                </p>
+                <h2 id="対処">対処</h2>
+                <h3 id="説明変数">説明変数</h3>
+                <p>
+                  なんだこの数字？
+                  と思わせてしまうのを避ける最も手軽な方法はコメントを付けることだと思われますが、場合によっては説明変数というものを書いたほうが読みやすくなります。
+                </p>
+                <p>
+                  問題の数値を使う直前のところで、いったんそれを変数（定数）として宣言しておくというもので、上記の
+                  <code>entitiesAreColliding()</code> の例で言うと、（命名にあまり自信ないのですが）次のような感じです。
+                </p>
+                <div class="highlight">
+                  <pre
+                    class="chroma"
+                  ><code class="language-javascript" data-lang="javascript"><span class="kr">const</span> <span class="nx">playerHalfWidth</span> <span class="o">=</span> <span class="mi">20</span><span class="p">;</span>
 <span class="kr">const</span> <span class="nx">playerHalfHeight</span> <span class="o">=</span> <span class="mi">20</span><span class="p">;</span>
 <span class="kr">const</span> <span class="nx">blockHalfWidth</span> <span class="o">=</span> <span class="mi">40</span><span class="p">;</span>
 <span class="kr">const</span> <span class="nx">blockHalfHeight</span> <span class="o">=</span> <span class="mi">200</span><span class="p">;</span>
@@ -949,129 +807,119 @@ https://github.com/alex-shpak/hugo-book
 <span class="p">)</span> <span class="p">{</span>
   <span class="c1">// ...
 </span><span class="c1"></span><span class="p">}</span>
-</code></pre></div><p>このように、数値の意味などを説明する目的で宣言する変数を<strong>説明変数</strong>と言います。</p>
-<p>コメントだと厳密にどの部分を指しているのか分かりにくく、「この〇〇っていう関数の、この第3引数に入れた数値の意味はですねぇ、……」みたいに迂遠になりがちなところ、説明変数は問題の対象をダイレクトで説明できます。</p>
-<h3 id="定数をまとめる">定数をまとめる</h3>
-<p>どうせ定数なんだったら一箇所でまとめて定義しておいたら分かりやすいのでは？</p>
-<p>ということで、次のような対処がありえます。</p>
-<ol>
-<li>プレイヤーとブロックの「描画する四角形のサイズ（width/height）」を定数として定める</li>
-<li>同じ場所に、プレイヤーとブロックの「衝突判定に用いる x/y 距離」を定数として定める</li>
-<li>1 と 2 はゆるやかに連動していて、どちらかを変えたらもう一方も調整が必要である旨、注釈を書いておく</li>
-<li><code>entitiesAreColliding()</code> の引数は、2 の数値を加算したものを入れる、<br>
-もしくは加算した結果をさらに別の定数として定める</li>
-</ol>
-<h3 id="グループ管理用オブジェクト">グループ管理用オブジェクト</h3>
-<p>定数をズラッと並べるのが美しくないと感じる場合は、プレイヤーやブロックといった単位でエンティティの種類を管理するための「エンティティグループ」という概念を新たに考えるという方法もあります。</p>
-<p>実装は、以下のような情報をまとめたオブジェクトという形になるでしょう。</p>
-<ul>
-<li>エンティティの配列</li>
-<li>描画用の関数など、そのグループ固有の関数群</li>
-<li>描画の大きさや衝突判定用の数値など、そのグループ固有のデータ</li>
-</ul>
+</code></pre>
+                </div>
+                <p>このように、数値の意味などを説明する目的で宣言する変数を<strong>説明変数</strong>と言います。</p>
+                <p>
+                  コメントだと厳密にどの部分を指しているのか分かりにくく、「この〇〇っていう関数の、この第3引数に入れた数値の意味はですねぇ、……」みたいに迂遠になりがちなところ、説明変数は問題の対象をダイレクトで説明できます。
+                </p>
+                <h3 id="定数をまとめる">定数をまとめる</h3>
+                <p>どうせ定数なんだったら一箇所でまとめて定義しておいたら分かりやすいのでは？</p>
+                <p>ということで、次のような対処がありえます。</p>
+                <ol>
+                  <li>プレイヤーとブロックの「描画する四角形のサイズ（width/height）」を定数として定める</li>
+                  <li>同じ場所に、プレイヤーとブロックの「衝突判定に用いる x/y 距離」を定数として定める</li>
+                  <li>
+                    1 と 2 はゆるやかに連動していて、どちらかを変えたらもう一方も調整が必要である旨、注釈を書いておく
+                  </li>
+                  <li>
+                    <code>entitiesAreColliding()</code> の引数は、2 の数値を加算したものを入れる、<br />
+                    もしくは加算した結果をさらに別の定数として定める
+                  </li>
+                </ol>
+                <h3 id="グループ管理用オブジェクト">グループ管理用オブジェクト</h3>
+                <p>
+                  定数をズラッと並べるのが美しくないと感じる場合は、プレイヤーやブロックといった単位でエンティティの種類を管理するための「エンティティグループ」という概念を新たに考えるという方法もあります。
+                </p>
+                <p>実装は、以下のような情報をまとめたオブジェクトという形になるでしょう。</p>
+                <ul>
+                  <li>エンティティの配列</li>
+                  <li>描画用の関数など、そのグループ固有の関数群</li>
+                  <li>描画の大きさや衝突判定用の数値など、そのグループ固有のデータ</li>
+                </ul>
+              </div>
+            </label>
+          </div>
+          <div class="book-expand">
+            <label>
+              <div class="book-expand-head flex justify-between">
+                <span>余談： 関数名 xxxIsAlive() の命名</span>
+                <span>↕</span>
+              </div>
+              <input type="checkbox" class="hidden" />
+              <div class="book-expand-content markdown-inner">
+                <p>
+                  衝突したらプレイヤーエンティティは死ぬ、とみなすほうが自然で、<code>playerIsAlive()</code>
+                  ではプレイヤーエンティティが画面下端まで落ちたかどうかしか分からない、これは名が体を表していないのでは？
+                  という問題があります。
+                </p>
+                <p>これはちょっと良い状態ではなくて、筆者も動作確認時にちょっと混乱したので、要改善な気がします。</p>
+                <p>
+                  位置の判定と衝突の判定を別々に処理している以上、処理結果を保存しておく必要があるはずで、となるとやっぱりエンティティに生死フラグを持たせるべきなのかもしれません。
+                </p>
+              </div>
+            </label>
+          </div>
+          <div class="book-expand">
+            <label>
+              <div class="book-expand-head flex justify-between">
+                <span>余談： 衝突判定の最適化</span>
+                <span>↕</span>
+              </div>
+              <input type="checkbox" class="hidden" />
+              <div class="book-expand-content markdown-inner">
+                <p>
+                  今回の例では総当たり的に衝突判定をしていますがこの場合、例えば物体が1000個あって相互に衝突可能だったりすると百万回弱のループが必要になり、しかもそれを継続的に繰り返さなければなりません。つまり、衝突判定は全体の中でもパフォーマンス上のボトルネックになりやすい要素の一つなのです。
+                </p>
+                <p>
+                  そのため、無駄な判定を削減するような高度な工夫がいろいろ存在します（筆者は自力でやったことはありません）。<br />
+                  参考：
+                  <a href="https://sbfl.net/blog/2017/12/03/javascript-collision/" target="_blank"
+                    >JavaScriptで大量のオブジェクトの当たり判定を効率的にとる</a
+                  >
+                </p>
+                <p>
+                  単純な削減方法としては、2フレームに1回判定すれば十分でしょ、みたいなサボり方をするというのがあり、市販のゲームでもそうしているケースはあるようです。半分になるだけで、桁が減るわけではないのですが（「計算量」の概念を調べよう）、キリキリ削減しなきゃいけない場合にはこういうのも選択肢になります。
+                </p>
+              </div>
+            </label>
+          </div>
+          <div class="book-expand">
+            <label>
+              <div class="book-expand-head flex justify-between">
+                <span>余談： その他、課題となりえる要素</span>
+                <span>↕</span>
+              </div>
+              <input type="checkbox" class="hidden" />
+              <div class="book-expand-content markdown-inner">
+                <ul>
+                  <li>
+                    物体の動きが速すぎると、衝突する範囲を飛び越えてすり抜けてしまう可能性があり、ちゃんとした物理エンジンはそういうのもチェックしたりするようです。
+                  </li>
+                  <li>
+                    衝突後の処理。衝突した時点でゲームが止まったり、どちらかが消滅したりすると楽なのですが、そうでない場合は押し返したり反発したりといった処理が必要になります。特にマリオ的なのを作ろうとすると、マリオとブロックとの衝突判定で変なところに引っかかったりして意外と苦労するかもしれません。
+                  </li>
+                </ul>
+              </div>
+            </label>
+          </div>
+        </article>
 
-    </div>
-  </label>
-</div>
-<div class="book-expand">
-  <label>
-    <div class="book-expand-head flex justify-between">
-      <span>余談： 関数名 xxxIsAlive() の命名</span>
-      <span>↕</span>
-    </div>
-    <input type="checkbox" class="hidden" />
-    <div class="book-expand-content markdown-inner">
-      <p>衝突したらプレイヤーエンティティは死ぬ、とみなすほうが自然で、<code>playerIsAlive()</code> ではプレイヤーエンティティが画面下端まで落ちたかどうかしか分からない、これは名が体を表していないのでは？ という問題があります。</p>
-<p>これはちょっと良い状態ではなくて、筆者も動作確認時にちょっと混乱したので、要改善な気がします。</p>
-<p>位置の判定と衝突の判定を別々に処理している以上、処理結果を保存しておく必要があるはずで、となるとやっぱりエンティティに生死フラグを持たせるべきなのかもしれません。</p>
+        <footer class="book-footer">
+          <div class="flex justify-between"></div>
 
-    </div>
-  </label>
-</div>
-<div class="book-expand">
-  <label>
-    <div class="book-expand-head flex justify-between">
-      <span>余談： 衝突判定の最適化</span>
-      <span>↕</span>
-    </div>
-    <input type="checkbox" class="hidden" />
-    <div class="book-expand-content markdown-inner">
-      <p>今回の例では総当たり的に衝突判定をしていますがこの場合、例えば物体が1000個あって相互に衝突可能だったりすると百万回弱のループが必要になり、しかもそれを継続的に繰り返さなければなりません。つまり、衝突判定は全体の中でもパフォーマンス上のボトルネックになりやすい要素の一つなのです。</p>
-<p>そのため、無駄な判定を削減するような高度な工夫がいろいろ存在します（筆者は自力でやったことはありません）。<br>
-参考： <a href="https://sbfl.net/blog/2017/12/03/javascript-collision/" target="_blank">JavaScriptで大量のオブジェクトの当たり判定を効率的にとる</a></p>
-<p>単純な削減方法としては、2フレームに1回判定すれば十分でしょ、みたいなサボり方をするというのがあり、市販のゲームでもそうしているケースはあるようです。半分になるだけで、桁が減るわけではないのですが（「計算量」の概念を調べよう）、キリキリ削減しなきゃいけない場合にはこういうのも選択肢になります。</p>
+          <div class="book-comments"></div>
+        </footer>
+      </div>
 
-    </div>
-  </label>
-</div>
-<div class="book-expand">
-  <label>
-    <div class="book-expand-head flex justify-between">
-      <span>余談： その他、課題となりえる要素</span>
-      <span>↕</span>
-    </div>
-    <input type="checkbox" class="hidden" />
-    <div class="book-expand-content markdown-inner">
-      <ul>
-<li>物体の動きが速すぎると、衝突する範囲を飛び越えてすり抜けてしまう可能性があり、ちゃんとした物理エンジンはそういうのもチェックしたりするようです。</li>
-<li>衝突後の処理。衝突した時点でゲームが止まったり、どちらかが消滅したりすると楽なのですが、そうでない場合は押し返したり反発したりといった処理が必要になります。特にマリオ的なのを作ろうとすると、マリオとブロックとの衝突判定で変なところに引っかかったりして意外と苦労するかもしれません。</li>
-</ul>
-    </div>
-  </label>
-</div>
-</article>
- 
-
-      <footer class="book-footer">
-        
-  <div class="flex justify-between">
-
-
-
-
-
-</div>
-
- 
-        
-  
-  <div class="book-comments">
-
-</div>
-  
- 
-      </footer>
-      
-    </div>
-
-    
-    <aside class="book-toc">
-      
-  <nav id="TableOfContents">
-  <ul>
-    <li><a href="#判定方法">判定方法</a></li>
-    <li><a href="#実装">実装</a></li>
-  </ul>
-</nav>
-
- 
-    </aside>
-    
-  </main>
-
-  
-</body>
-
+      <aside class="book-toc">
+        <nav id="TableOfContents">
+          <ul>
+            <li><a href="#判定方法">判定方法</a></li>
+            <li><a href="#実装">実装</a></li>
+          </ul>
+        </nav>
+      </aside>
+    </main>
+  </body>
 </html>
-
-
-
-
-
-
-
-
-
-
-
-

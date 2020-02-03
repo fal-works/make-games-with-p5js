@@ -1,462 +1,274 @@
 <!DOCTYPE html>
 <html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="ゲームオーバーを実装" />
+    <meta property="og:title" content="ゲームオーバーを実装" />
+    <meta
+      property="og:description"
+      content="ゲームオーバーを実装 ゲームオーバーになる条件は プレイヤーが画面下端まで落ちる プレイヤーがブロックに衝突する だったが、このうち 1. は 2. より簡単そ"
+    />
+    <meta property="og:type" content="article" />
+    <meta
+      property="og:url"
+      content="https://fal-works.github.io/make-games-with-p5js/docs/flappy-bird-like/game-state/"
+    />
+    <meta property="og:site_name" content="p5.js でゲーム制作" />
+    <title>ゲームオーバーを実装 | p5.js でゲーム制作</title>
+    <link rel="icon" href="/make-games-with-p5js/favicon.png" type="image/x-icon" />
 
-<head>
-  <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="ゲームオーバーを実装"><meta property="og:title" content="ゲームオーバーを実装" />
-<meta property="og:description" content="ゲームオーバーを実装 ゲームオーバーになる条件は プレイヤーが画面下端まで落ちる プレイヤーがブロックに衝突する だったが、このうち 1. は 2. より簡単そ" />
-<meta property="og:type" content="article" />
-<meta property="og:url" content="https://fal-works.github.io/make-games-with-p5js/docs/flappy-bird-like/game-state/" />
+    <link
+      rel="stylesheet"
+      href="/make-games-with-p5js/book.min.06fb39c93b652f68daea0425ce9d8c8e89546af90f99fdeaeca4ef34558ed719.css"
+      integrity="sha256-Bvs5yTtlL2ja6gQlzp2MjolUavkPmf3q7KTvNFWO1xk="
+    />
 
-<title>ゲームオーバーを実装 | p5.js でゲーム制作</title>
-<link rel="icon" href="/make-games-with-p5js/favicon.png" type="image/x-icon">
-
-
-<link rel="stylesheet" href="/make-games-with-p5js/book.min.06fb39c93b652f68daea0425ce9d8c8e89546af90f99fdeaeca4ef34558ed719.css" integrity="sha256-Bvs5yTtlL2ja6gQlzp2MjolUavkPmf3q7KTvNFWO1xk=">
-
-
-<!--
+    <!--
 Made with Book Theme
 https://github.com/alex-shpak/hugo-book
 -->
 
-  <link rel="stylesheet" href="https://fal-works.github.io/make-games-with-p5js/css/chroma-style.css" />
-</head>
-
-<body>
-  <input type="checkbox" class="hidden" id="menu-control" />
-  <main class="container flex">
-    <aside class="book-menu">
-      
-  <nav>
-<h2 class="book-brand">
-  <a href="/make-games-with-p5js"><span>p5.js でゲーム制作</span>
-  </a>
-</h2>
-
-
-
-
-
-
-  
-
-  
-  
-
-
-
-
-
- 
-  
-    
-
-
-
-
-  
-  <ul>
-    
-      
-        
-
-  <li >
-    
-      
-
-  <a href="/make-games-with-p5js/docs/introduction/" >
-      はじめに
-  </a>
-
-
-    
-
-    
-
-
-
-
-  
-  <ul>
-    
-      
-        <li>
-
-  <a href="/make-games-with-p5js/docs/introduction/overview/" >
-      進め方
-  </a>
-
-</li>
-      
-    
-      
-        <li>
-
-  <a href="/make-games-with-p5js/docs/introduction/prepare/" >
-      準備
-  </a>
-
-</li>
-      
-    
-      
-        <li>
-
-  <a href="/make-games-with-p5js/docs/introduction/basic-sketch/" >
-      p5.js スケッチの基本構造
-  </a>
-
-</li>
-      
-    
-  </ul>
-  
-
-
-
-  </li>
-
-
-      
-    
-      
-        
-
-  <li >
-    
-      
-
-  <a href="/make-games-with-p5js/docs/flappy-bird-like/" >
-      Flappy Bird ライクなゲーム
-  </a>
-
-
-    
-
-    
-
-
-
-
-  
-  <ul>
-    
-      
-        <li>
-
-  <a href="/make-games-with-p5js/docs/flappy-bird-like/design/" >
-      最初に少し考えてみる
-  </a>
-
-</li>
-      
-    
-      
-        <li>
-
-  <a href="/make-games-with-p5js/docs/flappy-bird-like/player/" >
-      プレイヤーだけ実装
-  </a>
-
-</li>
-      
-    
-      
-        <li>
-
-  <a href="/make-games-with-p5js/docs/flappy-bird-like/block/" >
-      ブロック1個だけ実装
-  </a>
-
-</li>
-      
-    
-      
-        
-
-  <li >
-    
-      
-
-  <a href="/make-games-with-p5js/docs/flappy-bird-like/visuals/" >
-      見た目をアレンジ
-  </a>
-
-
-    
-
-    
-
-
-
-
-  
-  <ul>
-    
-      
-        <li>
-
-  <a href="/make-games-with-p5js/docs/flappy-bird-like/visuals/colors/" >
-      p5.js の色指定
-  </a>
-
-</li>
-      
-    
-  </ul>
-  
-
-
-
-  </li>
-
-
-      
-    
-      
-        <li>
-
-  <a href="/make-games-with-p5js/docs/flappy-bird-like/blocks/" >
-      ブロックを複数にする
-  </a>
-
-</li>
-      
-    
-      
-        <li>
-
-  <a href="/make-games-with-p5js/docs/flappy-bird-like/game-state/"  class="active">
-      ゲームオーバーを実装
-  </a>
-
-</li>
-      
-    
-      
-        <li>
-
-  <a href="/make-games-with-p5js/docs/flappy-bird-like/collision/" >
-      衝突判定を実装
-  </a>
-
-</li>
-      
-    
-  </ul>
-  
-
-
-
-  </li>
-
-
-      
-    
-      
-        
-
-  <li >
-    
-      
-
-  <a href="/make-games-with-p5js/docs/arrange/" >
-      アレンジいろいろ
-  </a>
-
-
-    
-
-    
-
-
-
-
-  
-  <ul>
-    
-      
-        <li>
-
-  <a href="/make-games-with-p5js/docs/arrange/particles/" >
-      パーティクルを追加
-  </a>
-
-</li>
-      
-    
-      
-        <li>
-
-  <a href="/make-games-with-p5js/docs/arrange/effects/" >
-      画面効果を追加
-  </a>
-
-</li>
-      
-    
-      
-        <li>
-
-  <a href="/make-games-with-p5js/docs/arrange/rules/" >
-      ルール変更
-  </a>
-
-</li>
-      
-    
-      
-        <li>
-
-  <a href="/make-games-with-p5js/docs/arrange/use-assets.md/" >
-      画像や音を使う
-  </a>
-
-</li>
-      
-    
-      
-        <li>
-
-  <a href="/make-games-with-p5js/docs/arrange/links/" >
-      参考リンク
-  </a>
-
-</li>
-      
-    
-  </ul>
-  
-
-
-
-  </li>
-
-
-      
-    
-      
-        <li>
-
-  <a href="/make-games-with-p5js/docs/license/" >
-      著作権情報
-  </a>
-
-</li>
-      
-    
-  </ul>
-  
-
-
-
-  
-
-
-
-
-
-
-
-
-
-
-
-</nav>
-
-
-<script>
-(function() {
-  var menu = document.querySelector("aside.book-menu nav");
-  addEventListener("beforeunload", function(event) {
-    localStorage.setItem("menu.scrollTop", menu.scrollTop);
-  });
-  menu.scrollTop = localStorage.getItem("menu.scrollTop");
-})();
-</script>
-
- 
-    </aside>
-
-    <div class="book-page">
-      <header class="book-header">
-        
-  <div class="flex align-center justify-between">
-  <label for="menu-control">
-    <img src="/make-games-with-p5js/svg/menu.svg" class="book-icon" alt="Menu" />
-  </label>
-
-  <strong>ゲームオーバーを実装</strong>
-
-  <label for="toc-control">
-    <img src="/make-games-with-p5js/svg/toc.svg" class="book-icon" alt="Table of Contents" />
-  </label>
-</div>
-
-
-  
-    <input type="checkbox" class="hidden" id="toc-control" />
-    <aside class="hidden clearfix">
-      
-  <nav id="TableOfContents">
-  <ul>
-    <li><a href="#準備-setupdraw-の中身を整理する">準備： setup/draw の中身を整理する</a>
-      <ul>
-        <li><a href="#理由">理由</a></li>
-        <li><a href="#やること">やること</a></li>
-        <li><a href="#まず引越し先を用意する">まず引越し先を用意する</a></li>
-        <li><a href="#引っ越す">引っ越す</a></li>
-      </ul>
-    </li>
-    <li><a href="#プレイゲームオーバー-の2状態を作って切り替える">プレイ／ゲームオーバー の2状態を作って切り替える</a>
-      <ul>
-        <li><a href="#ゲームオーバー状態がプレイ状態と異なる点">ゲームオーバー状態がプレイ状態と異なる点</a></li>
-        <li><a href="#やること-1">やること</a></li>
-        <li><a href="#必要な関数が揃っていると仮定して書いてみる">必要な関数が揃っている、と仮定して書いてみる</a></li>
-        <li><a href="#必要な関数を実装して完成">必要な関数を実装して完成</a></li>
-      </ul>
-    </li>
-  </ul>
-</nav>
-
-
-    </aside>
-  
- 
-      </header>
-
-      
-<article class="markdown"><h1 id="ゲームオーバーを実装">ゲームオーバーを実装</h1>
-<p>ゲームオーバーになる条件は</p>
-<ol>
-<li>プレイヤーが画面下端まで落ちる</li>
-<li>プレイヤーがブロックに衝突する</li>
-</ol>
-<p>だったが、このうち 1. は 2. より簡単そうなので、このタイミングで実装する</p>
-<p>加えて、ゲームオーバー後にクリックしたらリセット → もう一度遊べるようにする</p>
-<h2 id="準備-setupdraw-の中身を整理する">準備： setup/draw の中身を整理する</h2>
-<h3 id="理由">理由</h3>
-<ul>
-<li>初期化処理が <code>setup()</code> の中にあると「リセットして最初に戻る」のがやりにくい</li>
-<li><code>draw()</code> の中身が増えてきたので、更新処理／描画処理 の2つに分けて整理したい</li>
-<li><code>setup()</code>/<code>draw()</code> は p5.js スケッチを実行するときの入り口にあたる。<br>
-入り口をシンプルに保っておくと全体の複雑化に対応できる</li>
-</ul>
-<h3 id="やること">やること</h3>
-<p>以下のそれぞれについて、新たに専用の関数を用意し、<br>
-「setup/draw 他」セクションから「ゲーム全体に関わる部分」セクションへ引っ越す</p>
-<ol>
-<li><code>setup()</code> の中の初期化処理</li>
-<li><code>draw()</code> の中の更新処理</li>
-<li><code>draw()</code> の中の描画処理</li>
-<li><code>mousePressed()</code> の中身（マウスボタンが押されたときの処理）</li>
-</ol>
-<h3 id="まず引越し先を用意する">まず引越し先を用意する</h3>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">60
+    <link rel="stylesheet" href="https://fal-works.github.io/make-games-with-p5js/css/chroma-style.css" />
+  </head>
+
+  <body>
+    <input type="checkbox" class="hidden" id="menu-control" />
+    <main class="container flex">
+      <aside class="book-menu">
+        <nav>
+          <h2 class="book-brand">
+            <a href="/make-games-with-p5js"><span>p5.js でゲーム制作</span> </a>
+          </h2>
+
+          <ul>
+            <li>
+              <a href="/make-games-with-p5js/docs/introduction/">
+                はじめに
+              </a>
+
+              <ul>
+                <li>
+                  <a href="/make-games-with-p5js/docs/introduction/overview/">
+                    進め方
+                  </a>
+                </li>
+
+                <li>
+                  <a href="/make-games-with-p5js/docs/introduction/prepare/">
+                    準備
+                  </a>
+                </li>
+
+                <li>
+                  <a href="/make-games-with-p5js/docs/introduction/basic-sketch/">
+                    p5.js スケッチの基本構造
+                  </a>
+                </li>
+              </ul>
+            </li>
+
+            <li>
+              <a href="/make-games-with-p5js/docs/flappy-bird-like/">
+                Flappy Bird ライクなゲーム
+              </a>
+
+              <ul>
+                <li>
+                  <a href="/make-games-with-p5js/docs/flappy-bird-like/design/">
+                    最初に少し考えてみる
+                  </a>
+                </li>
+
+                <li>
+                  <a href="/make-games-with-p5js/docs/flappy-bird-like/player/">
+                    プレイヤーだけ実装
+                  </a>
+                </li>
+
+                <li>
+                  <a href="/make-games-with-p5js/docs/flappy-bird-like/block/">
+                    ブロック1個だけ実装
+                  </a>
+                </li>
+
+                <li>
+                  <a href="/make-games-with-p5js/docs/flappy-bird-like/visuals/">
+                    見た目をアレンジ
+                  </a>
+
+                  <ul>
+                    <li>
+                      <a href="/make-games-with-p5js/docs/flappy-bird-like/visuals/colors/">
+                        p5.js の色指定
+                      </a>
+                    </li>
+                  </ul>
+                </li>
+
+                <li>
+                  <a href="/make-games-with-p5js/docs/flappy-bird-like/blocks/">
+                    ブロックを複数にする
+                  </a>
+                </li>
+
+                <li>
+                  <a href="/make-games-with-p5js/docs/flappy-bird-like/game-state/" class="active">
+                    ゲームオーバーを実装
+                  </a>
+                </li>
+
+                <li>
+                  <a href="/make-games-with-p5js/docs/flappy-bird-like/collision/">
+                    衝突判定を実装
+                  </a>
+                </li>
+              </ul>
+            </li>
+
+            <li>
+              <a href="/make-games-with-p5js/docs/arrange/">
+                アレンジいろいろ
+              </a>
+
+              <ul>
+                <li>
+                  <a href="/make-games-with-p5js/docs/arrange/particles/">
+                    パーティクルを追加
+                  </a>
+                </li>
+
+                <li>
+                  <a href="/make-games-with-p5js/docs/arrange/effects/">
+                    画面効果を追加
+                  </a>
+                </li>
+
+                <li>
+                  <a href="/make-games-with-p5js/docs/arrange/rules/">
+                    ルール変更
+                  </a>
+                </li>
+
+                <li>
+                  <a href="/make-games-with-p5js/docs/arrange/use-assets.md/">
+                    画像や音を使う
+                  </a>
+                </li>
+
+                <li>
+                  <a href="/make-games-with-p5js/docs/arrange/links/">
+                    参考リンク
+                  </a>
+                </li>
+              </ul>
+            </li>
+
+            <li>
+              <a href="/make-games-with-p5js/docs/license/">
+                著作権情報
+              </a>
+            </li>
+          </ul>
+        </nav>
+
+        <script>
+          (function() {
+            var menu = document.querySelector("aside.book-menu nav");
+            addEventListener("beforeunload", function(event) {
+              localStorage.setItem("menu.scrollTop", menu.scrollTop);
+            });
+            menu.scrollTop = localStorage.getItem("menu.scrollTop");
+          })();
+        </script>
+      </aside>
+
+      <div class="book-page">
+        <header class="book-header">
+          <div class="flex align-center justify-between">
+            <label for="menu-control">
+              <img src="/make-games-with-p5js/svg/menu.svg" class="book-icon" alt="Menu" />
+            </label>
+
+            <strong>ゲームオーバーを実装</strong>
+
+            <label for="toc-control">
+              <img src="/make-games-with-p5js/svg/toc.svg" class="book-icon" alt="Table of Contents" />
+            </label>
+          </div>
+
+          <input type="checkbox" class="hidden" id="toc-control" />
+          <aside class="hidden clearfix">
+            <nav id="TableOfContents">
+              <ul>
+                <li>
+                  <a href="#準備-setupdraw-の中身を整理する">準備： setup/draw の中身を整理する</a>
+                  <ul>
+                    <li><a href="#理由">理由</a></li>
+                    <li><a href="#やること">やること</a></li>
+                    <li><a href="#まず引越し先を用意する">まず引越し先を用意する</a></li>
+                    <li><a href="#引っ越す">引っ越す</a></li>
+                  </ul>
+                </li>
+                <li>
+                  <a href="#プレイゲームオーバー-の2状態を作って切り替える"
+                    >プレイ／ゲームオーバー の2状態を作って切り替える</a
+                  >
+                  <ul>
+                    <li>
+                      <a href="#ゲームオーバー状態がプレイ状態と異なる点">ゲームオーバー状態がプレイ状態と異なる点</a>
+                    </li>
+                    <li><a href="#やること-1">やること</a></li>
+                    <li>
+                      <a href="#必要な関数が揃っていると仮定して書いてみる"
+                        >必要な関数が揃っている、と仮定して書いてみる</a
+                      >
+                    </li>
+                    <li><a href="#必要な関数を実装して完成">必要な関数を実装して完成</a></li>
+                  </ul>
+                </li>
+              </ul>
+            </nav>
+          </aside>
+        </header>
+
+        <article class="markdown">
+          <h1 id="ゲームオーバーを実装">ゲームオーバーを実装</h1>
+          <p>ゲームオーバーになる条件は</p>
+          <ol>
+            <li>プレイヤーが画面下端まで落ちる</li>
+            <li>プレイヤーがブロックに衝突する</li>
+          </ol>
+          <p>だったが、このうち 1. は 2. より簡単そうなので、このタイミングで実装する</p>
+          <p>加えて、ゲームオーバー後にクリックしたらリセット → もう一度遊べるようにする</p>
+          <h2 id="準備-setupdraw-の中身を整理する">準備： setup/draw の中身を整理する</h2>
+          <h3 id="理由">理由</h3>
+          <ul>
+            <li>初期化処理が <code>setup()</code> の中にあると「リセットして最初に戻る」のがやりにくい</li>
+            <li><code>draw()</code> の中身が増えてきたので、更新処理／描画処理 の2つに分けて整理したい</li>
+            <li>
+              <code>setup()</code>/<code>draw()</code> は p5.js スケッチを実行するときの入り口にあたる。<br />
+              入り口をシンプルに保っておくと全体の複雑化に対応できる
+            </li>
+          </ul>
+          <h3 id="やること">やること</h3>
+          <p>
+            以下のそれぞれについて、新たに専用の関数を用意し、<br />
+            「setup/draw 他」セクションから「ゲーム全体に関わる部分」セクションへ引っ越す
+          </p>
+          <ol>
+            <li><code>setup()</code> の中の初期化処理</li>
+            <li><code>draw()</code> の中の更新処理</li>
+            <li><code>draw()</code> の中の描画処理</li>
+            <li><code>mousePressed()</code> の中身（マウスボタンが押されたときの処理）</li>
+          </ol>
+          <h3 id="まず引越し先を用意する">まず引越し先を用意する</h3>
+          <div class="highlight">
+            <div class="chroma">
+              <table class="lntable">
+                <tr>
+                  <td class="lntd">
+                    <pre class="chroma"><code><span class="lnt">60
 </span><span class="lnt">61
 </span><span class="lnt">62
 </span><span class="lnt">63
@@ -490,9 +302,12 @@ https://github.com/alex-shpak/hugo-book
 </span></span><span class="hl"><span class="lnt">91
 </span></span><span class="hl"><span class="lnt">92
 </span></span><span class="hl"><span class="lnt">93
-</span></span></code></pre></td>
-<td class="lntd">
-<pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="c1">// ---- ゲーム全体に関わる部分 ----------------------------------------------
+</span></span></code></pre>
+                  </td>
+                  <td class="lntd">
+                    <pre
+                      class="chroma"
+                    ><code class="language-javascript" data-lang="javascript"><span class="c1">// ---- ゲーム全体に関わる部分 ----------------------------------------------
 </span><span class="c1"></span>
 <span class="cm">/** プレイヤーエンティティ */</span>
 <span class="kd">let</span> <span class="nx">player</span><span class="p">;</span>
@@ -526,14 +341,23 @@ https://github.com/alex-shpak/hugo-book
 </span><span class="hl"><span class="kd">function</span> <span class="nx">onMousePress</span><span class="p">(</span><span class="p">)</span> <span class="p">{</span>
 </span><span class="hl">  <span class="c1">// （あとで）
 </span></span><span class="hl"><span class="c1"></span><span class="p">}</span>
-</span></code></pre></td></tr></table>
-</div>
-</div><h3 id="引っ越す">引っ越す</h3>
-<p>「setup/draw 他」セクションに書いてあった処理が、特に変更されることなく<br>
-「ゲーム全体に関わる部分」セクションにごっそり移動している</p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">60
+</span></code></pre>
+                  </td>
+                </tr>
+              </table>
+            </div>
+          </div>
+          <h3 id="引っ越す">引っ越す</h3>
+          <p>
+            「setup/draw 他」セクションに書いてあった処理が、特に変更されることなく<br />
+            「ゲーム全体に関わる部分」セクションにごっそり移動している
+          </p>
+          <div class="highlight">
+            <div class="chroma">
+              <table class="lntable">
+                <tr>
+                  <td class="lntd">
+                    <pre class="chroma"><code><span class="lnt">60
 </span><span class="lnt">61
 </span><span class="lnt">62
 </span><span class="lnt">63
@@ -602,9 +426,12 @@ https://github.com/alex-shpak/hugo-book
 </span><span class="lnt">126
 </span><span class="hl"><span class="lnt">127
 </span></span><span class="lnt">128
-</span></code></pre></td>
-<td class="lntd">
-<pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="c1">// ---- ゲーム全体に関わる部分 ----------------------------------------------
+</span></code></pre>
+                  </td>
+                  <td class="lntd">
+                    <pre
+                      class="chroma"
+                    ><code class="language-javascript" data-lang="javascript"><span class="c1">// ---- ゲーム全体に関わる部分 ----------------------------------------------
 </span><span class="c1"></span>
 <span class="cm">/** プレイヤーエンティティ */</span>
 <span class="kd">let</span> <span class="nx">player</span><span class="p">;</span>
@@ -673,46 +500,60 @@ https://github.com/alex-shpak/hugo-book
 <span class="kd">function</span> <span class="nx">mousePressed</span><span class="p">(</span><span class="p">)</span> <span class="p">{</span>
 <span class="hl">  <span class="nx">onMousePress</span><span class="p">(</span><span class="p">)</span><span class="p">;</span>
 </span><span class="p">}</span>
-</code></pre></td></tr></table>
-</div>
-</div><h2 id="プレイゲームオーバー-の2状態を作って切り替える">プレイ／ゲームオーバー の2状態を作って切り替える</h2>
-<h3 id="ゲームオーバー状態がプレイ状態と異なる点">ゲームオーバー状態がプレイ状態と異なる点</h3>
-<ul>
-<li>画面の動きが止まる</li>
-<li>&ldquo;GAME OVER&rdquo; と表示される</li>
-<li>マウスボタンを押したらリセットされる</li>
-</ul>
-<h3 id="やること-1">やること</h3>
-<ol>
-<li>プレイ／ゲームオーバー の状態を管理する変数を用意する</li>
-<li>ゲームのリセット処理
-<ul>
-<li>プレイ状態で始まるようにする</li>
-</ul>
-</li>
-<li>ゲームの更新処理
-<ul>
-<li>ゲームオーバー状態のときは動きを止める（エンティティを更新しない）</li>
-<li>プレイヤーが死んでいたらゲームオーバー状態にする</li>
-</ul>
-</li>
-<li>ゲームの描画処理
-<ul>
-<li>ゲームオーバー状態のときは通常の描画に加えて &ldquo;GAME OVER&rdquo; と表示する</li>
-</ul>
-</li>
-<li>マウスボタンを押したときの処理
-<ul>
-<li>プレイ状態ならジャンプ（従来どおり）</li>
-<li>ゲームオーバー状態ならリセット</li>
-</ul>
-</li>
-</ol>
-<h3 id="必要な関数が揃っていると仮定して書いてみる">必要な関数が揃っている、と仮定して書いてみる</h3>
-<p>※ このコードは動きません（<code>playerIsAlive()</code> と <code>drawGameoverScreen()</code> が存在しないため）</p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">60
+</code></pre>
+                  </td>
+                </tr>
+              </table>
+            </div>
+          </div>
+          <h2 id="プレイゲームオーバー-の2状態を作って切り替える">プレイ／ゲームオーバー の2状態を作って切り替える</h2>
+          <h3 id="ゲームオーバー状態がプレイ状態と異なる点">ゲームオーバー状態がプレイ状態と異なる点</h3>
+          <ul>
+            <li>画面の動きが止まる</li>
+            <li>&ldquo;GAME OVER&rdquo; と表示される</li>
+            <li>マウスボタンを押したらリセットされる</li>
+          </ul>
+          <h3 id="やること-1">やること</h3>
+          <ol>
+            <li>プレイ／ゲームオーバー の状態を管理する変数を用意する</li>
+            <li>
+              ゲームのリセット処理
+              <ul>
+                <li>プレイ状態で始まるようにする</li>
+              </ul>
+            </li>
+            <li>
+              ゲームの更新処理
+              <ul>
+                <li>ゲームオーバー状態のときは動きを止める（エンティティを更新しない）</li>
+                <li>プレイヤーが死んでいたらゲームオーバー状態にする</li>
+              </ul>
+            </li>
+            <li>
+              ゲームの描画処理
+              <ul>
+                <li>ゲームオーバー状態のときは通常の描画に加えて &ldquo;GAME OVER&rdquo; と表示する</li>
+              </ul>
+            </li>
+            <li>
+              マウスボタンを押したときの処理
+              <ul>
+                <li>プレイ状態ならジャンプ（従来どおり）</li>
+                <li>ゲームオーバー状態ならリセット</li>
+              </ul>
+            </li>
+          </ol>
+          <h3 id="必要な関数が揃っていると仮定して書いてみる">必要な関数が揃っている、と仮定して書いてみる</h3>
+          <p>
+            ※ このコードは動きません（<code>playerIsAlive()</code> と
+            <code>drawGameoverScreen()</code> が存在しないため）
+          </p>
+          <div class="highlight">
+            <div class="chroma">
+              <table class="lntable">
+                <tr>
+                  <td class="lntd">
+                    <pre class="chroma"><code><span class="lnt">60
 </span><span class="lnt">61
 </span><span class="lnt">62
 </span><span class="lnt">63
@@ -786,9 +627,12 @@ https://github.com/alex-shpak/hugo-book
 </span></span><span class="hl"><span class="lnt">131
 </span></span><span class="hl"><span class="lnt">132
 </span></span><span class="lnt">133
-</span></code></pre></td>
-<td class="lntd">
-<pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="c1">// ---- ゲーム全体に関わる部分 --------------------------------------------
+</span></code></pre>
+                  </td>
+                  <td class="lntd">
+                    <pre
+                      class="chroma"
+                    ><code class="language-javascript" data-lang="javascript"><span class="c1">// ---- ゲーム全体に関わる部分 --------------------------------------------
 </span><span class="c1"></span>
 <span class="cm">/** プレイヤーエンティティ */</span>
 <span class="kd">let</span> <span class="nx">player</span><span class="p">;</span>
@@ -862,13 +706,20 @@ https://github.com/alex-shpak/hugo-book
 </span><span class="hl">      <span class="k">break</span><span class="p">;</span>
 </span><span class="hl">  <span class="p">}</span>
 </span><span class="p">}</span>
-</code></pre></td></tr></table>
-</div>
-</div><h3 id="必要な関数を実装して完成">必要な関数を実装して完成</h3>
-<p><code>playerIsAlive()</code> と <code>drawGameoverScreen()</code> を実装しただけ</p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">  1
+</code></pre>
+                  </td>
+                </tr>
+              </table>
+            </div>
+          </div>
+          <h3 id="必要な関数を実装して完成">必要な関数を実装して完成</h3>
+          <p><code>playerIsAlive()</code> と <code>drawGameoverScreen()</code> を実装しただけ</p>
+          <div class="highlight">
+            <div class="chroma">
+              <table class="lntable">
+                <tr>
+                  <td class="lntd">
+                    <pre class="chroma"><code><span class="lnt">  1
 </span><span class="lnt">  2
 </span><span class="lnt">  3
 </span><span class="lnt">  4
@@ -1028,9 +879,12 @@ https://github.com/alex-shpak/hugo-book
 </span><span class="lnt">158
 </span><span class="lnt">159
 </span><span class="lnt">160
-</span></code></pre></td>
-<td class="lntd">
-<pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="c1">// ---- エンティティ関連の関数 ---------------------------------------------
+</span></code></pre>
+                  </td>
+                  <td class="lntd">
+                    <pre
+                      class="chroma"
+                    ><code class="language-javascript" data-lang="javascript"><span class="c1">// ---- エンティティ関連の関数 ---------------------------------------------
 </span><span class="c1"></span>
 <span class="c1">// 全エンティティ共通
 </span><span class="c1"></span>
@@ -1190,110 +1044,111 @@ https://github.com/alex-shpak/hugo-book
 <span class="kd">function</span> <span class="nx">mousePressed</span><span class="p">(</span><span class="p">)</span> <span class="p">{</span>
   <span class="nx">onMousePress</span><span class="p">(</span><span class="p">)</span><span class="p">;</span>
 <span class="p">}</span>
-</code></pre></td></tr></table>
-</div>
-</div><div class="book-expand">
-  <label>
-    <div class="book-expand-head flex justify-between">
-      <span>余談： frameCount の扱い</span>
-      <span>↕</span>
-    </div>
-    <input type="checkbox" class="hidden" />
-    <div class="book-expand-content markdown-inner">
-      <p>描画系の関数の中で <code>frameCount</code> を使って動きを出している場合、ゲームの更新処理を実行しようがしまいが <code>frameCount</code> の値は増えるので、その部分については動きを止められません。</p>
-<p><code>noLoop()</code> を使って <code>draw()</code> の実行を止めるという方法もありますが、これは本当にスケッチ全体を止めてしまうので、やっぱり一部だけ動かしたい、となったときに不便です。</p>
-<p>より綺麗に実装するなら、<code>frameCount</code> に相当する変数を他にもう一つ作ったり、エンティティごとに固有の <code>frameCount</code> 変数を持たせたりすると良いでしょう。</p>
+</code></pre>
+                  </td>
+                </tr>
+              </table>
+            </div>
+          </div>
+          <div class="book-expand">
+            <label>
+              <div class="book-expand-head flex justify-between">
+                <span>余談： frameCount の扱い</span>
+                <span>↕</span>
+              </div>
+              <input type="checkbox" class="hidden" />
+              <div class="book-expand-content markdown-inner">
+                <p>
+                  描画系の関数の中で
+                  <code>frameCount</code> を使って動きを出している場合、ゲームの更新処理を実行しようがしまいが
+                  <code>frameCount</code> の値は増えるので、その部分については動きを止められません。
+                </p>
+                <p>
+                  <code>noLoop()</code> を使って
+                  <code>draw()</code>
+                  の実行を止めるという方法もありますが、これは本当にスケッチ全体を止めてしまうので、やっぱり一部だけ動かしたい、となったときに不便です。
+                </p>
+                <p>
+                  より綺麗に実装するなら、<code>frameCount</code>
+                  に相当する変数を他にもう一つ作ったり、エンティティごとに固有の
+                  <code>frameCount</code> 変数を持たせたりすると良いでしょう。
+                </p>
+              </div>
+            </label>
+          </div>
+          <div class="book-expand">
+            <label>
+              <div class="book-expand-head flex justify-between">
+                <span>余談： 状態による分岐</span>
+                <span>↕</span>
+              </div>
+              <input type="checkbox" class="hidden" />
+              <div class="book-expand-content markdown-inner">
+                <p>
+                  <code>gameState</code> の値を見て <code>if</code> や
+                  <code>switch</code> で判定するのには、次の難点があります。
+                </p>
+                <ul>
+                  <li>
+                    <code>if</code> や
+                    <code>switch</code>
+                    での分岐をいろいろな場所でやっているので、状態の種類を増やすときにそれを全部見つけ出して直さねばならず、見落としが発生しやすい
+                  </li>
+                  <li>状態の種類が多いと分岐自体も複雑になって、読みにくいコードになる</li>
+                </ul>
+                <p>
+                  こういうときこそポリモーフィズムではないか、ということで状態によって変わる部分の処理を別の関数に切り出して、状態に応じて差し替えることでこの辺は改善されると思います。
+                </p>
+                <p>
+                  ただ、今回はプレイ状態でもゲームオーバー状態でも変数（<code>player</code> と
+                  <code>blocks</code
+                  >）を共有していますが、たとえばタイトル画面のための状態を増やすときにはそれは共有しないんじゃないの、そういうのを含めてどう構成するのがいいのかしら、という疑問がありえます。そのへん筆者はまだベストプラクティスみたいなのを分かっていないので、この先どんな改造をしたいかによるなぁくらいしか言えず、ひとまず今回は素朴な分岐にしました。
+                </p>
+                <p>
+                  あとゲーム状態（<code>gameState</code>）と書いたけど、ゲームシーンという呼び方をされることも多いです、ググるときのご参考に。
+                </p>
+              </div>
+            </label>
+          </div>
+        </article>
 
-    </div>
-  </label>
-</div>
-<div class="book-expand">
-  <label>
-    <div class="book-expand-head flex justify-between">
-      <span>余談： 状態による分岐</span>
-      <span>↕</span>
-    </div>
-    <input type="checkbox" class="hidden" />
-    <div class="book-expand-content markdown-inner">
-      <p><code>gameState</code> の値を見て <code>if</code> や <code>switch</code> で判定するのには、次の難点があります。</p>
-<ul>
-<li><code>if</code> や <code>switch</code> での分岐をいろいろな場所でやっているので、状態の種類を増やすときにそれを全部見つけ出して直さねばならず、見落としが発生しやすい</li>
-<li>状態の種類が多いと分岐自体も複雑になって、読みにくいコードになる</li>
-</ul>
-<p>こういうときこそポリモーフィズムではないか、ということで状態によって変わる部分の処理を別の関数に切り出して、状態に応じて差し替えることでこの辺は改善されると思います。</p>
-<p>ただ、今回はプレイ状態でもゲームオーバー状態でも変数（<code>player</code> と <code>blocks</code>）を共有していますが、たとえばタイトル画面のための状態を増やすときにはそれは共有しないんじゃないの、そういうのを含めてどう構成するのがいいのかしら、という疑問がありえます。そのへん筆者はまだベストプラクティスみたいなのを分かっていないので、この先どんな改造をしたいかによるなぁくらいしか言えず、ひとまず今回は素朴な分岐にしました。</p>
-<p>あとゲーム状態（<code>gameState</code>）と書いたけど、ゲームシーンという呼び方をされることも多いです、ググるときのご参考に。</p>
+        <footer class="book-footer">
+          <div class="flex justify-between"></div>
 
-    </div>
-  </label>
-</div>
-</article>
- 
+          <div class="book-comments"></div>
+        </footer>
+      </div>
 
-      <footer class="book-footer">
-        
-  <div class="flex justify-between">
-
-
-
-
-
-</div>
-
- 
-        
-  
-  <div class="book-comments">
-
-</div>
-  
- 
-      </footer>
-      
-    </div>
-
-    
-    <aside class="book-toc">
-      
-  <nav id="TableOfContents">
-  <ul>
-    <li><a href="#準備-setupdraw-の中身を整理する">準備： setup/draw の中身を整理する</a>
-      <ul>
-        <li><a href="#理由">理由</a></li>
-        <li><a href="#やること">やること</a></li>
-        <li><a href="#まず引越し先を用意する">まず引越し先を用意する</a></li>
-        <li><a href="#引っ越す">引っ越す</a></li>
-      </ul>
-    </li>
-    <li><a href="#プレイゲームオーバー-の2状態を作って切り替える">プレイ／ゲームオーバー の2状態を作って切り替える</a>
-      <ul>
-        <li><a href="#ゲームオーバー状態がプレイ状態と異なる点">ゲームオーバー状態がプレイ状態と異なる点</a></li>
-        <li><a href="#やること-1">やること</a></li>
-        <li><a href="#必要な関数が揃っていると仮定して書いてみる">必要な関数が揃っている、と仮定して書いてみる</a></li>
-        <li><a href="#必要な関数を実装して完成">必要な関数を実装して完成</a></li>
-      </ul>
-    </li>
-  </ul>
-</nav>
-
- 
-    </aside>
-    
-  </main>
-
-  
-</body>
-
+      <aside class="book-toc">
+        <nav id="TableOfContents">
+          <ul>
+            <li>
+              <a href="#準備-setupdraw-の中身を整理する">準備： setup/draw の中身を整理する</a>
+              <ul>
+                <li><a href="#理由">理由</a></li>
+                <li><a href="#やること">やること</a></li>
+                <li><a href="#まず引越し先を用意する">まず引越し先を用意する</a></li>
+                <li><a href="#引っ越す">引っ越す</a></li>
+              </ul>
+            </li>
+            <li>
+              <a href="#プレイゲームオーバー-の2状態を作って切り替える"
+                >プレイ／ゲームオーバー の2状態を作って切り替える</a
+              >
+              <ul>
+                <li>
+                  <a href="#ゲームオーバー状態がプレイ状態と異なる点">ゲームオーバー状態がプレイ状態と異なる点</a>
+                </li>
+                <li><a href="#やること-1">やること</a></li>
+                <li>
+                  <a href="#必要な関数が揃っていると仮定して書いてみる">必要な関数が揃っている、と仮定して書いてみる</a>
+                </li>
+                <li><a href="#必要な関数を実装して完成">必要な関数を実装して完成</a></li>
+              </ul>
+            </li>
+          </ul>
+        </nav>
+      </aside>
+    </main>
+  </body>
 </html>
-
-
-
-
-
-
-
-
-
-
-
-

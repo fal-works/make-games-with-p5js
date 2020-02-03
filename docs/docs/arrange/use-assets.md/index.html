@@ -1,554 +1,339 @@
 <!DOCTYPE html>
 <html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="画像や音を使う" />
+    <meta property="og:title" content="画像や音を使う" />
+    <meta
+      property="og:description"
+      content="画像や音を使う 単純な図形にとどまらず、もっとリッチな見た目にしたい人。 音楽や効果音を流してみたい人。 申し訳ないことにサンプルコードはありませ"
+    />
+    <meta property="og:type" content="article" />
+    <meta property="og:url" content="https://fal-works.github.io/make-games-with-p5js/docs/arrange/use-assets.md/" />
+    <meta property="og:site_name" content="p5.js でゲーム制作" />
+    <title>画像や音を使う | p5.js でゲーム制作</title>
+    <link rel="icon" href="/make-games-with-p5js/favicon.png" type="image/x-icon" />
 
-<head>
-  <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="画像や音を使う"><meta property="og:title" content="画像や音を使う" />
-<meta property="og:description" content="画像や音を使う 単純な図形にとどまらず、もっとリッチな見た目にしたい人。 音楽や効果音を流してみたい人。 申し訳ないことにサンプルコードはありませ" />
-<meta property="og:type" content="article" />
-<meta property="og:url" content="https://fal-works.github.io/make-games-with-p5js/docs/arrange/use-assets.md/" />
+    <link
+      rel="stylesheet"
+      href="/make-games-with-p5js/book.min.06fb39c93b652f68daea0425ce9d8c8e89546af90f99fdeaeca4ef34558ed719.css"
+      integrity="sha256-Bvs5yTtlL2ja6gQlzp2MjolUavkPmf3q7KTvNFWO1xk="
+    />
 
-<title>画像や音を使う | p5.js でゲーム制作</title>
-<link rel="icon" href="/make-games-with-p5js/favicon.png" type="image/x-icon">
-
-
-<link rel="stylesheet" href="/make-games-with-p5js/book.min.06fb39c93b652f68daea0425ce9d8c8e89546af90f99fdeaeca4ef34558ed719.css" integrity="sha256-Bvs5yTtlL2ja6gQlzp2MjolUavkPmf3q7KTvNFWO1xk=">
-
-
-<!--
+    <!--
 Made with Book Theme
 https://github.com/alex-shpak/hugo-book
 -->
 
-  <link rel="stylesheet" href="https://fal-works.github.io/make-games-with-p5js/css/chroma-style.css" />
-</head>
-
-<body>
-  <input type="checkbox" class="hidden" id="menu-control" />
-  <main class="container flex">
-    <aside class="book-menu">
-      
-  <nav>
-<h2 class="book-brand">
-  <a href="/make-games-with-p5js"><span>p5.js でゲーム制作</span>
-  </a>
-</h2>
-
-
-
-
-
-
-  
-
-  
-  
-
-
-
-
-
- 
-  
-    
-
-
-
-
-  
-  <ul>
-    
-      
-        
-
-  <li >
-    
-      
-
-  <a href="/make-games-with-p5js/docs/introduction/" >
-      はじめに
-  </a>
-
-
-    
-
-    
-
-
-
-
-  
-  <ul>
-    
-      
-        <li>
-
-  <a href="/make-games-with-p5js/docs/introduction/overview/" >
-      進め方
-  </a>
-
-</li>
-      
-    
-      
-        <li>
-
-  <a href="/make-games-with-p5js/docs/introduction/prepare/" >
-      準備
-  </a>
-
-</li>
-      
-    
-      
-        <li>
-
-  <a href="/make-games-with-p5js/docs/introduction/basic-sketch/" >
-      p5.js スケッチの基本構造
-  </a>
-
-</li>
-      
-    
-  </ul>
-  
-
-
-
-  </li>
-
-
-      
-    
-      
-        
-
-  <li >
-    
-      
-
-  <a href="/make-games-with-p5js/docs/flappy-bird-like/" >
-      Flappy Bird ライクなゲーム
-  </a>
-
-
-    
-
-    
-
-
-
-
-  
-  <ul>
-    
-      
-        <li>
-
-  <a href="/make-games-with-p5js/docs/flappy-bird-like/design/" >
-      最初に少し考えてみる
-  </a>
-
-</li>
-      
-    
-      
-        <li>
-
-  <a href="/make-games-with-p5js/docs/flappy-bird-like/player/" >
-      プレイヤーだけ実装
-  </a>
-
-</li>
-      
-    
-      
-        <li>
-
-  <a href="/make-games-with-p5js/docs/flappy-bird-like/block/" >
-      ブロック1個だけ実装
-  </a>
-
-</li>
-      
-    
-      
-        
-
-  <li >
-    
-      
-
-  <a href="/make-games-with-p5js/docs/flappy-bird-like/visuals/" >
-      見た目をアレンジ
-  </a>
-
-
-    
-
-    
-
-
-
-
-  
-  <ul>
-    
-      
-        <li>
-
-  <a href="/make-games-with-p5js/docs/flappy-bird-like/visuals/colors/" >
-      p5.js の色指定
-  </a>
-
-</li>
-      
-    
-  </ul>
-  
-
-
-
-  </li>
-
-
-      
-    
-      
-        <li>
-
-  <a href="/make-games-with-p5js/docs/flappy-bird-like/blocks/" >
-      ブロックを複数にする
-  </a>
-
-</li>
-      
-    
-      
-        <li>
-
-  <a href="/make-games-with-p5js/docs/flappy-bird-like/game-state/" >
-      ゲームオーバーを実装
-  </a>
-
-</li>
-      
-    
-      
-        <li>
-
-  <a href="/make-games-with-p5js/docs/flappy-bird-like/collision/" >
-      衝突判定を実装
-  </a>
-
-</li>
-      
-    
-  </ul>
-  
-
-
-
-  </li>
-
-
-      
-    
-      
-        
-
-  <li >
-    
-      
-
-  <a href="/make-games-with-p5js/docs/arrange/" >
-      アレンジいろいろ
-  </a>
-
-
-    
-
-    
-
-
-
-
-  
-  <ul>
-    
-      
-        <li>
-
-  <a href="/make-games-with-p5js/docs/arrange/particles/" >
-      パーティクルを追加
-  </a>
-
-</li>
-      
-    
-      
-        <li>
-
-  <a href="/make-games-with-p5js/docs/arrange/effects/" >
-      画面効果を追加
-  </a>
-
-</li>
-      
-    
-      
-        <li>
-
-  <a href="/make-games-with-p5js/docs/arrange/rules/" >
-      ルール変更
-  </a>
-
-</li>
-      
-    
-      
-        <li>
-
-  <a href="/make-games-with-p5js/docs/arrange/use-assets.md/"  class="active">
-      画像や音を使う
-  </a>
-
-</li>
-      
-    
-      
-        <li>
-
-  <a href="/make-games-with-p5js/docs/arrange/links/" >
-      参考リンク
-  </a>
-
-</li>
-      
-    
-  </ul>
-  
-
-
-
-  </li>
-
-
-      
-    
-      
-        <li>
-
-  <a href="/make-games-with-p5js/docs/license/" >
-      著作権情報
-  </a>
-
-</li>
-      
-    
-  </ul>
-  
-
-
-
-  
-
-
-
-
-
-
-
-
-
-
-
-</nav>
-
-
-<script>
-(function() {
-  var menu = document.querySelector("aside.book-menu nav");
-  addEventListener("beforeunload", function(event) {
-    localStorage.setItem("menu.scrollTop", menu.scrollTop);
-  });
-  menu.scrollTop = localStorage.getItem("menu.scrollTop");
-})();
-</script>
-
- 
-    </aside>
-
-    <div class="book-page">
-      <header class="book-header">
-        
-  <div class="flex align-center justify-between">
-  <label for="menu-control">
-    <img src="/make-games-with-p5js/svg/menu.svg" class="book-icon" alt="Menu" />
-  </label>
-
-  <strong>画像や音を使う</strong>
-
-  <label for="toc-control">
-    <img src="/make-games-with-p5js/svg/toc.svg" class="book-icon" alt="Table of Contents" />
-  </label>
-</div>
-
-
-  
-    <input type="checkbox" class="hidden" id="toc-control" />
-    <aside class="hidden clearfix">
-      
-  <nav id="TableOfContents">
-  <ul>
-    <li><a href="#画像を使う">画像を使う</a>
-      <ul>
-        <li><a href="#画像ファイルを読み込む">画像ファイルを読み込む</a></li>
-        <li><a href="#ソースコード内で自分で画像を作る">ソースコード内で自分で画像を作る</a></li>
-        <li><a href="#用意した画像を表示する">用意した画像を表示する</a></li>
-      </ul>
-    </li>
-    <li><a href="#音を使う">音を使う</a>
-      <ul>
-        <li><a href="#音声ファイルを読み込む">音声ファイルを読み込む</a></li>
-        <li><a href="#音声ファイル読み込みで使うかもしれない関数">音声ファイル読み込みで使うかもしれない関数</a></li>
-        <li><a href="#音声を再生する">音声を再生する</a></li>
-      </ul>
-    </li>
-    <li><a href="#ライセンス">ライセンス</a>
-      <ul>
-        <li><a href="#creative-commons">Creative Commons</a></li>
-      </ul>
-    </li>
-  </ul>
-</nav>
-
-
-    </aside>
-  
- 
-      </header>
-
-      
-<article class="markdown"><h1 id="画像や音を使う">画像や音を使う</h1>
-<blockquote class="book-hint info">
-  <p>単純な図形にとどまらず、もっとリッチな見た目にしたい人。<br>
-音楽や効果音を流してみたい人。</p>
-<p>申し訳ないことにサンプルコードはありませんが、<br>
-主要な関数などを挙げておきますのでご参考になさってください。</p>
-<p>素材次第で印象が圧倒的に違ってきますので、ぜひチャレンジしてみると良いでしょう。</p>
-
-</blockquote>
-
-<h2 id="画像を使う">画像を使う</h2>
-<h3 id="画像ファイルを読み込む">画像ファイルを読み込む</h3>
-<ul>
-<li><a href="https://p5js.org/reference/#/p5/preload" target="_blank">preload()</a></li>
-<li><a href="https://p5js.org/reference/#/p5/loadImage" target="_blank">loadImage()</a></li>
-</ul>
-<h3 id="ソースコード内で自分で画像を作る">ソースコード内で自分で画像を作る</h3>
-<ul>
-<li><a href="https://p5js.org/reference/#/p5/createGraphics" target="_blank">createGraphics()</a></li>
-</ul>
-<h3 id="用意した画像を表示する">用意した画像を表示する</h3>
-<ul>
-<li><a href="https://p5js.org/reference/#/p5/image" target="_blank">image()</a></li>
-<li><a href="https://p5js.org/reference/#/p5/imageMode" target="_blank">imageMode()</a></li>
-</ul>
-<h2 id="音を使う">音を使う</h2>
-<h3 id="音声ファイルを読み込む">音声ファイルを読み込む</h3>
-<ul>
-<li><a href="https://p5js.org/reference/#/p5/preload" target="_blank">preload()</a></li>
-<li><a href="https://p5js.org/reference/#/p5.SoundFile/loadSound" target="_blank">loadSound()</a></li>
-</ul>
-<h3 id="音声ファイル読み込みで使うかもしれない関数">音声ファイル読み込みで使うかもしれない関数</h3>
-<p>場合によるかもしれない</p>
-<ul>
-<li><a href="https://p5js.org/reference/#/p5/soundFormats" target="_blank">soundFormats()</a></li>
-<li><a href="https://p5js.org/reference/#/p5.sound/userStartAudio" target="_blank">userStartAudio()</a></li>
-</ul>
-<h3 id="音声を再生する">音声を再生する</h3>
-<p>読み込みによって <a href="https://p5js.org/reference/#/p5.SoundFile" target="_blank">p5.SoundFile</a> クラスのインスタンスが得られるので、<br>
-そのメソッド（<code>play()</code> など）を使う</p>
-<h2 id="ライセンス">ライセンス</h2>
-<p>フリー素材などを利用する場合、「利用規約」「ライセンス」などの条項を要確認</p>
-<h3 id="creative-commons">Creative Commons</h3>
-<p>比較的有名なライセンスの一つに <a href="https://creativecommons.jp/licenses/" target="_blank">Creative Commons</a> がある</p>
-<p>利用許可の条件にいくつか種類があるが、著作権情報の表示義務は共通<br>
-→ 具体的な表示方法： <a href="https://wiki.creativecommons.org/wiki/Best_practices_for_attribution" target="_blank">Best practices for attribution - Creative Commons</a></p>
-<p>なお組み合わせ可能な条件の一つである「改変禁止(ND)」の原語は &ldquo;No Derivatives&rdquo;<br>
-→ 素材としての利用もNGという可能性があるため注意（確かなことは個別に確認を）</p>
-</article>
- 
-
-      <footer class="book-footer">
-        
-  <div class="flex justify-between">
-
-
-
-
-
-</div>
-
- 
-        
-  
-  <div class="book-comments">
-
-</div>
-  
- 
-      </footer>
-      
-    </div>
-
-    
-    <aside class="book-toc">
-      
-  <nav id="TableOfContents">
-  <ul>
-    <li><a href="#画像を使う">画像を使う</a>
-      <ul>
-        <li><a href="#画像ファイルを読み込む">画像ファイルを読み込む</a></li>
-        <li><a href="#ソースコード内で自分で画像を作る">ソースコード内で自分で画像を作る</a></li>
-        <li><a href="#用意した画像を表示する">用意した画像を表示する</a></li>
-      </ul>
-    </li>
-    <li><a href="#音を使う">音を使う</a>
-      <ul>
-        <li><a href="#音声ファイルを読み込む">音声ファイルを読み込む</a></li>
-        <li><a href="#音声ファイル読み込みで使うかもしれない関数">音声ファイル読み込みで使うかもしれない関数</a></li>
-        <li><a href="#音声を再生する">音声を再生する</a></li>
-      </ul>
-    </li>
-    <li><a href="#ライセンス">ライセンス</a>
-      <ul>
-        <li><a href="#creative-commons">Creative Commons</a></li>
-      </ul>
-    </li>
-  </ul>
-</nav>
-
- 
-    </aside>
-    
-  </main>
-
-  
-</body>
-
+    <link rel="stylesheet" href="https://fal-works.github.io/make-games-with-p5js/css/chroma-style.css" />
+  </head>
+
+  <body>
+    <input type="checkbox" class="hidden" id="menu-control" />
+    <main class="container flex">
+      <aside class="book-menu">
+        <nav>
+          <h2 class="book-brand">
+            <a href="/make-games-with-p5js"><span>p5.js でゲーム制作</span> </a>
+          </h2>
+
+          <ul>
+            <li>
+              <a href="/make-games-with-p5js/docs/introduction/">
+                はじめに
+              </a>
+
+              <ul>
+                <li>
+                  <a href="/make-games-with-p5js/docs/introduction/overview/">
+                    進め方
+                  </a>
+                </li>
+
+                <li>
+                  <a href="/make-games-with-p5js/docs/introduction/prepare/">
+                    準備
+                  </a>
+                </li>
+
+                <li>
+                  <a href="/make-games-with-p5js/docs/introduction/basic-sketch/">
+                    p5.js スケッチの基本構造
+                  </a>
+                </li>
+              </ul>
+            </li>
+
+            <li>
+              <a href="/make-games-with-p5js/docs/flappy-bird-like/">
+                Flappy Bird ライクなゲーム
+              </a>
+
+              <ul>
+                <li>
+                  <a href="/make-games-with-p5js/docs/flappy-bird-like/design/">
+                    最初に少し考えてみる
+                  </a>
+                </li>
+
+                <li>
+                  <a href="/make-games-with-p5js/docs/flappy-bird-like/player/">
+                    プレイヤーだけ実装
+                  </a>
+                </li>
+
+                <li>
+                  <a href="/make-games-with-p5js/docs/flappy-bird-like/block/">
+                    ブロック1個だけ実装
+                  </a>
+                </li>
+
+                <li>
+                  <a href="/make-games-with-p5js/docs/flappy-bird-like/visuals/">
+                    見た目をアレンジ
+                  </a>
+
+                  <ul>
+                    <li>
+                      <a href="/make-games-with-p5js/docs/flappy-bird-like/visuals/colors/">
+                        p5.js の色指定
+                      </a>
+                    </li>
+                  </ul>
+                </li>
+
+                <li>
+                  <a href="/make-games-with-p5js/docs/flappy-bird-like/blocks/">
+                    ブロックを複数にする
+                  </a>
+                </li>
+
+                <li>
+                  <a href="/make-games-with-p5js/docs/flappy-bird-like/game-state/">
+                    ゲームオーバーを実装
+                  </a>
+                </li>
+
+                <li>
+                  <a href="/make-games-with-p5js/docs/flappy-bird-like/collision/">
+                    衝突判定を実装
+                  </a>
+                </li>
+              </ul>
+            </li>
+
+            <li>
+              <a href="/make-games-with-p5js/docs/arrange/">
+                アレンジいろいろ
+              </a>
+
+              <ul>
+                <li>
+                  <a href="/make-games-with-p5js/docs/arrange/particles/">
+                    パーティクルを追加
+                  </a>
+                </li>
+
+                <li>
+                  <a href="/make-games-with-p5js/docs/arrange/effects/">
+                    画面効果を追加
+                  </a>
+                </li>
+
+                <li>
+                  <a href="/make-games-with-p5js/docs/arrange/rules/">
+                    ルール変更
+                  </a>
+                </li>
+
+                <li>
+                  <a href="/make-games-with-p5js/docs/arrange/use-assets.md/" class="active">
+                    画像や音を使う
+                  </a>
+                </li>
+
+                <li>
+                  <a href="/make-games-with-p5js/docs/arrange/links/">
+                    参考リンク
+                  </a>
+                </li>
+              </ul>
+            </li>
+
+            <li>
+              <a href="/make-games-with-p5js/docs/license/">
+                著作権情報
+              </a>
+            </li>
+          </ul>
+        </nav>
+
+        <script>
+          (function() {
+            var menu = document.querySelector("aside.book-menu nav");
+            addEventListener("beforeunload", function(event) {
+              localStorage.setItem("menu.scrollTop", menu.scrollTop);
+            });
+            menu.scrollTop = localStorage.getItem("menu.scrollTop");
+          })();
+        </script>
+      </aside>
+
+      <div class="book-page">
+        <header class="book-header">
+          <div class="flex align-center justify-between">
+            <label for="menu-control">
+              <img src="/make-games-with-p5js/svg/menu.svg" class="book-icon" alt="Menu" />
+            </label>
+
+            <strong>画像や音を使う</strong>
+
+            <label for="toc-control">
+              <img src="/make-games-with-p5js/svg/toc.svg" class="book-icon" alt="Table of Contents" />
+            </label>
+          </div>
+
+          <input type="checkbox" class="hidden" id="toc-control" />
+          <aside class="hidden clearfix">
+            <nav id="TableOfContents">
+              <ul>
+                <li>
+                  <a href="#画像を使う">画像を使う</a>
+                  <ul>
+                    <li><a href="#画像ファイルを読み込む">画像ファイルを読み込む</a></li>
+                    <li><a href="#ソースコード内で自分で画像を作る">ソースコード内で自分で画像を作る</a></li>
+                    <li><a href="#用意した画像を表示する">用意した画像を表示する</a></li>
+                  </ul>
+                </li>
+                <li>
+                  <a href="#音を使う">音を使う</a>
+                  <ul>
+                    <li><a href="#音声ファイルを読み込む">音声ファイルを読み込む</a></li>
+                    <li>
+                      <a href="#音声ファイル読み込みで使うかもしれない関数"
+                        >音声ファイル読み込みで使うかもしれない関数</a
+                      >
+                    </li>
+                    <li><a href="#音声を再生する">音声を再生する</a></li>
+                  </ul>
+                </li>
+                <li>
+                  <a href="#ライセンス">ライセンス</a>
+                  <ul>
+                    <li><a href="#creative-commons">Creative Commons</a></li>
+                  </ul>
+                </li>
+              </ul>
+            </nav>
+          </aside>
+        </header>
+
+        <article class="markdown">
+          <h1 id="画像や音を使う">画像や音を使う</h1>
+          <blockquote class="book-hint info">
+            <p>
+              単純な図形にとどまらず、もっとリッチな見た目にしたい人。<br />
+              音楽や効果音を流してみたい人。
+            </p>
+            <p>
+              申し訳ないことにサンプルコードはありませんが、<br />
+              主要な関数などを挙げておきますのでご参考になさってください。
+            </p>
+            <p>素材次第で印象が圧倒的に違ってきますので、ぜひチャレンジしてみると良いでしょう。</p>
+          </blockquote>
+
+          <h2 id="画像を使う">画像を使う</h2>
+          <h3 id="画像ファイルを読み込む">画像ファイルを読み込む</h3>
+          <ul>
+            <li><a href="https://p5js.org/reference/#/p5/preload" target="_blank">preload()</a></li>
+            <li><a href="https://p5js.org/reference/#/p5/loadImage" target="_blank">loadImage()</a></li>
+          </ul>
+          <h3 id="ソースコード内で自分で画像を作る">ソースコード内で自分で画像を作る</h3>
+          <ul>
+            <li><a href="https://p5js.org/reference/#/p5/createGraphics" target="_blank">createGraphics()</a></li>
+          </ul>
+          <h3 id="用意した画像を表示する">用意した画像を表示する</h3>
+          <ul>
+            <li><a href="https://p5js.org/reference/#/p5/image" target="_blank">image()</a></li>
+            <li><a href="https://p5js.org/reference/#/p5/imageMode" target="_blank">imageMode()</a></li>
+          </ul>
+          <h2 id="音を使う">音を使う</h2>
+          <h3 id="音声ファイルを読み込む">音声ファイルを読み込む</h3>
+          <ul>
+            <li><a href="https://p5js.org/reference/#/p5/preload" target="_blank">preload()</a></li>
+            <li><a href="https://p5js.org/reference/#/p5.SoundFile/loadSound" target="_blank">loadSound()</a></li>
+          </ul>
+          <h3 id="音声ファイル読み込みで使うかもしれない関数">音声ファイル読み込みで使うかもしれない関数</h3>
+          <p>場合によるかもしれない</p>
+          <ul>
+            <li><a href="https://p5js.org/reference/#/p5/soundFormats" target="_blank">soundFormats()</a></li>
+            <li><a href="https://p5js.org/reference/#/p5.sound/userStartAudio" target="_blank">userStartAudio()</a></li>
+          </ul>
+          <h3 id="音声を再生する">音声を再生する</h3>
+          <p>
+            読み込みによって
+            <a href="https://p5js.org/reference/#/p5.SoundFile" target="_blank">p5.SoundFile</a>
+            クラスのインスタンスが得られるので、<br />
+            そのメソッド（<code>play()</code> など）を使う
+          </p>
+          <h2 id="ライセンス">ライセンス</h2>
+          <p>フリー素材などを利用する場合、「利用規約」「ライセンス」などの条項を要確認</p>
+          <h3 id="creative-commons">Creative Commons</h3>
+          <p>
+            比較的有名なライセンスの一つに
+            <a href="https://creativecommons.jp/licenses/" target="_blank">Creative Commons</a> がある
+          </p>
+          <p>
+            利用許可の条件にいくつか種類があるが、著作権情報の表示義務は共通<br />
+            → 具体的な表示方法：
+            <a href="https://wiki.creativecommons.org/wiki/Best_practices_for_attribution" target="_blank"
+              >Best practices for attribution - Creative Commons</a
+            >
+          </p>
+          <p>
+            なお組み合わせ可能な条件の一つである「改変禁止(ND)」の原語は &ldquo;No Derivatives&rdquo;<br />
+            → 素材としての利用もNGという可能性があるため注意（確かなことは個別に確認を）
+          </p>
+        </article>
+
+        <footer class="book-footer">
+          <div class="flex justify-between"></div>
+
+          <div class="book-comments"></div>
+        </footer>
+      </div>
+
+      <aside class="book-toc">
+        <nav id="TableOfContents">
+          <ul>
+            <li>
+              <a href="#画像を使う">画像を使う</a>
+              <ul>
+                <li><a href="#画像ファイルを読み込む">画像ファイルを読み込む</a></li>
+                <li><a href="#ソースコード内で自分で画像を作る">ソースコード内で自分で画像を作る</a></li>
+                <li><a href="#用意した画像を表示する">用意した画像を表示する</a></li>
+              </ul>
+            </li>
+            <li>
+              <a href="#音を使う">音を使う</a>
+              <ul>
+                <li><a href="#音声ファイルを読み込む">音声ファイルを読み込む</a></li>
+                <li>
+                  <a href="#音声ファイル読み込みで使うかもしれない関数">音声ファイル読み込みで使うかもしれない関数</a>
+                </li>
+                <li><a href="#音声を再生する">音声を再生する</a></li>
+              </ul>
+            </li>
+            <li>
+              <a href="#ライセンス">ライセンス</a>
+              <ul>
+                <li><a href="#creative-commons">Creative Commons</a></li>
+              </ul>
+            </li>
+          </ul>
+        </nav>
+      </aside>
+    </main>
+  </body>
 </html>
-
-
-
-
-
-
-
-
-
-
-
-

@@ -1,533 +1,316 @@
 <!DOCTYPE html>
 <html lang="en">
+  <head>
+    <meta name="generator" content="Hugo 0.63.2" />
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="p5.js でゲーム制作" />
+    <meta property="og:title" content="p5.js でゲーム制作" />
+    <meta
+      property="og:description"
+      content="JavaScript と p5.js を使って、一からゲームを作り上げるまでの過程をレクチャーします。Flappy Bird を題材にしていますが、他のゲームにも応用可能です。"
+    />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://fal-works.github.io/make-games-with-p5js/" />
+    <meta property="og:site_name" content="p5.js でゲーム制作" />
+    <title>p5.js でゲーム制作</title>
+    <link rel="icon" href="/make-games-with-p5js/favicon.png" type="image/x-icon" />
 
-<head>
-	<meta name="generator" content="Hugo 0.63.2" />
-  <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="Home"><meta property="og:title" content="Home" />
-<meta property="og:description" content="" />
-<meta property="og:type" content="website" />
-<meta property="og:url" content="https://fal-works.github.io/make-games-with-p5js/" />
+    <link
+      rel="stylesheet"
+      href="/make-games-with-p5js/book.min.06fb39c93b652f68daea0425ce9d8c8e89546af90f99fdeaeca4ef34558ed719.css"
+      integrity="sha256-Bvs5yTtlL2ja6gQlzp2MjolUavkPmf3q7KTvNFWO1xk="
+    />
 
-<title>Home | p5.js でゲーム制作</title>
-<link rel="icon" href="/make-games-with-p5js/favicon.png" type="image/x-icon">
-
-
-<link rel="stylesheet" href="/make-games-with-p5js/book.min.06fb39c93b652f68daea0425ce9d8c8e89546af90f99fdeaeca4ef34558ed719.css" integrity="sha256-Bvs5yTtlL2ja6gQlzp2MjolUavkPmf3q7KTvNFWO1xk=">
-
-
-<link rel="alternate" type="application/rss+xml" href="https://fal-works.github.io/make-games-with-p5js/index.xml" title="p5.js でゲーム制作" />
-<!--
+    <link
+      rel="alternate"
+      type="application/rss+xml"
+      href="https://fal-works.github.io/make-games-with-p5js/index.xml"
+      title="p5.js でゲーム制作"
+    />
+    <!--
 Made with Book Theme
 https://github.com/alex-shpak/hugo-book
 -->
 
-  <link rel="stylesheet" href="https://fal-works.github.io/make-games-with-p5js/css/chroma-style.css" />
-</head>
-
-<body>
-  <input type="checkbox" class="hidden" id="menu-control" />
-  <main class="container flex">
-    <aside class="book-menu">
-      
-  <nav>
-<h2 class="book-brand">
-  <a href="/make-games-with-p5js"><span>p5.js でゲーム制作</span>
-  </a>
-</h2>
-
-
-
-
-
-
-  
-
-  
-  
-
-
-
-
-
- 
-  
-    
-
-
-
-
-  
-  <ul>
-    
-      
-        
-
-  <li >
-    
-      
-
-  <a href="/make-games-with-p5js/docs/introduction/" >
-      はじめに
-  </a>
-
-
-    
-
-    
-
-
-
-
-  
-  <ul>
-    
-      
-        <li>
-
-  <a href="/make-games-with-p5js/docs/introduction/overview/" >
-      進め方
-  </a>
-
-</li>
-      
-    
-      
-        <li>
-
-  <a href="/make-games-with-p5js/docs/introduction/prepare/" >
-      準備
-  </a>
-
-</li>
-      
-    
-      
-        <li>
-
-  <a href="/make-games-with-p5js/docs/introduction/basic-sketch/" >
-      p5.js スケッチの基本構造
-  </a>
-
-</li>
-      
-    
-  </ul>
-  
-
-
-
-  </li>
-
-
-      
-    
-      
-        
-
-  <li >
-    
-      
-
-  <a href="/make-games-with-p5js/docs/flappy-bird-like/" >
-      Flappy Bird ライクなゲーム
-  </a>
-
-
-    
-
-    
-
-
-
-
-  
-  <ul>
-    
-      
-        <li>
-
-  <a href="/make-games-with-p5js/docs/flappy-bird-like/design/" >
-      最初に少し考えてみる
-  </a>
-
-</li>
-      
-    
-      
-        <li>
-
-  <a href="/make-games-with-p5js/docs/flappy-bird-like/player/" >
-      プレイヤーだけ実装
-  </a>
-
-</li>
-      
-    
-      
-        <li>
-
-  <a href="/make-games-with-p5js/docs/flappy-bird-like/block/" >
-      ブロック1個だけ実装
-  </a>
-
-</li>
-      
-    
-      
-        
-
-  <li >
-    
-      
-
-  <a href="/make-games-with-p5js/docs/flappy-bird-like/visuals/" >
-      見た目をアレンジ
-  </a>
-
-
-    
-
-    
-
-
-
-
-  
-  <ul>
-    
-      
-        <li>
-
-  <a href="/make-games-with-p5js/docs/flappy-bird-like/visuals/colors/" >
-      p5.js の色指定
-  </a>
-
-</li>
-      
-    
-  </ul>
-  
-
-
-
-  </li>
-
-
-      
-    
-      
-        <li>
-
-  <a href="/make-games-with-p5js/docs/flappy-bird-like/blocks/" >
-      ブロックを複数にする
-  </a>
-
-</li>
-      
-    
-      
-        <li>
-
-  <a href="/make-games-with-p5js/docs/flappy-bird-like/game-state/" >
-      ゲームオーバーを実装
-  </a>
-
-</li>
-      
-    
-      
-        <li>
-
-  <a href="/make-games-with-p5js/docs/flappy-bird-like/collision/" >
-      衝突判定を実装
-  </a>
-
-</li>
-      
-    
-  </ul>
-  
-
-
-
-  </li>
-
-
-      
-    
-      
-        
-
-  <li >
-    
-      
-
-  <a href="/make-games-with-p5js/docs/arrange/" >
-      アレンジいろいろ
-  </a>
-
-
-    
-
-    
-
-
-
-
-  
-  <ul>
-    
-      
-        <li>
-
-  <a href="/make-games-with-p5js/docs/arrange/particles/" >
-      パーティクルを追加
-  </a>
-
-</li>
-      
-    
-      
-        <li>
-
-  <a href="/make-games-with-p5js/docs/arrange/effects/" >
-      画面効果を追加
-  </a>
-
-</li>
-      
-    
-      
-        <li>
-
-  <a href="/make-games-with-p5js/docs/arrange/rules/" >
-      ルール変更
-  </a>
-
-</li>
-      
-    
-      
-        <li>
-
-  <a href="/make-games-with-p5js/docs/arrange/use-assets.md/" >
-      画像や音を使う
-  </a>
-
-</li>
-      
-    
-      
-        <li>
-
-  <a href="/make-games-with-p5js/docs/arrange/links/" >
-      参考リンク
-  </a>
-
-</li>
-      
-    
-  </ul>
-  
-
-
-
-  </li>
-
-
-      
-    
-      
-        <li>
-
-  <a href="/make-games-with-p5js/docs/license/" >
-      著作権情報
-  </a>
-
-</li>
-      
-    
-  </ul>
-  
-
-
-
-  
-
-
-
-
-
-
-
-
-
-
-
-</nav>
-
-
-<script>
-(function() {
-  var menu = document.querySelector("aside.book-menu nav");
-  addEventListener("beforeunload", function(event) {
-    localStorage.setItem("menu.scrollTop", menu.scrollTop);
-  });
-  menu.scrollTop = localStorage.getItem("menu.scrollTop");
-})();
-</script>
-
- 
-    </aside>
-
-    <div class="book-page">
-      <header class="book-header">
-        
-  <div class="flex align-center justify-between">
-  <label for="menu-control">
-    <img src="/make-games-with-p5js/svg/menu.svg" class="book-icon" alt="Menu" />
-  </label>
-
-  <strong>Home</strong>
-
-  <label for="toc-control">
-    <img src="/make-games-with-p5js/svg/toc.svg" class="book-icon" alt="Table of Contents" />
-  </label>
-</div>
-
-
-  
-    <input type="checkbox" class="hidden" id="toc-control" />
-    <aside class="hidden clearfix">
-      
-  <nav id="TableOfContents">
-  <ul>
-    <li><a href="#このサイトについて">このサイトについて</a>
-      <ul>
-        <li><a href="#資料の読み方">資料の読み方</a></li>
-      </ul>
-    </li>
-    <li><a href="#内容について">内容について</a>
-      <ul>
-        <li><a href="#概要">概要</a></li>
-        <li><a href="#事前知識">事前知識</a></li>
-      </ul>
-    </li>
-    <li><a href="#著者について">著者について</a></li>
-  </ul>
-</nav>
-
-
-    </aside>
-  
- 
-      </header>
-
-      
-<article class="markdown"><h1 id="p5js-でゲーム制作">p5.js でゲーム制作</h1>
-<hr>
-<h2 id="このサイトについて">このサイトについて</h2>
-<p>このサイトは、2020年2月1日の <a href="https://pcd-tokyo.github.io/" target="_blank">Processing Community Day Tokyo</a> にて実施したワークショップ「p5.js でゲーム制作」に向けて作成した資料を、独習できるように修正して公開したものです。</p>
-<h3 id="資料の読み方">資料の読み方</h3>
-<ul>
-<li>画面左側にあるのは、全体の目次です。</li>
-<li>画面右側にあるのは、今見ているページの目次です。</li>
-<li><strong>「補足」</strong>…… 主に初心者さん向けの補足です。</li>
-<li><strong>「余談」</strong>…… 発展的な内容、もしくは細かいことが気になる人向けの補足です。</li>
-</ul>
-<h2 id="内容について">内容について</h2>
-<h3 id="概要">概要</h3>
-<p><a href="https://p5js.org/" target="_blank">p5.js</a> を使ったミニゲーム作りを体験します。<br>
-何もないところから始め、ちょっとずつコードを書き足していき、<br>
-最終的にはあなただけのオリジナルのゲームが作れるようになることでしょう。</p>
-<p>いろんなゲームに共通するプログラムの作り方を知ることで、ゲームに限らず、<br>
-プログラミングによる創作活動に広く役立てられるような内容にできればと思います。</p>
-<h3 id="事前知識">事前知識</h3>
-<p>以下をおさえておいていただけるとスムーズです。</p>
-<ul>
-<li>プログラミングの初歩（変数、関数、配列、if、for など）</li>
-<li><a href="https://processing.org/" target="_blank">Processing</a> または <a href="https://p5js.org/" target="_blank">p5.js</a> の基本（setup/draw、座標、図形の描画、色の指定など）</li>
-<li>Processing (Java) しかやったことない場合、p5.js での書き方の違いについて<br>
-（変数や関数の宣言、型を書かない、など）</li>
-</ul>
-<hr>
-<h2 id="著者について">著者について</h2>
-<p><strong>FAL</strong>　―　インディーゲーム開発者／クリエイティブコーダー</p>
-<p>ゲームを作ったり、Processing や p5.js でスケッチを作ったりしています。</p>
-<ul>
-<li>Webサイト: <a href="https://www.fal-works.com/" target="_blank">https://www.fal-works.com/</a></li>
-<li>Twitter: <a href="https://twitter.com/falworks_ja" target="_blank">@falworks_ja</a></li>
-<li>OpenProcessing: <a href="https://www.openprocessing.org/user/67512/" target="_blank">user/67512</a></li>
-<li>メール: contact[ at ]fal-works.com</li>
-</ul>
-<p><img src="./fal-sketches.png" alt="sketches by FAL">
-<a href="https://www.youtube.com/watch?v=FWvh1CpH37o" target="_blank"><img src="./solid-aether.png" alt="Solid Aether"></a>
-※ Solid Aether は Processing 製ではありません、コードが2～3万行あるので……</p>
-</article>
- 
-
-      <footer class="book-footer">
-        
-  <div class="flex justify-between">
-
-
-
-
-
-</div>
-
- 
-        
-  
-  <div class="book-comments">
-
-</div>
-  
- 
-      </footer>
-      
-    </div>
-
-    
-    <aside class="book-toc">
-      
-  <nav id="TableOfContents">
-  <ul>
-    <li><a href="#このサイトについて">このサイトについて</a>
-      <ul>
-        <li><a href="#資料の読み方">資料の読み方</a></li>
-      </ul>
-    </li>
-    <li><a href="#内容について">内容について</a>
-      <ul>
-        <li><a href="#概要">概要</a></li>
-        <li><a href="#事前知識">事前知識</a></li>
-      </ul>
-    </li>
-    <li><a href="#著者について">著者について</a></li>
-  </ul>
-</nav>
-
- 
-    </aside>
-    
-  </main>
-
-  
-</body>
-
+    <link rel="stylesheet" href="https://fal-works.github.io/make-games-with-p5js/css/chroma-style.css" />
+  </head>
+
+  <body>
+    <input type="checkbox" class="hidden" id="menu-control" />
+    <main class="container flex">
+      <aside class="book-menu">
+        <nav>
+          <h2 class="book-brand">
+            <a href="/make-games-with-p5js"><span>p5.js でゲーム制作</span> </a>
+          </h2>
+
+          <ul>
+            <li>
+              <a href="/make-games-with-p5js/docs/introduction/">
+                はじめに
+              </a>
+
+              <ul>
+                <li>
+                  <a href="/make-games-with-p5js/docs/introduction/overview/">
+                    進め方
+                  </a>
+                </li>
+
+                <li>
+                  <a href="/make-games-with-p5js/docs/introduction/prepare/">
+                    準備
+                  </a>
+                </li>
+
+                <li>
+                  <a href="/make-games-with-p5js/docs/introduction/basic-sketch/">
+                    p5.js スケッチの基本構造
+                  </a>
+                </li>
+              </ul>
+            </li>
+
+            <li>
+              <a href="/make-games-with-p5js/docs/flappy-bird-like/">
+                Flappy Bird ライクなゲーム
+              </a>
+
+              <ul>
+                <li>
+                  <a href="/make-games-with-p5js/docs/flappy-bird-like/design/">
+                    最初に少し考えてみる
+                  </a>
+                </li>
+
+                <li>
+                  <a href="/make-games-with-p5js/docs/flappy-bird-like/player/">
+                    プレイヤーだけ実装
+                  </a>
+                </li>
+
+                <li>
+                  <a href="/make-games-with-p5js/docs/flappy-bird-like/block/">
+                    ブロック1個だけ実装
+                  </a>
+                </li>
+
+                <li>
+                  <a href="/make-games-with-p5js/docs/flappy-bird-like/visuals/">
+                    見た目をアレンジ
+                  </a>
+
+                  <ul>
+                    <li>
+                      <a href="/make-games-with-p5js/docs/flappy-bird-like/visuals/colors/">
+                        p5.js の色指定
+                      </a>
+                    </li>
+                  </ul>
+                </li>
+
+                <li>
+                  <a href="/make-games-with-p5js/docs/flappy-bird-like/blocks/">
+                    ブロックを複数にする
+                  </a>
+                </li>
+
+                <li>
+                  <a href="/make-games-with-p5js/docs/flappy-bird-like/game-state/">
+                    ゲームオーバーを実装
+                  </a>
+                </li>
+
+                <li>
+                  <a href="/make-games-with-p5js/docs/flappy-bird-like/collision/">
+                    衝突判定を実装
+                  </a>
+                </li>
+              </ul>
+            </li>
+
+            <li>
+              <a href="/make-games-with-p5js/docs/arrange/">
+                アレンジいろいろ
+              </a>
+
+              <ul>
+                <li>
+                  <a href="/make-games-with-p5js/docs/arrange/particles/">
+                    パーティクルを追加
+                  </a>
+                </li>
+
+                <li>
+                  <a href="/make-games-with-p5js/docs/arrange/effects/">
+                    画面効果を追加
+                  </a>
+                </li>
+
+                <li>
+                  <a href="/make-games-with-p5js/docs/arrange/rules/">
+                    ルール変更
+                  </a>
+                </li>
+
+                <li>
+                  <a href="/make-games-with-p5js/docs/arrange/use-assets.md/">
+                    画像や音を使う
+                  </a>
+                </li>
+
+                <li>
+                  <a href="/make-games-with-p5js/docs/arrange/links/">
+                    参考リンク
+                  </a>
+                </li>
+              </ul>
+            </li>
+
+            <li>
+              <a href="/make-games-with-p5js/docs/license/">
+                著作権情報
+              </a>
+            </li>
+          </ul>
+        </nav>
+
+        <script>
+          (function() {
+            var menu = document.querySelector("aside.book-menu nav");
+            addEventListener("beforeunload", function(event) {
+              localStorage.setItem("menu.scrollTop", menu.scrollTop);
+            });
+            menu.scrollTop = localStorage.getItem("menu.scrollTop");
+          })();
+        </script>
+      </aside>
+
+      <div class="book-page">
+        <header class="book-header">
+          <div class="flex align-center justify-between">
+            <label for="menu-control">
+              <img src="/make-games-with-p5js/svg/menu.svg" class="book-icon" alt="Menu" />
+            </label>
+
+            <strong>p5.js でゲーム制作</strong>
+
+            <label for="toc-control">
+              <img src="/make-games-with-p5js/svg/toc.svg" class="book-icon" alt="Table of Contents" />
+            </label>
+          </div>
+
+          <input type="checkbox" class="hidden" id="toc-control" />
+          <aside class="hidden clearfix">
+            <nav id="TableOfContents">
+              <ul>
+                <li>
+                  <a href="#このサイトについて">このサイトについて</a>
+                  <ul>
+                    <li><a href="#資料の読み方">資料の読み方</a></li>
+                  </ul>
+                </li>
+                <li>
+                  <a href="#内容について">内容について</a>
+                  <ul>
+                    <li><a href="#概要">概要</a></li>
+                    <li><a href="#事前知識">事前知識</a></li>
+                  </ul>
+                </li>
+                <li><a href="#著者について">著者について</a></li>
+              </ul>
+            </nav>
+          </aside>
+        </header>
+
+        <article class="markdown">
+          <h1 id="p5js-でゲーム制作">p5.js でゲーム制作</h1>
+          <hr />
+          <h2 id="このサイトについて">このサイトについて</h2>
+          <p>
+            このサイトは、2020年2月1日の
+            <a href="https://pcd-tokyo.github.io/" target="_blank">Processing Community Day Tokyo</a>
+            にて実施したワークショップ「p5.js
+            でゲーム制作」に向けて作成した資料を、独習できるように修正して公開したものです。
+          </p>
+          <h3 id="資料の読み方">資料の読み方</h3>
+          <ul>
+            <li>画面左側にあるのは、全体の目次です。</li>
+            <li>画面右側にあるのは、今見ているページの目次です。</li>
+            <li><strong>「補足」</strong>…… 主に初心者さん向けの補足です。</li>
+            <li><strong>「余談」</strong>…… 発展的な内容、もしくは細かいことが気になる人向けの補足です。</li>
+          </ul>
+          <h2 id="内容について">内容について</h2>
+          <h3 id="概要">概要</h3>
+          <p>
+            <a href="https://p5js.org/" target="_blank">p5.js</a> を使ったミニゲーム作りを体験します。<br />
+            何もないところから始め、ちょっとずつコードを書き足していき、<br />
+            最終的にはあなただけのオリジナルのゲームが作れるようになることでしょう。
+          </p>
+          <p>
+            いろんなゲームに共通するプログラムの作り方を知ることで、ゲームに限らず、<br />
+            プログラミングによる創作活動に広く役立てられるような内容にできればと思います。
+          </p>
+          <h3 id="事前知識">事前知識</h3>
+          <p>以下をおさえておいていただけるとスムーズです。</p>
+          <ul>
+            <li>プログラミングの初歩（変数、関数、配列、if、for など）</li>
+            <li>
+              <a href="https://processing.org/" target="_blank">Processing</a> または
+              <a href="https://p5js.org/" target="_blank">p5.js</a> の基本（setup/draw、座標、図形の描画、色の指定など）
+            </li>
+            <li>
+              Processing (Java) しかやったことない場合、p5.js での書き方の違いについて<br />
+              （変数や関数の宣言、型を書かない、など）
+            </li>
+          </ul>
+          <hr />
+          <h2 id="著者について">著者について</h2>
+          <p><strong>FAL</strong> ―　インディーゲーム開発者／クリエイティブコーダー</p>
+          <p>ゲームを作ったり、Processing や p5.js でスケッチを作ったりしています。</p>
+          <ul>
+            <li>Webサイト: <a href="https://www.fal-works.com/" target="_blank">https://www.fal-works.com/</a></li>
+            <li>Twitter: <a href="https://twitter.com/falworks_ja" target="_blank">@falworks_ja</a></li>
+            <li>OpenProcessing: <a href="https://www.openprocessing.org/user/67512/" target="_blank">user/67512</a></li>
+            <li>メール: contact[ at ]fal-works.com</li>
+          </ul>
+          <p>
+            <img src="./fal-sketches.png" alt="sketches by FAL" />
+            <a href="https://www.youtube.com/watch?v=FWvh1CpH37o" target="_blank"
+              ><img src="./solid-aether.png" alt="Solid Aether"
+            /></a>
+            ※ Solid Aether は Processing 製ではありません、コードが2～3万行あるので……
+          </p>
+        </article>
+
+        <footer class="book-footer">
+          <div class="flex justify-between"></div>
+
+          <div class="book-comments"></div>
+        </footer>
+      </div>
+
+      <aside class="book-toc">
+        <nav id="TableOfContents">
+          <ul>
+            <li>
+              <a href="#このサイトについて">このサイトについて</a>
+              <ul>
+                <li><a href="#資料の読み方">資料の読み方</a></li>
+              </ul>
+            </li>
+            <li>
+              <a href="#内容について">内容について</a>
+              <ul>
+                <li><a href="#概要">概要</a></li>
+                <li><a href="#事前知識">事前知識</a></li>
+              </ul>
+            </li>
+            <li><a href="#著者について">著者について</a></li>
+          </ul>
+        </nav>
+      </aside>
+    </main>
+  </body>
 </html>
-
-
-
-
-
-
-
-
-
-
-
-

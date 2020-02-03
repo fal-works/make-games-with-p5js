@@ -1,464 +1,292 @@
 <!DOCTYPE html>
 <html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="準備" />
+    <meta property="og:title" content="準備" />
+    <meta
+      property="og:description"
+      content="準備 開発・実行環境を準備します。 公式のオンラインエディタを使うなら、それを開くだけなので秒で準備完了です。 公式のエディタ p5.js Web Editor で、コードを書"
+    />
+    <meta property="og:type" content="article" />
+    <meta property="og:url" content="https://fal-works.github.io/make-games-with-p5js/docs/introduction/prepare/" />
+    <meta property="og:site_name" content="p5.js でゲーム制作" />
+    <title>準備 | p5.js でゲーム制作</title>
+    <link rel="icon" href="/make-games-with-p5js/favicon.png" type="image/x-icon" />
 
-<head>
-  <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="準備"><meta property="og:title" content="準備" />
-<meta property="og:description" content="準備 開発・実行環境を準備します。 公式のオンラインエディタを使うなら、それを開くだけなので秒で準備完了です。 公式のエディタ p5.js Web Editor で、コードを書" />
-<meta property="og:type" content="article" />
-<meta property="og:url" content="https://fal-works.github.io/make-games-with-p5js/docs/introduction/prepare/" />
+    <link
+      rel="stylesheet"
+      href="/make-games-with-p5js/book.min.06fb39c93b652f68daea0425ce9d8c8e89546af90f99fdeaeca4ef34558ed719.css"
+      integrity="sha256-Bvs5yTtlL2ja6gQlzp2MjolUavkPmf3q7KTvNFWO1xk="
+    />
 
-<title>準備 | p5.js でゲーム制作</title>
-<link rel="icon" href="/make-games-with-p5js/favicon.png" type="image/x-icon">
-
-
-<link rel="stylesheet" href="/make-games-with-p5js/book.min.06fb39c93b652f68daea0425ce9d8c8e89546af90f99fdeaeca4ef34558ed719.css" integrity="sha256-Bvs5yTtlL2ja6gQlzp2MjolUavkPmf3q7KTvNFWO1xk=">
-
-
-<!--
+    <!--
 Made with Book Theme
 https://github.com/alex-shpak/hugo-book
 -->
 
-  <link rel="stylesheet" href="https://fal-works.github.io/make-games-with-p5js/css/chroma-style.css" />
-</head>
-
-<body>
-  <input type="checkbox" class="hidden" id="menu-control" />
-  <main class="container flex">
-    <aside class="book-menu">
-      
-  <nav>
-<h2 class="book-brand">
-  <a href="/make-games-with-p5js"><span>p5.js でゲーム制作</span>
-  </a>
-</h2>
-
-
-
-
-
-
-  
-
-  
-  
-
-
-
-
-
- 
-  
-    
-
-
-
-
-  
-  <ul>
-    
-      
-        
-
-  <li >
-    
-      
-
-  <a href="/make-games-with-p5js/docs/introduction/" >
-      はじめに
-  </a>
-
-
-    
-
-    
-
-
-
-
-  
-  <ul>
-    
-      
-        <li>
-
-  <a href="/make-games-with-p5js/docs/introduction/overview/" >
-      進め方
-  </a>
-
-</li>
-      
-    
-      
-        <li>
-
-  <a href="/make-games-with-p5js/docs/introduction/prepare/"  class="active">
-      準備
-  </a>
-
-</li>
-      
-    
-      
-        <li>
-
-  <a href="/make-games-with-p5js/docs/introduction/basic-sketch/" >
-      p5.js スケッチの基本構造
-  </a>
-
-</li>
-      
-    
-  </ul>
-  
-
-
-
-  </li>
-
-
-      
-    
-      
-        
-
-  <li >
-    
-      
-
-  <a href="/make-games-with-p5js/docs/flappy-bird-like/" >
-      Flappy Bird ライクなゲーム
-  </a>
-
-
-    
-
-    
-
-
-
-
-  
-  <ul>
-    
-      
-        <li>
-
-  <a href="/make-games-with-p5js/docs/flappy-bird-like/design/" >
-      最初に少し考えてみる
-  </a>
-
-</li>
-      
-    
-      
-        <li>
-
-  <a href="/make-games-with-p5js/docs/flappy-bird-like/player/" >
-      プレイヤーだけ実装
-  </a>
-
-</li>
-      
-    
-      
-        <li>
-
-  <a href="/make-games-with-p5js/docs/flappy-bird-like/block/" >
-      ブロック1個だけ実装
-  </a>
-
-</li>
-      
-    
-      
-        
-
-  <li >
-    
-      
-
-  <a href="/make-games-with-p5js/docs/flappy-bird-like/visuals/" >
-      見た目をアレンジ
-  </a>
-
-
-    
-
-    
-
-
-
-
-  
-  <ul>
-    
-      
-        <li>
-
-  <a href="/make-games-with-p5js/docs/flappy-bird-like/visuals/colors/" >
-      p5.js の色指定
-  </a>
-
-</li>
-      
-    
-  </ul>
-  
-
-
-
-  </li>
-
-
-      
-    
-      
-        <li>
-
-  <a href="/make-games-with-p5js/docs/flappy-bird-like/blocks/" >
-      ブロックを複数にする
-  </a>
-
-</li>
-      
-    
-      
-        <li>
-
-  <a href="/make-games-with-p5js/docs/flappy-bird-like/game-state/" >
-      ゲームオーバーを実装
-  </a>
-
-</li>
-      
-    
-      
-        <li>
-
-  <a href="/make-games-with-p5js/docs/flappy-bird-like/collision/" >
-      衝突判定を実装
-  </a>
-
-</li>
-      
-    
-  </ul>
-  
-
-
-
-  </li>
-
-
-      
-    
-      
-        
-
-  <li >
-    
-      
-
-  <a href="/make-games-with-p5js/docs/arrange/" >
-      アレンジいろいろ
-  </a>
-
-
-    
-
-    
-
-
-
-
-  
-  <ul>
-    
-      
-        <li>
-
-  <a href="/make-games-with-p5js/docs/arrange/particles/" >
-      パーティクルを追加
-  </a>
-
-</li>
-      
-    
-      
-        <li>
-
-  <a href="/make-games-with-p5js/docs/arrange/effects/" >
-      画面効果を追加
-  </a>
-
-</li>
-      
-    
-      
-        <li>
-
-  <a href="/make-games-with-p5js/docs/arrange/rules/" >
-      ルール変更
-  </a>
-
-</li>
-      
-    
-      
-        <li>
-
-  <a href="/make-games-with-p5js/docs/arrange/use-assets.md/" >
-      画像や音を使う
-  </a>
-
-</li>
-      
-    
-      
-        <li>
-
-  <a href="/make-games-with-p5js/docs/arrange/links/" >
-      参考リンク
-  </a>
-
-</li>
-      
-    
-  </ul>
-  
-
-
-
-  </li>
-
-
-      
-    
-      
-        <li>
-
-  <a href="/make-games-with-p5js/docs/license/" >
-      著作権情報
-  </a>
-
-</li>
-      
-    
-  </ul>
-  
-
-
-
-  
-
-
-
-
-
-
-
-
-
-
-
-</nav>
-
-
-<script>
-(function() {
-  var menu = document.querySelector("aside.book-menu nav");
-  addEventListener("beforeunload", function(event) {
-    localStorage.setItem("menu.scrollTop", menu.scrollTop);
-  });
-  menu.scrollTop = localStorage.getItem("menu.scrollTop");
-})();
-</script>
-
- 
-    </aside>
-
-    <div class="book-page">
-      <header class="book-header">
-        
-  <div class="flex align-center justify-between">
-  <label for="menu-control">
-    <img src="/make-games-with-p5js/svg/menu.svg" class="book-icon" alt="Menu" />
-  </label>
-
-  <strong>準備</strong>
-
-  <label for="toc-control">
-    <img src="/make-games-with-p5js/svg/toc.svg" class="book-icon" alt="Table of Contents" />
-  </label>
-</div>
-
-
-  
-    <input type="checkbox" class="hidden" id="toc-control" />
-    <aside class="hidden clearfix">
-      
-  <nav id="TableOfContents">
-  <ul>
-    <li><a href="#公式のエディタ">公式のエディタ</a></li>
-    <li><a href="#他のオンラインエディタ">他のオンラインエディタ</a></li>
-  </ul>
-</nav>
-
-
-    </aside>
-  
- 
-      </header>
-
-      
-<article class="markdown"><h1 id="準備">準備</h1>
-<p>開発・実行環境を準備します。</p>
-<p>公式のオンラインエディタを使うなら、それを開くだけなので秒で準備完了です。</p>
-<h2 id="公式のエディタ">公式のエディタ</h2>
-<p><a href="https://editor.p5js.org/" target="_blank">p5.js Web Editor</a> で、コードを書いて即実行できます。</p>
-<p><a href="https://editor.p5js.org/" target="_blank"><img src="./web-editor.png" alt="p5.js Web Editor"></a></p>
-<p>ユーザーアカウントを登録すれば、スケッチの保存・共有も行えます。<br>
-<code>https://editor.p5js.org/(ユーザー名)/sketches</code> で他のユーザーのスケッチも参照可能。</p>
-<h2 id="他のオンラインエディタ">他のオンラインエディタ</h2>
-<p>p5.js Web Editor では画面が2分割されています。<br>
-境界線はドラッグで動かせますが、ノートPCとかで画面が狭いと不便かもしれません<br>
-（<a href="https://github.com/processing/p5.js-web-editor/issues/208" target="_blank">議論されている形跡</a>があるが2020年2月時点でどういう状態かは不明）。</p>
-<p><a href="https://www.openprocessing.org/" target="_blank">OpenProcessing</a> という選択肢もあり、こちらは編集と実行がそれぞれ全画面でできます。<br>
-&ldquo;Join&rdquo; ボタンからアカウント登録して使います。</p>
-<div class="book-expand">
-  <label>
-    <div class="book-expand-head flex justify-between">
-      <span>余談： 作品の公開</span>
-      <span>↕</span>
-    </div>
-    <input type="checkbox" class="hidden" />
-    <div class="book-expand-content markdown-inner">
-      <p><a href="https://www.openprocessing.org/" target="_blank">OpenProcessing</a> や <a href="https://neort.io/" target="_blank">NEORT</a>（こちらは p5.js に限らずいろいろなデジタルアートが対象）などは、エディタ兼作品公開プラットフォームとして機能します。不特定多数の人にスケッチを見てもらいたいときは、ここで公開するのも良いでしょう。</p>
-<p>動画を撮りたいときは、筆者の場合は <a href="https://obsproject.com/ja" target="_blank">Open Broadcaster Software (OBS)</a> を使っています。<br>
-（ブラウザのハードウェアアクセラレーションを切らないと撮れなかったりする？ かもしれないのですがちょっと筆者もまだ詳しくありません）</p>
-
-    </div>
-  </label>
-</div>
-<div class="book-expand">
-  <label>
-    <div class="book-expand-head flex justify-between">
-      <span>余談： ローカル環境での開発</span>
-      <span>↕</span>
-    </div>
-    <input type="checkbox" class="hidden" />
-    <div class="book-expand-content markdown-inner">
-      <p>ローカルで使うための強力なエディタとしては、例えば <a href="https://azure.microsoft.com/ja-jp/products/visual-studio-code/" target="_blank">Visual Studio Code</a> などがあります。<br>
-参考： <a href="https://yoppa.org/pcd19" target="_blank">PCD2019の田所先生のワークショップ資料</a></p>
-<p>ローカルで編集する場合、ソースコードは *.js ファイルとして保存し、別に用意した html ファイルでそれを呼び出すことで実行できます。</p>
-<p>筆者の場合、ソースコードを sketch.js とし、その隣に index.html というファイルを作って、その中を以下のようにしています。<br>
-4 行目では p5.js の本体をインターネット経由で引っ張ってきており、現行バージョンは v0.10.2 ですが、これは今後もバージョンアップしていくことが予想されます。</p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
+    <link rel="stylesheet" href="https://fal-works.github.io/make-games-with-p5js/css/chroma-style.css" />
+  </head>
+
+  <body>
+    <input type="checkbox" class="hidden" id="menu-control" />
+    <main class="container flex">
+      <aside class="book-menu">
+        <nav>
+          <h2 class="book-brand">
+            <a href="/make-games-with-p5js"><span>p5.js でゲーム制作</span> </a>
+          </h2>
+
+          <ul>
+            <li>
+              <a href="/make-games-with-p5js/docs/introduction/">
+                はじめに
+              </a>
+
+              <ul>
+                <li>
+                  <a href="/make-games-with-p5js/docs/introduction/overview/">
+                    進め方
+                  </a>
+                </li>
+
+                <li>
+                  <a href="/make-games-with-p5js/docs/introduction/prepare/" class="active">
+                    準備
+                  </a>
+                </li>
+
+                <li>
+                  <a href="/make-games-with-p5js/docs/introduction/basic-sketch/">
+                    p5.js スケッチの基本構造
+                  </a>
+                </li>
+              </ul>
+            </li>
+
+            <li>
+              <a href="/make-games-with-p5js/docs/flappy-bird-like/">
+                Flappy Bird ライクなゲーム
+              </a>
+
+              <ul>
+                <li>
+                  <a href="/make-games-with-p5js/docs/flappy-bird-like/design/">
+                    最初に少し考えてみる
+                  </a>
+                </li>
+
+                <li>
+                  <a href="/make-games-with-p5js/docs/flappy-bird-like/player/">
+                    プレイヤーだけ実装
+                  </a>
+                </li>
+
+                <li>
+                  <a href="/make-games-with-p5js/docs/flappy-bird-like/block/">
+                    ブロック1個だけ実装
+                  </a>
+                </li>
+
+                <li>
+                  <a href="/make-games-with-p5js/docs/flappy-bird-like/visuals/">
+                    見た目をアレンジ
+                  </a>
+
+                  <ul>
+                    <li>
+                      <a href="/make-games-with-p5js/docs/flappy-bird-like/visuals/colors/">
+                        p5.js の色指定
+                      </a>
+                    </li>
+                  </ul>
+                </li>
+
+                <li>
+                  <a href="/make-games-with-p5js/docs/flappy-bird-like/blocks/">
+                    ブロックを複数にする
+                  </a>
+                </li>
+
+                <li>
+                  <a href="/make-games-with-p5js/docs/flappy-bird-like/game-state/">
+                    ゲームオーバーを実装
+                  </a>
+                </li>
+
+                <li>
+                  <a href="/make-games-with-p5js/docs/flappy-bird-like/collision/">
+                    衝突判定を実装
+                  </a>
+                </li>
+              </ul>
+            </li>
+
+            <li>
+              <a href="/make-games-with-p5js/docs/arrange/">
+                アレンジいろいろ
+              </a>
+
+              <ul>
+                <li>
+                  <a href="/make-games-with-p5js/docs/arrange/particles/">
+                    パーティクルを追加
+                  </a>
+                </li>
+
+                <li>
+                  <a href="/make-games-with-p5js/docs/arrange/effects/">
+                    画面効果を追加
+                  </a>
+                </li>
+
+                <li>
+                  <a href="/make-games-with-p5js/docs/arrange/rules/">
+                    ルール変更
+                  </a>
+                </li>
+
+                <li>
+                  <a href="/make-games-with-p5js/docs/arrange/use-assets.md/">
+                    画像や音を使う
+                  </a>
+                </li>
+
+                <li>
+                  <a href="/make-games-with-p5js/docs/arrange/links/">
+                    参考リンク
+                  </a>
+                </li>
+              </ul>
+            </li>
+
+            <li>
+              <a href="/make-games-with-p5js/docs/license/">
+                著作権情報
+              </a>
+            </li>
+          </ul>
+        </nav>
+
+        <script>
+          (function() {
+            var menu = document.querySelector("aside.book-menu nav");
+            addEventListener("beforeunload", function(event) {
+              localStorage.setItem("menu.scrollTop", menu.scrollTop);
+            });
+            menu.scrollTop = localStorage.getItem("menu.scrollTop");
+          })();
+        </script>
+      </aside>
+
+      <div class="book-page">
+        <header class="book-header">
+          <div class="flex align-center justify-between">
+            <label for="menu-control">
+              <img src="/make-games-with-p5js/svg/menu.svg" class="book-icon" alt="Menu" />
+            </label>
+
+            <strong>準備</strong>
+
+            <label for="toc-control">
+              <img src="/make-games-with-p5js/svg/toc.svg" class="book-icon" alt="Table of Contents" />
+            </label>
+          </div>
+
+          <input type="checkbox" class="hidden" id="toc-control" />
+          <aside class="hidden clearfix">
+            <nav id="TableOfContents">
+              <ul>
+                <li><a href="#公式のエディタ">公式のエディタ</a></li>
+                <li><a href="#他のオンラインエディタ">他のオンラインエディタ</a></li>
+              </ul>
+            </nav>
+          </aside>
+        </header>
+
+        <article class="markdown">
+          <h1 id="準備">準備</h1>
+          <p>開発・実行環境を準備します。</p>
+          <p>公式のオンラインエディタを使うなら、それを開くだけなので秒で準備完了です。</p>
+          <h2 id="公式のエディタ">公式のエディタ</h2>
+          <p>
+            <a href="https://editor.p5js.org/" target="_blank">p5.js Web Editor</a> で、コードを書いて即実行できます。
+          </p>
+          <p>
+            <a href="https://editor.p5js.org/" target="_blank"><img src="./web-editor.png" alt="p5.js Web Editor"/></a>
+          </p>
+          <p>
+            ユーザーアカウントを登録すれば、スケッチの保存・共有も行えます。<br />
+            <code>https://editor.p5js.org/(ユーザー名)/sketches</code> で他のユーザーのスケッチも参照可能。
+          </p>
+          <h2 id="他のオンラインエディタ">他のオンラインエディタ</h2>
+          <p>
+            p5.js Web Editor では画面が2分割されています。<br />
+            境界線はドラッグで動かせますが、ノートPCとかで画面が狭いと不便かもしれません<br />
+            （<a href="https://github.com/processing/p5.js-web-editor/issues/208" target="_blank">議論されている形跡</a
+            >があるが2020年2月時点でどういう状態かは不明）。
+          </p>
+          <p>
+            <a href="https://www.openprocessing.org/" target="_blank">OpenProcessing</a>
+            という選択肢もあり、こちらは編集と実行がそれぞれ全画面でできます。<br />
+            &ldquo;Join&rdquo; ボタンからアカウント登録して使います。
+          </p>
+          <div class="book-expand">
+            <label>
+              <div class="book-expand-head flex justify-between">
+                <span>余談： 作品の公開</span>
+                <span>↕</span>
+              </div>
+              <input type="checkbox" class="hidden" />
+              <div class="book-expand-content markdown-inner">
+                <p>
+                  <a href="https://www.openprocessing.org/" target="_blank">OpenProcessing</a> や
+                  <a href="https://neort.io/" target="_blank">NEORT</a>（こちらは p5.js
+                  に限らずいろいろなデジタルアートが対象）などは、エディタ兼作品公開プラットフォームとして機能します。不特定多数の人にスケッチを見てもらいたいときは、ここで公開するのも良いでしょう。
+                </p>
+                <p>
+                  動画を撮りたいときは、筆者の場合は
+                  <a href="https://obsproject.com/ja" target="_blank">Open Broadcaster Software (OBS)</a>
+                  を使っています。<br />
+                  （ブラウザのハードウェアアクセラレーションを切らないと撮れなかったりする？
+                  かもしれないのですがちょっと筆者もまだ詳しくありません）
+                </p>
+              </div>
+            </label>
+          </div>
+          <div class="book-expand">
+            <label>
+              <div class="book-expand-head flex justify-between">
+                <span>余談： ローカル環境での開発</span>
+                <span>↕</span>
+              </div>
+              <input type="checkbox" class="hidden" />
+              <div class="book-expand-content markdown-inner">
+                <p>
+                  ローカルで使うための強力なエディタとしては、例えば
+                  <a href="https://azure.microsoft.com/ja-jp/products/visual-studio-code/" target="_blank"
+                    >Visual Studio Code</a
+                  >
+                  などがあります。<br />
+                  参考： <a href="https://yoppa.org/pcd19" target="_blank">PCD2019の田所先生のワークショップ資料</a>
+                </p>
+                <p>
+                  ローカルで編集する場合、ソースコードは *.js ファイルとして保存し、別に用意した html
+                  ファイルでそれを呼び出すことで実行できます。
+                </p>
+                <p>
+                  筆者の場合、ソースコードを sketch.js とし、その隣に index.html
+                  というファイルを作って、その中を以下のようにしています。<br />
+                  4 行目では p5.js の本体をインターネット経由で引っ張ってきており、現行バージョンは v0.10.2
+                  ですが、これは今後もバージョンアップしていくことが予想されます。
+                </p>
+                <div class="highlight">
+                  <div class="chroma">
+                    <table class="lntable">
+                      <tr>
+                        <td class="lntd">
+                          <pre class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -468,9 +296,12 @@ https://github.com/alex-shpak/hugo-book
 </span><span class="lnt"> 8
 </span><span class="lnt"> 9
 </span><span class="lnt">10
-</span></code></pre></td>
-<td class="lntd">
-<pre class="chroma"><code class="language-html" data-lang="html"><span class="p">&lt;</span><span class="nt">html</span><span class="p"></span><span class="p">&gt;</span>
+</span></code></pre>
+                        </td>
+                        <td class="lntd">
+                          <pre
+                            class="chroma"
+                          ><code class="language-html" data-lang="html"><span class="p">&lt;</span><span class="nt">html</span><span class="p"></span><span class="p">&gt;</span>
 
 <span class="p">&lt;</span><span class="nt">head</span><span class="p"></span><span class="p">&gt;</span>
   <span class="p">&lt;</span><span class="nt">script</span> <span class="na">type</span><span class="o">=</span><span class="s">&#34;text/javascript&#34;</span> <span class="na">src</span><span class="o">=</span><span class="s">&#34;https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.10.2/p5.min.js&#34;</span> <span class="na">defer</span><span class="p"></span><span class="p">&gt;</span><span class="p">&lt;</span><span class="p">/</span><span class="nt">script</span><span class="p">&gt;</span>
@@ -480,75 +311,63 @@ https://github.com/alex-shpak/hugo-book
 <span class="p">&lt;</span><span class="nt">body</span> <span class="na">style</span><span class="o">=</span><span class="s">&#34;margin: 0px;&#34;</span><span class="p"></span><span class="p">&gt;</span><span class="p">&lt;</span><span class="p">/</span><span class="nt">body</span><span class="p">&gt;</span>
 
 <span class="p">&lt;</span><span class="p">/</span><span class="nt">html</span><span class="p">&gt;</span>
-</code></pre></td></tr></table>
-</div>
-</div><p>他にもいろいろツールがあります、初めてだと使い方に戸惑うかもしれませんが。例えば……</p>
-<ul>
-<li><a href="https://eslint.org/" target="_blank">ESLint</a> は、推奨される書き方から外れたコードについて警告したり自動で修正したりしてくれます。</li>
-<li><a href="https://prettier.io/" target="_blank">Prettier</a> は、スペースや改行や括弧の有無などを一定の規則で自動整形してくれます。</li>
-<li>ツールと呼ぶのも微妙ですが <a href="https://www.typescriptlang.org/" target="_blank">TypeScript</a> は、JavaScript に静的型付けを導入した言語です。</li>
-<li>モジュールバンドラ（<a href="https://webpack.js.org/" target="_blank">webpack</a> や <a href="https://rollupjs.org/" target="_blank">Rollup</a> 等）は、複数のファイルに分けて書いたソースコードを統合してくれます。</li>
-<li>パッケージ管理ツール（<a href="https://www.npmjs.com/" target="_blank">npm</a> や <a href="https://yarnpkg.com/lang/ja/" target="_blank">Yarn</a>）は、以上のような各種ツールのダウンロードや実行を補佐してくれます。</li>
-</ul>
-<p>なにいってだこいつ、と思った人は正常です。これがジャバスクリプトだ！<br>
-気楽に書けるのがメリットであるはずの p5.js で、がっちり環境を整える人はあまり多くはないでしょうから、慣れてきてから調べても遅くないと思います。</p>
+</code></pre>
+                        </td>
+                      </tr>
+                    </table>
+                  </div>
+                </div>
+                <p>他にもいろいろツールがあります、初めてだと使い方に戸惑うかもしれませんが。例えば……</p>
+                <ul>
+                  <li>
+                    <a href="https://eslint.org/" target="_blank">ESLint</a>
+                    は、推奨される書き方から外れたコードについて警告したり自動で修正したりしてくれます。
+                  </li>
+                  <li>
+                    <a href="https://prettier.io/" target="_blank">Prettier</a>
+                    は、スペースや改行や括弧の有無などを一定の規則で自動整形してくれます。
+                  </li>
+                  <li>
+                    ツールと呼ぶのも微妙ですが
+                    <a href="https://www.typescriptlang.org/" target="_blank">TypeScript</a> は、JavaScript
+                    に静的型付けを導入した言語です。
+                  </li>
+                  <li>
+                    モジュールバンドラ（<a href="https://webpack.js.org/" target="_blank">webpack</a> や
+                    <a href="https://rollupjs.org/" target="_blank">Rollup</a>
+                    等）は、複数のファイルに分けて書いたソースコードを統合してくれます。
+                  </li>
+                  <li>
+                    パッケージ管理ツール（<a href="https://www.npmjs.com/" target="_blank">npm</a> や
+                    <a href="https://yarnpkg.com/lang/ja/" target="_blank">Yarn</a
+                    >）は、以上のような各種ツールのダウンロードや実行を補佐してくれます。
+                  </li>
+                </ul>
+                <p>
+                  なにいってだこいつ、と思った人は正常です。これがジャバスクリプトだ！<br />
+                  気楽に書けるのがメリットであるはずの p5.js
+                  で、がっちり環境を整える人はあまり多くはないでしょうから、慣れてきてから調べても遅くないと思います。
+                </p>
+              </div>
+            </label>
+          </div>
+        </article>
 
-    </div>
-  </label>
-</div>
-</article>
- 
+        <footer class="book-footer">
+          <div class="flex justify-between"></div>
 
-      <footer class="book-footer">
-        
-  <div class="flex justify-between">
+          <div class="book-comments"></div>
+        </footer>
+      </div>
 
-
-
-
-
-</div>
-
- 
-        
-  
-  <div class="book-comments">
-
-</div>
-  
- 
-      </footer>
-      
-    </div>
-
-    
-    <aside class="book-toc">
-      
-  <nav id="TableOfContents">
-  <ul>
-    <li><a href="#公式のエディタ">公式のエディタ</a></li>
-    <li><a href="#他のオンラインエディタ">他のオンラインエディタ</a></li>
-  </ul>
-</nav>
-
- 
-    </aside>
-    
-  </main>
-
-  
-</body>
-
+      <aside class="book-toc">
+        <nav id="TableOfContents">
+          <ul>
+            <li><a href="#公式のエディタ">公式のエディタ</a></li>
+            <li><a href="#他のオンラインエディタ">他のオンラインエディタ</a></li>
+          </ul>
+        </nav>
+      </aside>
+    </main>
+  </body>
 </html>
-
-
-
-
-
-
-
-
-
-
-
-

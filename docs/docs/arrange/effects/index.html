@@ -1,462 +1,265 @@
 <!DOCTYPE html>
 <html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="画面効果を追加" />
+    <meta property="og:title" content="画面効果を追加" />
+    <meta
+      property="og:description"
+      content="画面効果を追加 手軽な画面効果として、次のものがある スクリーンシェイク 画面を揺らす。揺れは徐々に収まる スクリーンフラッシュ 画面を明るくする。明"
+    />
+    <meta property="og:type" content="article" />
+    <meta property="og:url" content="https://fal-works.github.io/make-games-with-p5js/docs/arrange/effects/" />
+    <meta property="og:site_name" content="p5.js でゲーム制作" />
+    <title>画面効果を追加 | p5.js でゲーム制作</title>
+    <link rel="icon" href="/make-games-with-p5js/favicon.png" type="image/x-icon" />
 
-<head>
-  <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="画面効果を追加"><meta property="og:title" content="画面効果を追加" />
-<meta property="og:description" content="画面効果を追加 手軽な画面効果として、次のものがある スクリーンシェイク 画面を揺らす。揺れは徐々に収まる スクリーンフラッシュ 画面を明るくする。明" />
-<meta property="og:type" content="article" />
-<meta property="og:url" content="https://fal-works.github.io/make-games-with-p5js/docs/arrange/effects/" />
+    <link
+      rel="stylesheet"
+      href="/make-games-with-p5js/book.min.06fb39c93b652f68daea0425ce9d8c8e89546af90f99fdeaeca4ef34558ed719.css"
+      integrity="sha256-Bvs5yTtlL2ja6gQlzp2MjolUavkPmf3q7KTvNFWO1xk="
+    />
 
-<title>画面効果を追加 | p5.js でゲーム制作</title>
-<link rel="icon" href="/make-games-with-p5js/favicon.png" type="image/x-icon">
-
-
-<link rel="stylesheet" href="/make-games-with-p5js/book.min.06fb39c93b652f68daea0425ce9d8c8e89546af90f99fdeaeca4ef34558ed719.css" integrity="sha256-Bvs5yTtlL2ja6gQlzp2MjolUavkPmf3q7KTvNFWO1xk=">
-
-
-<!--
+    <!--
 Made with Book Theme
 https://github.com/alex-shpak/hugo-book
 -->
 
-  <link rel="stylesheet" href="https://fal-works.github.io/make-games-with-p5js/css/chroma-style.css" />
-</head>
-
-<body>
-  <input type="checkbox" class="hidden" id="menu-control" />
-  <main class="container flex">
-    <aside class="book-menu">
-      
-  <nav>
-<h2 class="book-brand">
-  <a href="/make-games-with-p5js"><span>p5.js でゲーム制作</span>
-  </a>
-</h2>
-
-
-
-
-
-
-  
-
-  
-  
-
-
-
-
-
- 
-  
-    
-
-
-
-
-  
-  <ul>
-    
-      
-        
-
-  <li >
-    
-      
-
-  <a href="/make-games-with-p5js/docs/introduction/" >
-      はじめに
-  </a>
-
-
-    
-
-    
-
-
-
-
-  
-  <ul>
-    
-      
-        <li>
-
-  <a href="/make-games-with-p5js/docs/introduction/overview/" >
-      進め方
-  </a>
-
-</li>
-      
-    
-      
-        <li>
-
-  <a href="/make-games-with-p5js/docs/introduction/prepare/" >
-      準備
-  </a>
-
-</li>
-      
-    
-      
-        <li>
-
-  <a href="/make-games-with-p5js/docs/introduction/basic-sketch/" >
-      p5.js スケッチの基本構造
-  </a>
-
-</li>
-      
-    
-  </ul>
-  
-
-
-
-  </li>
-
-
-      
-    
-      
-        
-
-  <li >
-    
-      
-
-  <a href="/make-games-with-p5js/docs/flappy-bird-like/" >
-      Flappy Bird ライクなゲーム
-  </a>
-
-
-    
-
-    
-
-
-
-
-  
-  <ul>
-    
-      
-        <li>
-
-  <a href="/make-games-with-p5js/docs/flappy-bird-like/design/" >
-      最初に少し考えてみる
-  </a>
-
-</li>
-      
-    
-      
-        <li>
-
-  <a href="/make-games-with-p5js/docs/flappy-bird-like/player/" >
-      プレイヤーだけ実装
-  </a>
-
-</li>
-      
-    
-      
-        <li>
-
-  <a href="/make-games-with-p5js/docs/flappy-bird-like/block/" >
-      ブロック1個だけ実装
-  </a>
-
-</li>
-      
-    
-      
-        
-
-  <li >
-    
-      
-
-  <a href="/make-games-with-p5js/docs/flappy-bird-like/visuals/" >
-      見た目をアレンジ
-  </a>
-
-
-    
-
-    
-
-
-
-
-  
-  <ul>
-    
-      
-        <li>
-
-  <a href="/make-games-with-p5js/docs/flappy-bird-like/visuals/colors/" >
-      p5.js の色指定
-  </a>
-
-</li>
-      
-    
-  </ul>
-  
-
-
-
-  </li>
-
-
-      
-    
-      
-        <li>
-
-  <a href="/make-games-with-p5js/docs/flappy-bird-like/blocks/" >
-      ブロックを複数にする
-  </a>
-
-</li>
-      
-    
-      
-        <li>
-
-  <a href="/make-games-with-p5js/docs/flappy-bird-like/game-state/" >
-      ゲームオーバーを実装
-  </a>
-
-</li>
-      
-    
-      
-        <li>
-
-  <a href="/make-games-with-p5js/docs/flappy-bird-like/collision/" >
-      衝突判定を実装
-  </a>
-
-</li>
-      
-    
-  </ul>
-  
-
-
-
-  </li>
-
-
-      
-    
-      
-        
-
-  <li >
-    
-      
-
-  <a href="/make-games-with-p5js/docs/arrange/" >
-      アレンジいろいろ
-  </a>
-
-
-    
-
-    
-
-
-
-
-  
-  <ul>
-    
-      
-        <li>
-
-  <a href="/make-games-with-p5js/docs/arrange/particles/" >
-      パーティクルを追加
-  </a>
-
-</li>
-      
-    
-      
-        <li>
-
-  <a href="/make-games-with-p5js/docs/arrange/effects/"  class="active">
-      画面効果を追加
-  </a>
-
-</li>
-      
-    
-      
-        <li>
-
-  <a href="/make-games-with-p5js/docs/arrange/rules/" >
-      ルール変更
-  </a>
-
-</li>
-      
-    
-      
-        <li>
-
-  <a href="/make-games-with-p5js/docs/arrange/use-assets.md/" >
-      画像や音を使う
-  </a>
-
-</li>
-      
-    
-      
-        <li>
-
-  <a href="/make-games-with-p5js/docs/arrange/links/" >
-      参考リンク
-  </a>
-
-</li>
-      
-    
-  </ul>
-  
-
-
-
-  </li>
-
-
-      
-    
-      
-        <li>
-
-  <a href="/make-games-with-p5js/docs/license/" >
-      著作権情報
-  </a>
-
-</li>
-      
-    
-  </ul>
-  
-
-
-
-  
-
-
-
-
-
-
-
-
-
-
-
-</nav>
-
-
-<script>
-(function() {
-  var menu = document.querySelector("aside.book-menu nav");
-  addEventListener("beforeunload", function(event) {
-    localStorage.setItem("menu.scrollTop", menu.scrollTop);
-  });
-  menu.scrollTop = localStorage.getItem("menu.scrollTop");
-})();
-</script>
-
- 
-    </aside>
-
-    <div class="book-page">
-      <header class="book-header">
-        
-  <div class="flex align-center justify-between">
-  <label for="menu-control">
-    <img src="/make-games-with-p5js/svg/menu.svg" class="book-icon" alt="Menu" />
-  </label>
-
-  <strong>画面効果を追加</strong>
-
-  <label for="toc-control">
-    <img src="/make-games-with-p5js/svg/toc.svg" class="book-icon" alt="Table of Contents" />
-  </label>
-</div>
-
-
-  
-    <input type="checkbox" class="hidden" id="toc-control" />
-    <aside class="hidden clearfix">
-      
-  <nav id="TableOfContents">
-  <ul>
-    <li><a href="#スクリーンシェイク">スクリーンシェイク</a>
-      <ul>
-        <li><a href="#原理">原理</a></li>
-        <li><a href="#実装例">実装例</a></li>
-      </ul>
-    </li>
-    <li><a href="#スクリーンフラッシュ">スクリーンフラッシュ</a>
-      <ul>
-        <li><a href="#原理-1">原理</a></li>
-        <li><a href="#実装例-1">実装例</a></li>
-      </ul>
-    </li>
-    <li><a href="#使用例">使用例</a></li>
-  </ul>
-</nav>
-
-
-    </aside>
-  
- 
-      </header>
-
-      
-<article class="markdown"><h1 id="画面効果を追加">画面効果を追加</h1>
-<p>手軽な画面効果として、次のものがある</p>
-<ul>
-<li>スクリーンシェイク
-<ul>
-<li>画面を揺らす。揺れは徐々に収まる</li>
-</ul>
-</li>
-<li>スクリーンフラッシュ
-<ul>
-<li>画面を明るくする。明るさは徐々に元に戻る</li>
-</ul>
-</li>
-</ul>
-<h2 id="スクリーンシェイク">スクリーンシェイク</h2>
-<h3 id="原理">原理</h3>
-<ul>
-<li>p5.js の <code>translate()</code> で画面をずらすことができるので、<br>
-ランダムな値で <code>translate()</code> すれば画面を揺らすことができる</li>
-<li>揺れ効果を任意のタイミングで開始できて、<br>
-その後、揺れの強さを徐々に減衰させるような仕組みが必要</li>
-</ul>
-<h3 id="実装例">実装例</h3>
-<p>次のようなコードを用意し、</p>
-<ul>
-<li><code>resetShake()</code></li>
-<li><code>updateShake()</code></li>
-<li><code>applyShake()</code></li>
-</ul>
-<p>をそれぞれ適切な場所で実行する。</p>
-<p>すると、後は <code>setShake()</code> を任意のタイミングで使うだけで画面を揺らすことができる</p>
-<div class="highlight"><pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="cm">/** シェイクの現在の強さ */</span>
+    <link rel="stylesheet" href="https://fal-works.github.io/make-games-with-p5js/css/chroma-style.css" />
+  </head>
+
+  <body>
+    <input type="checkbox" class="hidden" id="menu-control" />
+    <main class="container flex">
+      <aside class="book-menu">
+        <nav>
+          <h2 class="book-brand">
+            <a href="/make-games-with-p5js"><span>p5.js でゲーム制作</span> </a>
+          </h2>
+
+          <ul>
+            <li>
+              <a href="/make-games-with-p5js/docs/introduction/">
+                はじめに
+              </a>
+
+              <ul>
+                <li>
+                  <a href="/make-games-with-p5js/docs/introduction/overview/">
+                    進め方
+                  </a>
+                </li>
+
+                <li>
+                  <a href="/make-games-with-p5js/docs/introduction/prepare/">
+                    準備
+                  </a>
+                </li>
+
+                <li>
+                  <a href="/make-games-with-p5js/docs/introduction/basic-sketch/">
+                    p5.js スケッチの基本構造
+                  </a>
+                </li>
+              </ul>
+            </li>
+
+            <li>
+              <a href="/make-games-with-p5js/docs/flappy-bird-like/">
+                Flappy Bird ライクなゲーム
+              </a>
+
+              <ul>
+                <li>
+                  <a href="/make-games-with-p5js/docs/flappy-bird-like/design/">
+                    最初に少し考えてみる
+                  </a>
+                </li>
+
+                <li>
+                  <a href="/make-games-with-p5js/docs/flappy-bird-like/player/">
+                    プレイヤーだけ実装
+                  </a>
+                </li>
+
+                <li>
+                  <a href="/make-games-with-p5js/docs/flappy-bird-like/block/">
+                    ブロック1個だけ実装
+                  </a>
+                </li>
+
+                <li>
+                  <a href="/make-games-with-p5js/docs/flappy-bird-like/visuals/">
+                    見た目をアレンジ
+                  </a>
+
+                  <ul>
+                    <li>
+                      <a href="/make-games-with-p5js/docs/flappy-bird-like/visuals/colors/">
+                        p5.js の色指定
+                      </a>
+                    </li>
+                  </ul>
+                </li>
+
+                <li>
+                  <a href="/make-games-with-p5js/docs/flappy-bird-like/blocks/">
+                    ブロックを複数にする
+                  </a>
+                </li>
+
+                <li>
+                  <a href="/make-games-with-p5js/docs/flappy-bird-like/game-state/">
+                    ゲームオーバーを実装
+                  </a>
+                </li>
+
+                <li>
+                  <a href="/make-games-with-p5js/docs/flappy-bird-like/collision/">
+                    衝突判定を実装
+                  </a>
+                </li>
+              </ul>
+            </li>
+
+            <li>
+              <a href="/make-games-with-p5js/docs/arrange/">
+                アレンジいろいろ
+              </a>
+
+              <ul>
+                <li>
+                  <a href="/make-games-with-p5js/docs/arrange/particles/">
+                    パーティクルを追加
+                  </a>
+                </li>
+
+                <li>
+                  <a href="/make-games-with-p5js/docs/arrange/effects/" class="active">
+                    画面効果を追加
+                  </a>
+                </li>
+
+                <li>
+                  <a href="/make-games-with-p5js/docs/arrange/rules/">
+                    ルール変更
+                  </a>
+                </li>
+
+                <li>
+                  <a href="/make-games-with-p5js/docs/arrange/use-assets.md/">
+                    画像や音を使う
+                  </a>
+                </li>
+
+                <li>
+                  <a href="/make-games-with-p5js/docs/arrange/links/">
+                    参考リンク
+                  </a>
+                </li>
+              </ul>
+            </li>
+
+            <li>
+              <a href="/make-games-with-p5js/docs/license/">
+                著作権情報
+              </a>
+            </li>
+          </ul>
+        </nav>
+
+        <script>
+          (function() {
+            var menu = document.querySelector("aside.book-menu nav");
+            addEventListener("beforeunload", function(event) {
+              localStorage.setItem("menu.scrollTop", menu.scrollTop);
+            });
+            menu.scrollTop = localStorage.getItem("menu.scrollTop");
+          })();
+        </script>
+      </aside>
+
+      <div class="book-page">
+        <header class="book-header">
+          <div class="flex align-center justify-between">
+            <label for="menu-control">
+              <img src="/make-games-with-p5js/svg/menu.svg" class="book-icon" alt="Menu" />
+            </label>
+
+            <strong>画面効果を追加</strong>
+
+            <label for="toc-control">
+              <img src="/make-games-with-p5js/svg/toc.svg" class="book-icon" alt="Table of Contents" />
+            </label>
+          </div>
+
+          <input type="checkbox" class="hidden" id="toc-control" />
+          <aside class="hidden clearfix">
+            <nav id="TableOfContents">
+              <ul>
+                <li>
+                  <a href="#スクリーンシェイク">スクリーンシェイク</a>
+                  <ul>
+                    <li><a href="#原理">原理</a></li>
+                    <li><a href="#実装例">実装例</a></li>
+                  </ul>
+                </li>
+                <li>
+                  <a href="#スクリーンフラッシュ">スクリーンフラッシュ</a>
+                  <ul>
+                    <li><a href="#原理-1">原理</a></li>
+                    <li><a href="#実装例-1">実装例</a></li>
+                  </ul>
+                </li>
+                <li><a href="#使用例">使用例</a></li>
+              </ul>
+            </nav>
+          </aside>
+        </header>
+
+        <article class="markdown">
+          <h1 id="画面効果を追加">画面効果を追加</h1>
+          <p>手軽な画面効果として、次のものがある</p>
+          <ul>
+            <li>
+              スクリーンシェイク
+              <ul>
+                <li>画面を揺らす。揺れは徐々に収まる</li>
+              </ul>
+            </li>
+            <li>
+              スクリーンフラッシュ
+              <ul>
+                <li>画面を明るくする。明るさは徐々に元に戻る</li>
+              </ul>
+            </li>
+          </ul>
+          <h2 id="スクリーンシェイク">スクリーンシェイク</h2>
+          <h3 id="原理">原理</h3>
+          <ul>
+            <li>
+              p5.js の <code>translate()</code> で画面をずらすことができるので、<br />
+              ランダムな値で <code>translate()</code> すれば画面を揺らすことができる
+            </li>
+            <li>
+              揺れ効果を任意のタイミングで開始できて、<br />
+              その後、揺れの強さを徐々に減衰させるような仕組みが必要
+            </li>
+          </ul>
+          <h3 id="実装例">実装例</h3>
+          <p>次のようなコードを用意し、</p>
+          <ul>
+            <li><code>resetShake()</code></li>
+            <li><code>updateShake()</code></li>
+            <li><code>applyShake()</code></li>
+          </ul>
+          <p>をそれぞれ適切な場所で実行する。</p>
+          <p>すると、後は <code>setShake()</code> を任意のタイミングで使うだけで画面を揺らすことができる</p>
+          <div class="highlight">
+            <pre
+              class="chroma"
+            ><code class="language-javascript" data-lang="javascript"><span class="cm">/** シェイクの現在の強さ */</span>
 <span class="kd">let</span> <span class="nx">shakeMagnitude</span><span class="p">;</span>
 
 <span class="cm">/** シェイクの減衰に使う係数 */</span>
@@ -488,15 +291,24 @@ https://github.com/alex-shpak/hugo-book
     <span class="nx">random</span><span class="p">(</span><span class="o">-</span><span class="nx">shakeMagnitude</span><span class="p">,</span> <span class="nx">shakeMagnitude</span><span class="p">)</span>
   <span class="p">)</span><span class="p">;</span>
 <span class="p">}</span>
-</code></pre></div><h2 id="スクリーンフラッシュ">スクリーンフラッシュ</h2>
-<h3 id="原理-1">原理</h3>
-<p>p5.js の <code>background()</code> は、α値を指定すれば画面全体を半透明に塗りつぶせる。<br>
-白など明るい色でこれを行い、徐々に明るさを減衰させれば、フラッシュのようになる</p>
-<h3 id="実装例-1">実装例</h3>
-<p>構造的にはスクリーンシェイクとほぼ同様</p>
-<p>スクリーンシェイクでは掛け算で減衰させていたが、<br>
-こちらは、徐々に減少する「残り時間」を使って明るさを決めている</p>
-<div class="highlight"><pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="cm">/** フラッシュのα値 */</span>
+</code></pre>
+          </div>
+          <h2 id="スクリーンフラッシュ">スクリーンフラッシュ</h2>
+          <h3 id="原理-1">原理</h3>
+          <p>
+            p5.js の <code>background()</code> は、α値を指定すれば画面全体を半透明に塗りつぶせる。<br />
+            白など明るい色でこれを行い、徐々に明るさを減衰させれば、フラッシュのようになる
+          </p>
+          <h3 id="実装例-1">実装例</h3>
+          <p>構造的にはスクリーンシェイクとほぼ同様</p>
+          <p>
+            スクリーンシェイクでは掛け算で減衰させていたが、<br />
+            こちらは、徐々に減少する「残り時間」を使って明るさを決めている
+          </p>
+          <div class="highlight">
+            <pre
+              class="chroma"
+            ><code class="language-javascript" data-lang="javascript"><span class="cm">/** フラッシュのα値 */</span>
 <span class="kd">let</span> <span class="nx">flashAlpha</span><span class="p">;</span>
 
 <span class="cm">/** フラッシュの持続時間（フレーム数） */</span>
@@ -531,11 +343,18 @@ https://github.com/alex-shpak/hugo-book
   <span class="kd">let</span> <span class="nx">alphaRatio</span> <span class="o">=</span> <span class="nx">flashRemainingCount</span> <span class="o">/</span> <span class="nx">flashDuration</span><span class="p">;</span>
   <span class="nx">background</span><span class="p">(</span><span class="mi">255</span><span class="p">,</span> <span class="nx">alphaRatio</span> <span class="o">*</span> <span class="nx">flashAlpha</span><span class="p">)</span><span class="p">;</span>
 <span class="p">}</span>
-</code></pre></div><h2 id="使用例">使用例</h2>
-<p><a href="https://fal-works.github.io/make-games-with-p5js-src/12-effects" target="_blank">▶ 動かしてみる</a></p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">  1
+</code></pre>
+          </div>
+          <h2 id="使用例">使用例</h2>
+          <p>
+            <a href="https://fal-works.github.io/make-games-with-p5js-src/12-effects" target="_blank">▶ 動かしてみる</a>
+          </p>
+          <div class="highlight">
+            <div class="chroma">
+              <table class="lntable">
+                <tr>
+                  <td class="lntd">
+                    <pre class="chroma"><code><span class="lnt">  1
 </span><span class="lnt">  2
 </span><span class="lnt">  3
 </span><span class="lnt">  4
@@ -829,9 +648,12 @@ https://github.com/alex-shpak/hugo-book
 </span><span class="lnt">292
 </span><span class="lnt">293
 </span><span class="lnt">294
-</span></code></pre></td>
-<td class="lntd">
-<pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="c1">// ---- エンティティ関連の関数 ---------------------------------------------
+</span></code></pre>
+                  </td>
+                  <td class="lntd">
+                    <pre
+                      class="chroma"
+                    ><code class="language-javascript" data-lang="javascript"><span class="c1">// ---- エンティティ関連の関数 ---------------------------------------------
 </span><span class="c1"></span>
 <span class="c1">// 全エンティティ共通
 </span><span class="c1"></span>
@@ -1125,44 +947,76 @@ https://github.com/alex-shpak/hugo-book
 <span class="kd">function</span> <span class="nx">mousePressed</span><span class="p">(</span><span class="p">)</span> <span class="p">{</span>
   <span class="nx">onMousePress</span><span class="p">(</span><span class="p">)</span><span class="p">;</span>
 <span class="p">}</span>
-</code></pre></td></tr></table>
-</div>
-</div><blockquote class="book-hint info">
-  <p>改造中のコードがあったらそれに組み込んでみて、<br>
-本当にちゃんと機能しているか、実行して確かめてみましょう。</p>
-<p>たとえばスクリーンシェイクを縦だけ・横だけにするなど、<br>
-カスタマイズしてみる余地もあるかもしれません。</p>
+</code></pre>
+                  </td>
+                </tr>
+              </table>
+            </div>
+          </div>
+          <blockquote class="book-hint info">
+            <p>
+              改造中のコードがあったらそれに組み込んでみて、<br />
+              本当にちゃんと機能しているか、実行して確かめてみましょう。
+            </p>
+            <p>
+              たとえばスクリーンシェイクを縦だけ・横だけにするなど、<br />
+              カスタマイズしてみる余地もあるかもしれません。
+            </p>
+          </blockquote>
 
-</blockquote>
-
-<div class="book-expand">
-  <label>
-    <div class="book-expand-head flex justify-between">
-      <span>余談： 即時関数</span>
-      <span>↕</span>
-    </div>
-    <input type="checkbox" class="hidden" />
-    <div class="book-expand-content markdown-inner">
-      <p>ここで新たに追加した変数（<code>shakeMagnitude</code> など）は、外から直接読み書きする機会は無いので、グローバル空間に置きたくないな、といった懸念がありえます。</p>
-<p>モジュールに分割すれば解決する話ではありますが（全体がだいぶ長くなってきたのでそれを検討する価値はあります）、仮にそれをしないとすると、他にはクラスに閉じ込めるか、あるいは即時関数に閉じ込めるという方法もあります。</p>
-<p>クラスの話は割愛するとして、即時関数というのは、次のように宣言と同時に即座に実行するような使い方をしている関数のことです。</p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+          <div class="book-expand">
+            <label>
+              <div class="book-expand-head flex justify-between">
+                <span>余談： 即時関数</span>
+                <span>↕</span>
+              </div>
+              <input type="checkbox" class="hidden" />
+              <div class="book-expand-content markdown-inner">
+                <p>
+                  ここで新たに追加した変数（<code>shakeMagnitude</code>
+                  など）は、外から直接読み書きする機会は無いので、グローバル空間に置きたくないな、といった懸念がありえます。
+                </p>
+                <p>
+                  モジュールに分割すれば解決する話ではありますが（全体がだいぶ長くなってきたのでそれを検討する価値はあります）、仮にそれをしないとすると、他にはクラスに閉じ込めるか、あるいは即時関数に閉じ込めるという方法もあります。
+                </p>
+                <p>
+                  クラスの話は割愛するとして、即時関数というのは、次のように宣言と同時に即座に実行するような使い方をしている関数のことです。
+                </p>
+                <div class="highlight">
+                  <div class="chroma">
+                    <table class="lntable">
+                      <tr>
+                        <td class="lntd">
+                          <pre class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
-</span></code></pre></td>
-<td class="lntd">
-<pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="p">)</span> <span class="p">{</span>
+</span></code></pre>
+                        </td>
+                        <td class="lntd">
+                          <pre
+                            class="chroma"
+                          ><code class="language-javascript" data-lang="javascript"><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="p">)</span> <span class="p">{</span>
   <span class="c1">// ...
 </span><span class="c1"></span><span class="p">}</span><span class="p">)</span><span class="p">(</span><span class="p">)</span><span class="p">;</span>
-</code></pre></td></tr></table>
-</div>
-</div><p>参考： <a href="https://qiita.com/katsukii/items/cfe9fd968ba0db603b1e" target="_blank">JavaScriptで即時関数を使う理由 - Qiita</a></p>
-<p>今回のスクリーンシェイクの例だと、たとえば</p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
+</code></pre>
+                        </td>
+                      </tr>
+                    </table>
+                  </div>
+                </div>
+                <p>
+                  参考：
+                  <a href="https://qiita.com/katsukii/items/cfe9fd968ba0db603b1e" target="_blank"
+                    >JavaScriptで即時関数を使う理由 - Qiita</a
+                  >
+                </p>
+                <p>今回のスクリーンシェイクの例だと、たとえば</p>
+                <div class="highlight">
+                  <div class="chroma">
+                    <table class="lntable">
+                      <tr>
+                        <td class="lntd">
+                          <pre class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -1190,9 +1044,12 @@ https://github.com/alex-shpak/hugo-book
 </span><span class="lnt">26
 </span><span class="lnt">27
 </span><span class="lnt">28
-</span></code></pre></td>
-<td class="lntd">
-<pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="kd">let</span> <span class="nx">shake</span> <span class="o">=</span> <span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="p">)</span> <span class="p">{</span>
+</span></code></pre>
+                        </td>
+                        <td class="lntd">
+                          <pre
+                            class="chroma"
+                          ><code class="language-javascript" data-lang="javascript"><span class="kd">let</span> <span class="nx">shake</span> <span class="o">=</span> <span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="p">)</span> <span class="p">{</span>
   <span class="kd">let</span> <span class="nx">shakeMagnitude</span><span class="p">;</span>
   <span class="kd">let</span> <span class="nx">shakeDampingFactor</span><span class="p">;</span>
 
@@ -1220,78 +1077,53 @@ https://github.com/alex-shpak/hugo-book
 
   <span class="k">return</span> <span class="p">{</span> <span class="nx">reset</span><span class="p">,</span> <span class="nx">set</span><span class="p">,</span> <span class="nx">update</span><span class="p">,</span> <span class="nx">apply</span> <span class="p">}</span><span class="p">;</span>
 <span class="p">}</span><span class="p">)</span><span class="p">(</span><span class="p">)</span><span class="p">;</span>
-</code></pre></td></tr></table>
-</div>
-</div><p>と書けば、必要な変数は <code>shake</code> だけとなり、<code>shake.reset()</code> <code>shake.set()</code> といった形で各種関数を呼び出すことができます。</p>
-<p>モジュール化にしてもそうですが、<code>reset</code> などのような短い関数名を使っても他とバッティングする心配がないというメリットもあります。</p>
+</code></pre>
+                        </td>
+                      </tr>
+                    </table>
+                  </div>
+                </div>
+                <p>
+                  と書けば、必要な変数は <code>shake</code> だけとなり、<code>shake.reset()</code>
+                  <code>shake.set()</code> といった形で各種関数を呼び出すことができます。
+                </p>
+                <p>
+                  モジュール化にしてもそうですが、<code>reset</code>
+                  などのような短い関数名を使っても他とバッティングする心配がないというメリットもあります。
+                </p>
+              </div>
+            </label>
+          </div>
+        </article>
 
-    </div>
-  </label>
-</div>
-</article>
- 
+        <footer class="book-footer">
+          <div class="flex justify-between"></div>
 
-      <footer class="book-footer">
-        
-  <div class="flex justify-between">
+          <div class="book-comments"></div>
+        </footer>
+      </div>
 
-
-
-
-
-</div>
-
- 
-        
-  
-  <div class="book-comments">
-
-</div>
-  
- 
-      </footer>
-      
-    </div>
-
-    
-    <aside class="book-toc">
-      
-  <nav id="TableOfContents">
-  <ul>
-    <li><a href="#スクリーンシェイク">スクリーンシェイク</a>
-      <ul>
-        <li><a href="#原理">原理</a></li>
-        <li><a href="#実装例">実装例</a></li>
-      </ul>
-    </li>
-    <li><a href="#スクリーンフラッシュ">スクリーンフラッシュ</a>
-      <ul>
-        <li><a href="#原理-1">原理</a></li>
-        <li><a href="#実装例-1">実装例</a></li>
-      </ul>
-    </li>
-    <li><a href="#使用例">使用例</a></li>
-  </ul>
-</nav>
-
- 
-    </aside>
-    
-  </main>
-
-  
-</body>
-
+      <aside class="book-toc">
+        <nav id="TableOfContents">
+          <ul>
+            <li>
+              <a href="#スクリーンシェイク">スクリーンシェイク</a>
+              <ul>
+                <li><a href="#原理">原理</a></li>
+                <li><a href="#実装例">実装例</a></li>
+              </ul>
+            </li>
+            <li>
+              <a href="#スクリーンフラッシュ">スクリーンフラッシュ</a>
+              <ul>
+                <li><a href="#原理-1">原理</a></li>
+                <li><a href="#実装例-1">実装例</a></li>
+              </ul>
+            </li>
+            <li><a href="#使用例">使用例</a></li>
+          </ul>
+        </nav>
+      </aside>
+    </main>
+  </body>
 </html>
-
-
-
-
-
-
-
-
-
-
-
-

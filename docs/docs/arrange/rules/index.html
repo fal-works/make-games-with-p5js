@@ -1,647 +1,427 @@
 <!DOCTYPE html>
 <html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="ルール変更" />
+    <meta property="og:title" content="ルール変更" />
+    <meta
+      property="og:description"
+      content="ルール変更 今回作ってきたプログラムは、少し手を加えるだけで色々なゲームに化けることができます。 どんな改造ができるでしょうか？ 思いつくままに改"
+    />
+    <meta property="og:type" content="article" />
+    <meta property="og:url" content="https://fal-works.github.io/make-games-with-p5js/docs/arrange/rules/" />
+    <meta property="og:site_name" content="p5.js でゲーム制作" />
+    <title>ルール変更 | p5.js でゲーム制作</title>
+    <link rel="icon" href="/make-games-with-p5js/favicon.png" type="image/x-icon" />
 
-<head>
-  <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="ルール変更"><meta property="og:title" content="ルール変更" />
-<meta property="og:description" content="ルール変更 今回作ってきたプログラムは、少し手を加えるだけで色々なゲームに化けることができます。 どんな改造ができるでしょうか？ 思いつくままに改" />
-<meta property="og:type" content="article" />
-<meta property="og:url" content="https://fal-works.github.io/make-games-with-p5js/docs/arrange/rules/" />
+    <link
+      rel="stylesheet"
+      href="/make-games-with-p5js/book.min.06fb39c93b652f68daea0425ce9d8c8e89546af90f99fdeaeca4ef34558ed719.css"
+      integrity="sha256-Bvs5yTtlL2ja6gQlzp2MjolUavkPmf3q7KTvNFWO1xk="
+    />
 
-<title>ルール変更 | p5.js でゲーム制作</title>
-<link rel="icon" href="/make-games-with-p5js/favicon.png" type="image/x-icon">
-
-
-<link rel="stylesheet" href="/make-games-with-p5js/book.min.06fb39c93b652f68daea0425ce9d8c8e89546af90f99fdeaeca4ef34558ed719.css" integrity="sha256-Bvs5yTtlL2ja6gQlzp2MjolUavkPmf3q7KTvNFWO1xk=">
-
-
-<!--
+    <!--
 Made with Book Theme
 https://github.com/alex-shpak/hugo-book
 -->
 
-  <link rel="stylesheet" href="https://fal-works.github.io/make-games-with-p5js/css/chroma-style.css" />
-</head>
-
-<body>
-  <input type="checkbox" class="hidden" id="menu-control" />
-  <main class="container flex">
-    <aside class="book-menu">
-      
-  <nav>
-<h2 class="book-brand">
-  <a href="/make-games-with-p5js"><span>p5.js でゲーム制作</span>
-  </a>
-</h2>
-
-
-
-
-
-
-  
-
-  
-  
-
-
-
-
-
- 
-  
-    
-
-
-
-
-  
-  <ul>
-    
-      
-        
-
-  <li >
-    
-      
-
-  <a href="/make-games-with-p5js/docs/introduction/" >
-      はじめに
-  </a>
-
-
-    
-
-    
-
-
-
-
-  
-  <ul>
-    
-      
-        <li>
-
-  <a href="/make-games-with-p5js/docs/introduction/overview/" >
-      進め方
-  </a>
-
-</li>
-      
-    
-      
-        <li>
-
-  <a href="/make-games-with-p5js/docs/introduction/prepare/" >
-      準備
-  </a>
-
-</li>
-      
-    
-      
-        <li>
-
-  <a href="/make-games-with-p5js/docs/introduction/basic-sketch/" >
-      p5.js スケッチの基本構造
-  </a>
-
-</li>
-      
-    
-  </ul>
-  
-
-
-
-  </li>
-
-
-      
-    
-      
-        
-
-  <li >
-    
-      
-
-  <a href="/make-games-with-p5js/docs/flappy-bird-like/" >
-      Flappy Bird ライクなゲーム
-  </a>
-
-
-    
-
-    
-
-
-
-
-  
-  <ul>
-    
-      
-        <li>
-
-  <a href="/make-games-with-p5js/docs/flappy-bird-like/design/" >
-      最初に少し考えてみる
-  </a>
-
-</li>
-      
-    
-      
-        <li>
-
-  <a href="/make-games-with-p5js/docs/flappy-bird-like/player/" >
-      プレイヤーだけ実装
-  </a>
-
-</li>
-      
-    
-      
-        <li>
-
-  <a href="/make-games-with-p5js/docs/flappy-bird-like/block/" >
-      ブロック1個だけ実装
-  </a>
-
-</li>
-      
-    
-      
-        
-
-  <li >
-    
-      
-
-  <a href="/make-games-with-p5js/docs/flappy-bird-like/visuals/" >
-      見た目をアレンジ
-  </a>
-
-
-    
-
-    
-
-
-
-
-  
-  <ul>
-    
-      
-        <li>
-
-  <a href="/make-games-with-p5js/docs/flappy-bird-like/visuals/colors/" >
-      p5.js の色指定
-  </a>
-
-</li>
-      
-    
-  </ul>
-  
-
-
-
-  </li>
-
-
-      
-    
-      
-        <li>
-
-  <a href="/make-games-with-p5js/docs/flappy-bird-like/blocks/" >
-      ブロックを複数にする
-  </a>
-
-</li>
-      
-    
-      
-        <li>
-
-  <a href="/make-games-with-p5js/docs/flappy-bird-like/game-state/" >
-      ゲームオーバーを実装
-  </a>
-
-</li>
-      
-    
-      
-        <li>
-
-  <a href="/make-games-with-p5js/docs/flappy-bird-like/collision/" >
-      衝突判定を実装
-  </a>
-
-</li>
-      
-    
-  </ul>
-  
-
-
-
-  </li>
-
-
-      
-    
-      
-        
-
-  <li >
-    
-      
-
-  <a href="/make-games-with-p5js/docs/arrange/" >
-      アレンジいろいろ
-  </a>
-
-
-    
-
-    
-
-
-
-
-  
-  <ul>
-    
-      
-        <li>
-
-  <a href="/make-games-with-p5js/docs/arrange/particles/" >
-      パーティクルを追加
-  </a>
-
-</li>
-      
-    
-      
-        <li>
-
-  <a href="/make-games-with-p5js/docs/arrange/effects/" >
-      画面効果を追加
-  </a>
-
-</li>
-      
-    
-      
-        <li>
-
-  <a href="/make-games-with-p5js/docs/arrange/rules/"  class="active">
-      ルール変更
-  </a>
-
-</li>
-      
-    
-      
-        <li>
-
-  <a href="/make-games-with-p5js/docs/arrange/use-assets.md/" >
-      画像や音を使う
-  </a>
-
-</li>
-      
-    
-      
-        <li>
-
-  <a href="/make-games-with-p5js/docs/arrange/links/" >
-      参考リンク
-  </a>
-
-</li>
-      
-    
-  </ul>
-  
-
-
-
-  </li>
-
-
-      
-    
-      
-        <li>
-
-  <a href="/make-games-with-p5js/docs/license/" >
-      著作権情報
-  </a>
-
-</li>
-      
-    
-  </ul>
-  
-
-
-
-  
-
-
-
-
-
-
-
-
-
-
-
-</nav>
-
-
-<script>
-(function() {
-  var menu = document.querySelector("aside.book-menu nav");
-  addEventListener("beforeunload", function(event) {
-    localStorage.setItem("menu.scrollTop", menu.scrollTop);
-  });
-  menu.scrollTop = localStorage.getItem("menu.scrollTop");
-})();
-</script>
-
- 
-    </aside>
-
-    <div class="book-page">
-      <header class="book-header">
-        
-  <div class="flex align-center justify-between">
-  <label for="menu-control">
-    <img src="/make-games-with-p5js/svg/menu.svg" class="book-icon" alt="Menu" />
-  </label>
-
-  <strong>ルール変更</strong>
-
-  <label for="toc-control">
-    <img src="/make-games-with-p5js/svg/toc.svg" class="book-icon" alt="Table of Contents" />
-  </label>
-</div>
-
-
-  
-    <input type="checkbox" class="hidden" id="toc-control" />
-    <aside class="hidden clearfix">
-      
-  <nav id="TableOfContents">
-  <ul>
-    <li><a href="#ルール変更案">ルール変更案</a>
-      <ul>
-        <li><a href="#数値調整">数値調整</a></li>
-        <li><a href="#ブロック関連">ブロック関連</a></li>
-        <li><a href="#操作方法">操作方法</a></li>
-        <li><a href="#ルール追加">ルール追加</a></li>
-        <li><a href="#ルール大幅変更">ルール大幅変更</a></li>
-      </ul>
-    </li>
-    <li><a href="#市販ゲームの例">市販ゲームの例</a>
-      <ul>
-        <li><a href="#bittrip-runner">『BIT.TRIP Runner』</a></li>
-      </ul>
-    </li>
-  </ul>
-</nav>
-
-
-    </aside>
-  
- 
-      </header>
-
-      
-<article class="markdown"><h1 id="ルール変更">ルール変更</h1>
-<blockquote class="book-hint info">
-  <p>今回作ってきたプログラムは、少し手を加えるだけで色々なゲームに化けることができます。</p>
-<p>どんな改造ができるでしょうか？</p>
-<p>思いつくままに改造してみましょう。</p>
-<p>いくつか案を列挙しますが（サンプルコードはありません）、<br>
-他にもないか自分なりに考えてみても良いでしょう。</p>
-<p>仮にゲームの体を成していない状態になっても、それはそれでアリだと思います。</p>
-
-</blockquote>
-
-<div class="book-expand">
-  <label>
-    <div class="book-expand-head flex justify-between">
-      <span>補足： 現行プログラムの改善点</span>
-      <span>↕</span>
-    </div>
-    <input type="checkbox" class="hidden" />
-    <div class="book-expand-content markdown-inner">
-      <p>ちなみに、改造前のルールにしても完全ではありません。<br>
-画面上端からさらに上へといくらでも飛べてしまって、ブロック避け放題だからです。<br>
-プレイヤーのy座標を制限する処理を入れても良いでしょう。</p>
-<p>また、スコアがあったほうが遊びがいがあります。<br>
-そのためには、ブロックを避けられたら得点アップ、という処理を入れる必要があります。<br>
-実装としては、</p>
-<ul>
-<li>上下のブロックの間に不可視のエンティティを入れて、衝突したらそれを殺して得点</li>
-<li>ブロックの出現間隔と移動速度が一定な場合、得点アップのタイミングが正確に予測できるので、<code>frameCount</code> の値が特定の値になったら得点</li>
-</ul>
-<p>などが考えられます。</p>
-
-    </div>
-  </label>
-</div>
-<h2 id="ルール変更案">ルール変更案</h2>
-<p>おおむね簡単順。後ろの方のはちょっと力が要るかも</p>
-<h3 id="数値調整">数値調整</h3>
-<ul>
-<li>移動速度や重力の強さなどの数値を変えたら、遊び心地はどう変わってくる？</li>
-</ul>
-<h3 id="ブロック関連">ブロック関連</h3>
-<ul>
-<li>ブロックの移動速度にばらつきがあったらどうだろう？</li>
-<li>ブロックがちょっとだけ縦方向にも動くようにしたら？</li>
-<li>ブロックを小さくして、代わりに数を増やしたらどうだろう？<br>
-（描画処理と衝突判定処理の両方で数値変更が必要なことに注意）</li>
-</ul>
-<h3 id="操作方法">操作方法</h3>
-<ul>
-<li>クリックでジャンプではなく、ボタンを押している間だけ、<br>
-継続的に揚力（浮き上がる力）を与えたらどうだろう？</li>
-<li>重力を廃止し、マウスカーソルのy座標に応じて追随or加速するようにしては？</li>
-<li>キーボード操作にするのはどうか？</li>
-</ul>
-<h3 id="ルール追加">ルール追加</h3>
-<ul>
-<li>何度かミスってもOK、にしてみては？<br>
-（ミスった直後の一定時間は無敵、などの処理が必要）</li>
-<li>ブロックという障害物だけでなく、コインやアイテムが飛んできて、<br>
-衝突したら得点アップ！ とかはどうか？ （要：得点のカウント＆表示処理）</li>
-<li>何らかの条件で、衝突時にブロックを破壊可能にしてみては？</li>
-</ul>
-<h3 id="ルール大幅変更">ルール大幅変更</h3>
-<ul>
-<li>攻撃を発射してブロックを破壊可能に（もはやシューティング）</li>
-<li>地面を追加して着地可能にし、ジャンプしたりしなかったりして避ける（もはやマリオ）</li>
-<li>ブロック崩しゲームにしようぜ！！！１</li>
-</ul>
-<div class="book-expand">
-  <label>
-    <div class="book-expand-head flex justify-between">
-      <span>余談： 換骨奪胎</span>
-      <span>↕</span>
-    </div>
-    <input type="checkbox" class="hidden" />
-    <div class="book-expand-content markdown-inner">
-      <p>上の「ルール大幅変更」は、即座にはできないにしても、実際のところ十分に可能です。</p>
-<p>ここまで作ってきたプログラムで、土台はある程度できているからです。</p>
-<p>たとえば、Flappy Bird と古典的なブロック崩しとの違いは、おおむね次のとおりです。</p>
-<table>
-<thead>
-<tr>
-<th></th>
-<th>Flappy Bird</th>
-<th>ブロック崩し</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>エンティティ</td>
-<td>プレイヤー・ブロック</td>
-<td>プレイヤー・ボール・ブロック</td>
-</tr>
-<tr>
-<td>プレイヤー</td>
-<td>画面左で上下移動(+重力)</td>
-<td>画面下端で左右に移動</td>
-</tr>
-<tr>
-<td>ブロック</td>
-<td>右から出現、左へ移動して削除</td>
-<td>位置固定。衝突で削除</td>
-</tr>
-<tr>
-<td>操作方法</td>
-<td>クリックでジャンプ</td>
-<td>マウスやキーで移動</td>
-</tr>
-<tr>
-<td>衝突する相手</td>
-<td>プレイヤー ↔ ブロック</td>
-<td>プレイヤー ↔ ボール ↔ ブロック</td>
-</tr>
-<tr>
-<td>〃</td>
-<td></td>
-<td>ボール ↔ 画面枠</td>
-</tr>
-<tr>
-<td>衝突時の処理</td>
-<td>ゲームオーバー</td>
-<td>ボールは反発、ブロックは削除</td>
-</tr>
-<tr>
-<td>勝利条件</td>
-<td>なし</td>
-<td>全ブロック破壊</td>
-</tr>
-<tr>
-<td>敗北条件</td>
-<td>落ちる or 当たる</td>
-<td>ボールを取り逃す</td>
-</tr>
-</tbody>
-</table>
-<p>つまり、このそれぞれに該当する部分を地道に書き換えればよく、</p>
-<ul>
-<li>エンティティの概念</li>
-<li>複数エンティティの管理（追加・更新・削除）</li>
-<li>ゲーム状態（ゲームオーバー等）の概念</li>
-</ul>
-<p>などのような全体の枠組みはたいして変わらない、ということが分かります。</p>
-
-    </div>
-  </label>
-</div>
-<h2 id="市販ゲームの例">市販ゲームの例</h2>
-<h3 id="bittrip-runner">『BIT.TRIP Runner』</h3>
-<p>地面でジャンプ ＋ コイン／アイテム ＋ スライディング＆障害物破壊 ＋ リズムゲーム化</p>
-<p><a href="https://www.youtube.com/watch?v=RKFJHH9iklQ" target="_blank">BIT.TRIP Runner - Trailer - YouTube</a></p>
-<p><img src="https://img.youtube.com/vi/RKFJHH9iklQ/0.jpg" alt="BIT.TRIP Runner image"></p>
-</article>
- 
-
-      <footer class="book-footer">
-        
-  <div class="flex justify-between">
-
-
-
-
-
-</div>
-
- 
-        
-  
-  <div class="book-comments">
-
-</div>
-  
- 
-      </footer>
-      
-    </div>
-
-    
-    <aside class="book-toc">
-      
-  <nav id="TableOfContents">
-  <ul>
-    <li><a href="#ルール変更案">ルール変更案</a>
-      <ul>
-        <li><a href="#数値調整">数値調整</a></li>
-        <li><a href="#ブロック関連">ブロック関連</a></li>
-        <li><a href="#操作方法">操作方法</a></li>
-        <li><a href="#ルール追加">ルール追加</a></li>
-        <li><a href="#ルール大幅変更">ルール大幅変更</a></li>
-      </ul>
-    </li>
-    <li><a href="#市販ゲームの例">市販ゲームの例</a>
-      <ul>
-        <li><a href="#bittrip-runner">『BIT.TRIP Runner』</a></li>
-      </ul>
-    </li>
-  </ul>
-</nav>
-
- 
-    </aside>
-    
-  </main>
-
-  
-</body>
-
+    <link rel="stylesheet" href="https://fal-works.github.io/make-games-with-p5js/css/chroma-style.css" />
+  </head>
+
+  <body>
+    <input type="checkbox" class="hidden" id="menu-control" />
+    <main class="container flex">
+      <aside class="book-menu">
+        <nav>
+          <h2 class="book-brand">
+            <a href="/make-games-with-p5js"><span>p5.js でゲーム制作</span> </a>
+          </h2>
+
+          <ul>
+            <li>
+              <a href="/make-games-with-p5js/docs/introduction/">
+                はじめに
+              </a>
+
+              <ul>
+                <li>
+                  <a href="/make-games-with-p5js/docs/introduction/overview/">
+                    進め方
+                  </a>
+                </li>
+
+                <li>
+                  <a href="/make-games-with-p5js/docs/introduction/prepare/">
+                    準備
+                  </a>
+                </li>
+
+                <li>
+                  <a href="/make-games-with-p5js/docs/introduction/basic-sketch/">
+                    p5.js スケッチの基本構造
+                  </a>
+                </li>
+              </ul>
+            </li>
+
+            <li>
+              <a href="/make-games-with-p5js/docs/flappy-bird-like/">
+                Flappy Bird ライクなゲーム
+              </a>
+
+              <ul>
+                <li>
+                  <a href="/make-games-with-p5js/docs/flappy-bird-like/design/">
+                    最初に少し考えてみる
+                  </a>
+                </li>
+
+                <li>
+                  <a href="/make-games-with-p5js/docs/flappy-bird-like/player/">
+                    プレイヤーだけ実装
+                  </a>
+                </li>
+
+                <li>
+                  <a href="/make-games-with-p5js/docs/flappy-bird-like/block/">
+                    ブロック1個だけ実装
+                  </a>
+                </li>
+
+                <li>
+                  <a href="/make-games-with-p5js/docs/flappy-bird-like/visuals/">
+                    見た目をアレンジ
+                  </a>
+
+                  <ul>
+                    <li>
+                      <a href="/make-games-with-p5js/docs/flappy-bird-like/visuals/colors/">
+                        p5.js の色指定
+                      </a>
+                    </li>
+                  </ul>
+                </li>
+
+                <li>
+                  <a href="/make-games-with-p5js/docs/flappy-bird-like/blocks/">
+                    ブロックを複数にする
+                  </a>
+                </li>
+
+                <li>
+                  <a href="/make-games-with-p5js/docs/flappy-bird-like/game-state/">
+                    ゲームオーバーを実装
+                  </a>
+                </li>
+
+                <li>
+                  <a href="/make-games-with-p5js/docs/flappy-bird-like/collision/">
+                    衝突判定を実装
+                  </a>
+                </li>
+              </ul>
+            </li>
+
+            <li>
+              <a href="/make-games-with-p5js/docs/arrange/">
+                アレンジいろいろ
+              </a>
+
+              <ul>
+                <li>
+                  <a href="/make-games-with-p5js/docs/arrange/particles/">
+                    パーティクルを追加
+                  </a>
+                </li>
+
+                <li>
+                  <a href="/make-games-with-p5js/docs/arrange/effects/">
+                    画面効果を追加
+                  </a>
+                </li>
+
+                <li>
+                  <a href="/make-games-with-p5js/docs/arrange/rules/" class="active">
+                    ルール変更
+                  </a>
+                </li>
+
+                <li>
+                  <a href="/make-games-with-p5js/docs/arrange/use-assets.md/">
+                    画像や音を使う
+                  </a>
+                </li>
+
+                <li>
+                  <a href="/make-games-with-p5js/docs/arrange/links/">
+                    参考リンク
+                  </a>
+                </li>
+              </ul>
+            </li>
+
+            <li>
+              <a href="/make-games-with-p5js/docs/license/">
+                著作権情報
+              </a>
+            </li>
+          </ul>
+        </nav>
+
+        <script>
+          (function() {
+            var menu = document.querySelector("aside.book-menu nav");
+            addEventListener("beforeunload", function(event) {
+              localStorage.setItem("menu.scrollTop", menu.scrollTop);
+            });
+            menu.scrollTop = localStorage.getItem("menu.scrollTop");
+          })();
+        </script>
+      </aside>
+
+      <div class="book-page">
+        <header class="book-header">
+          <div class="flex align-center justify-between">
+            <label for="menu-control">
+              <img src="/make-games-with-p5js/svg/menu.svg" class="book-icon" alt="Menu" />
+            </label>
+
+            <strong>ルール変更</strong>
+
+            <label for="toc-control">
+              <img src="/make-games-with-p5js/svg/toc.svg" class="book-icon" alt="Table of Contents" />
+            </label>
+          </div>
+
+          <input type="checkbox" class="hidden" id="toc-control" />
+          <aside class="hidden clearfix">
+            <nav id="TableOfContents">
+              <ul>
+                <li>
+                  <a href="#ルール変更案">ルール変更案</a>
+                  <ul>
+                    <li><a href="#数値調整">数値調整</a></li>
+                    <li><a href="#ブロック関連">ブロック関連</a></li>
+                    <li><a href="#操作方法">操作方法</a></li>
+                    <li><a href="#ルール追加">ルール追加</a></li>
+                    <li><a href="#ルール大幅変更">ルール大幅変更</a></li>
+                  </ul>
+                </li>
+                <li>
+                  <a href="#市販ゲームの例">市販ゲームの例</a>
+                  <ul>
+                    <li><a href="#bittrip-runner">『BIT.TRIP Runner』</a></li>
+                  </ul>
+                </li>
+              </ul>
+            </nav>
+          </aside>
+        </header>
+
+        <article class="markdown">
+          <h1 id="ルール変更">ルール変更</h1>
+          <blockquote class="book-hint info">
+            <p>今回作ってきたプログラムは、少し手を加えるだけで色々なゲームに化けることができます。</p>
+            <p>どんな改造ができるでしょうか？</p>
+            <p>思いつくままに改造してみましょう。</p>
+            <p>
+              いくつか案を列挙しますが（サンプルコードはありません）、<br />
+              他にもないか自分なりに考えてみても良いでしょう。
+            </p>
+            <p>仮にゲームの体を成していない状態になっても、それはそれでアリだと思います。</p>
+          </blockquote>
+
+          <div class="book-expand">
+            <label>
+              <div class="book-expand-head flex justify-between">
+                <span>補足： 現行プログラムの改善点</span>
+                <span>↕</span>
+              </div>
+              <input type="checkbox" class="hidden" />
+              <div class="book-expand-content markdown-inner">
+                <p>
+                  ちなみに、改造前のルールにしても完全ではありません。<br />
+                  画面上端からさらに上へといくらでも飛べてしまって、ブロック避け放題だからです。<br />
+                  プレイヤーのy座標を制限する処理を入れても良いでしょう。
+                </p>
+                <p>
+                  また、スコアがあったほうが遊びがいがあります。<br />
+                  そのためには、ブロックを避けられたら得点アップ、という処理を入れる必要があります。<br />
+                  実装としては、
+                </p>
+                <ul>
+                  <li>上下のブロックの間に不可視のエンティティを入れて、衝突したらそれを殺して得点</li>
+                  <li>
+                    ブロックの出現間隔と移動速度が一定な場合、得点アップのタイミングが正確に予測できるので、<code
+                      >frameCount</code
+                    >
+                    の値が特定の値になったら得点
+                  </li>
+                </ul>
+                <p>などが考えられます。</p>
+              </div>
+            </label>
+          </div>
+          <h2 id="ルール変更案">ルール変更案</h2>
+          <p>おおむね簡単順。後ろの方のはちょっと力が要るかも</p>
+          <h3 id="数値調整">数値調整</h3>
+          <ul>
+            <li>移動速度や重力の強さなどの数値を変えたら、遊び心地はどう変わってくる？</li>
+          </ul>
+          <h3 id="ブロック関連">ブロック関連</h3>
+          <ul>
+            <li>ブロックの移動速度にばらつきがあったらどうだろう？</li>
+            <li>ブロックがちょっとだけ縦方向にも動くようにしたら？</li>
+            <li>
+              ブロックを小さくして、代わりに数を増やしたらどうだろう？<br />
+              （描画処理と衝突判定処理の両方で数値変更が必要なことに注意）
+            </li>
+          </ul>
+          <h3 id="操作方法">操作方法</h3>
+          <ul>
+            <li>
+              クリックでジャンプではなく、ボタンを押している間だけ、<br />
+              継続的に揚力（浮き上がる力）を与えたらどうだろう？
+            </li>
+            <li>重力を廃止し、マウスカーソルのy座標に応じて追随or加速するようにしては？</li>
+            <li>キーボード操作にするのはどうか？</li>
+          </ul>
+          <h3 id="ルール追加">ルール追加</h3>
+          <ul>
+            <li>
+              何度かミスってもOK、にしてみては？<br />
+              （ミスった直後の一定時間は無敵、などの処理が必要）
+            </li>
+            <li>
+              ブロックという障害物だけでなく、コインやアイテムが飛んできて、<br />
+              衝突したら得点アップ！ とかはどうか？ （要：得点のカウント＆表示処理）
+            </li>
+            <li>何らかの条件で、衝突時にブロックを破壊可能にしてみては？</li>
+          </ul>
+          <h3 id="ルール大幅変更">ルール大幅変更</h3>
+          <ul>
+            <li>攻撃を発射してブロックを破壊可能に（もはやシューティング）</li>
+            <li>地面を追加して着地可能にし、ジャンプしたりしなかったりして避ける（もはやマリオ）</li>
+            <li>ブロック崩しゲームにしようぜ！！！１</li>
+          </ul>
+          <div class="book-expand">
+            <label>
+              <div class="book-expand-head flex justify-between">
+                <span>余談： 換骨奪胎</span>
+                <span>↕</span>
+              </div>
+              <input type="checkbox" class="hidden" />
+              <div class="book-expand-content markdown-inner">
+                <p>上の「ルール大幅変更」は、即座にはできないにしても、実際のところ十分に可能です。</p>
+                <p>ここまで作ってきたプログラムで、土台はある程度できているからです。</p>
+                <p>たとえば、Flappy Bird と古典的なブロック崩しとの違いは、おおむね次のとおりです。</p>
+                <table>
+                  <thead>
+                    <tr>
+                      <th></th>
+                      <th>Flappy Bird</th>
+                      <th>ブロック崩し</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td>エンティティ</td>
+                      <td>プレイヤー・ブロック</td>
+                      <td>プレイヤー・ボール・ブロック</td>
+                    </tr>
+                    <tr>
+                      <td>プレイヤー</td>
+                      <td>画面左で上下移動(+重力)</td>
+                      <td>画面下端で左右に移動</td>
+                    </tr>
+                    <tr>
+                      <td>ブロック</td>
+                      <td>右から出現、左へ移動して削除</td>
+                      <td>位置固定。衝突で削除</td>
+                    </tr>
+                    <tr>
+                      <td>操作方法</td>
+                      <td>クリックでジャンプ</td>
+                      <td>マウスやキーで移動</td>
+                    </tr>
+                    <tr>
+                      <td>衝突する相手</td>
+                      <td>プレイヤー ↔ ブロック</td>
+                      <td>プレイヤー ↔ ボール ↔ ブロック</td>
+                    </tr>
+                    <tr>
+                      <td>〃</td>
+                      <td></td>
+                      <td>ボール ↔ 画面枠</td>
+                    </tr>
+                    <tr>
+                      <td>衝突時の処理</td>
+                      <td>ゲームオーバー</td>
+                      <td>ボールは反発、ブロックは削除</td>
+                    </tr>
+                    <tr>
+                      <td>勝利条件</td>
+                      <td>なし</td>
+                      <td>全ブロック破壊</td>
+                    </tr>
+                    <tr>
+                      <td>敗北条件</td>
+                      <td>落ちる or 当たる</td>
+                      <td>ボールを取り逃す</td>
+                    </tr>
+                  </tbody>
+                </table>
+                <p>つまり、このそれぞれに該当する部分を地道に書き換えればよく、</p>
+                <ul>
+                  <li>エンティティの概念</li>
+                  <li>複数エンティティの管理（追加・更新・削除）</li>
+                  <li>ゲーム状態（ゲームオーバー等）の概念</li>
+                </ul>
+                <p>などのような全体の枠組みはたいして変わらない、ということが分かります。</p>
+              </div>
+            </label>
+          </div>
+          <h2 id="市販ゲームの例">市販ゲームの例</h2>
+          <h3 id="bittrip-runner">『BIT.TRIP Runner』</h3>
+          <p>地面でジャンプ ＋ コイン／アイテム ＋ スライディング＆障害物破壊 ＋ リズムゲーム化</p>
+          <p>
+            <a href="https://www.youtube.com/watch?v=RKFJHH9iklQ" target="_blank"
+              >BIT.TRIP Runner - Trailer - YouTube</a
+            >
+          </p>
+          <p><img src="https://img.youtube.com/vi/RKFJHH9iklQ/0.jpg" alt="BIT.TRIP Runner image" /></p>
+        </article>
+
+        <footer class="book-footer">
+          <div class="flex justify-between"></div>
+
+          <div class="book-comments"></div>
+        </footer>
+      </div>
+
+      <aside class="book-toc">
+        <nav id="TableOfContents">
+          <ul>
+            <li>
+              <a href="#ルール変更案">ルール変更案</a>
+              <ul>
+                <li><a href="#数値調整">数値調整</a></li>
+                <li><a href="#ブロック関連">ブロック関連</a></li>
+                <li><a href="#操作方法">操作方法</a></li>
+                <li><a href="#ルール追加">ルール追加</a></li>
+                <li><a href="#ルール大幅変更">ルール大幅変更</a></li>
+              </ul>
+            </li>
+            <li>
+              <a href="#市販ゲームの例">市販ゲームの例</a>
+              <ul>
+                <li><a href="#bittrip-runner">『BIT.TRIP Runner』</a></li>
+              </ul>
+            </li>
+          </ul>
+        </nav>
+      </aside>
+    </main>
+  </body>
 </html>
-
-
-
-
-
-
-
-
-
-
-
-

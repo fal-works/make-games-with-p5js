@@ -1,461 +1,262 @@
 <!DOCTYPE html>
 <html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="ブロック1個だけ実装" />
+    <meta property="og:title" content="ブロック1個だけ実装" />
+    <meta
+      property="og:description"
+      content="ブロックを1個だけ実装してみる 【再掲】エンティティ関連の処理 全エンティティ共通 位置の更新 プレイヤー用 作成 重力の適用 ジャンプ 描画 ブロック用 作成"
+    />
+    <meta property="og:type" content="article" />
+    <meta property="og:url" content="https://fal-works.github.io/make-games-with-p5js/docs/flappy-bird-like/block/" />
+    <meta property="og:site_name" content="p5.js でゲーム制作" />
+    <title>ブロック1個だけ実装 | p5.js でゲーム制作</title>
+    <link rel="icon" href="/make-games-with-p5js/favicon.png" type="image/x-icon" />
 
-<head>
-  <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="ブロック1個だけ実装"><meta property="og:title" content="ブロック1個だけ実装" />
-<meta property="og:description" content="ブロックを1個だけ実装してみる 【再掲】エンティティ関連の処理 全エンティティ共通 位置の更新 プレイヤー用 作成 重力の適用 ジャンプ 描画 ブロック用 作成" />
-<meta property="og:type" content="article" />
-<meta property="og:url" content="https://fal-works.github.io/make-games-with-p5js/docs/flappy-bird-like/block/" />
+    <link
+      rel="stylesheet"
+      href="/make-games-with-p5js/book.min.06fb39c93b652f68daea0425ce9d8c8e89546af90f99fdeaeca4ef34558ed719.css"
+      integrity="sha256-Bvs5yTtlL2ja6gQlzp2MjolUavkPmf3q7KTvNFWO1xk="
+    />
 
-<title>ブロック1個だけ実装 | p5.js でゲーム制作</title>
-<link rel="icon" href="/make-games-with-p5js/favicon.png" type="image/x-icon">
-
-
-<link rel="stylesheet" href="/make-games-with-p5js/book.min.06fb39c93b652f68daea0425ce9d8c8e89546af90f99fdeaeca4ef34558ed719.css" integrity="sha256-Bvs5yTtlL2ja6gQlzp2MjolUavkPmf3q7KTvNFWO1xk=">
-
-
-<!--
+    <!--
 Made with Book Theme
 https://github.com/alex-shpak/hugo-book
 -->
 
-  <link rel="stylesheet" href="https://fal-works.github.io/make-games-with-p5js/css/chroma-style.css" />
-</head>
-
-<body>
-  <input type="checkbox" class="hidden" id="menu-control" />
-  <main class="container flex">
-    <aside class="book-menu">
-      
-  <nav>
-<h2 class="book-brand">
-  <a href="/make-games-with-p5js"><span>p5.js でゲーム制作</span>
-  </a>
-</h2>
-
-
-
-
-
-
-  
-
-  
-  
-
-
-
-
-
- 
-  
-    
-
-
-
-
-  
-  <ul>
-    
-      
-        
-
-  <li >
-    
-      
-
-  <a href="/make-games-with-p5js/docs/introduction/" >
-      はじめに
-  </a>
-
-
-    
-
-    
-
-
-
-
-  
-  <ul>
-    
-      
-        <li>
-
-  <a href="/make-games-with-p5js/docs/introduction/overview/" >
-      進め方
-  </a>
-
-</li>
-      
-    
-      
-        <li>
-
-  <a href="/make-games-with-p5js/docs/introduction/prepare/" >
-      準備
-  </a>
-
-</li>
-      
-    
-      
-        <li>
-
-  <a href="/make-games-with-p5js/docs/introduction/basic-sketch/" >
-      p5.js スケッチの基本構造
-  </a>
-
-</li>
-      
-    
-  </ul>
-  
-
-
-
-  </li>
-
-
-      
-    
-      
-        
-
-  <li >
-    
-      
-
-  <a href="/make-games-with-p5js/docs/flappy-bird-like/" >
-      Flappy Bird ライクなゲーム
-  </a>
-
-
-    
-
-    
-
-
-
-
-  
-  <ul>
-    
-      
-        <li>
-
-  <a href="/make-games-with-p5js/docs/flappy-bird-like/design/" >
-      最初に少し考えてみる
-  </a>
-
-</li>
-      
-    
-      
-        <li>
-
-  <a href="/make-games-with-p5js/docs/flappy-bird-like/player/" >
-      プレイヤーだけ実装
-  </a>
-
-</li>
-      
-    
-      
-        <li>
-
-  <a href="/make-games-with-p5js/docs/flappy-bird-like/block/"  class="active">
-      ブロック1個だけ実装
-  </a>
-
-</li>
-      
-    
-      
-        
-
-  <li >
-    
-      
-
-  <a href="/make-games-with-p5js/docs/flappy-bird-like/visuals/" >
-      見た目をアレンジ
-  </a>
-
-
-    
-
-    
-
-
-
-
-  
-  <ul>
-    
-      
-        <li>
-
-  <a href="/make-games-with-p5js/docs/flappy-bird-like/visuals/colors/" >
-      p5.js の色指定
-  </a>
-
-</li>
-      
-    
-  </ul>
-  
-
-
-
-  </li>
-
-
-      
-    
-      
-        <li>
-
-  <a href="/make-games-with-p5js/docs/flappy-bird-like/blocks/" >
-      ブロックを複数にする
-  </a>
-
-</li>
-      
-    
-      
-        <li>
-
-  <a href="/make-games-with-p5js/docs/flappy-bird-like/game-state/" >
-      ゲームオーバーを実装
-  </a>
-
-</li>
-      
-    
-      
-        <li>
-
-  <a href="/make-games-with-p5js/docs/flappy-bird-like/collision/" >
-      衝突判定を実装
-  </a>
-
-</li>
-      
-    
-  </ul>
-  
-
-
-
-  </li>
-
-
-      
-    
-      
-        
-
-  <li >
-    
-      
-
-  <a href="/make-games-with-p5js/docs/arrange/" >
-      アレンジいろいろ
-  </a>
-
-
-    
-
-    
-
-
-
-
-  
-  <ul>
-    
-      
-        <li>
-
-  <a href="/make-games-with-p5js/docs/arrange/particles/" >
-      パーティクルを追加
-  </a>
-
-</li>
-      
-    
-      
-        <li>
-
-  <a href="/make-games-with-p5js/docs/arrange/effects/" >
-      画面効果を追加
-  </a>
-
-</li>
-      
-    
-      
-        <li>
-
-  <a href="/make-games-with-p5js/docs/arrange/rules/" >
-      ルール変更
-  </a>
-
-</li>
-      
-    
-      
-        <li>
-
-  <a href="/make-games-with-p5js/docs/arrange/use-assets.md/" >
-      画像や音を使う
-  </a>
-
-</li>
-      
-    
-      
-        <li>
-
-  <a href="/make-games-with-p5js/docs/arrange/links/" >
-      参考リンク
-  </a>
-
-</li>
-      
-    
-  </ul>
-  
-
-
-
-  </li>
-
-
-      
-    
-      
-        <li>
-
-  <a href="/make-games-with-p5js/docs/license/" >
-      著作権情報
-  </a>
-
-</li>
-      
-    
-  </ul>
-  
-
-
-
-  
-
-
-
-
-
-
-
-
-
-
-
-</nav>
-
-
-<script>
-(function() {
-  var menu = document.querySelector("aside.book-menu nav");
-  addEventListener("beforeunload", function(event) {
-    localStorage.setItem("menu.scrollTop", menu.scrollTop);
-  });
-  menu.scrollTop = localStorage.getItem("menu.scrollTop");
-})();
-</script>
-
- 
-    </aside>
-
-    <div class="book-page">
-      <header class="book-header">
-        
-  <div class="flex align-center justify-between">
-  <label for="menu-control">
-    <img src="/make-games-with-p5js/svg/menu.svg" class="book-icon" alt="Menu" />
-  </label>
-
-  <strong>ブロック1個だけ実装</strong>
-
-  <label for="toc-control">
-    <img src="/make-games-with-p5js/svg/toc.svg" class="book-icon" alt="Table of Contents" />
-  </label>
-</div>
-
-
-  
-    <input type="checkbox" class="hidden" id="toc-control" />
-    <aside class="hidden clearfix">
-      
-  <nav id="TableOfContents">
-  <ul>
-    <li><a href="#再掲エンティティ関連の処理">【再掲】エンティティ関連の処理</a>
-      <ul>
-        <li><a href="#全エンティティ共通">全エンティティ共通</a></li>
-        <li><a href="#プレイヤー用">プレイヤー用</a></li>
-        <li><a href="#ブロック用">ブロック用</a></li>
-      </ul>
-    </li>
-    <li><a href="#やること">やること</a></li>
-    <li><a href="#必要な関数が既に揃っていると仮定して書いてみる">必要な関数が既に揃っている、と仮定して書いてみる</a></li>
-    <li><a href="#必要な関数を実際に用意する">必要な関数を実際に用意する</a></li>
-  </ul>
-</nav>
-
-
-    </aside>
-  
- 
-      </header>
-
-      
-<article class="markdown"><h1 id="ブロックを1個だけ実装してみる">ブロックを1個だけ実装してみる</h1>
-<h2 id="再掲エンティティ関連の処理">【再掲】エンティティ関連の処理</h2>
-<h3 id="全エンティティ共通">全エンティティ共通</h3>
-<ul>
-<li>位置の更新</li>
-</ul>
-<h3 id="プレイヤー用">プレイヤー用</h3>
-<ul>
-<li>作成</li>
-<li>重力の適用</li>
-<li>ジャンプ</li>
-<li>描画</li>
-</ul>
-<h3 id="ブロック用">ブロック用</h3>
-<ul>
-<li>作成</li>
-<li>描画</li>
-</ul>
-<h2 id="やること">やること</h2>
-<p>プレイヤーのときと流れは同じ</p>
-<ol>
-<li>ブロックを入れる変数を用意する</li>
-<li><code>setup()</code> の中で、ブロックを作成する</li>
-<li><code>draw()</code> の中で、ブロックについて以下を行う
-<ul>
-<li>位置の更新</li>
-<li>描画</li>
-</ul>
-</li>
-</ol>
-<h2 id="必要な関数が既に揃っていると仮定して書いてみる">必要な関数が既に揃っている、と仮定して書いてみる</h2>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">33
+    <link rel="stylesheet" href="https://fal-works.github.io/make-games-with-p5js/css/chroma-style.css" />
+  </head>
+
+  <body>
+    <input type="checkbox" class="hidden" id="menu-control" />
+    <main class="container flex">
+      <aside class="book-menu">
+        <nav>
+          <h2 class="book-brand">
+            <a href="/make-games-with-p5js"><span>p5.js でゲーム制作</span> </a>
+          </h2>
+
+          <ul>
+            <li>
+              <a href="/make-games-with-p5js/docs/introduction/">
+                はじめに
+              </a>
+
+              <ul>
+                <li>
+                  <a href="/make-games-with-p5js/docs/introduction/overview/">
+                    進め方
+                  </a>
+                </li>
+
+                <li>
+                  <a href="/make-games-with-p5js/docs/introduction/prepare/">
+                    準備
+                  </a>
+                </li>
+
+                <li>
+                  <a href="/make-games-with-p5js/docs/introduction/basic-sketch/">
+                    p5.js スケッチの基本構造
+                  </a>
+                </li>
+              </ul>
+            </li>
+
+            <li>
+              <a href="/make-games-with-p5js/docs/flappy-bird-like/">
+                Flappy Bird ライクなゲーム
+              </a>
+
+              <ul>
+                <li>
+                  <a href="/make-games-with-p5js/docs/flappy-bird-like/design/">
+                    最初に少し考えてみる
+                  </a>
+                </li>
+
+                <li>
+                  <a href="/make-games-with-p5js/docs/flappy-bird-like/player/">
+                    プレイヤーだけ実装
+                  </a>
+                </li>
+
+                <li>
+                  <a href="/make-games-with-p5js/docs/flappy-bird-like/block/" class="active">
+                    ブロック1個だけ実装
+                  </a>
+                </li>
+
+                <li>
+                  <a href="/make-games-with-p5js/docs/flappy-bird-like/visuals/">
+                    見た目をアレンジ
+                  </a>
+
+                  <ul>
+                    <li>
+                      <a href="/make-games-with-p5js/docs/flappy-bird-like/visuals/colors/">
+                        p5.js の色指定
+                      </a>
+                    </li>
+                  </ul>
+                </li>
+
+                <li>
+                  <a href="/make-games-with-p5js/docs/flappy-bird-like/blocks/">
+                    ブロックを複数にする
+                  </a>
+                </li>
+
+                <li>
+                  <a href="/make-games-with-p5js/docs/flappy-bird-like/game-state/">
+                    ゲームオーバーを実装
+                  </a>
+                </li>
+
+                <li>
+                  <a href="/make-games-with-p5js/docs/flappy-bird-like/collision/">
+                    衝突判定を実装
+                  </a>
+                </li>
+              </ul>
+            </li>
+
+            <li>
+              <a href="/make-games-with-p5js/docs/arrange/">
+                アレンジいろいろ
+              </a>
+
+              <ul>
+                <li>
+                  <a href="/make-games-with-p5js/docs/arrange/particles/">
+                    パーティクルを追加
+                  </a>
+                </li>
+
+                <li>
+                  <a href="/make-games-with-p5js/docs/arrange/effects/">
+                    画面効果を追加
+                  </a>
+                </li>
+
+                <li>
+                  <a href="/make-games-with-p5js/docs/arrange/rules/">
+                    ルール変更
+                  </a>
+                </li>
+
+                <li>
+                  <a href="/make-games-with-p5js/docs/arrange/use-assets.md/">
+                    画像や音を使う
+                  </a>
+                </li>
+
+                <li>
+                  <a href="/make-games-with-p5js/docs/arrange/links/">
+                    参考リンク
+                  </a>
+                </li>
+              </ul>
+            </li>
+
+            <li>
+              <a href="/make-games-with-p5js/docs/license/">
+                著作権情報
+              </a>
+            </li>
+          </ul>
+        </nav>
+
+        <script>
+          (function() {
+            var menu = document.querySelector("aside.book-menu nav");
+            addEventListener("beforeunload", function(event) {
+              localStorage.setItem("menu.scrollTop", menu.scrollTop);
+            });
+            menu.scrollTop = localStorage.getItem("menu.scrollTop");
+          })();
+        </script>
+      </aside>
+
+      <div class="book-page">
+        <header class="book-header">
+          <div class="flex align-center justify-between">
+            <label for="menu-control">
+              <img src="/make-games-with-p5js/svg/menu.svg" class="book-icon" alt="Menu" />
+            </label>
+
+            <strong>ブロック1個だけ実装</strong>
+
+            <label for="toc-control">
+              <img src="/make-games-with-p5js/svg/toc.svg" class="book-icon" alt="Table of Contents" />
+            </label>
+          </div>
+
+          <input type="checkbox" class="hidden" id="toc-control" />
+          <aside class="hidden clearfix">
+            <nav id="TableOfContents">
+              <ul>
+                <li>
+                  <a href="#再掲エンティティ関連の処理">【再掲】エンティティ関連の処理</a>
+                  <ul>
+                    <li><a href="#全エンティティ共通">全エンティティ共通</a></li>
+                    <li><a href="#プレイヤー用">プレイヤー用</a></li>
+                    <li><a href="#ブロック用">ブロック用</a></li>
+                  </ul>
+                </li>
+                <li><a href="#やること">やること</a></li>
+                <li>
+                  <a href="#必要な関数が既に揃っていると仮定して書いてみる"
+                    >必要な関数が既に揃っている、と仮定して書いてみる</a
+                  >
+                </li>
+                <li><a href="#必要な関数を実際に用意する">必要な関数を実際に用意する</a></li>
+              </ul>
+            </nav>
+          </aside>
+        </header>
+
+        <article class="markdown">
+          <h1 id="ブロックを1個だけ実装してみる">ブロックを1個だけ実装してみる</h1>
+          <h2 id="再掲エンティティ関連の処理">【再掲】エンティティ関連の処理</h2>
+          <h3 id="全エンティティ共通">全エンティティ共通</h3>
+          <ul>
+            <li>位置の更新</li>
+          </ul>
+          <h3 id="プレイヤー用">プレイヤー用</h3>
+          <ul>
+            <li>作成</li>
+            <li>重力の適用</li>
+            <li>ジャンプ</li>
+            <li>描画</li>
+          </ul>
+          <h3 id="ブロック用">ブロック用</h3>
+          <ul>
+            <li>作成</li>
+            <li>描画</li>
+          </ul>
+          <h2 id="やること">やること</h2>
+          <p>プレイヤーのときと流れは同じ</p>
+          <ol>
+            <li>ブロックを入れる変数を用意する</li>
+            <li><code>setup()</code> の中で、ブロックを作成する</li>
+            <li>
+              <code>draw()</code> の中で、ブロックについて以下を行う
+              <ul>
+                <li>位置の更新</li>
+                <li>描画</li>
+              </ul>
+            </li>
+          </ol>
+          <h2 id="必要な関数が既に揃っていると仮定して書いてみる">必要な関数が既に揃っている、と仮定して書いてみる</h2>
+          <div class="highlight">
+            <div class="chroma">
+              <table class="lntable">
+                <tr>
+                  <td class="lntd">
+                    <pre class="chroma"><code><span class="lnt">33
 </span><span class="lnt">34
 </span><span class="lnt">35
 </span><span class="lnt">36
@@ -494,9 +295,12 @@ https://github.com/alex-shpak/hugo-book
 </span><span class="lnt">69
 </span><span class="lnt">70
 </span><span class="lnt">71
-</span></code></pre></td>
-<td class="lntd">
-<pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="c1">// ---- ゲーム全体に関わる部分 ---------------------------------------------
+</span></code></pre>
+                  </td>
+                  <td class="lntd">
+                    <pre
+                      class="chroma"
+                    ><code class="language-javascript" data-lang="javascript"><span class="c1">// ---- ゲーム全体に関わる部分 ---------------------------------------------
 </span><span class="c1"></span>
 <span class="cm">/** プレイヤーエンティティ */</span>
 <span class="kd">let</span> <span class="nx">player</span><span class="p">;</span>
@@ -535,12 +339,19 @@ https://github.com/alex-shpak/hugo-book
   <span class="c1">// プレイヤーをジャンプさせる
 </span><span class="c1"></span>  <span class="nx">applyJump</span><span class="p">(</span><span class="nx">player</span><span class="p">)</span><span class="p">;</span>
 <span class="p">}</span>
-</code></pre></td></tr></table>
-</div>
-</div><h2 id="必要な関数を実際に用意する">必要な関数を実際に用意する</h2>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
+</code></pre>
+                  </td>
+                </tr>
+              </table>
+            </div>
+          </div>
+          <h2 id="必要な関数を実際に用意する">必要な関数を実際に用意する</h2>
+          <div class="highlight">
+            <div class="chroma">
+              <table class="lntable">
+                <tr>
+                  <td class="lntd">
+                    <pre class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -586,9 +397,12 @@ https://github.com/alex-shpak/hugo-book
 </span></span><span class="hl"><span class="lnt">44
 </span></span><span class="hl"><span class="lnt">45
 </span></span><span class="hl"><span class="lnt">46
-</span></span></code></pre></td>
-<td class="lntd">
-<pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="c1">// ---- エンティティ関連の関数 ---------------------------------------------
+</span></span></code></pre>
+                  </td>
+                  <td class="lntd">
+                    <pre
+                      class="chroma"
+                    ><code class="language-javascript" data-lang="javascript"><span class="c1">// ---- エンティティ関連の関数 ---------------------------------------------
 </span><span class="c1"></span>
 <span class="c1">// 全エンティティ共通
 </span><span class="c1"></span>
@@ -634,73 +448,45 @@ https://github.com/alex-shpak/hugo-book
 </span><span class="hl"><span class="kd">function</span> <span class="nx">drawBlock</span><span class="p">(</span><span class="nx">entity</span><span class="p">)</span> <span class="p">{</span>
 </span><span class="hl">  <span class="nx">rect</span><span class="p">(</span><span class="nx">entity</span><span class="p">.</span><span class="nx">x</span><span class="p">,</span> <span class="nx">entity</span><span class="p">.</span><span class="nx">y</span><span class="p">,</span> <span class="mi">80</span><span class="p">,</span> <span class="mi">400</span><span class="p">)</span><span class="p">;</span>
 </span><span class="hl"><span class="p">}</span>
-</span></code></pre></td></tr></table>
-</div>
-</div><blockquote class="book-hint info">
-  実行してみて、ブロックが画面右端から現れ、左側に向かって移動してくることを確認してください。
-</blockquote>
+</span></code></pre>
+                  </td>
+                </tr>
+              </table>
+            </div>
+          </div>
+          <blockquote class="book-hint info">
+            実行してみて、ブロックが画面右端から現れ、左側に向かって移動してくることを確認してください。
+          </blockquote>
+        </article>
 
-</article>
- 
+        <footer class="book-footer">
+          <div class="flex justify-between"></div>
 
-      <footer class="book-footer">
-        
-  <div class="flex justify-between">
+          <div class="book-comments"></div>
+        </footer>
+      </div>
 
-
-
-
-
-</div>
-
- 
-        
-  
-  <div class="book-comments">
-
-</div>
-  
- 
-      </footer>
-      
-    </div>
-
-    
-    <aside class="book-toc">
-      
-  <nav id="TableOfContents">
-  <ul>
-    <li><a href="#再掲エンティティ関連の処理">【再掲】エンティティ関連の処理</a>
-      <ul>
-        <li><a href="#全エンティティ共通">全エンティティ共通</a></li>
-        <li><a href="#プレイヤー用">プレイヤー用</a></li>
-        <li><a href="#ブロック用">ブロック用</a></li>
-      </ul>
-    </li>
-    <li><a href="#やること">やること</a></li>
-    <li><a href="#必要な関数が既に揃っていると仮定して書いてみる">必要な関数が既に揃っている、と仮定して書いてみる</a></li>
-    <li><a href="#必要な関数を実際に用意する">必要な関数を実際に用意する</a></li>
-  </ul>
-</nav>
-
- 
-    </aside>
-    
-  </main>
-
-  
-</body>
-
+      <aside class="book-toc">
+        <nav id="TableOfContents">
+          <ul>
+            <li>
+              <a href="#再掲エンティティ関連の処理">【再掲】エンティティ関連の処理</a>
+              <ul>
+                <li><a href="#全エンティティ共通">全エンティティ共通</a></li>
+                <li><a href="#プレイヤー用">プレイヤー用</a></li>
+                <li><a href="#ブロック用">ブロック用</a></li>
+              </ul>
+            </li>
+            <li><a href="#やること">やること</a></li>
+            <li>
+              <a href="#必要な関数が既に揃っていると仮定して書いてみる"
+                >必要な関数が既に揃っている、と仮定して書いてみる</a
+              >
+            </li>
+            <li><a href="#必要な関数を実際に用意する">必要な関数を実際に用意する</a></li>
+          </ul>
+        </nav>
+      </aside>
+    </main>
+  </body>
 </html>
-
-
-
-
-
-
-
-
-
-
-
-

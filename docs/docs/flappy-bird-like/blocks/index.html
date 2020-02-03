@@ -1,454 +1,259 @@
 <!DOCTYPE html>
 <html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="ブロックを複数にする" />
+    <meta property="og:title" content="ブロックを複数にする" />
+    <meta
+      property="og:description"
+      content="ブロックを複数にする この先の内容を取り入れる前に、前項 見た目をアレンジ で改造した結果のソースコードを別名保存しておくと良いでしょう。 このペー"
+    />
+    <meta property="og:type" content="article" />
+    <meta property="og:url" content="https://fal-works.github.io/make-games-with-p5js/docs/flappy-bird-like/blocks/" />
+    <meta property="og:site_name" content="p5.js でゲーム制作" />
+    <title>ブロックを複数にする | p5.js でゲーム制作</title>
+    <link rel="icon" href="/make-games-with-p5js/favicon.png" type="image/x-icon" />
 
-<head>
-  <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="ブロックを複数にする"><meta property="og:title" content="ブロックを複数にする" />
-<meta property="og:description" content="ブロックを複数にする この先の内容を取り入れる前に、前項 見た目をアレンジ で改造した結果のソースコードを別名保存しておくと良いでしょう。 このペー" />
-<meta property="og:type" content="article" />
-<meta property="og:url" content="https://fal-works.github.io/make-games-with-p5js/docs/flappy-bird-like/blocks/" />
+    <link
+      rel="stylesheet"
+      href="/make-games-with-p5js/book.min.06fb39c93b652f68daea0425ce9d8c8e89546af90f99fdeaeca4ef34558ed719.css"
+      integrity="sha256-Bvs5yTtlL2ja6gQlzp2MjolUavkPmf3q7KTvNFWO1xk="
+    />
 
-<title>ブロックを複数にする | p5.js でゲーム制作</title>
-<link rel="icon" href="/make-games-with-p5js/favicon.png" type="image/x-icon">
-
-
-<link rel="stylesheet" href="/make-games-with-p5js/book.min.06fb39c93b652f68daea0425ce9d8c8e89546af90f99fdeaeca4ef34558ed719.css" integrity="sha256-Bvs5yTtlL2ja6gQlzp2MjolUavkPmf3q7KTvNFWO1xk=">
-
-
-<!--
+    <!--
 Made with Book Theme
 https://github.com/alex-shpak/hugo-book
 -->
 
-  <link rel="stylesheet" href="https://fal-works.github.io/make-games-with-p5js/css/chroma-style.css" />
-</head>
-
-<body>
-  <input type="checkbox" class="hidden" id="menu-control" />
-  <main class="container flex">
-    <aside class="book-menu">
-      
-  <nav>
-<h2 class="book-brand">
-  <a href="/make-games-with-p5js"><span>p5.js でゲーム制作</span>
-  </a>
-</h2>
-
-
-
-
-
-
-  
-
-  
-  
-
-
-
-
-
- 
-  
-    
-
-
-
-
-  
-  <ul>
-    
-      
-        
-
-  <li >
-    
-      
-
-  <a href="/make-games-with-p5js/docs/introduction/" >
-      はじめに
-  </a>
-
-
-    
-
-    
-
-
-
-
-  
-  <ul>
-    
-      
-        <li>
-
-  <a href="/make-games-with-p5js/docs/introduction/overview/" >
-      進め方
-  </a>
-
-</li>
-      
-    
-      
-        <li>
-
-  <a href="/make-games-with-p5js/docs/introduction/prepare/" >
-      準備
-  </a>
-
-</li>
-      
-    
-      
-        <li>
-
-  <a href="/make-games-with-p5js/docs/introduction/basic-sketch/" >
-      p5.js スケッチの基本構造
-  </a>
-
-</li>
-      
-    
-  </ul>
-  
-
-
-
-  </li>
-
-
-      
-    
-      
-        
-
-  <li >
-    
-      
-
-  <a href="/make-games-with-p5js/docs/flappy-bird-like/" >
-      Flappy Bird ライクなゲーム
-  </a>
-
-
-    
-
-    
-
-
-
-
-  
-  <ul>
-    
-      
-        <li>
-
-  <a href="/make-games-with-p5js/docs/flappy-bird-like/design/" >
-      最初に少し考えてみる
-  </a>
-
-</li>
-      
-    
-      
-        <li>
-
-  <a href="/make-games-with-p5js/docs/flappy-bird-like/player/" >
-      プレイヤーだけ実装
-  </a>
-
-</li>
-      
-    
-      
-        <li>
-
-  <a href="/make-games-with-p5js/docs/flappy-bird-like/block/" >
-      ブロック1個だけ実装
-  </a>
-
-</li>
-      
-    
-      
-        
-
-  <li >
-    
-      
-
-  <a href="/make-games-with-p5js/docs/flappy-bird-like/visuals/" >
-      見た目をアレンジ
-  </a>
-
-
-    
-
-    
-
-
-
-
-  
-  <ul>
-    
-      
-        <li>
-
-  <a href="/make-games-with-p5js/docs/flappy-bird-like/visuals/colors/" >
-      p5.js の色指定
-  </a>
-
-</li>
-      
-    
-  </ul>
-  
-
-
-
-  </li>
-
-
-      
-    
-      
-        <li>
-
-  <a href="/make-games-with-p5js/docs/flappy-bird-like/blocks/"  class="active">
-      ブロックを複数にする
-  </a>
-
-</li>
-      
-    
-      
-        <li>
-
-  <a href="/make-games-with-p5js/docs/flappy-bird-like/game-state/" >
-      ゲームオーバーを実装
-  </a>
-
-</li>
-      
-    
-      
-        <li>
-
-  <a href="/make-games-with-p5js/docs/flappy-bird-like/collision/" >
-      衝突判定を実装
-  </a>
-
-</li>
-      
-    
-  </ul>
-  
-
-
-
-  </li>
-
-
-      
-    
-      
-        
-
-  <li >
-    
-      
-
-  <a href="/make-games-with-p5js/docs/arrange/" >
-      アレンジいろいろ
-  </a>
-
-
-    
-
-    
-
-
-
-
-  
-  <ul>
-    
-      
-        <li>
-
-  <a href="/make-games-with-p5js/docs/arrange/particles/" >
-      パーティクルを追加
-  </a>
-
-</li>
-      
-    
-      
-        <li>
-
-  <a href="/make-games-with-p5js/docs/arrange/effects/" >
-      画面効果を追加
-  </a>
-
-</li>
-      
-    
-      
-        <li>
-
-  <a href="/make-games-with-p5js/docs/arrange/rules/" >
-      ルール変更
-  </a>
-
-</li>
-      
-    
-      
-        <li>
-
-  <a href="/make-games-with-p5js/docs/arrange/use-assets.md/" >
-      画像や音を使う
-  </a>
-
-</li>
-      
-    
-      
-        <li>
-
-  <a href="/make-games-with-p5js/docs/arrange/links/" >
-      参考リンク
-  </a>
-
-</li>
-      
-    
-  </ul>
-  
-
-
-
-  </li>
-
-
-      
-    
-      
-        <li>
-
-  <a href="/make-games-with-p5js/docs/license/" >
-      著作権情報
-  </a>
-
-</li>
-      
-    
-  </ul>
-  
-
-
-
-  
-
-
-
-
-
-
-
-
-
-
-
-</nav>
-
-
-<script>
-(function() {
-  var menu = document.querySelector("aside.book-menu nav");
-  addEventListener("beforeunload", function(event) {
-    localStorage.setItem("menu.scrollTop", menu.scrollTop);
-  });
-  menu.scrollTop = localStorage.getItem("menu.scrollTop");
-})();
-</script>
-
- 
-    </aside>
-
-    <div class="book-page">
-      <header class="book-header">
-        
-  <div class="flex align-center justify-between">
-  <label for="menu-control">
-    <img src="/make-games-with-p5js/svg/menu.svg" class="book-icon" alt="Menu" />
-  </label>
-
-  <strong>ブロックを複数にする</strong>
-
-  <label for="toc-control">
-    <img src="/make-games-with-p5js/svg/toc.svg" class="book-icon" alt="Table of Contents" />
-  </label>
-</div>
-
-
-  
-    <input type="checkbox" class="hidden" id="toc-control" />
-    <aside class="hidden clearfix">
-      
-  <nav id="TableOfContents">
-  <ul>
-    <li><a href="#やること">やること</a></li>
-    <li><a href="#実装">実装</a></li>
-  </ul>
-</nav>
-
-
-    </aside>
-  
- 
-      </header>
-
-      
-<article class="markdown"><h1 id="ブロックを複数にする">ブロックを複数にする</h1>
-<blockquote class="book-hint info">
-  <p>この先の内容を取り入れる前に、前項 <a href="../40-visuals">見た目をアレンジ</a> で改造した結果のソースコードを別名保存しておくと良いでしょう。</p>
-<p>このページのサンプルコードは、<a href="../30-block">ブロック1個だけ実装</a> のものをベースにしており、装飾が無い状態に戻っています。ご自分の改造結果を保ったまま増築していけると良いですが、厳しそうだったら、サンプルコードを全文コピペして装飾の無い状態に戻すのもOKです。</p>
-
-</blockquote>
-
-<h2 id="やること">やること</h2>
-<ol>
-<li>ブロックを配列に格納するように変える</li>
-<li><code>draw()</code> の中で、ブロックの配列に対して以下を行う
-<ul>
-<li>一定の時間間隔で、上下ペアでブロックを作成して配列に追加する</li>
-<li>画面左端に消えたブロックがあったら削除する</li>
-</ul>
-</li>
-<li><code>draw()</code> の中で、配列内の各ブロックについて以下を行う
-<ul>
-<li>位置の更新</li>
-<li>描画</li>
-</ul>
-</li>
-</ol>
-<div class="book-expand">
-  <label>
-    <div class="book-expand-head flex justify-between">
-      <span>補足： 配列の基本</span>
-      <span>↕</span>
-    </div>
-    <input type="checkbox" class="hidden" />
-    <div class="book-expand-content markdown-inner">
-      <p>百聞不如一見</p>
-<p>※ <code>console.log()</code> は値をコンソールに出力します。<br>
-　p5.js Web Editor の場合だと画面左下に結果が表示される</p>
-<div class="highlight"><pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="kd">let</span> <span class="nx">countries</span> <span class="o">=</span> <span class="p">[</span><span class="p">]</span><span class="p">;</span> <span class="c1">// 中身のない空っぽの配列を作成
+    <link rel="stylesheet" href="https://fal-works.github.io/make-games-with-p5js/css/chroma-style.css" />
+  </head>
+
+  <body>
+    <input type="checkbox" class="hidden" id="menu-control" />
+    <main class="container flex">
+      <aside class="book-menu">
+        <nav>
+          <h2 class="book-brand">
+            <a href="/make-games-with-p5js"><span>p5.js でゲーム制作</span> </a>
+          </h2>
+
+          <ul>
+            <li>
+              <a href="/make-games-with-p5js/docs/introduction/">
+                はじめに
+              </a>
+
+              <ul>
+                <li>
+                  <a href="/make-games-with-p5js/docs/introduction/overview/">
+                    進め方
+                  </a>
+                </li>
+
+                <li>
+                  <a href="/make-games-with-p5js/docs/introduction/prepare/">
+                    準備
+                  </a>
+                </li>
+
+                <li>
+                  <a href="/make-games-with-p5js/docs/introduction/basic-sketch/">
+                    p5.js スケッチの基本構造
+                  </a>
+                </li>
+              </ul>
+            </li>
+
+            <li>
+              <a href="/make-games-with-p5js/docs/flappy-bird-like/">
+                Flappy Bird ライクなゲーム
+              </a>
+
+              <ul>
+                <li>
+                  <a href="/make-games-with-p5js/docs/flappy-bird-like/design/">
+                    最初に少し考えてみる
+                  </a>
+                </li>
+
+                <li>
+                  <a href="/make-games-with-p5js/docs/flappy-bird-like/player/">
+                    プレイヤーだけ実装
+                  </a>
+                </li>
+
+                <li>
+                  <a href="/make-games-with-p5js/docs/flappy-bird-like/block/">
+                    ブロック1個だけ実装
+                  </a>
+                </li>
+
+                <li>
+                  <a href="/make-games-with-p5js/docs/flappy-bird-like/visuals/">
+                    見た目をアレンジ
+                  </a>
+
+                  <ul>
+                    <li>
+                      <a href="/make-games-with-p5js/docs/flappy-bird-like/visuals/colors/">
+                        p5.js の色指定
+                      </a>
+                    </li>
+                  </ul>
+                </li>
+
+                <li>
+                  <a href="/make-games-with-p5js/docs/flappy-bird-like/blocks/" class="active">
+                    ブロックを複数にする
+                  </a>
+                </li>
+
+                <li>
+                  <a href="/make-games-with-p5js/docs/flappy-bird-like/game-state/">
+                    ゲームオーバーを実装
+                  </a>
+                </li>
+
+                <li>
+                  <a href="/make-games-with-p5js/docs/flappy-bird-like/collision/">
+                    衝突判定を実装
+                  </a>
+                </li>
+              </ul>
+            </li>
+
+            <li>
+              <a href="/make-games-with-p5js/docs/arrange/">
+                アレンジいろいろ
+              </a>
+
+              <ul>
+                <li>
+                  <a href="/make-games-with-p5js/docs/arrange/particles/">
+                    パーティクルを追加
+                  </a>
+                </li>
+
+                <li>
+                  <a href="/make-games-with-p5js/docs/arrange/effects/">
+                    画面効果を追加
+                  </a>
+                </li>
+
+                <li>
+                  <a href="/make-games-with-p5js/docs/arrange/rules/">
+                    ルール変更
+                  </a>
+                </li>
+
+                <li>
+                  <a href="/make-games-with-p5js/docs/arrange/use-assets.md/">
+                    画像や音を使う
+                  </a>
+                </li>
+
+                <li>
+                  <a href="/make-games-with-p5js/docs/arrange/links/">
+                    参考リンク
+                  </a>
+                </li>
+              </ul>
+            </li>
+
+            <li>
+              <a href="/make-games-with-p5js/docs/license/">
+                著作権情報
+              </a>
+            </li>
+          </ul>
+        </nav>
+
+        <script>
+          (function() {
+            var menu = document.querySelector("aside.book-menu nav");
+            addEventListener("beforeunload", function(event) {
+              localStorage.setItem("menu.scrollTop", menu.scrollTop);
+            });
+            menu.scrollTop = localStorage.getItem("menu.scrollTop");
+          })();
+        </script>
+      </aside>
+
+      <div class="book-page">
+        <header class="book-header">
+          <div class="flex align-center justify-between">
+            <label for="menu-control">
+              <img src="/make-games-with-p5js/svg/menu.svg" class="book-icon" alt="Menu" />
+            </label>
+
+            <strong>ブロックを複数にする</strong>
+
+            <label for="toc-control">
+              <img src="/make-games-with-p5js/svg/toc.svg" class="book-icon" alt="Table of Contents" />
+            </label>
+          </div>
+
+          <input type="checkbox" class="hidden" id="toc-control" />
+          <aside class="hidden clearfix">
+            <nav id="TableOfContents">
+              <ul>
+                <li><a href="#やること">やること</a></li>
+                <li><a href="#実装">実装</a></li>
+              </ul>
+            </nav>
+          </aside>
+        </header>
+
+        <article class="markdown">
+          <h1 id="ブロックを複数にする">ブロックを複数にする</h1>
+          <blockquote class="book-hint info">
+            <p>
+              この先の内容を取り入れる前に、前項
+              <a href="../40-visuals">見た目をアレンジ</a>
+              で改造した結果のソースコードを別名保存しておくと良いでしょう。
+            </p>
+            <p>
+              このページのサンプルコードは、<a href="../30-block">ブロック1個だけ実装</a>
+              のものをベースにしており、装飾が無い状態に戻っています。ご自分の改造結果を保ったまま増築していけると良いですが、厳しそうだったら、サンプルコードを全文コピペして装飾の無い状態に戻すのもOKです。
+            </p>
+          </blockquote>
+
+          <h2 id="やること">やること</h2>
+          <ol>
+            <li>ブロックを配列に格納するように変える</li>
+            <li>
+              <code>draw()</code> の中で、ブロックの配列に対して以下を行う
+              <ul>
+                <li>一定の時間間隔で、上下ペアでブロックを作成して配列に追加する</li>
+                <li>画面左端に消えたブロックがあったら削除する</li>
+              </ul>
+            </li>
+            <li>
+              <code>draw()</code> の中で、配列内の各ブロックについて以下を行う
+              <ul>
+                <li>位置の更新</li>
+                <li>描画</li>
+              </ul>
+            </li>
+          </ol>
+          <div class="book-expand">
+            <label>
+              <div class="book-expand-head flex justify-between">
+                <span>補足： 配列の基本</span>
+                <span>↕</span>
+              </div>
+              <input type="checkbox" class="hidden" />
+              <div class="book-expand-content markdown-inner">
+                <p>百聞不如一見</p>
+                <p>
+                  ※ <code>console.log()</code> は値をコンソールに出力します。<br />
+                  p5.js Web Editor の場合だと画面左下に結果が表示される
+                </p>
+                <div class="highlight">
+                  <pre
+                    class="chroma"
+                  ><code class="language-javascript" data-lang="javascript"><span class="kd">let</span> <span class="nx">countries</span> <span class="o">=</span> <span class="p">[</span><span class="p">]</span><span class="p">;</span> <span class="c1">// 中身のない空っぽの配列を作成
 </span><span class="c1"></span>
 <span class="nx">countries</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span><span class="s2">&#34;Japan&#34;</span><span class="p">)</span><span class="p">;</span> <span class="c1">// push で配列に値を追加
 </span><span class="c1"></span><span class="nx">countries</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span><span class="s2">&#34;USA&#34;</span><span class="p">)</span><span class="p">;</span>
@@ -459,49 +264,86 @@ https://github.com/alex-shpak/hugo-book
 </span><span class="c1"></span>
 <span class="c1">// for...of 構文。配列の各要素を取り出して country と名付けている
 </span><span class="c1"></span><span class="k">for</span> <span class="p">(</span><span class="kd">let</span> <span class="nx">country</span> <span class="k">of</span> <span class="nx">countries</span><span class="p">)</span> <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">country</span><span class="p">)</span><span class="p">;</span> <span class="c1">// 全要素が出力される
-</span></code></pre></div><p>この <strong>for&hellip;of 構文</strong>は、次のように普通の for で書いたときと結果は同じです。</p>
-<div class="highlight"><pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="k">for</span> <span class="p">(</span><span class="kd">let</span> <span class="nx">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="nx">i</span> <span class="o">&lt;</span> <span class="nx">countries</span><span class="p">.</span><span class="nx">length</span><span class="p">;</span> <span class="nx">i</span> <span class="o">+=</span> <span class="mi">1</span><span class="p">)</span> <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">countries</span><span class="p">[</span><span class="nx">i</span><span class="p">]</span><span class="p">)</span><span class="p">;</span>
-</code></pre></div><p>配列の <code>push()</code> は可変長引数なので、次のように一度に追加しても良いです。</p>
-<div class="highlight"><pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="nx">countries</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span><span class="s2">&#34;Japan&#34;</span><span class="p">,</span> <span class="s2">&#34;USA&#34;</span><span class="p">,</span> <span class="s2">&#34;Germany&#34;</span><span class="p">)</span><span class="p">;</span>
-</code></pre></div><p>またこの例だと、そもそも初期化と同時にまとめて登録しておくこともできます。</p>
-<div class="highlight"><pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="kd">let</span> <span class="nx">countries</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&#34;Japan&#34;</span><span class="p">,</span> <span class="s2">&#34;USA&#34;</span><span class="p">,</span> <span class="s2">&#34;Germany&#34;</span><span class="p">]</span><span class="p">;</span>
-</code></pre></div>
-    </div>
-  </label>
-</div>
-<div class="book-expand">
-  <label>
-    <div class="book-expand-head flex justify-between">
-      <span>補足： 配列の filter()</span>
-      <span>↕</span>
-    </div>
-    <input type="checkbox" class="hidden" />
-    <div class="book-expand-content markdown-inner">
-      <p><code>filter()</code> を使うと、条件に合致した要素だけを含む新たな配列を作ることができます。</p>
-<p>例えば、このような配列と関数があったとします。</p>
-<div class="highlight"><pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="cm">/** 元となる数列 */</span>
+</span></code></pre>
+                </div>
+                <p>この <strong>for&hellip;of 構文</strong>は、次のように普通の for で書いたときと結果は同じです。</p>
+                <div class="highlight">
+                  <pre
+                    class="chroma"
+                  ><code class="language-javascript" data-lang="javascript"><span class="k">for</span> <span class="p">(</span><span class="kd">let</span> <span class="nx">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="nx">i</span> <span class="o">&lt;</span> <span class="nx">countries</span><span class="p">.</span><span class="nx">length</span><span class="p">;</span> <span class="nx">i</span> <span class="o">+=</span> <span class="mi">1</span><span class="p">)</span> <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">countries</span><span class="p">[</span><span class="nx">i</span><span class="p">]</span><span class="p">)</span><span class="p">;</span>
+</code></pre>
+                </div>
+                <p>配列の <code>push()</code> は可変長引数なので、次のように一度に追加しても良いです。</p>
+                <div class="highlight">
+                  <pre
+                    class="chroma"
+                  ><code class="language-javascript" data-lang="javascript"><span class="nx">countries</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span><span class="s2">&#34;Japan&#34;</span><span class="p">,</span> <span class="s2">&#34;USA&#34;</span><span class="p">,</span> <span class="s2">&#34;Germany&#34;</span><span class="p">)</span><span class="p">;</span>
+</code></pre>
+                </div>
+                <p>またこの例だと、そもそも初期化と同時にまとめて登録しておくこともできます。</p>
+                <div class="highlight">
+                  <pre
+                    class="chroma"
+                  ><code class="language-javascript" data-lang="javascript"><span class="kd">let</span> <span class="nx">countries</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&#34;Japan&#34;</span><span class="p">,</span> <span class="s2">&#34;USA&#34;</span><span class="p">,</span> <span class="s2">&#34;Germany&#34;</span><span class="p">]</span><span class="p">;</span>
+</code></pre>
+                </div>
+              </div>
+            </label>
+          </div>
+          <div class="book-expand">
+            <label>
+              <div class="book-expand-head flex justify-between">
+                <span>補足： 配列の filter()</span>
+                <span>↕</span>
+              </div>
+              <input type="checkbox" class="hidden" />
+              <div class="book-expand-content markdown-inner">
+                <p><code>filter()</code> を使うと、条件に合致した要素だけを含む新たな配列を作ることができます。</p>
+                <p>例えば、このような配列と関数があったとします。</p>
+                <div class="highlight">
+                  <pre
+                    class="chroma"
+                  ><code class="language-javascript" data-lang="javascript"><span class="cm">/** 元となる数列 */</span>
 <span class="kd">let</span> <span class="nx">numbers</span> <span class="o">=</span> <span class="p">[</span><span class="mi">10</span><span class="p">,</span> <span class="mi">20</span><span class="p">,</span> <span class="mi">30</span><span class="p">,</span> <span class="mi">40</span><span class="p">]</span><span class="p">;</span>
 
 <span class="cm">/** 値が 20 より大きければ true、そうでなければ false を返す */</span>
 <span class="kd">function</span> <span class="nx">greaterThan20</span><span class="p">(</span><span class="nx">n</span><span class="p">)</span> <span class="p">{</span>
   <span class="k">return</span> <span class="nx">n</span> <span class="o">&gt;</span> <span class="mi">20</span><span class="p">;</span>
 <span class="p">}</span>
-</code></pre></div><p>このとき、<code>filter()</code> を使って、「20 より大きい値」だけを含む新たな配列が作れます。</p>
-<div class="highlight"><pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="kd">let</span> <span class="nx">newNumbers</span> <span class="o">=</span> <span class="nx">numbers</span><span class="p">.</span><span class="nx">filter</span><span class="p">(</span><span class="nx">greaterThan20</span><span class="p">)</span><span class="p">;</span> <span class="c1">// 結果は新たな配列 [30, 40]
-</span></code></pre></div><p>つまり <code>filter()</code> は、「値に応じて <code>true</code> か <code>false</code> を返す関数」を引数として与えると、それを使って配列の各要素をチェックし、フィルタリングしてくれるのです。</p>
-<p>※ 厳密には <code>true</code>/<code>false</code> というより truthy/falsy で判定</p>
-<p>なお、念のため…… <code>return n &gt; 20;</code> のところは、次のように書くのと同じ結果です。</p>
-<div class="highlight"><pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="k">if</span> <span class="p">(</span><span class="nx">n</span> <span class="o">&gt;</span> <span class="mi">20</span><span class="p">)</span> <span class="k">return</span> <span class="kc">true</span><span class="p">;</span>
+</code></pre>
+                </div>
+                <p>このとき、<code>filter()</code> を使って、「20 より大きい値」だけを含む新たな配列が作れます。</p>
+                <div class="highlight">
+                  <pre
+                    class="chroma"
+                  ><code class="language-javascript" data-lang="javascript"><span class="kd">let</span> <span class="nx">newNumbers</span> <span class="o">=</span> <span class="nx">numbers</span><span class="p">.</span><span class="nx">filter</span><span class="p">(</span><span class="nx">greaterThan20</span><span class="p">)</span><span class="p">;</span> <span class="c1">// 結果は新たな配列 [30, 40]
+</span></code></pre>
+                </div>
+                <p>
+                  つまり <code>filter()</code> は、「値に応じて <code>true</code> か
+                  <code>false</code>
+                  を返す関数」を引数として与えると、それを使って配列の各要素をチェックし、フィルタリングしてくれるのです。
+                </p>
+                <p>※ 厳密には <code>true</code>/<code>false</code> というより truthy/falsy で判定</p>
+                <p>なお、念のため…… <code>return n &gt; 20;</code> のところは、次のように書くのと同じ結果です。</p>
+                <div class="highlight">
+                  <pre
+                    class="chroma"
+                  ><code class="language-javascript" data-lang="javascript"><span class="k">if</span> <span class="p">(</span><span class="nx">n</span> <span class="o">&gt;</span> <span class="mi">20</span><span class="p">)</span> <span class="k">return</span> <span class="kc">true</span><span class="p">;</span>
 <span class="k">else</span> <span class="k">return</span> <span class="kc">false</span><span class="p">;</span>
-</code></pre></div>
-    </div>
-  </label>
-</div>
-<h2 id="実装">実装</h2>
-<p>変数 <code>block</code> が複数形の <code>blocks</code> に変わっていることに注意</p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">  1
+</code></pre>
+                </div>
+              </div>
+            </label>
+          </div>
+          <h2 id="実装">実装</h2>
+          <p>変数 <code>block</code> が複数形の <code>blocks</code> に変わっていることに注意</p>
+          <div class="highlight">
+            <div class="chroma">
+              <table class="lntable">
+                <tr>
+                  <td class="lntd">
+                    <pre class="chroma"><code><span class="lnt">  1
 </span><span class="lnt">  2
 </span><span class="lnt">  3
 </span><span class="lnt">  4
@@ -604,9 +446,12 @@ https://github.com/alex-shpak/hugo-book
 </span><span class="lnt">101
 </span><span class="lnt">102
 </span><span class="lnt">103
-</span></code></pre></td>
-<td class="lntd">
-<pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="c1">// ---- エンティティ関連の関数 ---------------------------------------------
+</span></code></pre>
+                  </td>
+                  <td class="lntd">
+                    <pre
+                      class="chroma"
+                    ><code class="language-javascript" data-lang="javascript"><span class="c1">// ---- エンティティ関連の関数 ---------------------------------------------
 </span><span class="c1"></span>
 <span class="c1">// 全エンティティ共通
 </span><span class="c1"></span>
@@ -709,124 +554,238 @@ https://github.com/alex-shpak/hugo-book
   <span class="c1">// プレイヤーをジャンプさせる
 </span><span class="c1"></span>  <span class="nx">applyJump</span><span class="p">(</span><span class="nx">player</span><span class="p">)</span><span class="p">;</span>
 <span class="p">}</span>
-</code></pre></td></tr></table>
-</div>
-</div><div class="book-expand">
-  <label>
-    <div class="book-expand-head flex justify-between">
-      <span>補足： 一定間隔</span>
-      <span>↕</span>
-    </div>
-    <input type="checkbox" class="hidden" />
-    <div class="book-expand-content markdown-inner">
-      <div class="highlight"><pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="k">if</span> <span class="p">(</span><span class="nx">frameCount</span> <span class="o">%</span> <span class="mi">120</span> <span class="o">===</span> <span class="mi">1</span><span class="p">)</span> <span class="nx">addBlockPair</span><span class="p">(</span><span class="nx">blocks</span><span class="p">)</span><span class="p">;</span>
-</code></pre></div><p>のところですが、ここでは <code>frameCount</code> を <code>120</code> で割った余りを計算しています。</p>
-<p>すると、<code>frameCount</code> が <code>1</code> のとき、<code>121</code> のとき、<code>241</code> のとき……という具合で、120 フレームに 1 回、すなわち（今は 60 FPS なので）2 秒に 1 回、ブロックの追加が行われます。</p>
-<p>ちなみになぜ <code>0</code> とかではなくて <code>1</code> と比較しているのかというと、どうも <code>frameCount</code> は <code>1</code> から始まるようなので、最初の待ち時間が無いほうが良いと思ってこうしています。</p>
+</code></pre>
+                  </td>
+                </tr>
+              </table>
+            </div>
+          </div>
+          <div class="book-expand">
+            <label>
+              <div class="book-expand-head flex justify-between">
+                <span>補足： 一定間隔</span>
+                <span>↕</span>
+              </div>
+              <input type="checkbox" class="hidden" />
+              <div class="book-expand-content markdown-inner">
+                <div class="highlight">
+                  <pre
+                    class="chroma"
+                  ><code class="language-javascript" data-lang="javascript"><span class="k">if</span> <span class="p">(</span><span class="nx">frameCount</span> <span class="o">%</span> <span class="mi">120</span> <span class="o">===</span> <span class="mi">1</span><span class="p">)</span> <span class="nx">addBlockPair</span><span class="p">(</span><span class="nx">blocks</span><span class="p">)</span><span class="p">;</span>
+</code></pre>
+                </div>
+                <p>
+                  のところですが、ここでは <code>frameCount</code> を <code>120</code> で割った余りを計算しています。
+                </p>
+                <p>
+                  すると、<code>frameCount</code> が <code>1</code> のとき、<code>121</code> のとき、<code>241</code>
+                  のとき……という具合で、120 フレームに 1 回、すなわち（今は 60 FPS なので）2 秒に 1
+                  回、ブロックの追加が行われます。
+                </p>
+                <p>
+                  ちなみになぜ <code>0</code> とかではなくて <code>1</code> と比較しているのかというと、どうも
+                  <code>frameCount</code> は
+                  <code>1</code> から始まるようなので、最初の待ち時間が無いほうが良いと思ってこうしています。
+                </p>
+              </div>
+            </label>
+          </div>
+          <blockquote class="book-hint info">
+            実行してみて、上下ペアのブロックが一定間隔で現れることを確認してください。
+          </blockquote>
 
-    </div>
-  </label>
-</div>
-<blockquote class="book-hint info">
-  実行してみて、上下ペアのブロックが一定間隔で現れることを確認してください。
-</blockquote>
-
-<blockquote class="book-hint info">
-  <p>ブロックの削除がうまくいっているかを確認するには、例えば次のようなものをソースコード下端に加えて実行すると、何かキーを押すたびに現在のブロックの数が表示されます。</p>
-<div class="highlight"><pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="kd">function</span> <span class="nx">keyTyped</span><span class="p">(</span><span class="p">)</span> <span class="p">{</span>
+          <blockquote class="book-hint info">
+            <p>
+              ブロックの削除がうまくいっているかを確認するには、例えば次のようなものをソースコード下端に加えて実行すると、何かキーを押すたびに現在のブロックの数が表示されます。
+            </p>
+            <div class="highlight">
+              <pre
+                class="chroma"
+              ><code class="language-javascript" data-lang="javascript"><span class="kd">function</span> <span class="nx">keyTyped</span><span class="p">(</span><span class="p">)</span> <span class="p">{</span>
   <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="sb">`</span><span class="sb">blocks: </span><span class="si">${</span><span class="nx">blocks</span><span class="p">.</span><span class="nx">length</span><span class="si">}</span><span class="sb">`</span><span class="p">)</span><span class="p">;</span>
 <span class="p">}</span>
-</code></pre></div>
-</blockquote>
+</code></pre>
+            </div>
+          </blockquote>
 
-<div class="book-expand">
-  <label>
-    <div class="book-expand-head flex justify-between">
-      <span>余談： const にしないの？</span>
-      <span>↕</span>
-    </div>
-    <input type="checkbox" class="hidden" />
-    <div class="book-expand-content markdown-inner">
-      <p>JavaScript では、再代入可能な変数は <code>let</code>、再代入不可能な変数は <code>const</code> で宣言します。</p>
-<p>しかし p5.js の公式サンプルコードは、おそらく初学者を混乱させないためか <code>let</code> で統一しているようなので、この資料でもそれに倣っています。</p>
-<p>上のサンプルコードだと、</p>
-<div class="highlight"><pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="k">for</span> <span class="p">(</span><span class="kd">let</span> <span class="nx">block</span> <span class="k">of</span> <span class="nx">blocks</span><span class="p">)</span> <span class="c1">// ...
-</span></code></pre></div><p>のところで <code>block</code> に再代入することはありえないので</p>
-<div class="highlight"><pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="k">for</span> <span class="p">(</span><span class="kr">const</span> <span class="nx">block</span> <span class="k">of</span> <span class="nx">blocks</span><span class="p">)</span> <span class="c1">// ...
-</span></code></pre></div><p>とするのが妥当ですね。</p>
-<p>ここの <code>for</code> 文は2箇所ともそれぞれ一行しか無いので、もちろん実質的にはどっちでも変わらないのですが、原則論を言うと変数宣言は</p>
-<ul>
-<li>基本的には <code>const</code></li>
-<li>どうしても再代入したいときだけ <code>let</code></li>
-</ul>
-<p>という姿勢でいたほうが安全です。</p>
-<p>ゲームの場合、たいていのバグは「データが想定外の仕方で変化する」ことによって起きる印象があるので、変化しないと分かっている箇所はどう間違っても変化しないように固めておき、残りの変化しうる部分に注意を向けて慎重に扱う、ということが重要になります。</p>
-
-    </div>
-  </label>
-</div>
-<div class="book-expand">
-  <label>
-    <div class="book-expand-head flex justify-between">
-      <span>余談： 配列と高階関数</span>
-      <span>↕</span>
-    </div>
-    <input type="checkbox" class="hidden" />
-    <div class="book-expand-content markdown-inner">
-      <p>配列の機能は他にも色々あります。<br>
-参考： <a href="https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Global_Objects/Array" target="_blank">Array - JavaScript | MDN</a></p>
-<p><code>filter()</code> のように、引数として別の関数を受け取るような関数というのは Processing (Java) （少なくとも 3.x 以前のバージョン）には無いものなので、そちらから来た人には新鮮かもしれません。</p>
-<p>他にも例えば <code>forEach()</code> というのがあり、これは <code>for</code> 文の代わりに使えます。</p>
-<div class="highlight"><pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="c1">// 次の2つは同じ結果をもたらす
+          <div class="book-expand">
+            <label>
+              <div class="book-expand-head flex justify-between">
+                <span>余談： const にしないの？</span>
+                <span>↕</span>
+              </div>
+              <input type="checkbox" class="hidden" />
+              <div class="book-expand-content markdown-inner">
+                <p>
+                  JavaScript では、再代入可能な変数は <code>let</code>、再代入不可能な変数は
+                  <code>const</code> で宣言します。
+                </p>
+                <p>
+                  しかし p5.js の公式サンプルコードは、おそらく初学者を混乱させないためか
+                  <code>let</code> で統一しているようなので、この資料でもそれに倣っています。
+                </p>
+                <p>上のサンプルコードだと、</p>
+                <div class="highlight">
+                  <pre
+                    class="chroma"
+                  ><code class="language-javascript" data-lang="javascript"><span class="k">for</span> <span class="p">(</span><span class="kd">let</span> <span class="nx">block</span> <span class="k">of</span> <span class="nx">blocks</span><span class="p">)</span> <span class="c1">// ...
+</span></code></pre>
+                </div>
+                <p>のところで <code>block</code> に再代入することはありえないので</p>
+                <div class="highlight">
+                  <pre
+                    class="chroma"
+                  ><code class="language-javascript" data-lang="javascript"><span class="k">for</span> <span class="p">(</span><span class="kr">const</span> <span class="nx">block</span> <span class="k">of</span> <span class="nx">blocks</span><span class="p">)</span> <span class="c1">// ...
+</span></code></pre>
+                </div>
+                <p>とするのが妥当ですね。</p>
+                <p>
+                  ここの
+                  <code>for</code>
+                  文は2箇所ともそれぞれ一行しか無いので、もちろん実質的にはどっちでも変わらないのですが、原則論を言うと変数宣言は
+                </p>
+                <ul>
+                  <li>基本的には <code>const</code></li>
+                  <li>どうしても再代入したいときだけ <code>let</code></li>
+                </ul>
+                <p>という姿勢でいたほうが安全です。</p>
+                <p>
+                  ゲームの場合、たいていのバグは「データが想定外の仕方で変化する」ことによって起きる印象があるので、変化しないと分かっている箇所はどう間違っても変化しないように固めておき、残りの変化しうる部分に注意を向けて慎重に扱う、ということが重要になります。
+                </p>
+              </div>
+            </label>
+          </div>
+          <div class="book-expand">
+            <label>
+              <div class="book-expand-head flex justify-between">
+                <span>余談： 配列と高階関数</span>
+                <span>↕</span>
+              </div>
+              <input type="checkbox" class="hidden" />
+              <div class="book-expand-content markdown-inner">
+                <p>
+                  配列の機能は他にも色々あります。<br />
+                  参考：
+                  <a
+                    href="https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Global_Objects/Array"
+                    target="_blank"
+                    >Array - JavaScript | MDN</a
+                  >
+                </p>
+                <p>
+                  <code>filter()</code> のように、引数として別の関数を受け取るような関数というのは Processing (Java)
+                  （少なくとも 3.x 以前のバージョン）には無いものなので、そちらから来た人には新鮮かもしれません。
+                </p>
+                <p>
+                  他にも例えば <code>forEach()</code> というのがあり、これは <code>for</code> 文の代わりに使えます。
+                </p>
+                <div class="highlight">
+                  <pre
+                    class="chroma"
+                  ><code class="language-javascript" data-lang="javascript"><span class="c1">// 次の2つは同じ結果をもたらす
 </span><span class="c1"></span>
 <span class="k">for</span> <span class="p">(</span><span class="kd">let</span> <span class="nx">block</span> <span class="k">of</span> <span class="nx">blocks</span><span class="p">)</span> <span class="nx">updatePosition</span><span class="p">(</span><span class="nx">block</span><span class="p">)</span><span class="p">;</span>
 
 <span class="nx">blocks</span><span class="p">.</span><span class="nx">forEach</span><span class="p">(</span><span class="nx">updatePosition</span><span class="p">)</span><span class="p">;</span>
-</code></pre></div><p><code>forEach()</code> で書くと、コードがまるで文章みたいになって（「ブロックのそれぞれについて位置を更新せよ」と読める）、スマートな感じがしますね。<br>
-パフォーマンス的には <code>forEach()</code> の方がちょっと遅いらしいという話がありますが、少なくとも今回の例で気にする必要はありません。</p>
-<p>ちなみに、<code>filter()</code> や <code>forEach()</code> のような関数に引数として渡す関数（上の例だと <code>updatePosition()</code>）のことを「コールバック関数」と呼んだりします。</p>
-
-    </div>
-  </label>
-</div>
-<div class="book-expand">
-  <label>
-    <div class="book-expand-head flex justify-between">
-      <span>余談： オブジェクト生成破棄のコスト</span>
-      <span>↕</span>
-    </div>
-    <input type="checkbox" class="hidden" />
-    <div class="book-expand-content markdown-inner">
-      <h2 id="問題">問題</h2>
-<p><code>createBlock()</code> は新たなオブジェクトを生成する処理ですが（<code>createPlayer()</code> も同様）、こういうのはメモリを確保するために若干の処理負荷がかかります。</p>
-<p>さらに問題なのは破棄するときで、JavaScript では、使われなくなった（誰からも参照されなくなった）オブジェクトはガベージコレクション（略して GC）という機能によって自動的に破棄されますが、これによっても処理不可がかかります。
-参考： <a href="https://developer.mozilla.org/ja/docs/Web/JavaScript/Memory_Management" target="_blank">メモリ管理 - JavaScript | MDN</a></p>
-<p><code>filter()</code> で毎度新たな配列を作り直している（古いのは GC で破棄している）のも同様です。</p>
-<p>今回の例だと気にする必要はありませんが、たとえばスマホ向けにゲームを作ったりする場合、けっこうシビアに考えないと処理が追いつかなくてカクカクしたりします。弾幕シューティングみたいにオブジェクト数が多くてサイクルも速いと、PC でも怪しい。</p>
-<p>GC でどのオブジェクトが破棄されるかはプログラマには正確に予測・制御できないので、そもそも破棄が行われないように気をつける必要があります。</p>
-<h2 id="対策個々のエンティティの生成破棄">対策（個々のエンティティの生成破棄）</h2>
-<p>オブジェクトプールという手法があります。十分な量のオブジェクトをあらかじめ用意しておいて（プール＝貯める）、使うときにはプールから取り出して使い終わったらプールに戻す、というやり方でオブジェクトを使い回すというものです。</p>
-<p>良い可視化になっているかは分かりませんが、筆者が p5.js で可視化を試みてみたスケッチがこちら： <a href="https://www.fal-works.com/creative-coding-posts/object-pool" target="_blank">Object Pool — FAL Works</a></p>
-<p>難点として、</p>
-<ul>
-<li>あるオブジェクトを使って、使い終わって、また使って……としたときに、<br>
-その前後の状態を容易に区別する方法がない<br>
-（使うたびに新たなIDを付与して区別することはあるけど、主にデバッグ目的に限る）</li>
-<li>オブジェクトを使い終わったとき、以下を徹底的にやらないとバグる
-<ul>
-<li>当該オブジェクトが持っているデータのリセット</li>
-<li>当該オブジェクトを参照している他のオブジェクトへの通達とその後の処理</li>
-</ul>
-</li>
-</ul>
-<p>以上の理由でこの方法はものすごくバグを出しやすいのですが、背に腹は替えられんという感じでやむなく使ったりします。</p>
-<p>オブジェクトプールは配列で実装することになりますが、「使っているオブジェクトのリスト」を別に作るかどうか、別に作らないとしたら使っているオブジェクトをどうやって判別するか、という点で実装上の違いが出てきます。</p>
-<p>最も簡易的な方法は、一つ一つのオブジェクトに 生きている／死んでいる のフラグを持たせるというもので、これは全オブジェクトについて生死のチェックをループのたびに毎回やらなきゃいけませんが、そのぶん実装は楽だと思います。</p>
-<p>他にどんなのが……という詳しい話は書籍<a href="https://www.amazon.co.jp/dp/B015R0M8W0/" target="_blank">『Game Programming Patterns』</a>などが良いかもしれません（サンプルコードは C++ ですが）。</p>
-<h2 id="対策配列の生成破棄">対策（配列の生成破棄）</h2>
-<p>Java の <code>ArrayList</code> が取っている方法に近いですが、十分な長さの配列と、その長さとは別に「有効な値がいくつ入っているか」を記録しておいて、有効な要素だけを対象としてループ処理をする、という方法があります。</p>
-<p>こうすると要素が増減しても配列オブジェクト自体が生成・破棄されることはなくなります。</p>
-<div class="highlight"><pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="kr">class</span> <span class="nx">ArrayList</span> <span class="p">{</span>
+</code></pre>
+                </div>
+                <p>
+                  <code>forEach()</code>
+                  で書くと、コードがまるで文章みたいになって（「ブロックのそれぞれについて位置を更新せよ」と読める）、スマートな感じがしますね。<br />
+                  パフォーマンス的には
+                  <code>forEach()</code>
+                  の方がちょっと遅いらしいという話がありますが、少なくとも今回の例で気にする必要はありません。
+                </p>
+                <p>
+                  ちなみに、<code>filter()</code> や <code>forEach()</code> のような関数に引数として渡す関数（上の例だと
+                  <code>updatePosition()</code>）のことを「コールバック関数」と呼んだりします。
+                </p>
+              </div>
+            </label>
+          </div>
+          <div class="book-expand">
+            <label>
+              <div class="book-expand-head flex justify-between">
+                <span>余談： オブジェクト生成破棄のコスト</span>
+                <span>↕</span>
+              </div>
+              <input type="checkbox" class="hidden" />
+              <div class="book-expand-content markdown-inner">
+                <h2 id="問題">問題</h2>
+                <p>
+                  <code>createBlock()</code> は新たなオブジェクトを生成する処理ですが（<code>createPlayer()</code>
+                  も同様）、こういうのはメモリを確保するために若干の処理負荷がかかります。
+                </p>
+                <p>
+                  さらに問題なのは破棄するときで、JavaScript
+                  では、使われなくなった（誰からも参照されなくなった）オブジェクトはガベージコレクション（略して
+                  GC）という機能によって自動的に破棄されますが、これによっても処理不可がかかります。 参考：
+                  <a href="https://developer.mozilla.org/ja/docs/Web/JavaScript/Memory_Management" target="_blank"
+                    >メモリ管理 - JavaScript | MDN</a
+                  >
+                </p>
+                <p>
+                  <code>filter()</code> で毎度新たな配列を作り直している（古いのは GC で破棄している）のも同様です。
+                </p>
+                <p>
+                  今回の例だと気にする必要はありませんが、たとえばスマホ向けにゲームを作ったりする場合、けっこうシビアに考えないと処理が追いつかなくてカクカクしたりします。弾幕シューティングみたいにオブジェクト数が多くてサイクルも速いと、PC
+                  でも怪しい。
+                </p>
+                <p>
+                  GC
+                  でどのオブジェクトが破棄されるかはプログラマには正確に予測・制御できないので、そもそも破棄が行われないように気をつける必要があります。
+                </p>
+                <h2 id="対策個々のエンティティの生成破棄">対策（個々のエンティティの生成破棄）</h2>
+                <p>
+                  オブジェクトプールという手法があります。十分な量のオブジェクトをあらかじめ用意しておいて（プール＝貯める）、使うときにはプールから取り出して使い終わったらプールに戻す、というやり方でオブジェクトを使い回すというものです。
+                </p>
+                <p>
+                  良い可視化になっているかは分かりませんが、筆者が p5.js で可視化を試みてみたスケッチがこちら：
+                  <a href="https://www.fal-works.com/creative-coding-posts/object-pool" target="_blank"
+                    >Object Pool — FAL Works</a
+                  >
+                </p>
+                <p>難点として、</p>
+                <ul>
+                  <li>
+                    あるオブジェクトを使って、使い終わって、また使って……としたときに、<br />
+                    その前後の状態を容易に区別する方法がない<br />
+                    （使うたびに新たなIDを付与して区別することはあるけど、主にデバッグ目的に限る）
+                  </li>
+                  <li>
+                    オブジェクトを使い終わったとき、以下を徹底的にやらないとバグる
+                    <ul>
+                      <li>当該オブジェクトが持っているデータのリセット</li>
+                      <li>当該オブジェクトを参照している他のオブジェクトへの通達とその後の処理</li>
+                    </ul>
+                  </li>
+                </ul>
+                <p>
+                  以上の理由でこの方法はものすごくバグを出しやすいのですが、背に腹は替えられんという感じでやむなく使ったりします。
+                </p>
+                <p>
+                  オブジェクトプールは配列で実装することになりますが、「使っているオブジェクトのリスト」を別に作るかどうか、別に作らないとしたら使っているオブジェクトをどうやって判別するか、という点で実装上の違いが出てきます。
+                </p>
+                <p>
+                  最も簡易的な方法は、一つ一つのオブジェクトに 生きている／死んでいる
+                  のフラグを持たせるというもので、これは全オブジェクトについて生死のチェックをループのたびに毎回やらなきゃいけませんが、そのぶん実装は楽だと思います。
+                </p>
+                <p>
+                  他にどんなのが……という詳しい話は書籍<a href="https://www.amazon.co.jp/dp/B015R0M8W0/" target="_blank"
+                    >『Game Programming Patterns』</a
+                  >などが良いかもしれません（サンプルコードは C++ ですが）。
+                </p>
+                <h2 id="対策配列の生成破棄">対策（配列の生成破棄）</h2>
+                <p>
+                  Java の
+                  <code>ArrayList</code>
+                  が取っている方法に近いですが、十分な長さの配列と、その長さとは別に「有効な値がいくつ入っているか」を記録しておいて、有効な要素だけを対象としてループ処理をする、という方法があります。
+                </p>
+                <p>こうすると要素が増減しても配列オブジェクト自体が生成・破棄されることはなくなります。</p>
+                <div class="highlight">
+                  <pre
+                    class="chroma"
+                  ><code class="language-javascript" data-lang="javascript"><span class="kr">class</span> <span class="nx">ArrayList</span> <span class="p">{</span>
   <span class="nx">constructor</span><span class="p">(</span><span class="nx">initialCapacity</span><span class="p">)</span> <span class="p">{</span>
     <span class="k">this</span><span class="p">.</span><span class="nx">array</span> <span class="o">=</span> <span class="k">new</span> <span class="nb">Array</span><span class="p">(</span><span class="nx">initialCapacity</span><span class="p">)</span><span class="p">;</span>
     <span class="k">this</span><span class="p">.</span><span class="nx">size</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
@@ -844,68 +803,40 @@ https://github.com/alex-shpak/hugo-book
 
   <span class="c1">// 他、filter() とかは省略
 </span><span class="c1"></span><span class="p">}</span>
-</code></pre></div><p>なんでこんなこと手動でやらなきゃいけないんだろうな、という気分にならないでもない。</p>
-<h2 id="余談の余談">余談の余談</h2>
-<p>GC のパフォーマンス問題を経験すると、GC は悪！ という気分になるのですが、本来は無いと困るレベルの便利な機能なので、GC を悪く言うのは風評被害な感じがあるかもしれませんね。</p>
-<p>あと Wikipedia の項目名だと「ガベージコレクション」となっていますが、本場の発音を考慮すると「ガベージ」ではなく「ガーベジ」や「ガービッジ」ではないか、とかがあるのでこの言葉にはそこそこ表記揺れがあります。<br>
-個人的な考えとしては、英語がカタカナに変換されるにあたっては一定の慣習みたいなものがあり、「ガベージ」はそれに則っている雰囲気がするのでこれでもいいと思っています。</p>
+</code></pre>
+                </div>
+                <p>なんでこんなこと手動でやらなきゃいけないんだろうな、という気分にならないでもない。</p>
+                <h2 id="余談の余談">余談の余談</h2>
+                <p>
+                  GC のパフォーマンス問題を経験すると、GC は悪！
+                  という気分になるのですが、本来は無いと困るレベルの便利な機能なので、GC
+                  を悪く言うのは風評被害な感じがあるかもしれませんね。
+                </p>
+                <p>
+                  あと Wikipedia
+                  の項目名だと「ガベージコレクション」となっていますが、本場の発音を考慮すると「ガベージ」ではなく「ガーベジ」や「ガービッジ」ではないか、とかがあるのでこの言葉にはそこそこ表記揺れがあります。<br />
+                  個人的な考えとしては、英語がカタカナに変換されるにあたっては一定の慣習みたいなものがあり、「ガベージ」はそれに則っている雰囲気がするのでこれでもいいと思っています。
+                </p>
+              </div>
+            </label>
+          </div>
+        </article>
 
-    </div>
-  </label>
-</div>
-</article>
- 
+        <footer class="book-footer">
+          <div class="flex justify-between"></div>
 
-      <footer class="book-footer">
-        
-  <div class="flex justify-between">
+          <div class="book-comments"></div>
+        </footer>
+      </div>
 
-
-
-
-
-</div>
-
- 
-        
-  
-  <div class="book-comments">
-
-</div>
-  
- 
-      </footer>
-      
-    </div>
-
-    
-    <aside class="book-toc">
-      
-  <nav id="TableOfContents">
-  <ul>
-    <li><a href="#やること">やること</a></li>
-    <li><a href="#実装">実装</a></li>
-  </ul>
-</nav>
-
- 
-    </aside>
-    
-  </main>
-
-  
-</body>
-
+      <aside class="book-toc">
+        <nav id="TableOfContents">
+          <ul>
+            <li><a href="#やること">やること</a></li>
+            <li><a href="#実装">実装</a></li>
+          </ul>
+        </nav>
+      </aside>
+    </main>
+  </body>
 </html>
-
-
-
-
-
-
-
-
-
-
-
-
