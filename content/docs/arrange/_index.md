@@ -16,8 +16,12 @@ weight: 30
 
 ## おしながき
 
+{{< hint info >}}
+
 - [パーティクルを追加](./particles)
 - [画面効果を追加](./effects)
 - [ルール変更](./rules)
 - [画像や音を使う](./use-assets)
 - [参考リンク](./links)
+
+{{< /hint >}}
