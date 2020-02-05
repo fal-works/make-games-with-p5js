@@ -6,18 +6,26 @@ weight: 70
 
 # 衝突判定を実装
 
+プレイヤーがブロックに当たったらゲームオーバーとしたい
+
 ## 判定方法
 
-[説明用スケッチ](https://fal-works.github.io/make-games-with-p5js-src/07-collision/one-on-one/)
-[![説明用スケッチ](./one-on-one-collision.png)](https://fal-works.github.io/make-games-with-p5js-src/07-collision/one-on-one/)
+まず、2者間の衝突を考える
+
+### 考え方
 
 四角形 A と四角形 B が衝突しているかどうかを確認する方法：
 
-1. A, B の x 軸方向での距離が十分に開いていたら、衝突していない
-1. A, B の y 軸方向での距離が十分に開いていたら、衝突していない
-3. x, y 両方で距離が近ければ、衝突している
+1. A, B の **x 軸** 方向での距離が十分に開いていたら、衝突していない
+1. A, B の **y 軸** 方向での距離が十分に開いていたら、衝突していない
+1. 以上いずれでもないなら、衝突している
 
-これを実装すると次のようになる
+[説明用スケッチ](https://fal-works.github.io/make-games-with-p5js-src/07-collision/one-on-one/) （クリックで開く）
+[![説明用スケッチ](./one-on-one-collision.png)](https://fal-works.github.io/make-games-with-p5js-src/07-collision/one-on-one/)
+
+### 2者間の衝突を判定する関数
+
+上記をそのまま実装すると次のようになる
 
 ```javascript
 /**
@@ -81,7 +89,7 @@ function entitiesAreColliding(
 ## 実装
 
 1. 上述の衝突判定関数を用意する
-1. プレイヤー 対 各ブロック について判定し、衝突していたらゲームオーバー
+1. **プレイヤー 対 各ブロック** について判定し、衝突していたらゲームオーバー
 
 ```javascript { hl_lines=["60-86", "146-152"], linenostart=1 }
 // ---- エンティティ関連の関数 ---------------------------------------------
