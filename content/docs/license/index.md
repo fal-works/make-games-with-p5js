@@ -8,10 +8,10 @@ weight: 90
 
 **Copyright (c) 2020 FAL**
 
-この資料は MIT ライセンスで提供されているので、条項を守れば自由に利用可能です。  
+この資料は **MIT ライセンス** で提供されているので、条項を守れば自由に利用可能です。  
 参考： [MIT License - Wikipedia](https://ja.wikipedia.org/wiki/MIT_License)
 
-{{< expand "ライセンス全文">}}
+{{< expand "ライセンス全文 / License full text">}}
 MIT License
 
 Copyright (c) 2020 FAL
@@ -35,7 +35,7 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 {{< /expand >}}
 
-たとえば、この資料に書いてあるコードを改造したり組み込んだりして作ったプログラムのソースコードを公開したい場合、その冒頭などに、コメントで次のような文言を入れます。
+たとえば、この資料に書いてあるコードを改造したり組み込んだりして作ったプログラムのソースコードを公開したい場合、その冒頭付近などに、コメントで次のような文言を入れれば大丈夫です。
 
 ```javascript { linenos=false }
 /**
@@ -44,7 +44,7 @@ SOFTWARE.
  * "p5.js でゲーム制作" ( https://fal-works.github.io/make-games-with-p5js/ )
  * Copyright (c) 2020 FAL
  * Used under the MIT License
- * ( https://github.com/fal-works/make-games-with-p5js/blob/master/LICENSE )
+ * ( https://fal-works.github.io/make-games-with-p5js/docs/license/ )
  */
 ```
 

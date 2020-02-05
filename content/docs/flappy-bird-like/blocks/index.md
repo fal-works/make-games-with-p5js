@@ -331,7 +331,7 @@ blocks.forEach(updatePosition);
 
 `createBlock()` は新たなオブジェクトを生成する処理ですが（`createPlayer()` も同様）、こういうのはメモリを確保するために若干の処理負荷がかかります。
 
-さらに問題なのは破棄するときで、JavaScript では、使われなくなった（誰からも参照されなくなった）オブジェクトはガベージコレクション（略して GC）という機能によって自動的に破棄されますが、これによっても処理不可がかかります。
+さらに問題なのは破棄するときで、JavaScript では、使われなくなった（誰からも参照されなくなった）オブジェクトはガベージコレクション（略して GC）という機能によって自動的に破棄されますが、これによっても処理負荷がかかります。
 参考： [メモリ管理 - JavaScript | MDN](https://developer.mozilla.org/ja/docs/Web/JavaScript/Memory_Management)
 
 `filter()` で毎度新たな配列を作り直している（古いのは GC で破棄している）のも同様です。
