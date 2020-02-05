@@ -1,5 +1,10 @@
 # p5.js でゲーム制作
 
+## ビルド環境
+
+- hugo v0.63.2
+- hugo-extended v0.63.2
+
 ## 修正後の公開手順
 
 1. `hugo --cleanDestinationDir`
