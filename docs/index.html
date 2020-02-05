@@ -156,7 +156,7 @@ https://github.com/alex-shpak/hugo-book
                 </li>
 
                 <li>
-                  <a href="/make-games-with-p5js/docs/arrange/use-assets.md/">
+                  <a href="/make-games-with-p5js/docs/arrange/use-assets/">
                     画像や音を使う
                   </a>
                 </li>
@@ -227,6 +227,45 @@ https://github.com/alex-shpak/hugo-book
 
         <article class="markdown">
           <h1 id="p5js-でゲーム制作">p5.js でゲーム制作</h1>
+          <p>
+            JavaScript と
+            <a href="https://p5js.org/" target="_blank">p5.js</a>
+            を使って、一からゲームを作り上げるまでの過程をレクチャーします。
+          </p>
+          <p>
+            <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+            <a
+              href="https://twitter.com/share?ref_src=twsrc%5Etfw"
+              class="twitter-share-button"
+              data-text="『p5.js でゲーム制作』"
+              data-url="https://fal-works.github.io/make-games-with-p5js/"
+              data-via="falworks_ja"
+              data-hashtags="processing, p5js"
+              data-related=""
+              data-lang="ja"
+              data-show-count="false"
+              >Tweet</a
+            >
+            <a
+              href="https://b.hatena.ne.jp/entry/s/fal-works.github.io/make-games-with-p5js/"
+              class="hatena-bookmark-button"
+              data-hatena-bookmark-layout="basic-label"
+              data-hatena-bookmark-lang="ja"
+              title="このエントリーをはてなブックマークに追加"
+              ><img
+                src="https://b.st-hatena.com/images/v4/public/entry-button/button-only@2x.png"
+                alt="このエントリーをはてなブックマークに追加"
+                width="20"
+                height="20"
+                style="border: none;"
+            /></a>
+            <script
+              type="text/javascript"
+              src="https://b.st-hatena.com/js/bookmark_button.js"
+              charset="utf-8"
+              async="async"
+            ></script>
+          </p>
           <hr />
           <h2 id="このサイトについて">このサイトについて</h2>
           <p>
@@ -236,12 +275,21 @@ https://github.com/alex-shpak/hugo-book
             でゲーム制作」に向けて作成した資料を、独習できるように修正して公開したものです。
           </p>
           <h3 id="資料の読み方">資料の読み方</h3>
-          <ul>
-            <li>画面左側にあるのは、全体の目次です。</li>
-            <li>画面右側にあるのは、今見ているページの目次です。</li>
-            <li><strong>「補足」</strong>…… 主に初心者さん向けの補足です。</li>
-            <li><strong>「余談」</strong>…… 発展的な内容、もしくは細かいことが気になる人向けの補足です。</li>
-          </ul>
+          <p>
+            画面左側にあるのは、全体の目次です。<br />
+            画面右側にあるのは、今見ているページの目次です。<br />
+            タブレットなどで閲覧する場合、それぞれ左上と右上のアイコンをタップして開きます。
+          </p>
+          <p>
+            <strong>「補足」</strong><br />
+            主に初心者さん向けの補足です。
+          </p>
+          <p>
+            <strong>「余談」</strong><br />
+            発展的な内容、もしくは細かいことが気になる人向けの補足です。<br />
+            本文を上回る量と密度なので、お暇なときにでもどうぞ。
+          </p>
+          <hr />
           <h2 id="内容について">内容について</h2>
           <h3 id="概要">概要</h3>
           <p>
@@ -262,25 +310,45 @@ https://github.com/alex-shpak/hugo-book
               <a href="https://p5js.org/" target="_blank">p5.js</a> の基本（setup/draw、座標、図形の描画、色の指定など）
             </li>
             <li>
-              Processing (Java) しかやったことない場合、p5.js での書き方の違いについて<br />
+              Processing (Java) しかやったことない場合、<a
+                href="https://github.com/processing/p5.js/wiki/Processing-transition"
+                target="_blank"
+                >p5.js での書き方の違い</a
+              >について<br />
               （変数や関数の宣言、型を書かない、など）
             </li>
           </ul>
           <hr />
           <h2 id="著者について">著者について</h2>
-          <p><strong>FAL</strong>　―　インディーゲーム開発者／クリエイティブコーダー</p>
-          <p>ゲームを作ったり、Processing や p5.js でスケッチを作ったりしています。</p>
-          <ul>
-            <li>Webサイト: <a href="https://www.fal-works.com/" target="_blank">https://www.fal-works.com/</a></li>
-            <li>Twitter: <a href="https://twitter.com/falworks_ja" target="_blank">@falworks_ja</a></li>
-            <li>OpenProcessing: <a href="https://www.openprocessing.org/user/67512/" target="_blank">user/67512</a></li>
-            <li>メール: contact[ at ]fal-works.com</li>
-          </ul>
+          <p><strong>FAL</strong> ―　インディーゲーム開発者／クリエイティブコーダー</p>
+          <img src="./fal-icon-320.png" style="float: right;" alt="FAL icon" width="160px" height="" />
           <p>
-            <img src="./fal-sketches.png" alt="sketches by FAL" />
+            ゲームを作ったり、<br />
+            Processing や p5.js でスケッチを作ったりしています。
+          </p>
+          <ul>
+            <li>Web： <a href="https://www.fal-works.com/" target="_blank">https://www.fal-works.com/</a></li>
+            <li>Twitter： <a href="https://twitter.com/falworks_ja" target="_blank">@falworks_ja</a></li>
+            <li>
+              OpenProcessing： <a href="https://www.openprocessing.org/user/67512/" target="_blank">user/67512</a>
+            </li>
+            <li>メール： contact[ at ]fal-works.com</li>
+          </ul>
+          <a
+            href="https://twitter.com/falworks_ja?ref_src=twsrc%5Etfw"
+            class="twitter-follow-button"
+            data-text="AAAABBBB"
+            data-show-screen-name="false"
+            data-lang="ja"
+            data-show-count="false"
+            >Follow @falworks_ja</a
+          >
+          <p><img src="./fal-p5-sketches.png" alt="sketches by FAL" /></p>
+          <p><img src="./fal-p5-games.png" alt="games by FAL" /></p>
+          <p>
             <a href="https://www.youtube.com/watch?v=FWvh1CpH37o" target="_blank"
-              ><img src="./solid-aether.png" alt="Solid Aether"
-            /></a>
+              ><img src="./solid-aether.png" alt="Solid Aether"/></a
+            ><br />
             ※ Solid Aether は Processing 製ではありません、コードが2～3万行あるので……
           </p>
         </article>

@@ -7,7 +7,7 @@
     <meta property="og:title" content="衝突判定を実装" />
     <meta
       property="og:description"
-      content="衝突判定を実装 判定方法 説明用スケッチ 四角形 A と四角形 B が衝突しているかどうかを確認する方法： A, B の x 軸方向での距離が十分に開いていたら、衝突"
+      content="衝突判定を実装 プレイヤーがブロックに当たったらゲームオーバーとしたい 判定方法 まず、2者間の衝突を考える 考え方 四角形 A と四角形 B が衝突している"
     />
     <meta property="og:type" content="article" />
     <meta
@@ -152,7 +152,7 @@ https://github.com/alex-shpak/hugo-book
                 </li>
 
                 <li>
-                  <a href="/make-games-with-p5js/docs/arrange/use-assets.md/">
+                  <a href="/make-games-with-p5js/docs/arrange/use-assets/">
                     画像や音を使う
                   </a>
                 </li>
@@ -202,7 +202,13 @@ https://github.com/alex-shpak/hugo-book
           <aside class="hidden clearfix">
             <nav id="TableOfContents">
               <ul>
-                <li><a href="#判定方法">判定方法</a></li>
+                <li>
+                  <a href="#判定方法">判定方法</a>
+                  <ul>
+                    <li><a href="#考え方">考え方</a></li>
+                    <li><a href="#2者間の衝突を判定する関数">2者間の衝突を判定する関数</a></li>
+                  </ul>
+                </li>
                 <li><a href="#実装">実装</a></li>
                 <li><a href="#一区切り">一区切り</a></li>
               </ul>
@@ -212,22 +218,27 @@ https://github.com/alex-shpak/hugo-book
 
         <article class="markdown">
           <h1 id="衝突判定を実装">衝突判定を実装</h1>
+          <p>プレイヤーがブロックに当たったらゲームオーバーとしたい</p>
           <h2 id="判定方法">判定方法</h2>
+          <p>まず、2者間の衝突を考える</p>
+          <h3 id="考え方">考え方</h3>
+          <p>四角形 A と四角形 B が衝突しているかどうかを確認する方法：</p>
+          <ol>
+            <li>A, B の <strong>x 軸</strong> 方向での距離が十分に開いていたら、衝突していない</li>
+            <li>A, B の <strong>y 軸</strong> 方向での距離が十分に開いていたら、衝突していない</li>
+            <li>以上いずれでもないなら、衝突している</li>
+          </ol>
           <p>
             <a href="https://fal-works.github.io/make-games-with-p5js-src/07-collision/one-on-one/" target="_blank"
               >説明用スケッチ</a
             >
+            （クリックで開く）
             <a href="https://fal-works.github.io/make-games-with-p5js-src/07-collision/one-on-one/" target="_blank"
               ><img src="./one-on-one-collision.png" alt="説明用スケッチ"
             /></a>
           </p>
-          <p>四角形 A と四角形 B が衝突しているかどうかを確認する方法：</p>
-          <ol>
-            <li>A, B の x 軸方向での距離が十分に開いていたら、衝突していない</li>
-            <li>A, B の y 軸方向での距離が十分に開いていたら、衝突していない</li>
-            <li>x, y 両方で距離が近ければ、衝突している</li>
-          </ol>
-          <p>これを実装すると次のようになる</p>
+          <h3 id="2者間の衝突を判定する関数">2者間の衝突を判定する関数</h3>
+          <p>上記をそのまま実装すると次のようになる</p>
           <div class="highlight">
             <div class="chroma">
               <table class="lntable">
@@ -338,7 +349,7 @@ https://github.com/alex-shpak/hugo-book
           <h2 id="実装">実装</h2>
           <ol>
             <li>上述の衝突判定関数を用意する</li>
-            <li>プレイヤー 対 各ブロック について判定し、衝突していたらゲームオーバー</li>
+            <li><strong>プレイヤー 対 各ブロック</strong> について判定し、衝突していたらゲームオーバー</li>
           </ol>
           <div class="highlight">
             <div class="chroma">
@@ -939,7 +950,13 @@ https://github.com/alex-shpak/hugo-book
       <aside class="book-toc">
         <nav id="TableOfContents">
           <ul>
-            <li><a href="#判定方法">判定方法</a></li>
+            <li>
+              <a href="#判定方法">判定方法</a>
+              <ul>
+                <li><a href="#考え方">考え方</a></li>
+                <li><a href="#2者間の衝突を判定する関数">2者間の衝突を判定する関数</a></li>
+              </ul>
+            </li>
             <li><a href="#実装">実装</a></li>
             <li><a href="#一区切り">一区切り</a></li>
           </ul>
