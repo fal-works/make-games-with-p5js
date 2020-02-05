@@ -2,8 +2,9 @@
 
 ## ビルド環境
 
-- hugo v0.63.2
-- hugo-extended v0.63.2
+- hugo v0.64.0
+- hugo-extended v0.64.0
+- prettier v1.19.1
 
 ## 修正後の公開手順
 
